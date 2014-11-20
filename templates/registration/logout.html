@@ -1,0 +1,15 @@
+{% extends "sitebase.html" %}
+
+
+
+{% block title %}Logout{% endblock %}
+
+{%block navigation %}{% include '_nav-full.html' %} {% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+<p>{% trans "Thank you. You are now logged out." %}</p>
+</div>
+
+{% endblock %}

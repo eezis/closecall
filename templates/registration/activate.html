@@ -1,0 +1,20 @@
+<!-- The name says activate, but this form is shown when the activation FAILS -->
+
+{% extends "sitebase.html" %}
+
+{% load i18n %}
+
+{% block title %}Activation Failed{% endblock %}
+
+{%block navigation %}{% include '_nav-simple.html' %} {% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+
+<p>{% trans "Sorry. The activation has failed." %}</p>
+
+<p>{% trans "The activation may have failed if you took longer than 14 days</p>
+</div>
+
+{% endblock %}

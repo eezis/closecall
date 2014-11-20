@@ -1,0 +1,84 @@
+cd /Users/eae/code/sites
+$ mkvirtualenv closecall
+$ pip install django
+$ django-admin.py startproject closecall
+$ cd closecall
+$ git init
+$ git add closecall
+$ pip install "ipython[notebook]"
+$ pip install django_extensions
+# install postrges drivers
+pip install -U psycopg2
+
+pip install django-registration-redux
+
+$ django-admin.py startapp incident
+
+Tweak settings.py
+LOCAL_APPS = ('incident',)
+
+
+=== setting up Postgres, create a user for the app, and a database
+
+# Create a new user
+Access psql (click elephant, open psql on my osx where I have postgres app installed)
+
+eae=# CREATE USER eaecc WITH PASSWORD '***REMOVED***';
+CREATE ROLE
+eae=# CREATE DATABASE closecall;
+CREATE DATABASE
+eae=# GRANT ALL PRIVILEGES ON DATABASE closecall to eaecc;
+GRANT
+
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'closecall',
+        'USER': 'eaecc',
+        'PASSWORD': '***REMOVED***',
+        'HOST': '', # Leave blank for socket connection
+        'PORT': '', # default postgres port is 5432 for the curious
+    }
+}
+
+
+
+# make some models  *** SEE BELOW FOR ACTUAL SCREEN OUTPUT
+$ python manage.py migrate
+$ python manage.py makemigrations
+$ python manage.py migrate
+
+the workflow:
+1. modify models.py
+2. python manage.py makemigrations
+3. python manage.py migrate
+
+
+--- create a super user
+
+$ python manage.py createsuperuser
+Username (leave blank to use 'eae'): eae
+Email address: ernest.ezis@gmail.com
+Password:
+Password (again):
+Superuser created successfully.
+
+
+create admin.py
+
+    from django.contrib import admin
+
+    from incident.models import Incident
+
+    # Register your models here.
+
+    admin.site.register(Incident)
+
+
+python manage.py runserver
+http://localhost:8000/
+http://localhost:8000/admin (add an entry)
+
+python manage.py shell_plus --notebook

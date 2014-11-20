@@ -1,0 +1,38 @@
+
+In [34]: from geopy.geocoders import Nominatim
+
+In [35]: geolocator = Nominatim()
+
+In [36]: location = geolocator.geocode("Boulder")
+
+In [37]: print location.address
+Boulder, Boulder County, Colorado, United States of America
+
+
+In [40]: location = geolocator.geocode("Boulder CO")
+
+In [41]: print location.address
+Boulder County, Colorado, United States of America
+
+In [42]: location = geolocator.geocode("Boulder, CO")
+
+In [43]: print location.address
+Boulder, Boulder County, Colorado, United States of America
+
+In [44]: location = geolocator.geocode("Boulder, CO 80304")
+
+In [45]: location = geolocator.geocode("Boulder, CO 80304")
+
+In [46]: print location.address
+Boulder, Boulder County, Colorado, United States of America
+
+In [47]: location = geolocator.geocode("5101 5th St, Boulder, CO 80304")
+
+In [48]: print location.address
+5th Street, Boulder, Boulder County, Colorado, 80304, United States of America
+
+In [49]: print location.longitude
+-105.2884097
+
+In [50]: print location.latitude
+40.0657979

@@ -1,0 +1,23 @@
+{% extends "sitebase.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "Account Activated" %}{% endblock %}
+
+{%block navigation %}{% include '_nav-full.html' %} {% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+
+<p>{% trans "Your account is now activated." %}</p>
+<p>{% trans "Your usename is: " %}{{user.email}}</p>
+
+{% if not user.is_authenticated %}
+  <p>{% trans "Please " %}<a href="/accounts/login/">Login</a>
+{% endif %}
+
+</div>
+
+{% endblock %}

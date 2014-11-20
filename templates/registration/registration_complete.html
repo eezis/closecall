@@ -1,0 +1,25 @@
+{% extends "sitebase.html" %}
+
+{% load i18n %}
+
+{% block title %}{% trans "Activation Email Has Been Sent" %}{% endblock %}
+
+{%block navigation %}{% include '_nav-simple.html' %} {% endblock %}
+
+{% block content %}
+
+<div class="jumbotron">
+
+ {% blocktrans %}
+
+  <p>We have sent you an account-activation email using the email address you provided when you registered. Please open that email and click on the link to complete your site registration.</p>
+
+  <p>If you do not see the email in your inbox within a few minutes, please check your spam folder.</p>
+
+  <p>Thank You!</p>
+
+ {% endblocktrans %}
+
+</div>
+
+{% endblock %}

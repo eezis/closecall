@@ -1,0 +1,32 @@
+{% extends "sitebase.html" %}
+
+{% block title %}Delete Incident Report{% endblock %}
+
+{%block navigation %}{% include '_nav-loggedin.html' %} {% endblock %}
+
+{% block content %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
+
+  <h3 class="title-divider"><span>Delete this entry?<span class="de-em"></span></span></h3>
+
+  <hr>
+
+  <div class="row" style="padding-left: 12px;">
+    <p>Location: {{object.location}}</p>
+    <p>Date: {{object.date}} Time: {{object.time}}</p>
+    <hr>
+    <p>{{object.what}}</p>
+    <p>{{object.position}}</p>
+    <form action="" method='POST'>
+      {% csrf_token %}
+      {{form.media}}
+     <p /><br />
+     <input type="submit" value="Delete" />
+    </form>
+  </div>
+</div>
+
+{% endblock %}
+
+

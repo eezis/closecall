@@ -1,0 +1,31 @@
+{% extends "sitebase.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Incident Report{% endblock %}
+
+{%block navigation %}{% include '_nav-loggedin.html' %} {% endblock %}
+
+{% block content %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
+<h2>Incident Details</h2>
+
+  <hr>
+
+  <div class="row">
+    <p>Location: {{object.location}}</p>
+    <p>Date: {{object.date}} Time: {{object.time}}</p>
+    <hr>
+    <p>{{object.what}}</p>
+    <p>{{object.position}}</p>
+    <!-- <hr style="border-color: blue;"> -->
+  </div>
+
+  <hr>
+
+  <a href="/incident/update/{{object.pk}}">Update This Report</a>
+
+</div>
+
+{% endblock %}

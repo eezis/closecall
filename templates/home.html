@@ -1,0 +1,54 @@
+{% extends "sitebase.html" %}
+
+{% block title %}The Close Call Database{% endblock %}
+
+{%block navigation %}
+  {% if user.is_authenticated %}
+    {% include '_nav-loggedin.html' %}
+  {% else %}
+    {% include '_nav-full.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<p>Welcome back {{ user.username }}</p>
+<hr>
+<p>Announcements and local incident reports go here</p>
+<hr>
+<p>List of incidents reported by this user here</p>
+{% for incident in incidents %}
+    <p><a href="/incident/detail/{{incident.pk}}/">{{incident.what}}</a></p>
+{% endfor %}
+
+{% else %}
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
+<h2>Welcome to the Close Call Database</h2>
+<hr>
+<h3 style="padding-top: 18px;">A Community Project for Safer Cycling</h3>
+  <div class="page-header">
+
+    <h2><small>
+    If you have had an incident with a hostile driver please <a href="/accounts/register/" style="text-decoration: none;">register and record</a> the incident in the Close Call Database.
+    </small></h2>
+
+    <h2><small>
+    Hostile drivers are often serial offenders. Cataloging their aggression and documenting their hostility towards cyclists provides your local police and prosecutors with important information to make us safer and increases the likelihood that justice is served if the driver ends up colliding with a cyclist at a later date.
+    </small></h2>
+
+    <h2><small>
+    If you are an active cyclists you should still register even if you don't have an incident to report at this time. Registering will keep you informed about aggressive driving incidents in your area.
+    </small></h2>
+
+    <h2><small>
+    <a href="/accounts/register/" style="text-decoration: none;">Register</a>
+    </small></h2>
+
+
+  </div>
+</div>
+{% endif %}
+
+
+
+{% endblock %}
