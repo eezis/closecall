@@ -1,3 +1,7 @@
+# THIS WAS THE MINIMUM CONFIG THAT WORKED
+# the pid was going to the wrong place
+# I haven't tried the user nobody yet
+
 worker_processes 1;
 
 # user nobody nogroup;
@@ -13,15 +17,7 @@ events {
 
 http {
     server {
-        listen 80 default;
-        client_max_body_size 2G;
-        server_name closecalldatabase.com;
-        keepalive_timeout 5;
-
-        # path for static files
-        # root /path/to/app/current/public;
-        root /home/eezis/sites/static/closecall;
-        # root /home/eezis/sites/static/closecall/;
+        listen 80;
 
         location / {
             proxy_pass http://127.0.0.1:8000;
