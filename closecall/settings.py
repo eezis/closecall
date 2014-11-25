@@ -24,7 +24,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['104.131.56.181', 'closecalldatabase.com']
+ALLOWED_HOSTS = ['104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', ]
 
 
 # Application definition
