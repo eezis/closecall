@@ -119,12 +119,20 @@ TEMPLATE_DIRS = (
 )
 
 
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'amliteditor@gmail.com'
+# EMAIL_HOST_PASSWORD = 'nathan3141'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_SUBJECT_PREFIX = '[Django - Amlit] '
+
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'amliteditor@gmail.com'
-EMAIL_HOST_PASSWORD = 'nathan3141'
+EMAIL_HOST_USER = 'closecalldatabase@gmail.com'
+EMAIL_HOST_PASSWORD = '***REMOVED***'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_SUBJECT_PREFIX = '[Django - Amlit] '
+EMAIL_SUBJECT_PREFIX = '[CCDB] '
+
 
 try:
     from dev_settings import *

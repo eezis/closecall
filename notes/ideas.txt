@@ -3,3 +3,14 @@
 Allow folks to add their strava account. Then alert if incidents on their roads? Might be too much work for the benefit.
 
     http://www.strava.com/developers
+
+
+Have a general HEADS UP section?
+================================
+    * these are not incidents, but might be useful information to communicate?
+        -- someone through tacs on Lee Hill
+        -- repaving on 75th
+        -- giant pothole has opened up on the descent from Ward, be careful [at spot x]
+
+
+

@@ -1,8 +1,7 @@
 
 
-create the eae superuser!
 
-Access has to be via nginx, so ensure that closecalldatabase.com:8000 cannot be accessed (do for americanliterature.com too)
+
 
 security:
 1. change postgres port
@@ -11,3 +10,18 @@ security:
 
 Get a transparent favicon.ico and put in static directory.
 
+
+
+
+Done
+===============
+
+
+
+
+
+Access has to be via nginx, so ensure that closecalldatabase.com:8000 cannot be accessed
+
+
+create the eae superuser!
+     python manage.py createsuperuser

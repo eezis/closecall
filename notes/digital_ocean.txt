@@ -26,6 +26,10 @@ The simplest way is to use chown:
 
 sudo chown -R eezis:eezis .git/
 sudo chown -R eezis:eezis /home/eezis/sites/static/
+sudo chown -R eezis:eezis /var/log/nginx/
+
+sudo chmod -R 666 /var/log/nginx/  <- that will give it to everyone
+
 This will make the user & group testuser the owner of the file.
 
 
