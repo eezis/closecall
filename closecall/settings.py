@@ -20,11 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = '***REMOVED***'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['104.131.56.181',]
+ALLOWED_HOSTS = ['104.131.56.181', 'closecalldatabase.com']
 
 
 # Application definition
@@ -103,6 +103,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# https://docs.djangoproject.com/en/1.7/howto/static-files/#deployment
+STATIC_ROOT = '/home/eezis/sites/static/closecall/'
+
 
 TEMPLATE_DIRS = (
 #     BASE_DIR.join('templates').replace('\\','/'),

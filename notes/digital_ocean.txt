@@ -1,3 +1,9 @@
+* setup git
+git pull
+python manage.py migrate [to setup the db]
+python manage.py createsuperuser  (I created two, eae and eezis)
+
+gunicorn closecall.wsgi:application --workers=3  --bind 0.0.0.0:8000
 
 
 
@@ -94,3 +100,8 @@ error: cannot open .git/FETCH_HEAD: Permission denied
 $ sudo chown eezis .git/
 
 then
+
+
+---
+
+dig -t NS closecalldatabase.com @ns1.digitalocean.com

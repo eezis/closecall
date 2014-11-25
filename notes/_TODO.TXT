@@ -1,0 +1,13 @@
+
+
+create the eae superuser!
+
+Access has to be via nginx, so ensure that closecalldatabase.com:8000 cannot be accessed (do for americanliterature.com too)
+
+security:
+1. change postgres port
+2. SSH already changed
+3. shutdown HTTP except for port 80
+
+Get a transparent favicon.ico and put in static directory.
+
