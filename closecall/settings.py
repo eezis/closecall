@@ -110,6 +110,8 @@ STATIC_URL = 'http://closecalldatabase.com/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
 
 
+STATICFILES_DIRS = ( '/home/eezis/sites/static/closecall/', )
+
 TEMPLATE_DIRS = (
 #     BASE_DIR.join('templates').replace('\\','/'),
     os.path.join(os.path.dirname(__file__), '../templates').replace('\\','/'),
