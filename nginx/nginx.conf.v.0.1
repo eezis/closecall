@@ -16,6 +16,11 @@ events {
 }
 
 http {
+
+    # this line is needed or the css files in the django admin come in
+    # as mime files instead of css/text!
+    include mime.types;
+
     server {
         listen 80;
 
