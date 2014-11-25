@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['104.131.56.181',]
 
 
 # Application definition
@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'closecall',
         'USER': 'eaecc',
         'PASSWORD': '***REMOVED***',
-        'HOST': '', # Leave blank for socket connection
+        'HOST': 'localhost', # Leave blank for socket connection
         'PORT': '', # default postgres port is 5432 for the curious
     }
 }
@@ -118,3 +118,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_SUBJECT_PREFIX = '[Django - Amlit] '
 
+try:
+    from dev_settings import *
+except:
+    pass

@@ -1,0 +1,96 @@
+
+
+
+
+====
+
+when I ran mkvirtualenv, it croakes saying command not found
+
+I had to add this line to .bashrc after
+
+vim .bashrc, "i" for insert, scroll down and added at the bottom
+source "/usr/local/bin/virtualenvwrapper.sh"
+add a couple returns, then Esc, :wq
+close the terminal session, then reconnect so that the .bashrc is run
+or to reload from command line:
+    $ source ~/.bashrc
+    or the shorter command
+    $ . ~/.bashrc
+
+
+
+
+Changed SSH Port & denied rootloging
+================
+
+
+Added Users
+===========
+https://www.digitalocean.com/community/tutorials/how-to-add-delete-and-grant-sudo-privileges-to-users-on-a-debian-vps
+eezis (and used this for SSH)
+django_app
+
+
+Setting up postgresql
+=====================
+
+
+sudo su - postgres
+postgres@servername:~$
+psql
+eae=# CREATE USER eaecc WITH PASSWORD '***REMOVED***';
+CREATE ROLE
+eae=# CREATE DATABASE closecall;
+CREATE DATABASE
+eae=# GRANT ALL PRIVILEGES ON DATABASE closecall to eaecc;
+GRANT
+
+
+=======================
+GIT ON THE UBUNTU SERVER
+
+could not clone git because user needs permissions:
+http://machiine.com/2013/easy-way-to-give-user-permission-to-edit-and-add-files-in-varwww/
+==================
+
+DO THIS: http://machiine.com/2013/pulling-a-git-repo-from-github-to-your-ubuntu-server/
+
+my passphrase was "closecall"
+
+(closecall)eezis@closecall:~/sites$ sudo usermod -a -G www-data eezis
+(closecall)eezis@closecall:~/sites$ pwd
+/home/eezis/sites
+(closecall)eezis@closecall:~/sites$ sudo chown -R www-data:www-data /home/eezis/sites
+(closecall)eezis@closecall:~/sites$ sudo chmod -R g+rw /home/eezis/sites
+(closecall)eezis@closecall:~/sites$ sudo chmod -R g+rws /home/eezis/sites
+
+
+================================
+Solving github permission denied
+================================
+
+use HTTPS https://help.github.com/articles/which-remote-url-should-i-use/#cloning-with-https-recommended
+
+eezis@closecall:~/sites$ git clone https://github.com/eezis/closecall.git
+fatal: could not create work tree dir 'closecall'.: Permission denied
+eezis@closecall:~/sites$ sudo git clone https://github.com/eezis/closecall.git
+Cloning into 'closecall'...
+Username for 'https://github.com': eezis
+Password for 'https://eezis@github.com':
+remote: Counting objects: 67, done.
+remote: Compressing objects: 100% (56/56), done.
+remote: Total 67 (delta 10), reused 63 (delta 9)
+Unpacking objects: 100% (67/67), done.
+Checking connectivity... done.
+eezis@closecall:~/sites$
+
+
+*** NEW PROBLEM ***
+eezis@closecall:~/sites/closecall$ git pull
+error: cannot open .git/FETCH_HEAD: Permission denied
+
+*** SOLUTION: ADD PERMISSIONS FOR YOUR USER! ***
+
+$ sudo chown eezis .git/
+
+then

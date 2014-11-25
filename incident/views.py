@@ -40,7 +40,7 @@ class LoginRequiredMixin(FilterToUserMixin, object):
 # class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, SuccessURLMixinUserProfile, CreateView):
 class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
     model = Incident
-    fields = ['position', 'location', 'what', 'date', 'time', ]
+    fields = ['position', 'address', 'what', 'date', 'time', ]
     success_url = reverse_lazy('users-incident-list')
 
     def get_initial(self):
@@ -80,7 +80,7 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
     # if the value is Save, e.g. <input type="submit" value="Save" /> then it will CREATE A NEW OBJECT RATHER THAN UPDATE IT!
     '''
     # template_name = 'incident/incident_update.html'
-    fields = ['position', 'location', 'what', 'date', 'time', ]
+    fields = ['position', 'address', 'what', 'date', 'time', ]
     success_url = reverse_lazy('users-incident-list')
 
 

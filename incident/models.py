@@ -6,8 +6,9 @@ from geoposition.fields import GeopositionField
 
 class Incident(models.Model):
     user = models.ForeignKey(User)
-    location = models.TextField(blank=True)
-    what = models.TextField(blank=True)
+    # location = models.TextField(blank=True)
+    address = models.CharField(null=True, blank=True, max_length=200)
+    what = models.TextField(blank=True, help_text="Describe the incident")
     date = models.DateField(null=True, blank=True)
     time = models.TimeField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
