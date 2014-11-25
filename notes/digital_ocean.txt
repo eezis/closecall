@@ -3,7 +3,30 @@ git pull
 python manage.py migrate [to setup the db]
 python manage.py createsuperuser  (I created two, eae and eezis)
 
-gunicorn closecall.wsgi:application --workers=3  --bind 0.0.0.0:8000
+
+ *** notice --log-file=-   http://stackoverflow.com/questions/24222608/gunicorn-not-starting-workers
+$ gunicorn closecall.wsgi:application --workers=3 --bind 0:8000 --log-file=-
+[2014-11-25 16:40:02 +0000] [27010] [INFO] Starting gunicorn 19.1.1
+[2014-11-25 16:40:02 +0000] [27010] [INFO] Listening at: http://0.0.0.0:8000 (27010)
+[2014-11-25 16:40:02 +0000] [27010] [INFO] Using worker: sync
+[2014-11-25 16:40:02 +0000] [27015] [INFO] Booting worker with pid: 27015
+[2014-11-25 16:40:02 +0000] [27016] [INFO] Booting worker with pid: 27016
+[2014-11-25 16:40:02 +0000] [27017] [INFO] Booting worker with pid: 27017
+
+
+
+
+===========
+PERMISSIONS
+=========
+
+How to grant access to a folder
+
+The simplest way is to use chown:
+
+sudo chown -R eezis:eezis .git/
+sudo chown -R eezis:eezis /home/eezis/sites/static/
+This will make the user & group testuser the owner of the file.
 
 
 
