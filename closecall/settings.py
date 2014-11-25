@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'closecall',
         'USER': 'eaecc',
         'PASSWORD': '***REMOVED***',
-        'HOST': 'localhost', # Leave blank for socket connection
+        'HOST': '127.0.0.1', # Leave blank for socket connection
         'PORT': '', # default postgres port is 5432 for the curious
     }
 }
