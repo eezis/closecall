@@ -5,7 +5,7 @@ from django.db import models
 # Abstract Class for most common fields
 class PublishBase(models.Model):
     tldr = models.CharField(null=True, blank=True, max_length=250)
-    tags = models.CharField(null=True, blank=True , max_length=50)
+    tags = models.CharField(null=True, blank=True , max_length=120)
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
 
@@ -23,8 +23,7 @@ class PublishLocation(PublishBase):
         abstract = True
 
 
-
-class Announcement(models.Model):
+class Announcement(PublishBase):
     """
     This is for general news that can get loaded at the home page (for logged in and anonymous users)
     It's a short, quick hit kind of thing; the site will be down, we need to raise funds,
@@ -33,26 +32,26 @@ class Announcement(models.Model):
     the_announcement = models.TextField()
     start_on_date = models.DateField(null=True)
     end_on_date = models.DateField(null=True)
-    created = models.DateTimeField(auto_now_add=True, null=True)
-    updated = models.DateTimeField(auto_now=True, null=True)
+    # created = models.DateTimeField(auto_now_add=True, null=True)
+    # updated = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
         verbose_name = "Announcement"
         verbose_name_plural = "Announcements"
 
     def __unicode__(self):
-        return self.the_announcement[:40]
+        return self.the_announcement[:80]
 
 
-class BlogPost(models.Model):
+class BlogPost(PublishBase):
     """
     This is good old fashioned blog post, my thoughts or guest thoughts
     """
     title = models.CharField(max_length=150)
     the_post = models.TextField()
-    tags = models.CharField(null=True, blank=True , max_length=50)
-    created = models.DateTimeField(auto_now_add=True, null=True)
-    updated = models.DateTimeField(auto_now=True, null=True)
+    # tags = models.CharField(null=True, blank=True , max_length=50)
+    # created = models.DateTimeField(auto_now_add=True, null=True)
+    # updated = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
         verbose_name = "Blog Post"
@@ -70,17 +69,14 @@ class InTheNews(PublishLocation):
     title = models.CharField(max_length=150)
     summary = models.TextField()
     url = models.CharField(null=True, blank=True, max_length=250)
-    occurred_on = models.DateField(null=True)
-    report_on = models.DateField(null=True)
-    # tags = models.CharField(null=True, blank=True, max_length=50)
-    # created = models.DateTimeField(auto_now_add=True, null=True)
-    # updated = models.DateTimeField(auto_now=True, null=True)
-
+    occurred_on = models.DateField(null=True, blank=True)
+    report_on = models.DateField(null=True, blank=True)
 
     class Meta:
         verbose_name = "In The News"
         verbose_name_plural = "In The News"
-        ordering = ['created']
+        # if there is no report_on date, than we fall back to the day it was entered
+        ordering = ['-report_on', '-created',]
 
     def __unicode__(self):
         return self.title
