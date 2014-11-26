@@ -30,6 +30,7 @@ class Announcement(PublishBase):
     we now have 100 users, etc.
     """
     the_announcement = models.TextField()
+    show_it = models.BooleanField(default=False)
     start_on_date = models.DateField(null=True, blank=True)
     end_on_date = models.DateField(null=True, blank=True)
 
