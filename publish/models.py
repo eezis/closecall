@@ -34,8 +34,8 @@ class BlogPost(models.Model):
     updated = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
-        verbose_name = "BlogPost"
-        verbose_name_plural = "BlogPosts"
+        verbose_name = "Blog Post"
+        verbose_name_plural = "Blog Posts"
 
     def __unicode__(self):
         return self.title
@@ -52,8 +52,8 @@ class InTheNews(models.Model):
 
 
     class Meta:
-        verbose_name = "MODELNAME"
-        verbose_name_plural = "MODELNAMEs"
+        verbose_name = "In The News"
+        verbose_name_plural = "In The News"
 
     def __unicode__(self):
         return self.title
