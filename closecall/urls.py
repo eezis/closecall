@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 
 from core.views import HomeView
+from publish.views import NewsView
 
 urlpatterns = patterns('',
     url(r"^$", HomeView, name="home"),
@@ -11,6 +12,9 @@ urlpatterns = patterns('',
 
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^incident/', include('incident.urls')),
+    # url(r'^news/', TemplateView.as_view(template_name="publish/news.html"), name="news"),
+    url(r'^news/', NewsView.as_view(), name="news"),
+
     url(r'^eeadmin/', include(admin.site.urls)),
 
 )

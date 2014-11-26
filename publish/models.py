@@ -50,11 +50,14 @@ class InTheNews(models.Model):
     summary = models.TextField()
     url = models.CharField(null=True, blank=True, max_length=250)
     tags = models.CharField(null=True, blank=True, max_length=50)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
 
 
     class Meta:
         verbose_name = "In The News"
         verbose_name_plural = "In The News"
+        ordering = ['-created']
 
     def __unicode__(self):
         return self.title

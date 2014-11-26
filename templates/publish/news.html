@@ -1,0 +1,28 @@
+{% extends "sitebase.html" %}
+
+{% block title %}Close Call News{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
+<h2>News</h2>
+  <hr>
+
+  <div class="page-header">
+
+    <h2><small>
+   Here is the news
+    </small></h2>
+  </div>
+
+      {% for news in news_list %}
+        <p>{{news.title}}</p>
+        <p>{{news.summary}}</p>
+        <p>{{news.url}}</p>
+      {% endfor %}
+
+
+</div>
+
+
+{% endblock %}
