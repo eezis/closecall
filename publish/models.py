@@ -48,6 +48,7 @@ class InTheNews(models.Model):
     """
     title = models.CharField(max_length=150)
     summary = models.TextField()
+    url = models.CharField(null=True, blank=True, max_length=250)
     tags = models.CharField(null=True, blank=True, max_length=50)
 
 
