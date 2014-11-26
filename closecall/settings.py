@@ -55,7 +55,14 @@ DJANGO_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # needed for enabling the Site object (used by Django Registration Redux)
+    # add this, set SITE_ID = 1
+    # migrate (no makemigration needed) https://docs.djangoproject.com/en/1.7/ref/contrib/sites/
+    # then use the admin to set it.
+    'django.contrib.sites'
 )
+
+SITE_ID = 1
 
 THIRD_PARTY_APPS = (
     'django_extensions',
