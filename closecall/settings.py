@@ -48,7 +48,11 @@ THIRD_PARTY_APPS = (
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 # LOCAL_APPS = ('core', incident', 'authentication')
-LOCAL_APPS = ('core', 'incident', )
+LOCAL_APPS = (
+    'core',
+    'incident',
+    'publish',
+)
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

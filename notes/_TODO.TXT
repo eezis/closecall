@@ -1,6 +1,6 @@
 
 
-
+Create a gmail account for closecall and update the settings.py
 
 
 security:
@@ -25,3 +25,6 @@ Access has to be via nginx, so ensure that closecalldatabase.com:8000 cannot be 
 
 create the eae superuser!
      python manage.py createsuperuser
+
+
+Add tests, using Client
