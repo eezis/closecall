@@ -22,9 +22,11 @@ http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-c
     <hr style="border-color:darkgrey;">
   </div>
 
+   {% load markdown_filter %}
+
       {% for news in news_list %}
         <p><h4>{{news.title}}</h4></p>
-        <p>{{news.summary}}</p>
+        <p>{{news.summary|markdownify|safe}}</p>
         <p><a href="{{news.url}}" target="_blank">Read More . . . </a></p>
         <br />
       {% endfor %}
