@@ -11,6 +11,9 @@ security:
 Get a transparent favicon.ico and put in static directory.
 
 
+Add First Name & Last Name to the login page
+    This is easy. Go to current page, grab the HTML, update it (look at the closecall2 project, I think I did it there already)
+
 
 
 Done
