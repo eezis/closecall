@@ -57,7 +57,7 @@ class InTheNews(models.Model):
     class Meta:
         verbose_name = "In The News"
         verbose_name_plural = "In The News"
-        ordering = ['-created']
+        ordering = ['created']
 
     def __unicode__(self):
         return self.title

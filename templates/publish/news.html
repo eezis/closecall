@@ -2,27 +2,70 @@
 
 {% block title %}Close Call News{% endblock %}
 
+{% block extra_styles %}
+h2 {
+    color: black;
+}
+{% endblock %}
+
 {% block content %}
 
 <div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
-<h2>News</h2>
-  <hr>
-
+<!-- PAGINATION
+http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-class-based-generic-listviews
+-->
   <div class="page-header">
 
     <h2><small>
-   Here is the news
+     Safety Related Cycling News
     </small></h2>
+    <hr style="border-color:darkgrey;">
   </div>
 
       {% for news in news_list %}
-        <p>{{news.title}}</p>
+        <p><h4>{{news.title}}</h4></p>
         <p>{{news.summary}}</p>
-        <p>{{news.url}}</p>
+        <p><a href="{{news.url}}" target="_blank">Read More . . . </a></p>
+        <br />
       {% endfor %}
 
+   {# Total = {{ news_list.count }}</p> #}
+   {# .... **Now the pagination section** .... #}
+
+<!-- THIS WORKS
+    {% if is_paginated %}
+        <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/news?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/news?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endif %}
+
+-->
+
+{% if is_paginated %}
+<nav>
+  <ul class="pager">
+    {% if page_obj.has_previous %}
+      <li class="previous"><a href="/news?page={{ page_obj.previous_page_number }}"><span aria-hidden="true">&larr;</span> Newer</a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+      <li class="next"><a href="/news?page={{ page_obj.next_page_number }}">Older <span aria-hidden="true">&rarr;</span></a></li>
+    {% endif %}
+  </ul>
+</nav>
 
 </div>
-
+ {% endif %}
 
 {% endblock %}
+
+
