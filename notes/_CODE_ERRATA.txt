@@ -23,3 +23,41 @@ Template Tag
 
 
 
+====================================
+Using a TEMPLATE_CONTEXT_PROCESSOR
+====================================
+
+1. Settings
+
+    # https://docs.djangoproject.com/en/1.7/ref/settings/#template-context-processors
+    # must add manually if you are going to then add your own
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        "django.contrib.auth.context_processors.auth",
+        "django.core.context_processors.debug",
+        "django.core.context_processors.i18n",
+        "django.core.context_processors.media",
+        "django.core.context_processors.static",
+        "django.core.context_processors.tz",
+        "django.contrib.messages.context_processors.messages",
+        )
+
+    TEMPLATE_CONTEXT_PROCESSORS += (
+        'publish.views.AnnouncementView',
+    )
+
+2. View (publish.views)
+
+    def AnnouncementView(request):
+        # print 'it ran'
+        return {'announcement': Announcement.objects.filter(show_it=True) }
+
+3. In the Template
+
+    {% if announcement %}
+      {% for a in announcement %}
+        <p class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">{{a.the_announcement}}</p>
+      {% endfor %}
+    {% else %}
+    <p><span class="alpha">Alpha Notice:</span> Announcements -- if any -- will go here in future release</p>
+    {% endif %}
+    <hr>

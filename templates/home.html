@@ -19,7 +19,13 @@
 {% if user.is_authenticated %}
 <p>Welcome back {{ user.username }}</p>
 <hr>
+{% if announcement %}
+  {% for a in announcement %}
+    <p class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">{{a.the_announcement}}</p>
+  {% endfor %}
+{% else %}
 <p><span class="alpha">Alpha Notice:</span> Announcements -- if any -- will go here in future release</p>
+{% endif %}
 <hr>
 <p><span class="alpha">Alpha Notice:</span> Local Incidents -- if any -- will go here </p>
 {% if incident %}
@@ -34,6 +40,13 @@
 <p><span class="alpha">Alpha Notice:</span> Short List of lastest news will go here in future release</p>
 
 {% else %}
+
+{% if announcement %}
+  {% for a in announcement %}
+    <p class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">{{a.the_announcement}}</p>
+  {% endfor %}
+{% endif %}
+
 <div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
 <h2>Welcome to the Close Call Database</h2>
 <hr>

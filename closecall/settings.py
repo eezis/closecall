@@ -27,6 +27,25 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = ['104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', ]
 
 
+
+# https://docs.djangoproject.com/en/1.7/ref/settings/#template-context-processors
+# must add manually if you are going to then add your own
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    )
+
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'publish.views.AnnouncementView',
+)
+
+
+
 # Application definition
 
 DJANGO_APPS = (
@@ -121,6 +140,7 @@ TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), '../templates').replace('\\','/'),
 #     # '/templates/',
 )
+
 
 
 # EMAIL_HOST = 'smtp.gmail.com'
