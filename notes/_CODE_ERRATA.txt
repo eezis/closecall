@@ -1,0 +1,24 @@
+
+
+If you change a model . . .
+
+locally
+    python manage.py makemigrations
+    python manage.py migrate
+    # git status (to see the migration files if you want)
+    # must add them!
+    git add -A
+    git push
+
+Server
+    sudo git pull
+    python manage.py migrate
+    kill -HUP [ master_id from ps aux | grep gunicorn ]
+
+
+Template Tag
+    core/templatetag/markdown_filter.py
+    MARKDOWN SYNTAX http://daringfireball.net/projects/markdown/syntax
+
+
+

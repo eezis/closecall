@@ -1,8 +1,0 @@
-
-
-Template Tag
-    core/templatetag/markdown_filter.py
-    MARKDOWN SYNTAX http://daringfireball.net/projects/markdown/syntax
-
-
-

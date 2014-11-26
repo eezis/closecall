@@ -19,12 +19,19 @@
 {% if user.is_authenticated %}
 <p>Welcome back {{ user.username }}</p>
 <hr>
-<p>Announcements and local incident reports go here</p>
+<p><span class="alpha">Alpha Notice:</span> Announcements -- if any -- will go here in future release</p>
 <hr>
-<p>List of incidents reported by this user here</p>
-{% for incident in incidents %}
+<p><span class="alpha">Alpha Notice:</span> Local Incidents -- if any -- will go here </p>
+{% if incident %}
+  {% for incident in incidents %}
     <p><a href="/incident/detail/{{incident.pk}}/">{{incident.what}}</a></p>
-{% endfor %}
+  {% endfor %}
+{% else %}
+<hr>
+<p><span class="alpha">Alpha Notice:</span> A list of incidents reported by this user will go here</p>
+{% endif %}
+<hr>
+<p><span class="alpha">Alpha Notice:</span> Short List of lastest news will go here in future release</p>
 
 {% else %}
 <div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
