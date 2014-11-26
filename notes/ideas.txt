@@ -16,6 +16,8 @@ Have a general HEADS UP section?
 
 
 
+
+
 Allow incident reports
 
 
@@ -23,3 +25,7 @@ Allow incident reports
 But Accident Reports are their own thing (fatality, and ongoing tracking as it goes through the court system
 
 
+===================================
+Subscribe via email
+Follow on twitter
+==================================

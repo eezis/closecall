@@ -8,4 +8,4 @@ class NewsView(ListView):
     template_name = "publish/news.html"
     model = InTheNews
     context_object_name = "news_list"
-    paginate_by = 3
+    paginate_by = 5
