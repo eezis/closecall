@@ -2,6 +2,27 @@ from django.db import models
 
 # Create your models here.
 
+# Abstract Class for most common fields
+class PublishBase(models.Model):
+    tldr = models.CharField(null=True, blank=True, max_length=250)
+    tags = models.CharField(null=True, blank=True , max_length=50)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
+
+    class Meta:
+        abstract = True
+
+
+class PublishLocation(PublishBase):
+    zipcode = models.CharField(null=True, blank=True, max_length=20)
+    city = models.CharField(null=True, blank=True, max_length=80)
+    state = models.CharField(null=True, blank=True, max_length=80)
+    country = models.CharField(null=True, blank=True, max_length=80)
+
+    class Meta:
+        abstract = True
+
+
 
 class Announcement(models.Model):
     """
@@ -41,7 +62,7 @@ class BlogPost(models.Model):
         return self.title
 
 
-class InTheNews(models.Model):
+class InTheNews(PublishLocation):
     """
     This is like the R-Bloggers thing. Write a summary, then
     paste a link to an article or post
@@ -49,9 +70,11 @@ class InTheNews(models.Model):
     title = models.CharField(max_length=150)
     summary = models.TextField()
     url = models.CharField(null=True, blank=True, max_length=250)
-    tags = models.CharField(null=True, blank=True, max_length=50)
-    created = models.DateTimeField(auto_now_add=True, null=True)
-    updated = models.DateTimeField(auto_now=True, null=True)
+    occurred_on = models.DateField(null=True)
+    report_on = models.DateField(null=True)
+    # tags = models.CharField(null=True, blank=True, max_length=50)
+    # created = models.DateTimeField(auto_now_add=True, null=True)
+    # updated = models.DateTimeField(auto_now=True, null=True)
 
 
     class Meta:

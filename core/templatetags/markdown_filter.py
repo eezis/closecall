@@ -1,4 +1,8 @@
 # http://www.jw.pe/blog/post/using-markdown-django-17/
+"""
+see comments at the link above, see this response
+http://www.jw.pe/blog/post/markdown-speed-and-denormalisation/
+"""
 # https://docs.djangoproject.com/en/1.7/howto/custom-template-tags/
 
 # The app that contains the custom tags must be in INSTALLED_APPS in order for the {% load %} tag to work.
