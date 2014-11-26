@@ -30,14 +30,13 @@ class Announcement(PublishBase):
     we now have 100 users, etc.
     """
     the_announcement = models.TextField()
-    start_on_date = models.DateField(null=True)
-    end_on_date = models.DateField(null=True)
-    # created = models.DateTimeField(auto_now_add=True, null=True)
-    # updated = models.DateTimeField(auto_now=True, null=True)
+    start_on_date = models.DateField(null=True, blank=True)
+    end_on_date = models.DateField(null=True, blank=True)
 
     class Meta:
         verbose_name = "Announcement"
         verbose_name_plural = "Announcements"
+        ordering = ['-start_on_date', '-created',]
 
     def __unicode__(self):
         return self.the_announcement[:80]
@@ -49,13 +48,12 @@ class BlogPost(PublishBase):
     """
     title = models.CharField(max_length=150)
     the_post = models.TextField()
-    # tags = models.CharField(null=True, blank=True , max_length=50)
-    # created = models.DateTimeField(auto_now_add=True, null=True)
-    # updated = models.DateTimeField(auto_now=True, null=True)
+    publish_date = models.DateField(null=True, blank=True)
 
     class Meta:
         verbose_name = "Blog Post"
         verbose_name_plural = "Blog Posts"
+        ordering = ['-publish_date', '-created',]
 
     def __unicode__(self):
         return self.title
