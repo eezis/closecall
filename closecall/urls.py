@@ -21,9 +21,10 @@ urlpatterns = patterns('',
     # url(r'^/static/bootstrap-timepicker\.min\.css'),
 )
 
-from django.conf import settings
-from django.conf.urls.static import static
 
-if settings.DEV_ENVIRONMENT:
+# from django.conf import settings
+# from django.conf.urls.static import static
+#  CANNOT DO THIS, DEV_SETTINGS.PY DOESN'T GO TO SERVER AND IT CRASHES THE CODE THERE
+# if settings.DEV_ENVIRONMENT:
 
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
