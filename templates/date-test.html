@@ -1,0 +1,60 @@
+{% extends "sitebase.html" %}
+
+{% block title %}About The Close Call Database{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
+<h2>About the Close Call Database</h2>
+  <hr>
+
+  <div class="page-header">
+
+    <h2><small>
+    Date Test
+    </small></h2>
+
+<form action="" method="POST">
+  {% csrf_token %}
+
+<label for="id_dob">Date:</label></th><td><input class="datePicker" id="id_dob" name="date" type="text" />
+
+<p>
+<label for="id_dob">Time:</label></th><td><input class="timePicker" id="id_time" name="time" type="text" />
+<p>
+  <!-- <input type="submit" value="Save" /> -->
+  <input type="submit" class="btn btn-default" value=" Submit Report " />
+</form>
+
+
+
+  </div>
+
+</div>
+
+{% block extra_script %}
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/flick/jquery-ui.css" /> -->
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/flick/jquery-ui.css" />
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.4.5/jquery-ui-timepicker-addon.min.css />
+
+
+    <script>
+        $(function() {
+        $( ".datePicker" ).datepicker();
+        });
+    </script>
+
+    <script>
+        $(function() {
+        $( ".timePicker" ).timepicker();
+        });
+    </script>
+
+{% endblock %}
+
+
+{% endblock %}

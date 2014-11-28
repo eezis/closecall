@@ -8,9 +8,10 @@ class Incident(models.Model):
     user = models.ForeignKey(User)
     # location = models.TextField(blank=True)
     address = models.CharField(null=True, blank=True, max_length=200)
-    what = models.TextField(blank=True, help_text="Describe the incident")
-    date = models.DateField(null=True, blank=True)
-    time = models.TimeField(null=True, blank=True)
+    what = models.TextField(blank=True, help_text="Describe the where, what, and when of the incident",
+        verbose_name="Describe What Happened")
+    date = models.DateField(null=True, blank=True, verbose_name="Date of Incident")
+    time = models.TimeField(null=True, blank=True, verbose_name="Approximate Time of Incident")
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
     position = GeopositionField(null=True, blank=True)
@@ -23,3 +24,4 @@ class Incident(models.Model):
 
     def __unicode__(self):
         return self.user.username + " " + self.what[:100]
+

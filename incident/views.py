@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse, reverse_lazy
 
 from models import Incident
+from forms import CreateIncidentForm
 
 
 class ValidFormMixin(object):
@@ -40,8 +41,11 @@ class LoginRequiredMixin(FilterToUserMixin, object):
 # class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, SuccessURLMixinUserProfile, CreateView):
 class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
     model = Incident
-    fields = ['position', 'address', 'what', 'date', 'time', ]
+    # position ties to the geoposition application, it displays the map
+    # fields = ['position', 'what', 'date', 'time', ]
+    form_class = CreateIncidentForm
     success_url = reverse_lazy('users-incident-list')
+
 
     def get_initial(self):
         print "CreateIncidentView.get_initial :: {} {}".format(self.request.user, self.request.user.id)
@@ -57,7 +61,6 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
     # def get_success_url(self):
     #     return reverse('users-incident-list')
     #     # return reverse('users-incident-list', kwargs={'user': self.request.user})
-
 
 
 class ListIncidentView(LoginRequiredMixin, ListView):
