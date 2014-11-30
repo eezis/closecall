@@ -5,10 +5,50 @@ from django.forms.extras.widgets import SelectDateWidget
 from models import Incident
 
 class CreateIncidentForm(ModelForm):
-    date = forms.DateField(("%m/%d/%Y",), widget=forms.DateInput(format="%m/%d/%Y", attrs={'class': 'datePicker',}), label='Date of Incident:')
+    what_pholder ="""A good inident report will be factual and include date, time, and direction of travel of cyclists and motorists.
+
+On November 11, 2014 at approximately 10:45 a.m., I was riding in a group of seven cyclists traveling east on Nelson Road. \
+We heard a vehicle, also traveling east, approach from behind. As it got closer, we heard the driver rev the engine.
+
+As the vehicle, a white pickup truck, passed by, someone threw a beer bottle out of the passenger side window. The bottle just \
+missed striking one of the riders. We believe the license plate number was 163-JDK.
+"""
+    what = forms.CharField(widget = forms.Textarea(attrs={'placeholder': what_pholder, }), label='Describe What Happened (a detailed description about the incident)')
+        # "A good incident report should include \n Number of people in the party \n direction you were travelling in",}))
+    date = forms.DateField(("%m/%d/%Y",), widget=forms.DateInput(format="%m/%d/%Y", attrs={'class': 'datePicker',}), label='Date of Incident:',)
+    time = forms.TimeField(("%H:%M %p",), widget=forms.TimeInput(format="%H:%M %p", attrs={'class': 'timePicker', 'id': 'timePicker',
+        'placeholder': '10:45 am'}), label='Approximate Time') #, required=False)
     class Meta:
         model = Incident
-        fields = ['position','what', 'date', 'time']
+        fields = ['position','what', 'date', 'time', 'vehicle_description', 'color', 'make', 'model',
+        'license_certain', 'license_uncertain', 'id_it_by',]
+
+        widgets={
+            "vehicle_description":forms.TextInput(attrs={
+                'placeholder': 'White Pickup Truck | Black BMW coupe | etc',
+            }),
+            "color":forms.TextInput(attrs={
+                'placeholder':'the color of the vehicle in question',
+            }),
+            "make":forms.TextInput(attrs={
+                'placeholder':'Ford | BMW | etc',
+            }),
+            "model":forms.TextInput(attrs={
+                'placeholder':'Explorer | Tahoe | etc',
+            }),
+            "license_certain":forms.TextInput(attrs={
+                'placeholder':'license plate number - if certain',
+            }),
+            "license_uncertain":forms.TextInput(attrs={
+                'placeholder':'license plate number - if not completely certain',
+            }),
+            "id_it_by":forms.TextInput(attrs={
+                'placeholder':'Dent in front right quarter panel, playboy mud flaps',
+            }),
+
+        }
+
+
         # exclude = ("published", )
         # widgets = {
         #     "date": SelectDateWidget(),
@@ -20,3 +60,8 @@ class CreateIncidentForm(ModelForm):
         #     # 'date': forms.DateInput(attrs={'class':'datepicker'}),
         #     'date': forms.DateInput(attrs={'class':'datepicker', 'size': 10, 'id': 'datepicker', }),
         # }
+
+
+
+
+

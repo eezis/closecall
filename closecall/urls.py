@@ -6,6 +6,12 @@ from django.contrib import admin
 from core.views import HomeView #, MyRegistrationView
 from publish.views import NewsView
 
+
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+
 urlpatterns = patterns('',
     url(r"^$", HomeView, name="home"),
     url(r'^about/', TemplateView.as_view(template_name="about.html"), name="about"),
@@ -18,13 +24,7 @@ urlpatterns = patterns('',
     url(r'^incident/', include('incident.urls')),
     url(r'^news/', NewsView.as_view(), name="news"),
     url(r'^eeadmin/', include(admin.site.urls)),
-    # url(r'^/static/bootstrap-timepicker\.min\.css'),
-)
+    # url(r'^/static/(?P<path>.*)$', '/Users/eae/code/sites/closecall/static/'),
+) # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-
-# from django.conf import settings
-# from django.conf.urls.static import static
-#  CANNOT DO THIS, DEV_SETTINGS.PY DOESN'T GO TO SERVER AND IT CRASHES THE CODE THERE
-# if settings.DEV_ENVIRONMENT:
-
-#     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += staticfiles_urlpatterns()
