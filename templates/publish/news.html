@@ -27,6 +27,7 @@ http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-c
       {% for news in news_list %}
         <p><h4>{{news.title}}</h4></p>
         <p>{{news.summary|markdownify|safe}}</p>
+        <p style="font-size: 1.1em; font-weight: 200;">Tags: {{news.tags}}</p>
         <p><a href="{{news.url}}" target="_blank">Read More . . . </a></p>
         <br />
       {% endfor %}
