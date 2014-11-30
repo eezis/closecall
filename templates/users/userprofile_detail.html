@@ -1,0 +1,44 @@
+{% extends "sitebase.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Your Use Profile Details{% endblock %}
+
+{%block navigation %}{% include '_nav-loggedin.html' %} {% endblock %}
+
+{% block extra_styles %}
+.datafield { color:blue; font-style: bold; padding-left:5px;}
+.datafield-simple { color:blue; font-style: bold;}
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
+<h3>Your Account Details and Preferences</h3>
+
+  <hr>
+
+    <p>First: <span class="datafield" style="padding-right:20px;">{{userprofile.first}}</span></p>
+    <p>Last: <span class="datafield">{{userprofile.last}}</span></p>
+    <p>
+    City: <span class="datafield" style="padding-right:20px;">{{userprofile.city}}</span>
+    State: <span class="datafield" style="padding-right:20px;">{{userprofile.state}}</span>
+    Zip Code: <span class="datafield">{{userprofile.zipcode}}</span></p>
+    <p>Country: <span class="datafield">{{userprofile.country}}</p>
+    <p>You <span class="datafield-simple">{{userprofile.email_incidents|yesno:"will receive,will NOT receive,have made no idication about getting an" }}</span>
+    an email notification when an incident is reported in your area.</p>
+
+
+    <br />
+    <a href="/" class="btn btn-success" style="margin-right: 30px;"> Accept Your Profile </a>
+    <a href="/update-user-profile/{{object.pk}}" class="btn btn-primary">Update Your Profile</a></p>
+
+  <hr>
+
+
+</div>
+
+
+
+
+{% endblock %}

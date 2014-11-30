@@ -29,9 +29,11 @@
 <hr>
 
 
-<p>
-{% trans "Proceed to the " %}<a href="{% url 'home' %}">home page</a> {% trans " or " %}<a href="{% url 'create-incident' %}">{% trans "report an incident" %}</a>
-</p>
+
+<p>We need to know just a bit more about you to serve you properly.</p>
+<p><a href="/" class="btn btn-success" style="margin-right: 30px;"> Complete Your Profile </a>
+{# {% trans "Proceed to the " %}<a href="{% url 'home' %}">home page</a> {% trans " or " %}<a href="{% url 'create-incident' %}">{% trans "report an incident" %}</a>
+ #}</p>
 
 
 {% if not user.is_authenticated %}

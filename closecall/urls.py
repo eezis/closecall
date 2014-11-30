@@ -5,6 +5,7 @@ from django.contrib import admin
 
 from core.views import HomeView #, MyRegistrationView
 from publish.views import NewsView
+from users.views import CreateUserProfileView, UpdateUserProfileView, DetailUserProfileView
 
 
 from django.conf import settings
@@ -21,6 +22,11 @@ urlpatterns = patterns('',
     # attempt to override registration so that it has first and last
     # url(r'^accounts/register/', MyRegistrationView.as_view(), name="register"),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^create-user-profile/$', CreateUserProfileView.as_view(), name='create-user-profile'),
+    url(r'^user-profile-detail/(?P<pk>\d+)/$', DetailUserProfileView.as_view(), name='user-profile-detail'),
+    url(r'^update-user-profile/(?P<pk>\d+)/$', UpdateUserProfileView.as_view(), name='update-user-profile'),
+
+
     url(r'^incident/', include('incident.urls')),
     url(r'^news/', NewsView.as_view(), name="news"),
     url(r'^eeadmin/', include(admin.site.urls)),

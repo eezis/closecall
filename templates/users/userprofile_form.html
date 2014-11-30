@@ -1,0 +1,26 @@
+{% extends "sitebase.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}Account Details and Preferences{% endblock %}
+
+{%block navigation %}{% include '_nav-loggedin.html' %} {% endblock %}
+
+{% block content %}
+
+<div class="row-fluid">
+<h3 style="padding-top:12px;">Your Account Details and Preferences</h3>
+<br />
+</div>
+<div class="col-sm-4">
+<form action="" method="POST">
+  {% csrf_token %}
+
+      {{ form|crispy }}
+      <input type="submit" class="btn btn-default" value=" Submit " />
+
+</form>
+</div>
+
+{% endblock %}

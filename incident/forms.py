@@ -5,7 +5,7 @@ from django.forms.extras.widgets import SelectDateWidget
 from models import Incident
 
 class CreateIncidentForm(ModelForm):
-    what_pholder ="""A good inident report will be factual and include date, time, and direction of travel of cyclists and motorists.
+    what_pholder ="""A good incident report will be factual and include date, time, and direction of travel of cyclists and motorists.
 
 On November 11, 2014 at approximately 10:45 a.m., I was riding in a group of seven cyclists traveling east on Nelson Road. \
 We heard a vehicle, also traveling east, approach from behind. As it got closer, we heard the driver rev the engine.

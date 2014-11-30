@@ -9,33 +9,33 @@ from django.core.urlresolvers import reverse, reverse_lazy
 from models import Incident
 from forms import CreateIncidentForm
 
+from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin
 
-class ValidFormMixin(object):
+# class ValidFormMixin(object):
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.owned_by = self.request.user
-        self.object.save()
-        return super(ValidFormMixin, self).form_valid(form)
+#     def form_valid(self, form):
+#         self.object = form.save(commit=False)
+#         self.object.owned_by = self.request.user
+#         self.object.save()
+#         return super(ValidFormMixin, self).form_valid(form)
+
+# class FilterToUserMixin(object):
+#     """
+#     Ensures that users can only View, Update, Delete the data they create - it is mixed into LoginRequiredMixin below
+#     """
+#     def get_queryset(self, *args, **kwargs):
+#         qs = super(FilterToUserMixin, self).get_queryset(*args, **kwargs)
+#         return qs.filter(user=self.request.user)
 
 
-class FilterToUserMixin(object):
-    """
-    Ensures that users can only View, Update, Delete the data they create - it is mixed into LoginRequiredMixin below
-    """
-    def get_queryset(self, *args, **kwargs):
-        qs = super(FilterToUserMixin, self).get_queryset(*args, **kwargs)
-        return qs.filter(user=self.request.user)
+# class LoginRequiredMixin(FilterToUserMixin, object):
+#     """
+#     Ensures that user must be authenticated in order to access view.
+#     """
 
-
-class LoginRequiredMixin(FilterToUserMixin, object):
-    """
-    Ensures that user must be authenticated in order to access view.
-    """
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
+#     @method_decorator(login_required)
+#     def dispatch(self, *args, **kwargs):
+#         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
 
 # class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, SuccessURLMixinUserProfile, CreateView):

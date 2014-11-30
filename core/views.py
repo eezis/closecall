@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 # from incident.models import Incident
 
 # from registration.views import RegistrationView
@@ -20,3 +23,35 @@ def HomeView(request):
 #     form_class = EmailRegistrationForm
 
 #     def register(self, request, **cleaned_data):
+
+
+"""
+Helper classes for generic forms
+from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin
+"""
+
+class ValidFormMixin(object):
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.owned_by = self.request.user
+        self.object.save()
+        return super(ValidFormMixin, self).form_valid(form)
+
+class FilterToUserMixin(object):
+    """
+    Ensures that users can only View, Update, Delete the data they create - it is mixed into LoginRequiredMixin below
+    """
+    def get_queryset(self, *args, **kwargs):
+        qs = super(FilterToUserMixin, self).get_queryset(*args, **kwargs)
+        return qs.filter(user=self.request.user)
+
+
+class LoginRequiredMixin(FilterToUserMixin, object):
+    """
+    Ensures that user must be authenticated in order to access view.
+    """
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
