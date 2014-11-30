@@ -29,7 +29,7 @@ http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-c
         <p>{{news.summary|markdownify|safe}}</p>
         {# {% if news.tags %}<p  style="font-size: 0.95em; font-weight: 300;"><mark><samp>tags: {{news.tags}}</samp></mark></p>{% endif %} #}
         {% if news.tags %}<p  style="font-size: 0.95em; font-weight: 300;"><samp>TAGS: {{news.tags}}</samp></p>{% endif %}
-        <p><a href="{{news.url}}" target="_blank">Read More . . . </a></p>
+        <p><a href="{{news.url}}" target="_blank">{% if news.source %}Read the story at {{news.source}}{% else %}Read More . . .{% endif %} </a></p>
         <br />
       {% endfor %}
 
