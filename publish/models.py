@@ -70,6 +70,7 @@ class InTheNews(PublishLocation):
     url = models.CharField(null=True, blank=True, max_length=250)
     occurred_on = models.DateField(null=True, blank=True)
     report_on = models.DateField(null=True, blank=True)
+    source = models.CharField(null=True, blank=True, max_length=120)
 
     class Meta:
         verbose_name = "In The News"
