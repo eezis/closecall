@@ -28,8 +28,19 @@ http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-c
         <p><h4>{{news.title}}</h4></p>
         <p>{{news.summary|markdownify|safe}}</p>
         {# {% if news.tags %}<p  style="font-size: 0.95em; font-weight: 300;"><mark><samp>tags: {{news.tags}}</samp></mark></p>{% endif %} #}
-        {% if news.tags %}<p  style="font-size: 0.95em; font-weight: 300;"><samp>TAGS: {{news.tags}} {% if news.source %}<span class="pull-right">Credit: {{news.source}}</span>{% endif %}</samp></p>{% endif %}
-        <p style="font-size: 1.1em;"><a href="{{news.url}}" target="_blank">{% if news.source %}Read full article at <em>{{news.source}}</em>{% else %}Read More . . .{% endif %} </a></p>
+        {% if news.tags %}
+          <p  style="font-size: 0.95em; font-weight: 300;"><samp>TAGS: {{news.tags}} {% if news.source %}<span class="pull-right">Credit: {{news.source}}</span>{% endif %}</samp></p>
+        {% endif %}
+
+        {% if news.url %}
+        <p style="font-size: 1.1em;">
+          {% if news.source %}
+            Read full article at <a href="{{news.url}}" target="_blank"><em>{{news.source}}</em></a>
+          {% else %}
+            <a href="{{news.url}}" target="_blank">Read More . . .</a>
+          {% endif %}
+        </p>
+        {% endif %}
         <br />
       {% endfor %}
 
