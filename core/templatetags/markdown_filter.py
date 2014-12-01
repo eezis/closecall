@@ -34,21 +34,26 @@ Template Usage
     {{ my_markdown_content|markdownify|safe }}
   </div>
 </html>
+"""
+
+# from users.models import UserProfile
+
+# @register.filter
+# def grabprofileid(req_user):
+#     try:
+#         print "grabprofileid has been called"
+#         # return the userprofile of the requesting user
+#         up = UserProfile.objects.get(user=req_user.id)
+#         return up.id
+#     except:
+#         return None
 
 """
 
-from users.models import UserProfile
+This was unnecessary: https://docs.djangoproject.com/en/1.7/topics/auth/customizing/#extending-the-existing-user-model
 
-@register.filter
-def grabprofileid(req_user):
-    try:
-        # return the userprofile of the requesting user
-        up = UserProfile.objects.get(user=req_user.id)
-        return up.id
-    except:
-        return None
+I used this instead: <li><a href="/user-profile-detail/{{user.profile.id}}" >Your Profile</a></li>
 
-"""
 grabprofileid is used in _nav-right.html in order to get the user's UserProfile, it's criticl to load this file in the template!
 
 {% load markdown_filter %}
