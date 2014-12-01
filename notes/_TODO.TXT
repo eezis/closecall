@@ -1,5 +1,7 @@
 
 
+EXPAND incident_detail.html to include the new fields
+
 
 Allow email or username login
 after login, only proceed to success url "home", if the UserProfile exists

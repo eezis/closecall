@@ -8,9 +8,12 @@ from django.contrib.auth.decorators import login_required
 # from forms import MyRegistrationForm, EmailRegistrationForm
 # from django.contrib.auth import authenticate, login
 
+from incident.models import Incident
 
 def HomeView(request):
-    return render(request, 'home.html')
+    I = Incident.objects.filter(user=request.user)
+    print request.user.username
+    return render(request, 'home.html', {'incidents': I})
     # if request.user.is_authenticated():
     #     return render(request, 'home.html', {'incidents': Incident.objects.filter(user_id=request.user.id)})
     # else:

@@ -28,13 +28,15 @@
 {% endif %}
 <hr>
 <p><span class="alpha">Alpha Notice:</span> Local Incidents -- if any -- will go here </p>
-{% if incident %}
+{% if incidents %}
+  <hr>
   {% for incident in incidents %}
-    <p><a href="/incident/detail/{{incident.pk}}/">{{incident.what}}</a></p>
+    <p><a href="/incident/detail/{{incident.id}}/"><span style="padding-right: 28px;">{{incident.date|date:"M d, Y" }}</span>{{incident.what|truncatewords:10}}</a></p>
   {% endfor %}
 {% else %}
 <hr>
-<p><span class="alpha">Alpha Notice:</span> A list of incidents reported by this user will go here</p>
+<!-- <p><span class="alpha">Alpha Notice:</span> A list of incidents reported by this user will go here</p> -->
+<p>You have not reported any incidents.</p>
 {% endif %}
 <hr>
 <p><span class="alpha">Alpha Notice:</span> Short List of lastest news will go here in future release</p>
