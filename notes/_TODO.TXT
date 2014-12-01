@@ -1,9 +1,12 @@
 
-Add [account / profile | logout] to menu, see if I can use a menu button.
+
 
 Allow email or username login
 after login, only proceed to success url "home", if the UserProfile exists
 
+
+I don't really want the incidents to be deleted, they should just get an active = False flag and all queries should look for active = True
+Updates should also save the prior version for later inspection.
 
 
 security:
@@ -24,6 +27,18 @@ Add First Name & Last Name to the login page
 
 Done
 ===============
+
+Add [account / profile | logout] to menu, see if I can use a menu button.
+    This required a custome template tag so that I could pull the proper UserProfileID. It takes a request.user and uses that value
+    to look up the corresponding UserProfile and it returns the UserProfile.ID in _nav-right.html. core.templatetags.market_filter.py has the code.
+
+
+Annoucements
+    made an context processor for that, it's registered in settings, it gets called on every request
+    TEMPLATE_CONTEXT_PROCESSORS += (
+        'publish.views.AnnouncementView',
+    )
+
 
 
 Create a gmail account for closecall and update the settings.py

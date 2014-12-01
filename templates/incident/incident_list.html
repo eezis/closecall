@@ -13,17 +13,25 @@
      These are the incidents that you have reported.
     </small></h2>
     <hr style="border-color:darkgrey;">
+      {% if object %}
 
           <div class="row" style="padding-left:15px;">
              {% for object in object_list %}
               {# <p><a href="{% url 'incident-detail' %}">{{ object }}</a></p> #}
               <p style="font-size: 1.1em;">
               <a href="/incident/detail/{{object.pk}}">{{ object.what|truncatewords:10 }}</a>
+              <span class="pull-right">
+              <span style="padding-left: 15px;"><a href="/incident/update/{{object.pk}}">Update</span>
               <span style="padding-left: 15px;"><a href="/incident/delete/{{object.pk}}">Delete</span>
+              </span>
 
               </p>
             {% endfor %}
           </div>
+
+      {% else %}
+      <p>You have not reported any incidents.</p>
+      {% endif %}
 
   </div>
 </div>
