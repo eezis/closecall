@@ -21,11 +21,11 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir
 SECRET_KEY = '***REMOVED***'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', '*', ]
+ALLOWED_HOSTS = ['104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', ]
 # ALLOWED_HOSTS = ['*']
 
 

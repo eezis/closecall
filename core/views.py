@@ -12,9 +12,12 @@ from incident.models import Incident
 from publish.models import InTheNews
 
 def HomeView(request):
-    I = Incident.objects.filter(user=request.user)
-    N = InTheNews.objects.all().values('title','url')[:5]
-    return render(request, 'home.html', {'incidents': I, 'news_stories': N})
+    if request.user.is_authenticated():
+        I = Incident.objects.filter(user=request.user)
+        N = InTheNews.objects.all().values('title','url')[:5]
+        return render(request, 'home.html', {'incidents': I, 'news_stories': N})
+    else:
+        return render(request, 'home.html')
     # if request.user.is_authenticated():
     #     return render(request, 'home.html', {'incidents': Incident.objects.filter(user_id=request.user.id)})
     # else:
