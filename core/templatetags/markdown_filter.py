@@ -41,9 +41,12 @@ from users.models import UserProfile
 
 @register.filter
 def grabprofileid(req_user):
-    # return the userprofile of the requesting user
-    up = UserProfile.objects.get(user=req_user.id)
-    return up.id
+    try:
+        # return the userprofile of the requesting user
+        up = UserProfile.objects.get(user=req_user.id)
+        return up.id
+    except:
+        return None
 
 """
 grabprofileid is used in _nav-right.html in order to get the user's UserProfile, it's criticl to load this file in the template!
