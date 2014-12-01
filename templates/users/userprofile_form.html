@@ -12,6 +12,18 @@
 <div class="row-fluid">
 <h3 style="padding-top:12px;">Please Complete Your Profile</h3>
 <br />
+
+{% if messages %}
+<div class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">
+<ul>
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><em><b>{{ message }}</b></em></li>
+    {% endfor %}
+</ul>
+</div>
+<br />
+{% endif %}
+
 </div>
 <div class="col-sm-4">
 <form action="" method="POST">

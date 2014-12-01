@@ -5,7 +5,7 @@ from django.contrib import admin
 
 from core.views import HomeView #, MyRegistrationView
 from publish.views import NewsView
-from users.views import CreateUserProfileView, UpdateUserProfileView, DetailUserProfileView
+from users.views import CreateUserProfileView, UpdateUserProfileView, DetailUserProfileView, CheckForUserProfile
 
 
 from django.conf import settings
@@ -25,6 +25,9 @@ urlpatterns = patterns('',
     url(r'^create-user-profile/$', CreateUserProfileView.as_view(), name='create-user-profile'),
     url(r'^user-profile-detail/(?P<pk>\d+)/$', DetailUserProfileView.as_view(), name='user-profile-detail'),
     url(r'^update-user-profile/(?P<pk>\d+)/$', UpdateUserProfileView.as_view(), name='update-user-profile'),
+    # no parameter is given (catches the edge case where someone logs in, but they don't have a UserProfile created
+    # which means something was broken in the registration process flow
+    url(r'^user-profile-detail/$', CheckForUserProfile, name='check-profile-detail'),
 
 
     url(r'^incident/', include('incident.urls')),

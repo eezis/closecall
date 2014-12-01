@@ -10,6 +10,15 @@ from models import UserProfile
 # from forms import formname
 from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin
 
+from django.shortcuts import redirect
+from django.contrib import messages
+
+def CheckForUserProfile(request):
+    s = """'Your User Profile is missing. Please complete the form below so that we can provide you with important information
+    about any incidences and dangers that occur where you ride.
+    """
+    messages.info(request, s)
+    return redirect('/create-user-profile/')
 
 
 class CreateUserProfileView(LoginRequiredMixin, ValidFormMixin, CreateView):
