@@ -1,6 +1,9 @@
 
 
-Create a gmail account for closecall and update the settings.py
+
+Allow email or username login
+after login, only proceed to success url "home", if the UserProfile exists
+
 
 
 security:
@@ -16,11 +19,14 @@ Add First Name & Last Name to the login page
 
 
 
+
+
+
 Done
 ===============
 
 
-
+Create a gmail account for closecall and update the settings.py
 
 
 Access has to be via nginx, so ensure that closecalldatabase.com:8000 cannot be accessed
