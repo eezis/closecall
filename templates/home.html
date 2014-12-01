@@ -45,7 +45,7 @@
 {% if news_stories %}
   <p class="text-center"><b>Recent News</b><br/></p>
   {% for news in news_stories %}
-    <p><a href="/news/">{{news.title}}</a></p>
+    <p><a href="/news/" style="color:black; text-decoration: none;">{{news.title}}</a></p>
   {% endfor %}
 {% else %}
 <p><span class="alpha">Alpha Notice:</span> Short List of lastest news will go here in future release</p>
