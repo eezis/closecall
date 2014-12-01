@@ -9,11 +9,12 @@ from django.contrib.auth.decorators import login_required
 # from django.contrib.auth import authenticate, login
 
 from incident.models import Incident
+from publish.models import InTheNews
 
 def HomeView(request):
     I = Incident.objects.filter(user=request.user)
-    print request.user.username
-    return render(request, 'home.html', {'incidents': I})
+    N = InTheNews.objects.all().values('title','url')[:5]
+    return render(request, 'home.html', {'incidents': I, 'news_stories': N})
     # if request.user.is_authenticated():
     #     return render(request, 'home.html', {'incidents': Incident.objects.filter(user_id=request.user.id)})
     # else:
