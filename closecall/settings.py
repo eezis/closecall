@@ -21,12 +21,12 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir
 SECRET_KEY = '***REMOVED***'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-# ALLOWED_HOSTS = ['104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', ]
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', '*', ]
+# ALLOWED_HOSTS = ['*']
 
 
 # https://docs.djangoproject.com/en/1.7/ref/settings/#template-context-processors
