@@ -37,6 +37,31 @@ Template Usage
 
 """
 
+from users.models import UserProfile
+
+@register.filter
+def grabprofileid(req_user):
+    # return the userprofile of the requesting user
+    up = UserProfile.objects.get(user=req_user.id)
+    return up.id
+
+"""
+grabprofileid is used in _nav-right.html in order to get the user's UserProfile, it's criticl to load this file in the template!
+
+{% load markdown_filter %}
+
+        {% if user.is_authenticated %}
+
+         <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog white" style="padding: 2px 0 2px 0;"></span> <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/user-profile-detail/{{user|grabprofileid}}" >Your Profile</a></li>
+                <li><a href="/accounts/logout/" >Logout</a></li>
+              </ul>
+          </li>
+
+"""
+
 
 """
 Note: For the security-minded, it's also possible to change the escape behaviour of the markdown function to disallow raw HTML

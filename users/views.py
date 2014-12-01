@@ -15,7 +15,7 @@ from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin
 class CreateUserProfileView(LoginRequiredMixin, ValidFormMixin, CreateView):
     model = UserProfile
     # position ties to the geoposition application, it displays the map
-    fields = ['first', 'last', 'city', 'state', 'zipcode', 'country', 'email_incidents' ]
+    fields = ['first', 'last', 'city', 'state', 'zipcode', 'country', 'email_incidents', ]
     # form_class = CreateIncidentForm
     # success_url = reverse_lazy('home')
     # success_url = reverse_lazy('DetailUserProfileView', kwargs={'userprofile_id': self.id})

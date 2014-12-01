@@ -1,5 +1,5 @@
 
-
+Add [account / profile | logout] to menu, see if I can use a menu button.
 
 Allow email or username login
 after login, only proceed to success url "home", if the UserProfile exists
