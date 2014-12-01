@@ -26,7 +26,7 @@ class Incident(models.Model):
     class Meta:
         verbose_name = "Incident"
         verbose_name_plural = "Incidents"
-        ordering = ['created']
+        ordering = ['-date']
 
     def __unicode__(self):
         return self.user.username + " " + self.what[:100]
