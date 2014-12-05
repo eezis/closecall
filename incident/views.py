@@ -56,6 +56,10 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
         form.instance.user = self.request.user
         Incident = form.save(commit=True)
         print "CreateIncidentView.form_valid :: {}".format(self.request.user)
+
+        # for key, value in self.request.POST.iteritems():
+        #     print "{} {}".format(key, value)
+
         return super(CreateIncidentView, self).form_valid(form)
 
     # def get_success_url(self):

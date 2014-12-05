@@ -22,7 +22,55 @@ class Incident(models.Model):
     updated = models.DateTimeField(auto_now=True, null=True)
     position = GeopositionField(null=True, blank=True)
 
+    # add threat_level should be options: Belligerent, Agressive, Unsure, Probably Accident (but worth recording)
+    BELLIGERENT = 'Belligerent'
+    THREATENING = 'Threatening'
+    AGGRESSIVE  = 'Aggressive'
+    CARELESS    = 'Careless'
+    STUPID      = 'Stupid'
 
+    TA_CHOICES = (
+        (BELLIGERENT, 'Belligerent'),
+        (THREATENING, 'Threatening'),
+        (AGGRESSIVE,  'Aggressive'),
+        (CARELESS,    'Careless'),
+        (STUPID,      'Just Plain Stupid'),
+    )
+
+    tav = "Threat Assessment: In your opinion the motorist/person in question was being . . ."
+    threat_assessment = models.CharField(null=True, max_length=50, choices=TA_CHOICES, default=AGGRESSIVE, verbose_name=tav)
+
+    # add danger level
+    EXTREMELY_DANGEROUS = 10
+    VERY_DANGEROUS = 8
+    DANGEROUS = 5
+    SOMEWHAT_DANGEROUS = 3
+    CONCERNING = 1
+
+    THREAT_CHOICES = (
+        (EXTREMELY_DANGEROUS, 'Extremely Dangerous - The action could have caused a fatility'),
+        (VERY_DANGEROUS, 'Very Dangerous - The action could have caused serious injury or death'),
+        (DANGEROUS, 'Dangerous - the action could have caused serious injury'),
+        (SOMEWHAT_DANGEROUS, 'Somewhat Dangerous - the action could have caused moderate injuries'),
+        (CONCERNING, 'The action was not very dangerous, but is still a cause for concern'),
+    )
+    dav = "Danger Assessment: In your opinion, this encounter was . . . "
+    danger_assessment = models.IntegerField(null=True, choices=THREAT_CHOICES, default=DANGEROUS, verbose_name=dav)
+
+    def is_dangerous(self):
+        return self.danger_assessment >= self.DANGEROUS
+
+    """
+
+    possible usage
+
+    extremely_dangerous_incidents = Incident.objects.filter(danger_assessment=Incident.EXTREMELY_DANGEROUS)
+    dangerous_incidents = Incident.objects.filter(danger_assessment__gte=Incident.SOMEWHAT_DANGEROUS)
+    concerning_incidents = Incident.objects.filter(danger_assessment=Incident.CONCERNING)
+
+    if incident_object.danger_assessment == Incident.EXTREMELY_DANGEROUS:
+        # do something with live entry
+    """
     class Meta:
         verbose_name = "Incident"
         verbose_name_plural = "Incidents"
@@ -30,4 +78,30 @@ class Incident(models.Model):
 
     def __unicode__(self):
         return self.user.username + " " + self.what[:100]
+
+
+
+"""
+
+Accident should be a big menu item, you report an incident or an accident . . .
+
+"""
+
+    # ACCIDENT = 'Accident'
+    # INCIDENT = 'Incident'
+    # accident_or_incident_choices = ((Accident, 'Accident'),(Incident, 'Incident'),)
+    # accident_or_incident = models.CharField(null=True, max_length=20 verbose_name="Are you reporting an accident or an incident?")
+
+
+    # def is_accident(self):
+    #     return self.accident_or_incident in (self.ACCIDENT)
+
+    # def is_incident(self):
+    #     return self.accident_or_incident in (self.INCIDENT)
+
+
+
+
+
+
 

@@ -1,0 +1,5 @@
+<cross-domain-policy>
+  <allow-access-from domain="*.closecall.com"/>
+  <allow-access-from domain="*.g.doubleclick.net"/>
+  <allow-access-from domain="*.doubleclick.net"/>
+</cross-domain-policy>

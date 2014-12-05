@@ -2,16 +2,21 @@ from django.db import models
 from django.contrib.auth.models import User
 from core.models import BaseFields
 
+
+# null controls the DB, blank=True controls the form (e.g., not a required field)
+
 class UserProfile(BaseFields):
     user = models.OneToOneField(User, related_name='profile')
     first = models.CharField(null=True, max_length=50)
     last = models.CharField(null=True, max_length=50)
     city = models.CharField(null=True, max_length=120)
-    state = models.CharField(null=True, blank=True, max_length=50)
+    state = models.CharField(null=True,  max_length=50)
     country = models.CharField(null=True, max_length=80)
-    zipcode = models.CharField(null=True, blank=True, max_length=30, verbose_name="Zip/Postal Code")
+    zipcode = models.CharField(null=True, max_length=30, verbose_name="Zip/Postal Code")
     # does the user want email notifications when new incidents are reported in their area?
     email_incidents = models.BooleanField(default=True, verbose_name="Email Me When Incidents Are Reported In My Area")
+    # probably need position in order to do lookups (find incidents within 100 miles)
+    position = models.CharField(null=True, blank=True, max_length=80)
     # sms_incidents = models.BooleanField(deault=True, verbose_name="Receive")
     # sms would require phone numbers
 

@@ -20,7 +20,7 @@ missed striking one of the riders. We believe the license plate number was 163-J
         'placeholder': '10:45 am'}), label='Approximate Time') #, required=False)
     class Meta:
         model = Incident
-        fields = ['position','what', 'date', 'time', 'vehicle_description', 'color', 'make', 'model',
+        fields = ['position','what', 'date', 'time', 'threat_assessment', 'danger_assessment', 'vehicle_description', 'color', 'make', 'model',
         'license_certain', 'license_uncertain', 'id_it_by',]
 
         widgets={
