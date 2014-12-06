@@ -3,6 +3,9 @@
 EXPAND incident_detail.html to include the new fields
 
 
+Incident should have a place where OTHER WITNESSES (besides the guy entering it) are listed. Emails should go out to other cyclists that were on the ride that can verify/comment on the incident.
+
+
 Allow email or username login
 after login, only proceed to success url "home", if the UserProfile exists
 
