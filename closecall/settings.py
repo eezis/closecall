@@ -144,11 +144,22 @@ STATIC_URL = 'http://closecalldatabase.com/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'nginx-root/static/')
 
 
-# STATICFILES_DIRS = ( '/home/eezis/sites/static/closecall/', )
-
-STATICFILES_DIRS =(
-    os.path.join(os.path.dirname(__file__), '../static').replace('\\','/'),
+# when collectstatic is run at the server
+# $ sudo '/home/eezis/.virtualenvs/closecall/bin/python' manage.py collectstatic
+# this setting tells it where to look for files that need to be collectd,
+# it should automagically collect from the static subdirectories of any .virtualenv applications
+# and any applications that you have created . . . but it is not picking up a modification that I made
+# so I am trying this explicit declaration.
+STATICFILES_DIRS = (
+    '/home/eezis/sites/closecall/geoposition/static/',
+    '/home/eezis/sites/closecall/static/',
 )
+
+
+# STATICFILES_DIRS =(
+#     os.path.join(os.path.dirname(__file__), '../static').replace('\\','/'),
+#     os.path.join(os.path.dirname(__file__), '../static').replace('\\','/'),
+# )
 
 TEMPLATE_DIRS = (
 #     BASE_DIR.join('templates').replace('\\','/'),
