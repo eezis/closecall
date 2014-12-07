@@ -34,9 +34,6 @@ http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-c
         {# <span>{{ news.report_on|date:"D, M d, Y" }}</span><br> #}
         <p>{{news.summary|markdownify|safe}}</p>
         {# {% if news.tags %}<p  style="font-size: 0.95em; font-weight: 300;"><mark><samp>tags: {{news.tags}}</samp></mark></p>{% endif %} #}
-        {% if news.tags %}
-          <p  style="font-size: 0.95em; font-weight: 300;"><samp>TAGS: {{news.tags}} {% if news.source %}<span class="pull-right">Credit: {{news.source}}</span>{% endif %}</samp></p>
-        {% endif %}
 
         {% if news.url %}
         <p style="font-size: 1.1em;">
@@ -46,6 +43,13 @@ http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-c
             <a href="{{news.url}}" target="_blank">Read More . . .</a>
           {% endif %}
         </p>
+
+
+        {% if news.tags %}
+          <p  style="font-size: 0.95em; font-weight: 300; padding-top: 10px;"><samp>TAGS: {{news.tags}} {% if news.source %}<span class="pull-right">Credit: {{news.source}}</span>{% endif %}</samp></p>
+        {% endif %}
+
+
         {% endif %}
 
       </div>
