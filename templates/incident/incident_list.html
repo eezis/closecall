@@ -19,7 +19,7 @@
              {% for object in object_list %}
               {# <p><a href="{% url 'incident-detail' %}">{{ object }}</a></p> #}
               <p style="font-size: 1.1em;">
-              <span style="padding-right: 16px;">{{object.date|date:"M d, Y"}}</span> <a href="/incident/detail/{{object.pk}}">{{ object.what|truncatewords:10 }}</a>
+              <span style="padding-right: 16px;">{{object.date|date:"M d, Y"}}</span> <a href="/incident/detail/{{object.pk}}">{{ object.what|safe|truncatewords:10 }}</a>
               <span class="pull-right">
                   <span style="padding-left: 15px;"><a href="/incident/update/{{object.pk}}">Update</a></span>
                   <span style="padding-left: 15px;"><a href="/incident/delete/{{object.pk}}">Delete</a></span>

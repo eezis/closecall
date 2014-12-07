@@ -59,12 +59,13 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
     # NOTE: this is using incident_form.html, not update_form.html (specify the lattter if need to use it, and update it accordingly.)
 
     model = Incident
+    form_class = CreateIncidentForm
     ''' Update view will use the incident_form.html by default. That will work ONLY if the Submit value on the form
     # is submit. <input type="submit" value="Submit" />,
     # if the value is Save, e.g. <input type="submit" value="Save" /> then it will CREATE A NEW OBJECT RATHER THAN UPDATE IT!
     '''
-    fields = ['position','what', 'date', 'time', 'vehicle_description', 'color', 'make', 'model',
-        'license_certain', 'license_uncertain', 'id_it_by',]
+    # fields = ['position','what', 'date', 'time', 'vehicle_description', 'color', 'make', 'model',
+    #     'license_certain', 'license_uncertain', 'id_it_by',]
     success_url = reverse_lazy('users-incident-list')
 
 
