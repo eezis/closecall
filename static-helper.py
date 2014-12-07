@@ -83,7 +83,13 @@ def get_static_file_info():
         STATICFILES_DIRS should contain extra directories that you want to inspect for static assets.
         """
 
+    print "\n\n"
+
+    print "This code needs to be updates to instruct for the settings.py it should have said to do this: STATIC_ROOT = os.path.join(PROJECT_ROOT, 'nginx-root/static/')"
+
     print "\n\n\n\n\n\n"
+
+
 
 
 get_static_file_info()

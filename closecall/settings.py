@@ -141,7 +141,7 @@ STATIC_URL = 'http://closecalldatabase.com/static/'
 
 # https://docs.djangoproject.com/en/1.7/howto/static-files/#deployment
 # STATIC_ROOT = '/home/eezis/sites/static/closecall/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'nginx-root/static/')
 
 
 STATICFILES_DIRS = ( '/home/eezis/sites/static/closecall/', )
