@@ -31,7 +31,7 @@ looks where you tell it to look by specifying STATICFILES_DIRS
 """
 
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'amlit.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'closecall.settings'
 
 import django
 django.setup()
