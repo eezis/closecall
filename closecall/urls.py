@@ -33,6 +33,8 @@ urlpatterns = patterns('',
     url(r'^incident/', include('incident.urls')),
     url(r'^news/', NewsView.as_view(), name="news"),
     url(r'^eeadmin/', include(admin.site.urls)),
+    (r'^summernote/', include('django_summernote.urls')),
+
     # url(r'^/static/(?P<path>.*)$', '/Users/eae/code/sites/closecall/static/'),
 ) # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

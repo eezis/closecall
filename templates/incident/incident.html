@@ -1,0 +1,30 @@
+<!-- This template is for specifically revealed incident reports -->
+
+{% extends "sitebase.html" %}
+
+{# {% block metatag %}
+<meta name="description" content="A database for the cycling community to document and record aggressive driving infractions by motorists">
+<meta name="keywords" content="cycling, cyclise, database, accidents, incidents, aggressive, drivers">
+{% endblock %}
+ #}
+
+{% block title %}Close Call Database - Reported Incident{% endblock %}
+
+{%block navigation %}
+  {% if user.is_authenticated %}
+    {% include '_nav-loggedin.html' %}
+  {% else %}
+    {% include '_nav-full.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+{# is this visible #}
+<p>{{incident.date}}</p>
+<p>{{incident.city}}</p>
+<hr>
+<p>{{incident.what|safe}}</p>
+<hr>
+
+{% endblock %}

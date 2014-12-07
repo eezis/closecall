@@ -5,3 +5,8 @@ for realtime usage:
 
 https://developers.google.com/maps/documentation/javascript/geocoding
 https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple
+
+    Geocoding v 3 . . . no longer need an API key, they track by IP address, but that is a problem for heavy server side usage, 2500 limit per day.
+    If you use on the browser side, then the lookup counts against the browsers IP address.
+
+    http://randommarkers.blogspot.com/2010/03/client-side-geocoding-rocks.html

@@ -8,7 +8,7 @@ class Incident(models.Model):
     user = models.ForeignKey(User)
     # location = models.TextField(blank=True)
     address = models.CharField(null=True, blank=True, max_length=200)
-    what = models.TextField(blank=True, verbose_name="Describe What Happened")
+    what = models.TextField(verbose_name='Describe What Happened (be factual, include direction of travel for cyclists and vehicles, note witnesses, etc.)')
     date = models.DateField(null=True, blank=True, verbose_name="Date of Incident")
     time = models.TimeField(null=True, blank=True, verbose_name="Approximate Time of Incident")
     vehicle_description = models.CharField(null=True, blank=True, max_length=150, verbose_name="Vehicle Description")

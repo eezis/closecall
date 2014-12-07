@@ -2,8 +2,8 @@
 
 {% block metatag %}
 <meta name="description" content="A database for the cycling community to document and record aggressive driving infractions by motorists">
-<meta name="keywords" content="cycling, cyclise, database, accidents, incidents, aggressive, drivers">
-<meta name="author" content="Ernest Ezis">
+<meta name="keywords" content="cycling, cyclist, database, accidents, incidents, aggressive, drivers">
+
 {% endblock %}
 {% block title %}Close Call Database For Cycling{% endblock %}
 
@@ -45,7 +45,8 @@
 {% if news_stories %}
   <p class="text-center"><b>Recent News</b><br/></p>
   {% for news in news_stories %}
-    <p><a href="/news/" style="color:black; text-decoration: none;">{{news.title}}</a></p>
+    <p style="padding-bottom: 18px;"><a href="/news/" style="color:black; text-decoration: none;"><em>{{news.title}}</em></a></p>
+    {# {% if news.tldr %}<p style="padding: 4px 12px 30px 12px;"><small>{{news.tldr}}</small></p>{% endif %} #}
   {% endfor %}
 {% else %}
 <p><span class="alpha">Alpha Notice:</span> Short List of lastest news will go here in future release</p>

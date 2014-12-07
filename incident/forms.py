@@ -2,7 +2,12 @@ from django import forms
 from django.forms import ModelForm
 from django.forms.extras.widgets import SelectDateWidget
 
+# from tinymce.widgets import TinyMCE
+from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+
 from models import Incident
+
+
 
 class CreateIncidentForm(ModelForm):
     what_pholder ="""A good incident report will be factual and include date, time, and direction of travel of cyclists and motorists.
@@ -13,8 +18,15 @@ We heard a vehicle, also traveling east, approach from behind. As it got closer,
 As the vehicle, a white pickup truck, passed by, someone threw a beer bottle out of the passenger side window. The bottle just \
 missed striking one of the riders. We believe the license plate number was 163-JDK.
 """
-    what = forms.CharField(widget = forms.Textarea(attrs={'placeholder': what_pholder, }), label='Describe What Happened (a detailed description about the incident)')
-        # "A good incident report should include \n Number of people in the party \n direction you were travelling in",}))
+    # this next line is for simple text input, so all the CRLFS get washed out, etc.
+    # what = forms.CharField(widget = forms.Textarea(attrs={'placeholder': what_pholder, }), label='Describe What Happened (a detailed description about the incident)')
+    # trying TinyMCE: http://django-tinymce.readthedocs.org/en/latest/usage.html#using-the-widget
+    # content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
+    # what = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30, 'placeholder': what_pholder,}), label='Describe What Happened (a detailed description about the incident)')
+    # what = forms.CharField(widget=TinyMCE(attrs={'placeholder': what_pholder,}), label='Describe What Happened (a detailed description about the incident)')
+    # what = forms.CharField(widget=SummernoteWidget(attrs={'placeholder': what_pholder,}), label='Describe What Happened (a detailed description about the incident)')
+
+    # "A good incident report should include \n Number of people in the party \n direction you were travelling in",}))
     date = forms.DateField(("%m/%d/%Y",), widget=forms.DateInput(format="%m/%d/%Y", attrs={'class': 'datePicker',}), label='Date of Incident:',)
     time = forms.TimeField(("%H:%M %p",), widget=forms.TimeInput(format="%H:%M %p", attrs={'class': 'timePicker', 'id': 'timePicker',
         'placeholder': '10:45 am'}), label='Approximate Time') #, required=False)
@@ -24,6 +36,13 @@ missed striking one of the riders. We believe the license plate number was 163-J
         'license_certain', 'license_uncertain', 'id_it_by',]
 
         widgets={
+            "what": SummernoteInplaceWidget(),
+
+            # doesn't seem to have support for placeholder text?
+            # "what": SummernoteInplaceWidget(attrs={
+            #     'placeholder': 'test',
+            #     }),
+
             "vehicle_description":forms.TextInput(attrs={
                 'placeholder': 'White Pickup Truck | Black BMW coupe | etc',
             }),
@@ -48,6 +67,14 @@ missed striking one of the riders. We believe the license plate number was 163-J
 
         }
 
+
+# class FormFromSomeModel(forms.ModelForm):
+#     class Meta:
+#         model = SomeModel
+#         widgets = {
+#             'foo': SummernoteWidget(),
+#             'bar': SummernoteInplaceWidget(),
+#         }
 
         # exclude = ("published", )
         # widgets = {

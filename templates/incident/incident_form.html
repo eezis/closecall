@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/flick/jquery-ui.css" /> -->
 {% endblock %}
 
+{% block extra_styles %}
+{% endblock %}
 
 {%block navigation %}{% include '_nav-loggedin.html' %} {% endblock %}
 
@@ -49,6 +51,10 @@ both the CreateView and UpdateView
         $( ".datePicker" ).datepicker();
         });
     </script>
+
+
+
+
 {% endblock %}
 
 

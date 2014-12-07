@@ -14,7 +14,7 @@ from publish.models import InTheNews
 def HomeView(request):
     if request.user.is_authenticated():
         I = Incident.objects.filter(user=request.user)
-        N = InTheNews.objects.all().values('title','url')[:5]
+        N = InTheNews.objects.all().values('title','url', 'tldr')[:5]
         return render(request, 'home.html', {'incidents': I, 'news_stories': N})
     else:
         return render(request, 'home.html')

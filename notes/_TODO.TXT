@@ -1,4 +1,6 @@
 
+Incidents need a public component.
+
 
 EXPAND incident_detail.html to include the new fields
 

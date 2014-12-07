@@ -5,37 +5,12 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse, reverse_lazy
+from django.shortcuts import get_object_or_404 #, get_list_or_404
 
 from models import Incident
 from forms import CreateIncidentForm
 
 from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin
-
-# class ValidFormMixin(object):
-
-#     def form_valid(self, form):
-#         self.object = form.save(commit=False)
-#         self.object.owned_by = self.request.user
-#         self.object.save()
-#         return super(ValidFormMixin, self).form_valid(form)
-
-# class FilterToUserMixin(object):
-#     """
-#     Ensures that users can only View, Update, Delete the data they create - it is mixed into LoginRequiredMixin below
-#     """
-#     def get_queryset(self, *args, **kwargs):
-#         qs = super(FilterToUserMixin, self).get_queryset(*args, **kwargs)
-#         return qs.filter(user=self.request.user)
-
-
-# class LoginRequiredMixin(FilterToUserMixin, object):
-#     """
-#     Ensures that user must be authenticated in order to access view.
-#     """
-
-#     @method_decorator(login_required)
-#     def dispatch(self, *args, **kwargs):
-#         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
 
 # class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, SuccessURLMixinUserProfile, CreateView):
@@ -92,6 +67,21 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
         'license_certain', 'license_uncertain', 'id_it_by',]
     success_url = reverse_lazy('users-incident-list')
 
+
+"""
+This one is controlled by me, I specifically mask the id because I want this public, but most of them I don't want public so I will pass a proxy value
+if I use this feature a lot, then I should make a model and db table (Class PublicLinkProxy) and generic url, then I could update the table on the fly
+using the DB.
+"""
+def show_this_incident(request, ee_fake_key):
+    #the key must be 8 characters long, [a-z0-9-] ee-1-173
+    linker = {
+        'ee-1-173': 53,
+    }
+    # print linker[ee_fake_key]
+    I = Incident.objects.get(pk=linker[ee_fake_key])
+    # print I.what
+    return render(request, 'incident/incident.html', {'incident' : I})
 
 
 
