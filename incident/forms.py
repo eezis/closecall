@@ -33,7 +33,7 @@ missed striking one of the riders. We believe the license plate number was 163-J
     class Meta:
         model = Incident
         fields = ['position','what', 'date', 'time', 'threat_assessment', 'danger_assessment', 'vehicle_description', 'color', 'make', 'model',
-        'license_certain', 'license_uncertain', 'id_it_by',]
+        'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
 
         widgets={
             "what": SummernoteInplaceWidget(),
@@ -64,6 +64,8 @@ missed striking one of the riders. We believe the license plate number was 163-J
             "id_it_by":forms.TextInput(attrs={
                 'placeholder':'Dent in front right quarter panel, playboy mud flaps, etc',
             }),
+
+            "address": forms.HiddenInput(),
 
         }
 

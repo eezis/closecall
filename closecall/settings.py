@@ -144,7 +144,11 @@ STATIC_URL = 'http://closecalldatabase.com/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'nginx-root/static/')
 
 
-STATICFILES_DIRS = ( '/home/eezis/sites/static/closecall/', )
+# STATICFILES_DIRS = ( '/home/eezis/sites/static/closecall/', )
+
+STATICFILES_DIRS =(
+    os.path.join(os.path.dirname(__file__), '../static').replace('\\','/'),
+)
 
 TEMPLATE_DIRS = (
 #     BASE_DIR.join('templates').replace('\\','/'),

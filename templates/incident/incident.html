@@ -2,13 +2,13 @@
 
 {% extends "sitebase.html" %}
 
-{# {% block metatag %}
+{% block metatags %}
 <meta name="description" content="A database for the cycling community to document and record aggressive driving infractions by motorists">
-<meta name="keywords" content="cycling, cyclise, database, accidents, incidents, aggressive, drivers">
+<meta name="keywords" content="cycling, cyclise, database, accidents, incidents, aggressive, drivers, driving">
 {% endblock %}
- #}
 
-{% block title %}Close Call Database - Reported Incident{% endblock %}
+
+{% block page_title %}Incident Report{% endblock %}
 
 {%block navigation %}
   {% if user.is_authenticated %}

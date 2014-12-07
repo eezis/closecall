@@ -2,7 +2,11 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %}Incident Report{% endblock %}
+{% block page_title %}Incident Report{% endblock %}
+
+{% block metatags %}
+    <meta name="robots" content="noindex">
+{% endblock %}
 
 {%block navigation %}{% include '_nav-loggedin.html' %} {% endblock %}
 

@@ -1,6 +1,10 @@
 {% extends "sitebase.html" %}
 
-{% block title %}Your Incident Reports{% endblock %}
+{% block page_title %}Your Incident Reports{% endblock %}
+
+{% block metatags %}
+    <meta name="robots" content="noindex">
+{% endblock %}
 
 {%block navigation %}{% include '_nav-loggedin.html' %} {% endblock %}
 
