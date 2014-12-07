@@ -36,7 +36,7 @@ http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-c
         {# {% if news.tags %}<p  style="font-size: 0.95em; font-weight: 300;"><mark><samp>tags: {{news.tags}}</samp></mark></p>{% endif %} #}
 
         {% if news.url %}
-        <p style="font-size: 1.1em;">
+        <p style="font-size: 1.1em; padding-top:10px;">
           {% if news.source %}
             Read the full article at <a href="{{news.url}}" target="_blank"><em>{{news.source}}</em></a>
           {% else %}

@@ -1,3 +1,35 @@
+==========================================
+python manage.py collectstatic
+==========================================
+
+-- when you run it, you don't have permissions to write to the file, so
+
+    OSError: [Errno 13] Permission denied: '/home/eezis/sites/closecall/static/django_summernote'
+
+-- you try sudo python manage.py collecstatic and you get this error
+
+    (closecall)eezis@closecall:~/sites/closecall$ sudo python manage.py collectstatic
+    Traceback (most recent call last):
+      File "manage.py", line 8, in <module>
+        from django.core.management import execute_from_command_line
+    ImportError: No module named django.core.management
+
+-- the users are pointing to different pythons
+
+    (closecall)eezis@closecall:~/sites/closecall$ which python
+    /home/eezis/.virtualenvs/closecall/bin/python
+
+
+    (closecall)eezis@closecall:~/sites/closecall$ sudo which python
+    /usr/bin/python
+
+-- so the solution is to use the "right python" with sudo!
+
+    $ sudo '/home/eezis/.virtualenvs/closecall/bin/python' manage.py collectstatic
+
+
+
+
 =====================================
 WYSIWIG EDITOR SUMMERNOTE
 =====================================
