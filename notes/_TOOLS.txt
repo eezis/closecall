@@ -1,0 +1,7 @@
+
+
+
+for realtime usage:
+
+https://developers.google.com/maps/documentation/javascript/geocoding
+https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple
