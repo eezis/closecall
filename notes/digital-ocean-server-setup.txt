@@ -1,0 +1,42 @@
+
+
+https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-12-04
+
+https://www.digitalocean.com/community/tutorials/how-to-create-a-ssl-certificate-on-nginx-for-ubuntu-12-04
+
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:Colorado
+Locality Name (eg, city) []:Boulder
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Flection Point LLC
+Organizational Unit Name (eg, section) []:Technology Department
+Common Name (e.g. server FQDN or YOUR name) []:closecalldatabase.com
+Email Address []:closecalldatabase@gmail.com
+
+
+***** LEFT THE NEXT TWO ENTRIES BLANK ******
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+
+
+**** I SET THIS TO FIVE YEARS, AND SET A GOOGLE CALENDAR REMINDER
+
+Your certificate is all but done, and you just have to sign it. Keep in mind that you can specify how long the certificate should remain valid by changing the 365 to the number of days you prefer. As it stands this certificate will expire after one year.
+
+sudo openssl x509 -req -days 1825 -in server.csr -signkey server.key -out server.crt
+
+
+**** WAIT, I JUST PUT THE NEXT PART INTO THE CONF ****
+
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/closecall
+
+sudo nano /etc/nginx/sites-available/closecall
+
+
+ADDED THIS DIRECTLY TO NGINX.CONF
+
+        ssl on;
+        ssl_certificate /etc/nginx/ssl/server.crt;
+        ssl_certificate_key /etc/nginx/ssl/server.key;
