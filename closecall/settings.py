@@ -22,6 +22,7 @@ SECRET_KEY = '***REMOVED***'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+DEV_MODE = False
 
 TEMPLATE_DEBUG = True
 

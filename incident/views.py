@@ -10,8 +10,9 @@ from django.shortcuts import get_object_or_404 #, get_list_or_404
 from models import Incident
 from forms import CreateIncidentForm
 
-from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin
 
+from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin
+from django.conf import settings
 
 # class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, SuccessURLMixinUserProfile, CreateView):
 class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
@@ -76,13 +77,21 @@ using the DB.
 """
 def show_this_incident(request, ee_fake_key):
     #the key must be 8 characters long, [a-z0-9-] ee-1-173
-    linker = {
-        'ee-1-173': 7,
-    }
+    # CO-141108-001  -- the incident on Nelson Road with Justin Hoesse
+    if settings.DEV_MODE:
+        # print 'DEV MODE TRUE'
+        linker = {
+            'CO-141108-001': 3,
+        }
+    else:
+        linker = {
+            'CO-141108-001': 7,
+        }
     # print linker[ee_fake_key]
     I = Incident.objects.get(pk=linker[ee_fake_key])
+    # print I.license_uncertain
     # print I.what
-    return render(request, 'incident/incident.html', {'incident' : I})
+    return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': ee_fake_key})
 
 
 

@@ -57,8 +57,30 @@ class Incident(models.Model):
     dav = "Danger Assessment: In your opinion, this encounter was . . . "
     danger_assessment = models.IntegerField(null=True, choices=THREAT_CHOICES, default=DANGEROUS, verbose_name=dav)
 
-    def is_dangerous(self):
+    def incident_was_dangerous(self):
         return self.danger_assessment >= self.DANGEROUS
+
+    def driver_is_considered_dangerous(self):
+        return self.threat_assessment >= self.AGGRESSIVE
+
+    def danger_level(self):
+        levels = {
+            # 10: 'Extremely Dangerous - The action could have caused a fatility',
+            # 8: 'Very Dangerous - The action could have caused serious injury or death',
+            # 5: 'Dangerous - the action could have caused serious injury',
+            # 3: 'Somewhat Dangerous - the action could have caused moderate injuries',
+            # 1: 'The action was not very dangerous, but is still a cause for concern',
+            10: 'Extremely Dangerous',
+            8: 'Very Dangerous',
+            5: 'Dangerous',
+            3: 'Somewhat Dangerous',
+            1: 'Not Very Dangerous, But Still A Cause For Concern',
+        }
+        print levels[8]
+        return levels[self.danger_assessment]
+
+
+
 
     """
 

@@ -1,3 +1,27 @@
+
+==================
+REBOOT THE SERVER
+==================
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo service ngnix stop
+ps aux | grep gunicorn
+kill [mater pid]
+
+
+$ sudo service postgresql status
+9.3/main (port 5432): online
+
+
+sudo shutdown -r now
+
+
+
+
+
+
+
 * setup git
 git pull
 python manage.py migrate [to setup the db]
@@ -13,6 +37,10 @@ $ gunicorn closecall.wsgi:application --workers=3 --bind 0:8000 --log-file=-
 [2014-11-25 16:40:02 +0000] [27016] [INFO] Booting worker with pid: 27016
 [2014-11-25 16:40:02 +0000] [27017] [INFO] Booting worker with pid: 27017
 
+
+sudo service memcached stop
+sudo service memcached start
+sudo service memcached restart
 
 
 

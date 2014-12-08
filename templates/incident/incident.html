@@ -2,13 +2,17 @@
 
 {% extends "sitebase.html" %}
 
+{% block page_title %}Public Incident Report{% endblock %}
+
 {% block metatags %}
 <meta name="description" content="A database for the cycling community to document and record aggressive driving infractions by motorists">
 <meta name="keywords" content="cycling, cyclise, database, accidents, incidents, aggressive, drivers, driving">
 {% endblock %}
 
+{% block extra_styles %}
+.description_section p {font-weight: 600}
+{% endblock %}
 
-{% block page_title %}Incident Report{% endblock %}
 
 {%block navigation %}
   {% if user.is_authenticated %}
@@ -20,11 +24,44 @@
 
 {% block content %}
 
-{# is this visible #}
-<p>{{incident.date}}</p>
-<p>{{incident.city}}</p>
-<hr>
-<p>{{incident.what|safe}}</p>
-<hr>
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 40px;">
+
+  <div class="page-header" style="padding-bottom:0px;">
+    <h2><small>{{incident.date}}</small></h2>
+    <h2><small><span>{{incident.address}}</small></h2>
+    <hr style="border-color:darkgrey;">
+  </div>
+
+  <div class="description_section">
+    {% if incident.vehicle_description %}
+    <p>{{incident.vehicle_description}}</p>
+    {% endif %}
+    {% if incident.license_certain %}
+    <p>License Plate: {{incident.license_certain}}</p>
+    {% endif %}
+    {% if incident.license_uncertain %}
+    <p>License Plate (may not be 100% correct): {{incident.license_uncertain}}</p>
+    {% endif %}
+  </div>
+<!-- if not of the above then -  Descripton   -->
+
+    </p>
+    <hr>
+    <div style="padding: 18px 0 18px 0;">{{incident.what|safe}}</div>
+    <hr>
+    <br />
+    <p>This incident was reported as: <b>{{incident.danger_level}}</b></p>
+    <br />
+    {% if incident.driver_is_considered_dangerous %}
+     <div class="bg-info" style="padding: 20px 20px; 10px; 20px;">
+
+    <p style="color:red"><b>This driver is considered a present danger to cyclists.</b></p>
+    <p>If you have had an encounter with this vehicle, please <a href="{% url 'create-incident' %}"><b>REPORT IT</b></a></p>
+    <p>If you can identify this driver, please email closecalldatabase at gmail and reference "Incident {{linker_incident_num}}" </p>
+      </div>
+    {% endif %}
+    <br />
+</div>
 
 {% endblock %}
