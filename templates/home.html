@@ -97,10 +97,30 @@
 
 
 {% if incidents %}
+  {% for incident in incidents %}
   <p class="general"><b>Your Incident Reports</b><br/></p>
 
-  {% for incident in incidents %}
-    <p><span style="padding-right: 28px; font-size:0.92em;">{{incident.date|date:"M d, Y" }}</span> <a href="/incident/detail/{{incident.id}}/">{{incident.what|safe|truncatewords:100}}</a></p>
+   <div class="incident-block">
+    <!-- date -->
+    <p><span class="pad-right"><b>{{incident.date|date:"M d, Y" }}</b></span>
+    <!-- time, add later -->
+    <!-- where -->
+    {% if incident.address %}<span style="font-size: 0.92em; font-weight:bold;">{{incident.address}}</span>{% endif %}
+    </p>
+    <!-- quick driver summary -->
+    <div class="driver-summary">
+        <span class="sm-pad-rt">Driver categorized as: </span><span class="level-{{incident.danger_assessment}}">{{incident.threat_assessment}}</span>, their actions were <span class="level-{{incident.danger_assessment}}">{{incident.danger_level}}</span>.
+        {% if incident.vehicle_description %}
+          They were driving a <b>{{incident.vehicle_description}}</b>.
+          {% if incident.license_certain %} License plate: <b>{{incident.license_certain}}</b> {% endif %}
+          {% if incident.license_uncertain%} License plate may be: <b>{{incident.license_uncertain}}</b>{% endif %}
+        {% endif %}
+
+      <div class="incident-summary">
+        {{incident.what|safe|truncatewords:50}} <p><a href="/incident/update/{{incident.id}}/">Update/Edit</a></p>
+      </div>
+    </div>
+   </div>
   {% endfor %}
 {% else %}
 <hr>
