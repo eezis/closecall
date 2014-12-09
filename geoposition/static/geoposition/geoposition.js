@@ -31,9 +31,11 @@ if (jQuery != undefined) {
         $('.geoposition-widget').each(function() {
             var $container = $(this),
                 $mapContainer = $('<div class="geoposition-map" />'),
+                // bottom of map, shows "official" address of the marker
                 $addressRow = $('<div class="geoposition-address" />'),
+
                 $searchRow = $('<div class="geoposition-search" />'),
-                $searchInput = $('<input>', {'type': 'search', 'placeholder': 'Start typing an address …'}),
+                $searchInput = $('<input>', {'type': 'search', 'placeholder': 'Location of incident (Lee Hill Dr, Boulder, CO)'}),
                 $latitudeField = $container.find('input.geoposition:eq(0)'),
                 $longitudeField = $container.find('input.geoposition:eq(1)'),
                 latitude = parseFloat($latitudeField.val()) || null,
@@ -49,6 +51,7 @@ if (jQuery != undefined) {
             $mapContainer.css('height', $container.data('map-widget-height') + 'px');
             mapCustomOptions = $container.data('map-options') || {};
             markerCustomOptions = $container.data('marker-options') || {};
+            // $('#div_id_position').attr('label', 'Location of Incident');
 
             function doSearch() {
                 var gc = new google.maps.Geocoder();
@@ -97,6 +100,7 @@ if (jQuery != undefined) {
                         // alert(results[0].formatted_address);
                         // MY MODIFICATION TO POPULATE HIDDEN FORM FIELD ADDRESS
                         $("#id_address").val(results[0].formatted_address);
+                        // $('#id_position_0').attr('** need to change the "for" label', 'Location of Incident');
                     }
                 });
             }

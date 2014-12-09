@@ -1,0 +1,17 @@
+
+
+I took django-geoposition out of the .virtualenv and copied it into my project as an app and mofidied it directly
+
+
+
+http://stackoverflow.com/questions/15043864/overriding-a-static-file-of-an-app
+
+You can easily extend this widget and override its media with your static files:
+
+class MyGeoWidget(GeoPositionWidget):
+     class Media:
+         extend = False
+         css = {
+               'all': ('whatever.css',)
+            }
+         js = ('mygeoposition.js',)

@@ -13,6 +13,34 @@
     text-align: center;
     padding-bottom: 20px;
 }
+
+.general{
+    color: darkorange;
+    text-align: center;
+    padding-bottom: 14px;
+}
+
+{# dangerous #}
+.level-10, .level-8 {
+    color: red;
+}
+
+.pad-right { padding-right: 22px;}
+.sm-pad-rt {padding-right: 6px;}
+
+.level-5 { color: darkred; }
+
+.level-3 { color: blue;}
+
+.level-1 { color: orange; }
+
+.indented { padding: 8px 16px 8px 16px;}
+
+.incident-block { padding: 0 0 16px 0;}
+
+.driver-summary { padding: 8px 16px 8px 16px; font-size:1.2em;}
+.incident-summary {font-size:0.80em; padding-top:8px;}
+
 {% endblock %}
 
 
@@ -41,7 +69,25 @@
 {% if local_incidents %}
 <h3 class="incidents"> Incidents Reported In Your Area</h3>
   {% for incident in local_incidents %}
-    <p>What:   {{incident.what|truncatewords:40}}
+   <div class="incident-block">
+    <!-- date -->
+    <p><span class="pad-right"><b>{{incident.date|date:"M d, Y" }}</b></span>
+    <!-- time, add later -->
+    <!-- where -->
+    {% if incident.address %}<span style="font-size: 0.92em; font-weight:bold;">{{incident.address}}</span>{% endif %}
+    </p>
+    <!-- quick driver summary -->
+    <div class="driver-summary">
+        <span class="sm-pad-rt">Driver categorized as: </span><span class="level-{{incident.danger_assessment}}">{{incident.threat_assessment}}</span>, their actions were <span class="level-{{incident.danger_assessment}}">{{incident.danger_level}}</span>.
+        {% if incident.vehicle_description %}
+          They were driving a <b>{{incident.vehicle_description}}</b>.
+          {% if incident.license_certain %} License plate: <b>{{incident.license_certain}}</b> {% endif %}
+          {% if incident.license_uncertain%} License plate may be: <b>{{incident.license_uncertain}}</b>{% endif %}
+        {% endif %}
+
+      <div class="incident-summary">{{incident.what|safe|truncatewords:50}} <a href="/incident/show-detail/{{incident.id}}/">read more</a></div>
+    </div>
+   </div>
   {% endfor %}
   <hr>
 {% else %}
@@ -51,10 +97,10 @@
 
 
 {% if incidents %}
-  <p class="text-center"><b>Your Incident Reports</b><br/></p>
+  <p class="general"><b>Your Incident Reports</b><br/></p>
 
   {% for incident in incidents %}
-    <p><span style="padding-right: 28px; font-size:0.92em;">{{incident.date|date:"M d, Y" }}</span> <a href="/incident/detail/{{incident.id}}/">{{incident.what|safe|truncatewords:15}}</a></p>
+    <p><span style="padding-right: 28px; font-size:0.92em;">{{incident.date|date:"M d, Y" }}</span> <a href="/incident/detail/{{incident.id}}/">{{incident.what|safe|truncatewords:100}}</a></p>
   {% endfor %}
 {% else %}
 <hr>
@@ -63,21 +109,27 @@
 {% endif %}
 <hr>
 {% if news_stories %}
-  <p class="text-center"><b>Recent News</b><br/></p>
+  <p class="general"><b>Recent News</b><br/></p>
   {% for news in news_stories %}
     <p style="padding-bottom: 18px;"><a href="/news/" style="color:black; text-decoration: none;"><em>{{news.title}}</em></a></p>
     {# {% if news.tldr %}<p style="padding: 4px 12px 30px 12px;"><small>{{news.tldr}}</small></p>{% endif %} #}
   {% endfor %}
+  <hr>
 {% else %}
-<p><span class="alpha">Alpha Notice:</span> Short List of lastest news will go here in future release</p>
+<!-- <p><span class="alpha">Alpha Notice:</span> Short List of lastest news will go here in future release</p> -->
+  <hr>
 {% endif %}
 
 
 <!-- INCIDENTS THAT HAVE OCCURRED *** OUTSIDE OF *** THE USERS AREA -->
 {% if recent_incidents %}
-<h4 class="incidents"> The most Incident Reports (from around the country/world)</h4>
+<h4 class="incidents"> The Lastest Incident Reports (From All Locations) </h4>
   {% for incident in recent_incidents %}
-    <p>What:   {{incident.what|truncatewords:40}}
+    <p>
+    <span class="pad-right"><b>{{incident.date|date:"M d, Y" }}</b></span>
+    <span class="level-{{incident.danger_assessment}} sm-pad-rt">Threat Level: {{incident.threat_assessment}}</span>
+    {{incident.address}}
+    <a href="/incident/show-detail/{{incident.id}}/">. . . detailed report</a>
   {% endfor %}
   <hr>
 {% else %}

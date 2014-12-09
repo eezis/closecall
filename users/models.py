@@ -29,7 +29,14 @@ class UserProfile(BaseFields):
     def format_position(self):
         # UserProfile position is stored in a CharField, it looks like this
         # self.position = '(40.0149856, -105.27054559999999)'
-        return self.position.strip('()').split(',')
+        if self.position is None:
+            s = "UserProfile " + str(self.pk) + " for " + self.user.username + " has no position information!"
+            raise Exception(s)
+            print s
+        else:
+        # pos = self.position
+        # return pos.strip('()').split(',')
+            return self.position.strip('()').split(',')
 
     def get_lat_lon(self):
         geoposition = self.format_position()

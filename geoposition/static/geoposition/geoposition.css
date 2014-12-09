@@ -9,7 +9,8 @@
 }
 
 .geoposition-widget table {
-    float: left;
+    /*float: left;*/
+    float:right;
     border: 0;
     margin-bottom: 8px;
 }
@@ -34,9 +35,19 @@
     text-align: left;
 }
 
-.geoposition-search {
-    float: right;
+
+/*.geoposition-search {
+    float: leftt;
     text-align: left;
+    color: blue;
+}*/
+
+
+.geoposition-search {
+    /*float: right;*/
+    float: left;
+    text-align: left;
+    color: blue;
 }
 
 .geoposition-results {

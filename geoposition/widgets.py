@@ -33,6 +33,10 @@ class GeopositionWidget(forms.MultiWidget):
                 'html': rendered_widgets[1],
                 'label': _("longitude"),
             },
+            # # EE - nope, this is just the widget, which contains long and lat
+            # 'address': {
+            #     'label':_("Location of Incident"),
+            # },
             'config': {
                 'map_widget_height': settings.GEOPOSITION_MAP_WIDGET_HEIGHT,
                 'map_options': json.dumps(settings.GEOPOSITION_MAP_OPTIONS),

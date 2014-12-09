@@ -27,7 +27,7 @@ class Incident(models.Model):
     THREATENING = 'Threatening'
     AGGRESSIVE  = 'Aggressive'
     CARELESS    = 'Careless'
-    STUPID      = 'Stupid'
+    STUPID      = 'Thoughtless'
 
     TA_CHOICES = (
         (BELLIGERENT, 'Belligerent'),
@@ -76,7 +76,7 @@ class Incident(models.Model):
             3: 'Somewhat Dangerous',
             1: 'Not Very Dangerous, But Still A Cause For Concern',
         }
-        print levels[8]
+        # print levels[8]
         return levels[self.danger_assessment]
 
 
