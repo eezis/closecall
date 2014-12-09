@@ -7,6 +7,15 @@
 
 {% block page_title %}Close Call Database For Cycling{% endblock %}
 
+{% block extra_styles %}
+.incidents {
+    color: darkorange;
+    text-align: center;
+    padding-bottom: 20px;
+}
+{% endblock %}
+
+
 {%block navigation %}
   {% if user.is_authenticated %}
     {% include '_nav-loggedin.html' %}
@@ -19,18 +28,29 @@
 {% if user.is_authenticated %}
 <p>Welcome back {{ user.username }}</p>
 <hr>
+
+<!-- ANNOUNCEMENTS IF ANY -->
 {% if announcement %}
   {% for a in announcement %}
     <p class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">{{a.the_announcement}}</p>
   {% endfor %}
-{% else %}
-<!-- <p><span class="alpha">Alpha Notice:</span> Announcements -- if any -- will go here in future release</p> -->
-<p>No announcements at this time.</p>
-{% endif %}
-<hr>
-<p><span class="alpha">Alpha Notice:</span> Local Incidents -- if any -- will go here. This is a High Priority and will be implemented soon. </p>
-{% if incidents %}
   <hr>
+{% endif %}
+
+<!-- INCIDENTS THAT HAVE OCCURRED IN THE USERS AREA -->
+{% if local_incidents %}
+<h3 class="incidents"> Incidents Reported In Your Area</h3>
+  {% for incident in local_incidents %}
+    <p>What:   {{incident.what|truncatewords:40}}
+  {% endfor %}
+  <hr>
+{% else %}
+<h4 class="incidents" style="padding-top:16px;">Excellent News: No Incidents have been reported in your area!</h4>
+  <hr>
+{% endif %}
+
+
+{% if incidents %}
   <p class="text-center"><b>Your Incident Reports</b><br/></p>
 
   {% for incident in incidents %}
@@ -52,6 +72,17 @@
 <p><span class="alpha">Alpha Notice:</span> Short List of lastest news will go here in future release</p>
 {% endif %}
 
+
+<!-- INCIDENTS THAT HAVE OCCURRED *** OUTSIDE OF *** THE USERS AREA -->
+{% if recent_incidents %}
+<h4 class="incidents"> The most Incident Reports (from around the country/world)</h4>
+  {% for incident in recent_incidents %}
+    <p>What:   {{incident.what|truncatewords:40}}
+  {% endfor %}
+  <hr>
+{% else %}
+<hr>
+{% endif %}
 
 
 {% else %} <!-- else not logged in! -->

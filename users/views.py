@@ -6,12 +6,15 @@ from django.contrib.auth.decorators import login_required
 # from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse, reverse_lazy
 
+from forms import UserProfileForm
 from models import UserProfile
 # from forms import formname
 from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin
 
 from django.shortcuts import redirect
 from django.contrib import messages
+
+from forms import UserProfileForm
 
 def CheckForUserProfile(request):
     s = """'Your User Profile is missing. Please complete the form below so that we can provide you with important information
@@ -23,8 +26,9 @@ def CheckForUserProfile(request):
 
 class CreateUserProfileView(LoginRequiredMixin, ValidFormMixin, CreateView):
     model = UserProfile
+    form_class = UserProfileForm
     # position ties to the geoposition application, it displays the map
-    fields = ['first', 'last', 'city', 'state', 'zipcode', 'country', 'email_incidents', ]
+    # fields = ['first', 'last', 'city', 'state', 'zipcode', 'country', 'email_incidents', ]
     # form_class = CreateIncidentForm
     # success_url = reverse_lazy('home')
     # success_url = reverse_lazy('DetailUserProfileView', kwargs={'userprofile_id': self.id})

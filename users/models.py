@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from core.models import BaseFields
 
+# for finding incidents close to the user
+from incident.models import Incident
+from core.utils import distance_between_geocoded_points
 
 # null controls the DB, blank=True controls the form (e.g., not a required field)
 
@@ -22,6 +25,58 @@ class UserProfile(BaseFields):
 
     def __unicode__(self):
         return self.first + ' ' + self.last + ' :: ' + self.user.username
+
+    def format_position(self):
+        # UserProfile position is stored in a CharField, it looks like this
+        # self.position = '(40.0149856, -105.27054559999999)'
+        return self.position.strip('()').split(',')
+
+    def get_lat_lon(self):
+        geoposition = self.format_position()
+        # pluck the parts, and return them as floats.
+        lat = float(geoposition[0])
+        lon = float(geoposition[1].strip())
+        return lat, lon
+
+    def get_lat_as_string(self):
+        return self.format_position()[0]
+
+    def get_lon_as_string(self):
+        return self.format_position()[1].strip()
+
+    def get_lat(self):
+        return float(self.format_position()[0])
+
+    def get_lon(self):
+        return float(self.format_position()[1].strip())
+
+    def get_user_incidents(self, miles=60):
+        """
+        returns a list of incidents within X miles of the user's location, where the location is the geocoded center of the
+        city, ST compbination they provided. I could pinpoint that down further to zipcode
+
+        USAGE: as tested in http://localhost:8888/notebooks/Distance%20Between%20Points.ipynb
+
+        from users.models import UserProfile
+
+        up = UserProfile.objects.get(user__username='Oliver-Ezis')
+        matches = up.get_user_incidents(35)
+        for m in matches:
+            print m.what[:50], m.address
+
+        """
+        matched_incidents = []
+        # u_lat = self.get_lat()
+        # u_lon = self.get_lon()
+        u_lat, u_lon = self.get_lat_lon()
+        incidents = Incident.objects.all()
+        for i in incidents:
+            if distance_between_geocoded_points(u_lat, u_lon, i.position.latitude, i.position.longitude) <= miles:
+                matched_incidents.append(i)
+
+        return matched_incidents
+
+
 
 
 # could add a text field that allowed multiple zipcode entries so that they could get

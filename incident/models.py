@@ -80,6 +80,13 @@ class Incident(models.Model):
         return levels[self.danger_assessment]
 
 
+    # def get_lat(self):
+    #     return self.position.to_string()
+
+
+
+    # def get_lon(self):
+    #     return str(self.position).split(',')[1]
 
 
     """

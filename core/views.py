@@ -15,13 +15,14 @@ def HomeView(request):
     if request.user.is_authenticated():
         I = Incident.objects.filter(user=request.user)
         N = InTheNews.objects.all().values('title','url', 'tldr')[:5]
-        return render(request, 'home.html', {'incidents': I, 'news_stories': N})
+        # Local_I = Local Incidents
+        Local_I = request.user.profile.get_user_incidents()
+        # Latest_I = Latest Incidents (most recent) -- might want to modify to get the most recent *dangeruous* instances
+        Recent_I = Incident.objects.all().order_by('-id')[:5]
+        return render(request, 'home.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
     else:
         return render(request, 'home.html')
-    # if request.user.is_authenticated():
-    #     return render(request, 'home.html', {'incidents': Incident.objects.filter(user_id=request.user.id)})
-    # else:
-    #     return render(request ,'home.html')
+
 
 
 # class MyRegistrationView(RegistrationView):
