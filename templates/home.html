@@ -97,9 +97,8 @@
 
 
 {% if incidents %}
-  {% for incident in incidents %}
   <p class="general"><b>Your Incident Reports</b><br/></p>
-
+  {% for incident in incidents %}
    <div class="incident-block">
     <!-- date -->
     <p><span class="pad-right"><b>{{incident.date|date:"M d, Y" }}</b></span>
