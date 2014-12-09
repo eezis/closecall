@@ -95,9 +95,9 @@
   <hr>
 {% endif %}
 
-
+<p class="general"><b>Your Incident Reports</b><br/></p>
 {% if incidents %}
-  <p class="general"><b>Your Incident Reports</b><br/></p>
+
   {% for incident in incidents %}
    <div class="incident-block">
     <!-- date -->
@@ -122,7 +122,6 @@
    </div>
   {% endfor %}
 {% else %}
-<hr>
 <!-- <p><span class="alpha">Alpha Notice:</span> A list of incidents reported by this user will go here</p> -->
 <p>You have not reported any incidents.</p>
 {% endif %}
