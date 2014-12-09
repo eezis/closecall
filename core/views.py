@@ -63,3 +63,15 @@ class LoginRequiredMixin(FilterToUserMixin, object):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
+
+
+import logging
+logger = logging.getLogger(__name__)
+
+def myfunction():
+    logger.debug("this is a debug message!")
+
+def myotherfunction():
+    logger.error("this is an error message!!")
+
+
