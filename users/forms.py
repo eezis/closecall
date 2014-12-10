@@ -14,3 +14,6 @@ class UserProfileForm(ModelForm):
         widgets={
             'position': forms.HiddenInput(),
         }
+
+
+

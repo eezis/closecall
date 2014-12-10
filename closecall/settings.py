@@ -13,6 +13,10 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
+# Admins get 500 errors
+ADMINS = (
+    (('Ernest', 'ernest.ezis@gmail.com'), ('CCDB Admi', 'closecalldatabase@gmail.com'),)
+)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -87,7 +91,7 @@ LOCAL_APPS = (
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # This is for Django-Registration-Redux
-ACCOUNT_ACTIVATION_DAYS = 14 # One-week activation window; you may, of course, use a different value.
+ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 LOGIN_REDIRECT_URL = '/'
 
@@ -250,7 +254,7 @@ SUMMERNOTE_CONFIG = {
 #             'propagate': True,
 #             'level':'DEBUG',
 #         },
-#         'MYAPP': {
+#         'closecall': {
 #             'handlers': ['file'],
 #             'level': 'DEBUG',
 #         },

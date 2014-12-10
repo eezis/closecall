@@ -60,7 +60,7 @@
 <!-- ANNOUNCEMENTS IF ANY -->
 {% if announcement %}
   {% for a in announcement %}
-    <p class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">{{a.the_announcement}}</p>
+    <p class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">{{a.the_announcement|safe}}</p>
   {% endfor %}
   <hr>
 {% endif %}
@@ -159,7 +159,7 @@
 
 {% if announcement %}
   {% for a in announcement %}
-    <p class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">{{a.the_announcement}}</p>
+    <p class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">{{a.the_announcement|safe}}</p>
   {% endfor %}
 {% endif %}
 

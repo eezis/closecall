@@ -13,15 +13,27 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 
+# I subclassed the registration.forms class RegistrationForm, so now I need to the the URL to use my form class
+from myregistration.forms import MyRegistrationForm
+from registration.views import RegistrationView
+# url(r'^register/$',RegistrationView.as_view(form_class=MyRegistrationForm), name='registration_register'),
+
+
 urlpatterns = patterns('',
     url(r"^$", HomeView, name="home"),
     url(r'^about/', TemplateView.as_view(template_name="about.html"), name="about"),
     url(r'^welcome/', TemplateView.as_view(template_name="welcome.html"), name="welcome"),
     url(r'^date-test/', TemplateView.as_view(template_name="date-test.html"), name="date-test"),
 
-    # attempt to override registration so that it has first and last
+    # attempt to override registration so that it has first and last (this probably should have worked, probably need name='registration_register')
     # url(r'^accounts/register/', MyRegistrationView.as_view(), name="register"),
+
+    # I subclassed the registration.forms class RegistrationForm, so now I need to the the URL to use my form class
+    # *** didn't work, see note in myregistration.forms ***
+    # url(r'^accounts/register/$',RegistrationView.as_view(form_class=MyRegistrationForm), name='registration_register'),
+    # The line aboved needed to PRECEDE this next line, so that it's found first
     url(r'^accounts/', include('registration.backends.default.urls')),
+
     url(r'^create-user-profile/$', CreateUserProfileView.as_view(), name='create-user-profile'),
     url(r'^user-profile-detail/(?P<pk>\d+)/$', DetailUserProfileView.as_view(), name='user-profile-detail'),
     url(r'^update-user-profile/(?P<pk>\d+)/$', UpdateUserProfileView.as_view(), name='update-user-profile'),
