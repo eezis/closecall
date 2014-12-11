@@ -1,6 +1,10 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+
+
 
 # from incident.models import Incident
 
@@ -16,10 +20,20 @@ def HomeView(request):
         I = Incident.objects.filter(user=request.user)
         N = InTheNews.objects.all().values('title','url', 'tldr')[:5]
         # Local_I = Local Incidents
-        Local_I = request.user.profile.get_user_incidents()
-        # Latest_I = Latest Incidents (most recent) -- might want to modify to get the most recent *dangeruous* instances
-        Recent_I = Incident.objects.all().order_by('-id')[:5]
-        return render(request, 'home.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
+        try:
+            Local_I = request.user.profile.get_user_incidents()
+            # Latest_I = Latest Incidents (most recent) -- might want to modify to get the most recent *dangeruous* instances
+            Recent_I = Incident.objects.all().order_by('-id')[:5]
+            return render(request, 'home.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
+        except AttributeError:
+            # RelatedObjectDoesNotExist: User has no profile.
+            # 1. log this
+            # 2. send email
+            # 3. redirect to create-user-profile (should send it with a message)
+            no_user_profile_msg = "You must create a User Profile in order to proceed."
+            messages.add_message(request, messages.INFO, no_user_profile_msg)
+            return HttpResponseRedirect('/create-user-profile/')
+
     else:
         return render(request, 'home.html')
 
