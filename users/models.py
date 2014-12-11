@@ -24,7 +24,7 @@ class UserProfile(BaseFields):
     # sms would require phone numbers
 
     def __unicode__(self):
-        return self.first + ' ' + self.last + ' :: ' + self.user.username
+        return self.first + ' ' + self.last + ' :: ' + self.user.username + ' ==> ' + self.user.email
 
     def format_position(self):
         # UserProfile position is stored in a CharField, it looks like this
