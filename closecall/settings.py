@@ -30,8 +30,8 @@ DEV_MODE = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['*', '104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', ]
-# ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*', '104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', ]
+ALLOWED_HOSTS = ['*',]
 
 
 # https://docs.djangoproject.com/en/1.7/ref/settings/#template-context-processors
