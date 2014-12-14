@@ -304,10 +304,19 @@ def strava_registration(request):
             email = resp['athlete']['email']
             print "CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email)
 
+
+            # ERROR # 1
+            # CURRENT STRAVA REGISTRANT:: Helmet Head ~ youtube.com/misshelmethead Hanover NH United States lilogirl2000@aol.com
+            # DataError: value too long for type character varying(30)
+
+
+
             # athlete id will be used to create their passwords (is it long enough?) I could bold "strava-" + athlete-id
             # onto it, making it more secure. I should do that.
 
+            # Had to trim the usernames to 30 (I may need to expand the underlying Djano model! See ERROR #1 above)
             created_username = fname + ' ' + lname
+            created_username = created_username[:30]
 
             # this_user = get_or_create_user(email, created_username, fname, lname, password, athelete_id)
             this_user = get_or_create_user(email, created_username, fname, lname, athlete_id)
