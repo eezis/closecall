@@ -145,6 +145,7 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id):
 
         # okay, does just the user or just the email exist?
         # what if a user updated their email address at strava?
+        print "create a proxy password"
         created_password = get_or_create_a_strava_based_password(athlete_id)
         """ ****************************************************************************************************** """
         """ NOTE WELL: a simple create User and save didn ot work, I needed to use the "create_user" method of User """
@@ -299,8 +300,8 @@ def strava_registration(request):
 
             access_token = resp['access_token'] # <-- the identifies athlete and application (e.g, Ernest Ezis, CCDB)
             athlete_id = resp['athlete']['id']
-            fname = resp['athlete']['firstname']
-            lname = resp['athlete']['lastname']
+            fname = resp['athlete']['firstname'][:30]
+            lname = resp['athlete']['lastname'][:30]
             city = resp['athlete']['city']
             state = resp['athlete']['state']
             country = resp['athlete']['country']
@@ -322,6 +323,12 @@ def strava_registration(request):
             created_username = created_username[:28]
 
             # this_user = get_or_create_user(email, created_username, fname, lname, password, athelete_id)
+            print fname
+            print lname
+            print email
+            print created_username
+            print athlete_id
+
             this_user = get_or_create_user(email, created_username, fname, lname, athlete_id)
             # now populate the UserProfile
             # get_or_create_user_profile
