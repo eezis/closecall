@@ -56,8 +56,11 @@ locally
     git push
 
 Server
+    cd sites/closecall; workon closecall
     sudo git pull
     python manage.py migrate
+    sudo '/home/eezis/.virtualenvs/closecall/bin/python' manage.py collectstatic
+    ps aux | grep gunicorn
     kill -HUP [ master_id from ps aux | grep gunicorn ]
 
 
