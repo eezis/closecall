@@ -292,7 +292,10 @@ def strava_registration(request):
             }"""
 
             resp = r.json()
-            # print resp
+
+            print "\n\n"
+            print resp
+            print "\n\n"
 
             access_token = resp['access_token'] # <-- the identifies athlete and application (e.g, Ernest Ezis, CCDB)
             athlete_id = resp['athlete']['id']
