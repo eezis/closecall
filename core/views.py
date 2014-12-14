@@ -319,7 +319,7 @@ def strava_registration(request):
 
             # Had to trim the usernames to 30 (I may need to expand the underlying Djano model! See ERROR #1 above)
             created_username = fname + ' ' + lname
-            created_username = created_username[:30]
+            created_username = created_username[:28]
 
             # this_user = get_or_create_user(email, created_username, fname, lname, password, athelete_id)
             this_user = get_or_create_user(email, created_username, fname, lname, athlete_id)
