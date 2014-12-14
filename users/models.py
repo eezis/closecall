@@ -15,16 +15,24 @@ class UserProfile(BaseFields):
     city = models.CharField(null=True, max_length=120)
     state = models.CharField(null=True,  max_length=50)
     country = models.CharField(null=True, max_length=80)
-    zipcode = models.CharField(null=True, max_length=30, verbose_name="Zip/Postal Code")
+    zipcode = models.CharField(null=True, blank=True, max_length=30, verbose_name="Zip/Postal Code")
     # does the user want email notifications when new incidents are reported in their area?
     email_incidents = models.BooleanField(default=True, verbose_name="Email Me When Incidents Are Reported In My Area")
     # probably need position in order to do lookups (find incidents within 100 miles)
-    position = models.CharField(null=True, blank=True, max_length=80)
+    position = models.CharField(null=True, max_length=80)
     # sms_incidents = models.BooleanField(deault=True, verbose_name="Receive")
     # sms would require phone numbers
 
+    # was the account created with custom login, or did they use strava or something else
+    # strave=34330 (where the number = their strava_id)
+    created_with = models.CharField(null=True, blank=True, max_length=250)
+
+
+    class meta:
+        ordering = ['-created',]
+
     def __unicode__(self):
-        return self.first + ' ' + self.last + ' :: ' + self.user.username + ' ==> ' + self.user.email
+        return self.first + ' ' + self.last + ' :: ' + self.user.username + ' ==> ' + self.user.email + ' -- ' + self.created.strftime('%Y-%m-%d %H:%M')
 
     def format_position(self):
         # UserProfile position is stored in a CharField, it looks like this
@@ -33,6 +41,11 @@ class UserProfile(BaseFields):
             s = "UserProfile " + str(self.pk) + " for " + self.user.username + " has no position information!"
             raise Exception(s)
             print s
+
+            # *** FIX THIS ***
+            # message . . . don't seem to have accurate position information for you
+            # send to a page where they can update / confirm
+
         else:
         # pos = self.position
         # return pos.strip('()').split(',')

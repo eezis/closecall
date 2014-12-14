@@ -10,10 +10,23 @@
 {% block content %}
 
 <div class="row-fluid">
-<h3 style="padding-top:12px;">{% trans "Please Create Your Account " %}</h3>
+<h3 style="padding-top:12px;">{% trans "Please Create Your Account <smaller>(Log in with Strava to register instantly)</smaller>" %}</h3>
 <br />
 </div>
-<div class="col-sm-4">
+
+<div class="col-sm-6">
+
+  <div class="strava" style="padding: 2px 0 26px 0;">
+    <!-- <a href="/get-strava-login"><img src="/static/images/LogInWithStrava.png"></a> -->
+    <a href="/get-strava-login"><img src="/static/images/LogInWithStrava@2x.png"></a>
+  </div>
+</div>
+
+<div class="col-sm-12" style="padding-bottom:16px;">
+<p>Or create your account here . . .</p>
+</div>
+
+<div class="col-sm-6">
 <form action="" method="POST">
   {% csrf_token %}
 
@@ -22,5 +35,6 @@
 
 </form>
 </div>
+
 
 {% endblock %}

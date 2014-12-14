@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 # from django.views.generic.base import RedirectView
 
-from core.views import HomeView #, MyRegistrationView
+from core.views import HomeView, strava_registration, redirect_to_strava_login #, MyRegistrationView
 from publish.views import NewsView
 from users.views import CreateUserProfileView, UpdateUserProfileView, DetailUserProfileView, CheckForUserProfile
 
@@ -46,6 +46,12 @@ urlpatterns = patterns('',
     url(r'^news/', NewsView.as_view(), name="news"),
     url(r'^eeadmin/', include(admin.site.urls)),
     (r'^summernote/', include('django_summernote.urls')),
+    # url(r'^strava-registration/(?P<strava_token>\w+)/$', strava_registration, name="strava-registration"),
+    url(r'^strava-registration', strava_registration, name="strava-registration"),
+    # url(r'^strava-registration/(?P<state>\w+)/$', strava_registration, name="strava-registration"),
+    url(r'^get-strava-login', redirect_to_strava_login, name="strava-login"),
+    url(r'^login-help-page/', TemplateView.as_view(template_name='loginhelper.html'), name="login-helper"),
+
 
     # url(r'^/static/(?P<path>.*)$', '/Users/eae/code/sites/closecall/static/'),
 ) # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

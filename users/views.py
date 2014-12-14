@@ -54,11 +54,13 @@ class UpdateUserProfileView(LoginRequiredMixin, ValidFormMixin, UpdateView):
     # NOTE: this is using incident_form.html, not update_form.html (specify the lattter if need to use it, and update it accordingly.)
 
     model = UserProfile
-    ''' Update view will use the createview_form.html by default. That will work ONLY if the Submit value on the form
-    # is submit. <input type="submit" value="Submit" />,
-    # if the value is Save, e.g. <input type="submit" value="Save" /> then it will CREATE A NEW OBJECT RATHER THAN UPDATE IT!
-    '''
-    fields = ['first', 'last', 'city', 'state', 'country', 'zipcode', 'email_incidents' ]
+    form_class = UserProfileForm
+
+    # ''' Update view will use the createview_form.html by default. That will work ONLY if the Submit value on the form
+    # # is submit. <input type="submit" value="Submit" />,
+    # # if the value is Save, e.g. <input type="submit" value="Save" /> then it will CREATE A NEW OBJECT RATHER THAN UPDATE IT!
+    # '''
+    # fields = ['first', 'last', 'city', 'state', 'country', 'zipcode', 'email_incidents', 'position']
     # success_url = reverse_lazy('home')
 
     # go back to detail page to confirm

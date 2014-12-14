@@ -1,0 +1,42 @@
+{% extends "sitebase.html" %}
+
+{% block page_title %}Close Call Database{% endblock %}
+
+{% block metatags %}
+<meta name="description" content="A collection of news stories describing driver and motorist infractions against cyclists.">
+<meta name="keywords" content="news, cycling, cyclist, database, accidents, incidents, aggressive, drivers">
+<meta name="author" content="Ernest Ezis">
+{% endblock %}
+
+{% block extra_styles %}
+h2 {
+    color: black;
+}
+{% endblock %}
+
+{% block content %}
+
+    {% if messages %}
+    <div class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">
+    <ul>
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><em><b>{{ message }}</b></em></li>
+        {% endfor %}
+    </ul>
+    </div>
+    <br />
+    {% endif %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
+
+  <div class="page-header">
+    <h2><small>Test Page for Strava Authorization</small></h2>
+    <hr style="border-color:darkgrey;">
+  </div>
+
+
+</div>
+
+{% endblock %}
+
+

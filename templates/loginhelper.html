@@ -1,35 +1,6 @@
 {% extends "sitebase.html" %}
 
-{# {% block metatags %}
-<meta name="description" content="A database for the cycling community to document and record aggressive driving infractions by motorists">
-<meta name="keywords" content="cycling, cyclise, database, accidents, incidents, aggressive, drivers">
-{% endblock %}
- #}
-
-{% block page_title %}Close Call Database - Reported Incident{% endblock %}
-
-{%block navigation %}
-  {% if user.is_authenticated %}
-    {% include '_nav-loggedin.html' %}
-  {% else %}
-    {% include '_nav-full.html' %}
-  {% endif %}
-{% endblock %}
-
-{% block content %}
-
-
-TEST
-
-{% endblock %}
-
-
-
-
-
-{% extends "sitebase.html" %}
-
-{% block page_title %}Close Call Database{% endblock %}
+{% block page_title %}Close Call Database - Login Helper{% endblock %}
 
 {% block metatags %}
 <meta name="description" content="A collection of news stories describing driver and motorist infractions against cyclists.">
@@ -59,10 +30,20 @@ h2 {
 <div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
 
   <div class="page-header">
-    <h2><small>Page Title Stuff Goes Here</small></h2>
+    <h2><small>Login Helper</small></h2>
     <hr style="border-color:darkgrey;">
   </div>
 
+  <p>
+  Sorry that you seem to have trouble logging into The Close Call Database. This page exists so that I can identify and fix the
+  most common problems that people are experiencing logging in. If you be so kind, please send an email to closecalldatabase@gmail.com
+  using the subject "Login Trouble" and please describe the trouble. If known to you, please include your username and the email address that you used to register.
+  </p>
+  <p>
+  Thank you,
+
+  EAE
+  </p>
 
 </div>
 

@@ -1,0 +1,13 @@
+
+My API Credentials
+===================================
+https://www.strava.com/settings/api
+
+Client ID: 3869
+Client Secret: 4e8fbbe9b63e0b59cec0dcce9d1aabadf94ef039
+Access Token (permissions public): 252a2498b5e196730fee473ec327e223ec300c86
+
+
+oaut2.0 information: http://strava.github.io/api/v3/oauth/
+
+Sample Screen: https://www.strava.com/oauth/authorize?client_id=9&response_type=code&redirect_uri=http://localhost/token_exchange.php&approval_prompt=force

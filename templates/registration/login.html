@@ -9,6 +9,28 @@
 
 {% block content %}
 
+{% if messages %}
+<div class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">
+<ul>
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><em><b>{{ message|safe }}</b></em></li>
+    {% endfor %}
+</ul>
+</div>
+<br />
+{% endif %}
+
+<div class="col-sm-12">
+If you have a Strava account, I reccomend that you . . .
+</div>
+<div class="col-sm-4">
+  <div class="strava" style="padding: 16px 0 26px 0;">
+    <!-- <a href="/get-strava-login"><img src="/static/images/LogInWithStrava.png"></a> -->
+    <a href="/get-strava-login"><img src="/static/images/LogInWithStrava@2x.png"></a>
+  </div>
+</div>
+<div class="col-sm-12" style="padding-bottom: 16px;">If you don't have a Strava account, you can do it the old-fashioned way . . . </div>
+
 <div class="col-sm-4">
   <form action="" method="POST">
   {% csrf_token %}
