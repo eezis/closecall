@@ -368,8 +368,10 @@ def strava_registration(request):
                 login_a_user(request, this_user, athlete_id)
 
                 # redirect to profile so we get zipcode and
-                created_user_profile_msg = """This is your User Profile based on your Strava settings. Update as appropriate.
-                Add a zip code for best results, particularly if you live in a large city."""
+                created_user_profile_msg = "This is your User Profile based on your Strava settings. Doublecheck the City " +
+                "and State fields below. If your rides are not based out of " + city + ", " + state +" then please update " +
+                "the City and State fields below. Add a Zip or Postal Code for best results, particularly if you live in a large city."
+
                 messages.add_message(request, messages.INFO, created_user_profile_msg)
                 return HttpResponseRedirect('/update-user-profile/' + str(this_user.profile.id) + '/')
 
