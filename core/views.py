@@ -92,7 +92,7 @@ def login_a_user(request, this_user, athlete_id):
 
             print "going to login {}".format(user.username)
             login(request, user)
-
+            print "should be logged in \n\n"
             return True
         else:
             print("The password is valid, but the account has been disabled!")
@@ -292,20 +292,20 @@ def strava_registration(request):
               }
             }"""
 
-            resp = r.json()
+            oauth_resp = r.json()
 
-            print "\n\n"
-            print resp
-            print "\n\n"
+            print "\n"
+            print oauth_resp
+            print "\n"
 
-            access_token = resp['access_token'] # <-- the identifies athlete and application (e.g, Ernest Ezis, CCDB)
-            athlete_id = resp['athlete']['id']
-            fname = resp['athlete']['firstname'][:30]
-            lname = resp['athlete']['lastname'][:30]
-            city = resp['athlete']['city']
-            state = resp['athlete']['state']
-            country = resp['athlete']['country']
-            email = resp['athlete']['email']
+            access_token = oauth_resp['access_token'] # <-- the identifies athlete and application (e.g, Ernest Ezis, CCDB)
+            athlete_id = oauth_resp['athlete']['id']
+            fname = oauth_resp['athlete']['firstname'][:30]
+            lname = oauth_resp['athlete']['lastname'][:30]
+            city = oauth_resp['athlete']['city']
+            state = oauth_resp['athlete']['state']
+            country = oauth_resp['athlete']['country']
+            email = oauth_resp['athlete']['email']
             print "CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email)
 
 
@@ -360,7 +360,7 @@ def strava_registration(request):
                 # There is no UserProfile, so this should be a first time registrant, create a UserProfile
                 print "Creating UserProfile for {} {}".format(fname, lname)
                 up = UserProfile(user=this_user, first=fname, last=lname, city=city, state=state, country=country,
-                    created_with="Strava=" + str(athlete_id))
+                    created_with="Strava=" + str(athlete_id), oauth_data=oauth_resp)
                 up.save()
 
                 print "going to login the user now"

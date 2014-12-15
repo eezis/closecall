@@ -121,6 +121,7 @@ DATABASES = {
         'PASSWORD': '***REMOVED***',
         'HOST': '127.0.0.1', # Leave blank for socket connection
         'PORT': '', # default postgres port is 5432 for the curious
+        'CONN_MAX_AGE': 300,
     }
 }
 

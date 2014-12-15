@@ -26,6 +26,7 @@ class UserProfile(BaseFields):
     # was the account created with custom login, or did they use strava or something else
     # strave=34330 (where the number = their strava_id)
     created_with = models.CharField(null=True, blank=True, max_length=250)
+    oauth_data = models.TextField(null=True, blank=True)
 
 
     class meta:
