@@ -69,7 +69,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
 <div class="bg-info" style="padding: 14px 14px; 10px; 0; color:darkred;">
 <ul>
     {% for message in messages %}
-      <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><em><b>{{ message }}</b></em></p>
+      <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><em><b>{{ message|safe }}</b></em></p>
     {% endfor %}
 </ul>
 </div>
