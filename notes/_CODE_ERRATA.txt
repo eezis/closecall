@@ -44,6 +44,7 @@ http://stackoverflow.com/questions/26789826/django-summernote-image-upload
 
 gunicorn closecall.wsgi:application --workers=3 --bind 0:8000 --log-file=-
 
+
 If you change a model . . .
 
 locally

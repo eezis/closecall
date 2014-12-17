@@ -27,7 +27,7 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
 
 
     def get_initial(self):
-        print "CreateIncidentView.get_initial :: {} {}".format(self.request.user, self.request.user.id)
+        print u"CreateIncidentView.get_initial :: {} {}".format(self.request.user, self.request.user.id)
         return { 'user': self.request.user }
 
     def form_valid(self, form):
@@ -35,7 +35,7 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
         form.instance.user = self.request.user
         Incident = form.save(commit=True)
 
-        print "CreateIncidentView.form_valid :: {}".format(self.request.user)
+        print u"CreateIncidentView.form_valid :: {}".format(self.request.user)
 
         msg = "Incident created by " + self.request.user
         admin_mailer('CCDB :: Incident Created', msg)
@@ -81,7 +81,7 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
 
     def form_valid(self, form):
         print 'Incident has been updated'
-        msg = 'Incident UPDATED by ' + self.request.user.username
+        msg = u'Incident UPDATED by {}' + self.request.user.username
         admin_mailer('CCDB :: Incident ** UPDATED **', msg)
         # send_mail('Close Call Database', 'You updated your incident', 'closecalldatabase@gmail.com', [self.request.user.email])
         return super(UpdateIncidentView, self).form_valid(form)

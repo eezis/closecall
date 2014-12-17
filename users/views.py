@@ -41,7 +41,7 @@ class CreateUserProfileView(LoginRequiredMixin, ValidFormMixin, CreateView):
         form.instance.user = self.request.user
         # could set the self.request.user.first and last here if the values are present
         UserProfile = form.save(commit=True)
-        print "CreateUserProfileView.form_valid :: {}".format(self.request.user)
+        print u"CreateUserProfileView.form_valid :: {} -- {}".format(self.request.user, self.request.user.email)
         return super(CreateUserProfileView, self).form_valid(form)
 
 class DetailUserProfileView(LoginRequiredMixin, DetailView):

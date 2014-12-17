@@ -80,15 +80,15 @@ def get_or_create_a_strava_based_password(athlete_id):
 def login_a_user(request, this_user, athlete_id):
     # ensure we have a valide object and that the account is still active
     # print "DOES REQUEST HAVE USER? {}".format(request.user.username)
-    print "attempting to login {}".format(this_user.username)
+    print u"attempting to login {}".format(this_user.username)
     password = get_or_create_a_strava_based_password(athlete_id)
-    print "password {}".format(password)
+    print u"password {}".format(password)
     # user = User.objects.get(username='username')
 
     if this_user is None:
         print "HOUSTON WE HAVE A PROBLEM"
 
-    print "attempting to authenticate {} with {}".format(this_user.username, password)
+    print u"attempting to authenticate {} with {}".format(this_user.username, password)
 
     # note we are going to cross over, from this_user to user
     # wanted to make the syntactical distinction, even though it was obligatory
@@ -100,7 +100,7 @@ def login_a_user(request, this_user, athlete_id):
         if user.is_active:
             print("User is valid, active and authenticated")
 
-            print "going to login {}".format(user.username)
+            print u"going to login {}".format(user.username)
             login(request, user)
             print "should be logged in \n\n"
             return True
@@ -151,7 +151,7 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id):
         return user
 
     except User.DoesNotExist:
-        print "The user does not exist, going to create User: {}".format(created_username)
+        print u"The user does not exist, going to create User: {}".format(created_username)
 
         # okay, does just the user or just the email exist?
         # what if a user updated their email address at strava?
@@ -316,7 +316,7 @@ def strava_registration(request):
             state = oauth_resp['athlete']['state']
             country = oauth_resp['athlete']['country']
             email = oauth_resp['athlete']['email']
-            print "CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email)
+            print u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email)
 
 
             # ERROR # 1
@@ -333,17 +333,17 @@ def strava_registration(request):
             created_username = created_username[:30]
 
             # this_user = get_or_create_user(email, created_username, fname, lname, password, athelete_id)
-            print fname
-            print lname
-            print email
-            print created_username
+            print u"{} {}".format(fname, lname)
+            # print u"{}".format(lname)
+            print u"{}".format(email)
+            print u"{}".format(created_username)
             print athlete_id
 
             this_user = get_or_create_user(email, created_username, fname, lname, athlete_id)
             # now populate the UserProfile
             # get_or_create_user_profile
 
-            print "this_user test: {} <-- should equal --> {}".format(this_user.username, created_username)
+            print u"this_user test: {} <-- should equal --> {}".format(this_user.username, created_username)
             # assert I could use an assert for that print test in production,
 
             if user_profile_exists(this_user):
@@ -368,7 +368,7 @@ def strava_registration(request):
 
             else:
                 # There is no UserProfile, so this should be a first time registrant, create a UserProfile
-                print "Creating UserProfile for {} {}".format(fname, lname)
+                print u"Creating UserProfile for {} {}".format(fname, lname)
                 up = UserProfile(user=this_user, first=fname, last=lname, city=city, state=state, country=country,
                     created_with="Strava=" + str(athlete_id), oauth_data=oauth_resp)
                 up.save()
