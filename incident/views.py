@@ -11,8 +11,11 @@ from models import Incident
 from forms import CreateIncidentForm
 
 
-from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin
+from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin, admin_mailer
 from django.conf import settings
+from django.core.mail import send_mail
+
+
 
 # class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, SuccessURLMixinUserProfile, CreateView):
 class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
@@ -31,7 +34,14 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
         # set the user so tthat is saved when the form is committed
         form.instance.user = self.request.user
         Incident = form.save(commit=True)
+
         print "CreateIncidentView.form_valid :: {}".format(self.request.user)
+
+        msg = "Incident created by " + self.request.user
+        admin_mailer('CCDB :: Incident Created', msg)
+
+        #
+        # send_mail('Close Call Database', 'You CREATED your incident', 'closecalldatabase@gmail.com', [self.request.user.email])
 
         # for key, value in self.request.POST.iteritems():
         #     print "{} {}".format(key, value)
@@ -68,6 +78,13 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
     # fields = ['position','what', 'date', 'time', 'vehicle_description', 'color', 'make', 'model',
     #     'license_certain', 'license_uncertain', 'id_it_by',]
     success_url = reverse_lazy('users-incident-list')
+
+    def form_valid(self, form):
+        print 'Incident has been updated'
+        msg = 'Incident UPDATED by ' + self.request.user.username
+        admin_mailer('CCDB :: Incident ** UPDATED **', msg)
+        # send_mail('Close Call Database', 'You updated your incident', 'closecalldatabase@gmail.com', [self.request.user.email])
+        return super(UpdateIncidentView, self).form_valid(form)
 
 
 """

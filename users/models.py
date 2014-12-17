@@ -42,6 +42,8 @@ class UserProfile(BaseFields):
             s = "UserProfile " + str(self.pk) + " for " + self.user.username + " has no position information!"
             raise Exception(s)
             print s
+            send_mail('CCDB-ERROR :: Profile Lacks Position!', s, 'closecalldatabase@gmail.com',
+                ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
 
             # *** FIX THIS ***
             # message . . . don't seem to have accurate position information for you

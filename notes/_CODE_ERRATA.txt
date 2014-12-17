@@ -108,3 +108,13 @@ Using a TEMPLATE_CONTEXT_PROCESSOR
     <p><span class="alpha">Alpha Notice:</span> Announcements -- if any -- will go here in future release</p>
     {% endif %}
     <hr>
+
+
+
+====
+SENDGRID TEST
+=====
+from django.core.mail import send_mail
+
+send_mail('Subject here', 'Here is the message.', 'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com'], fail_silently=False)
+

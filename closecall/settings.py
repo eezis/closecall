@@ -30,7 +30,7 @@ DEV_MODE = False
 
 TEMPLATE_DEBUG = True
 
-# ALLOWED_HOSTS = ['*', '104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', ]
+# ALLOWED_HOSTS = ['*', '104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', 'closecall', ]
 ALLOWED_HOSTS = ['*',]
 
 
@@ -91,7 +91,7 @@ LOCAL_APPS = (
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # This is for Django-Registration-Redux
-ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
+ACCOUNT_ACTIVATION_DAYS = 14 # One-week activation window; you may, of course, use a different value.
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 LOGIN_REDIRECT_URL = '/'
 
@@ -175,19 +175,22 @@ TEMPLATE_DIRS = (
 
 
 
+
 # EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'amliteditor@gmail.com'
-# EMAIL_HOST_PASSWORD = 'nathan3141'
+# EMAIL_HOST_USER = 'closecalldatabase@gmail.com'
+# EMAIL_HOST_PASSWORD = '***REMOVED***'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
 # EMAIL_SUBJECT_PREFIX = '[CCDB] '
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'closecalldatabase@gmail.com'
-EMAIL_HOST_PASSWORD = '***REMOVED***'
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'eezis'
+EMAIL_HOST_PASSWORD = 'sg-314159-!!!'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_SUBJECT_PREFIX = '[CCDB] '
+
+
 
 # https://github.com/summernote/django-summernote
 # see link above for more options

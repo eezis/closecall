@@ -4,6 +4,8 @@ from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+import time
+
 
 # to support oauth functionality
 import requests
@@ -21,6 +23,14 @@ from users.models import UserProfile
 
 from incident.models import Incident
 from publish.models import InTheNews
+
+
+def admin_mailer(subj, msg):
+    ts = time.ctime()
+    msg + "\n\n" + ts
+    send_mail(subj, msg,'closecalldatabase@gmail.com',
+                ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+
 
 def HomeView(request):
     if request.user.is_authenticated():
@@ -368,9 +378,20 @@ def strava_registration(request):
                 login_a_user(request, this_user, athlete_id)
 
                 # redirect to profile so we get zipcode and
-                created_user_profile_msg = "This is your User Profile based on your Strava settings. Doublecheck the City and State fields below. If your rides are not based out of " + city + ", " + state +" then please update the City and State fields below. Add a Zip or Postal Code for best results, particularly if you live in a large city."
-
+                created_user_profile_msg = "This is your User Profile based on your Strava settings. Please Doublecheck the \
+                City and State fields below. If your rides are not based out of " + city + ", " + state +" then please update \
+                accordingly. Add a Zip or Postal Code for best results, particularly if you live in a large city or metropolitan area."
                 messages.add_message(request, messages.INFO, created_user_profile_msg)
+
+                if city in ['None','']:
+                    city = ''
+                    messages.add_message(request, messages.INFO, 'Please Update Your CITY.')
+
+                if state in ['None','']:
+                    state = ''
+                    messages.add_message(request, messages.INFO, 'Please Update Your STATE.')
+
+
                 return HttpResponseRedirect('/update-user-profile/' + str(this_user.profile.id) + '/')
 
                 # return HttpResponseRedirect('/')
