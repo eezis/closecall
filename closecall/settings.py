@@ -95,6 +95,7 @@ ACCOUNT_ACTIVATION_DAYS = 14 # One-week activation window; you may, of course, u
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 LOGIN_REDIRECT_URL = '/'
 
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -189,6 +190,9 @@ EMAIL_HOST_USER = 'eezis'
 EMAIL_HOST_PASSWORD = 'sg-314159-!!!'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+# current registration emails form sendgrid are:: from: webmaster@localhost
+DEFAULT_FROM_EMAIL = 'closecalldatabase@gmail.com'
 
 
 
