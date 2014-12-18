@@ -3,6 +3,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{% url 'news' %}">News</a></li>
         <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'faq' %}">FAQ</a></li>
 
         {% if user.is_authenticated %}
         <!--

@@ -16,6 +16,24 @@ from django.conf import settings
 from django.core.mail import send_mail
 
 
+user_msg_incident_created = \
+"""Thank you for submitting an Incident Report.
+
+Your report will be immediately available to registered users that visit The Close Call Database website
+and ride within 60 miles of the Incident's location.
+
+Email notifications, however, will not be sent out immediately. The Incident Report will be reviewed
+for content and clarity before the notification is sent. To ensure that the most helpful information
+is included, I contact you via email and ask that you clarify portions of the report before it is
+released to a wider audience.
+
+Email notifications will be sent when the Incident Report has been accepted.
+
+Thank you,
+
+Ernest
+CCDB"""
+
 
 # class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, SuccessURLMixinUserProfile, CreateView):
 class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
@@ -37,11 +55,11 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
 
         print u"CreateIncidentView.form_valid :: {}".format(self.request.user)
 
-        msg = "Incident created by " + self.request.user
+        msg = "Incident created by " + self.request.user.username
         admin_mailer('CCDB :: Incident Created', msg)
 
-        #
-        # send_mail('Close Call Database', 'You CREATED your incident', 'closecalldatabase@gmail.com', [self.request.user.email])
+        # now send an email message to the user
+        send_mail('Close Call Database', user_msg_incident_created, 'closecalldatabase@gmail.com', [self.request.user.email])
 
         # for key, value in self.request.POST.iteritems():
         #     print "{} {}".format(key, value)
@@ -81,7 +99,8 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
 
     def form_valid(self, form):
         print 'Incident has been updated'
-        msg = u'Incident UPDATED by {}' + self.request.user.username
+        msg = u'Incident UPDATED by {}' + self.request.user.username + '\nCheck to see if it is still in compliance, \
+            or if it material and needs a resend!'
         admin_mailer('CCDB :: Incident ** UPDATED **', msg)
         # send_mail('Close Call Database', 'You updated your incident', 'closecalldatabase@gmail.com', [self.request.user.email])
         return super(UpdateIncidentView, self).form_valid(form)
