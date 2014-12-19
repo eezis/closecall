@@ -195,6 +195,8 @@ def strava_registration(request):
     # pluck the code!
     strava_token = request.GET.get('code')
 
+    print strava_token
+
     if 'errors' in request.body:
         admin_mailer('TROUBLE - Errors from Strava Response', 'There should be an error value \n\n:'  + request.body)
 
@@ -202,7 +204,7 @@ def strava_registration(request):
     if strava_token is None:
         admin_mailer('Strava Regisgration Failure', 'The Strava Token is None! ' + request.body)
 
-    print u"Strava token: {}".strava_token
+
 
     if strava_token == 'error=access_denied':
         # raise Exception("There was an error in the Strava Authentication Attempt")
