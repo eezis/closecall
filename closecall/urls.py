@@ -52,9 +52,12 @@ urlpatterns = patterns('',
     url(r'^get-strava-login', redirect_to_strava_login, name="strava-login"),
     url(r'^login-help-page/', TemplateView.as_view(template_name='loginhelper.html'), name="login-helper"),
     url(r'^faq/', TemplateView.as_view(template_name='faq.html'), name="faq"),
+    url(r'^smart-500/', TemplateView.as_view(template_name='smart-500.html'), name="smart-500"),
 
 
     # url(r'^/static/(?P<path>.*)$', '/Users/eae/code/sites/closecall/static/'),
 ) # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
+
+handler500 = "core.views.handler500"

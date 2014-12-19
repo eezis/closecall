@@ -15,6 +15,11 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from users.models import UserProfile
 
+# to support the custom 400 and 500 handlers (handler500 , handler404)
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
+
 # from incident.models import Incident
 
 # from registration.views import RegistrationView
@@ -28,8 +33,8 @@ from publish.models import InTheNews
 def admin_mailer(subj, msg):
     ts = time.ctime()
     msg + "\n\n" + ts
-    send_mail(subj, msg,'closecalldatabase@gmail.com',
-                ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+    # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+    send_mail(subj, msg,'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com',], fail_silently=False)
 
 
 def HomeView(request):
@@ -189,18 +194,29 @@ def strava_registration(request):
     # http://closecalldatabase.com/strava-registration?state=mystate&code=75e251e3ff8fff
     # pluck the code!
     strava_token = request.GET.get('code')
-    print strava_token
 
-    if 'error=access_denied' in strava_token:
-        raise Exception("There was an error in the Strava Authentication Attempt")
+    if 'errors' in request.body:
+        admin_mailer('TROUBLE - Errors from Strava Response', 'There should be an error value \n\n:'  + request.body)
+
+
+    if strava_token is None:
+        admin_mailer('Strava Regisgration Failure', 'The Strava Token is None! ' + request.body)
+
+    print u"Strava token: {}".strava_token
+
+    if strava_token == 'error=access_denied':
+        # raise Exception("There was an error in the Strava Authentication Attempt")
+        admin_mailer('Strava - Bad Token!', 'The Strava Token came back as error=access_denied. Here is the request.body' + request.body)
         user_msg = """
-        There was an error with your attempt to authorize your account at Strava, try again or use our
-        <a href="/accounts/register/">custom registration</a> to create your account"""
+        <p>There was an error with your attempt to login using your Strava Account. This is a very rare occurrence.
+        You may simply wish to try again.</p>
+        <p>Or you again or use our<a href="/accounts/register/">custom registration</a> process to create your account.</p>
+        """
         messages.add_message(request, messages.INFO, user_msg)
         # Fix these next lines up, once you know where the "Register via Strava is going to go (maybe login page is best"
         # no_user_profile_msg = "You must create a User Profile in order to proceed."
         # messages.add_message(request, messages.INFO, no_user_profile_msg)
-        # return HttpResponseRedirect('/create-user-profile/')
+        return HttpResponseRedirect('/smart-500/')
     else:
         # the response will look like this (instead of strava-registration this is really strava-token-exchange)
         # http://closecalldatabase.com/strava-registration?state=mystate&code=75e251e3ff8fff
@@ -243,29 +259,25 @@ def strava_registration(request):
         # c = s.split('&')[1].split('=')[1]
         # print c
 
+        # get the exchange code
         StravasExchangeCode = strava_token
-
+        # set the essentials
         CCDB_CLIENT_SECRET = '4e8fbbe9b63e0b59cec0dcce9d1aabadf94ef039'
         STRAVA_GET_AUTH_URL = 'https://www.strava.com/oauth/token'
-
+        # ready the parameters
         payload = {
             'client_id': CCDB_CLIENT_ID,
             'client_secret': CCDB_CLIENT_SECRET,
             'code': StravasExchangeCode,
         }
+        # make the request
         r = requests.post(STRAVA_GET_AUTH_URL, params=payload)
-        print "We have all the codes we need, we are going to ask Strava to complete the token exchange and give us the user/athlete data"
+        print "Traying to complete Token Exchange"
         if r.status_code == 200:
-            print 'Strava responded. The request was good!'
+            print 'Token Exchange Completed. Strava sent athlete data.'
             # thing are cool, lets get the shit we need from what was passed back, and then redirect to the home view!
-            # should probably have "Great news, you have registered successfully and when other cyclists in your area
-            # report an aggressive encounter with a motorist, you will be notified (by this email address ... {{user.email}}
 
-            """ REQUESTS DOCS :: There’s also a builtin JSON decoder, in case you’re dealing with JSON data: . . . Yahoo!
-            >>> r = requests.get('https://api.github.com/events')
-            >>> r.json()
-            [{u'repository': {u'open_issues': 0, u'url': 'https://github.com/...
-            """
+            # use the Requests library's built-in JSON decoder ftw
             r.json()
 
             # Okay, we have the data, wth does it look like? This:
@@ -339,9 +351,8 @@ def strava_registration(request):
             print u"{}".format(created_username)
             print athlete_id
 
+            # The user may be a new registrant, or a returing user so . . . get_or_create pattern
             this_user = get_or_create_user(email, created_username, fname, lname, athlete_id)
-            # now populate the UserProfile
-            # get_or_create_user_profile
 
             print u"this_user test: {} <-- should equal --> {}".format(this_user.username, created_username)
             # assert I could use an assert for that print test in production,
@@ -350,7 +361,7 @@ def strava_registration(request):
                 # profile exists, so log them in, redirect to home page
                 print "UserProfile exits, so just log this user in!"
                 if login_a_user(request, this_user, athlete_id):
-                    print "authenticated and logged in"
+                    print "authenticated and logged in, redirected to home page"
                     return HttpResponseRedirect('/')
                 else:
                     # hmmm, this shouldn't happen, what if it does?
@@ -363,6 +374,7 @@ def strava_registration(request):
                     # >>> u = User.objects.get(username='john')
                     # >>> u.set_password('new password')
                     # >>> u.save()
+                    admin_mailer('UNEXPECTED LOGIN ISSUE', 'See view.core if user_profile_exists login attempt. \n' + request.body )
                     print "TROUBLE -- the login failed, user redirected to login-help-page"
                     return HttpResponseRedirect('/login-help-page')
 
@@ -373,11 +385,12 @@ def strava_registration(request):
                     created_with="Strava=" + str(athlete_id), oauth_data=oauth_resp)
                 up.save()
 
-                print "going to login the user now"
-                # login_a_user(request, created_username, athlete_id)
+                print "Attempting login"
                 login_a_user(request, this_user, athlete_id)
 
-                # redirect to profile so we get zipcode and
+                # seems like success is assume?
+
+                # Prepping for the redirection that should occur on a succesful login
                 created_user_profile_msg = "This is your User Profile based on your Strava settings. Please Doublecheck the \
                 City and State fields below. If your rides are not based out of " + city + ", " + state +" then please update \
                 accordingly. Add a Zip or Postal Code for best results, particularly if you live in a large city or metropolitan area."
@@ -394,13 +407,12 @@ def strava_registration(request):
 
                 return HttpResponseRedirect('/update-user-profile/' + str(this_user.profile.id) + '/')
 
-                # return HttpResponseRedirect('/')
 
         else: # status_code was not 200, so the request back to strava failed
             s = "Strava Token Exchange Failed. Incoming value was: " + strava_token
             # raise Exception(s)
-            send_mail('Strave Registration Error', s + "from core.views.strava_registration", 'closecalldatabase@gmail.com',
-                ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+            # send_mail('Strave Registration Error', s + "from core.views.strava_registration", 'closecalldatabase@gmail.com',['ernest.ezis@gmail.com',], fail_silently=False)
+            admin_mailer('Strave Registration Error', s + "from core.views.strava_registration")
 
             user_msg = """There was an error with your attempt to authorize your account at Strava, try again or use our
             <a href="/accounts/register/">custom registration</a> to create your account"""
@@ -411,6 +423,9 @@ def strava_registration(request):
 
 
 def redirect_to_strava_login(request):
+    # the Strava oauth process kicks off with a redirect to their site, it includes the "client id" for my application
+    # and the redirect url -- 'http://closecalldatabase.com/strava-registration' -- which urls.py redirects
+    # to the strava_registration view above.
     return HttpResponseRedirect('https://www.strava.com/oauth/authorize?client_id=' + CCDB_CLIENT_ID +
         '&response_type=code&redirect_uri=' + CCDB_REDIRECT_URL)
 
@@ -463,5 +478,22 @@ def myfunction():
 
 def myotherfunction():
     logger.error("this is an error message!!")
+
+
+
+# def handler404(request):
+#     response = render_to_response('404.html', {},
+#                                   context_instance=RequestContext(request))
+#     response.status_code = 404
+#     return response
+
+
+def handler500(request):
+    response = render_to_response('smart-500.html', {}, context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
+
+
+
 
 
