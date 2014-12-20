@@ -45,15 +45,20 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
 
 
     def get_initial(self):
-        print u"CreateIncidentView.get_initial :: {} {}".format(self.request.user, self.request.user.id)
+        try:
+            print u"\nCreateIncidentView.get_initial :: {} {}\n".format(self.request.user, self.request.user.id)
+        except IOError:
+            pass
         return { 'user': self.request.user }
 
     def form_valid(self, form):
         # set the user so tthat is saved when the form is committed
         form.instance.user = self.request.user
         Incident = form.save(commit=True)
-
-        print u"CreateIncidentView.form_valid :: {}".format(self.request.user)
+        try:
+            print u"\nCreateIncidentView.form_valid :: {}\n".format(self.request.user)
+        except IOError:
+            pass
 
         msg = "Incident created by " + self.request.user.username
         admin_mailer('CCDB :: Incident Created', msg)
@@ -62,7 +67,6 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
         send_mail('Close Call Database', user_msg_incident_created, 'closecalldatabase@gmail.com', [self.request.user.email])
 
         # for key, value in self.request.POST.iteritems():
-        #     print "{} {}".format(key, value)
 
         return super(CreateIncidentView, self).form_valid(form)
 
@@ -98,7 +102,12 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
     success_url = reverse_lazy('users-incident-list')
 
     def form_valid(self, form):
-        print 'Incident has been updated'
+        try:
+            print '\n == == == == == == == == == == == == == == == '
+            print 'Incident has been updated'
+            print ' == == == == == == == == == == == == == == == \n'
+        except IOError:
+            pass
         msg = u'Incident UPDATED by {}' + self.request.user.username + '\nCheck to see if it is still in compliance, \
             or if it material and needs a resend!'
         admin_mailer('CCDB :: Incident ** UPDATED **', msg)
@@ -123,10 +132,9 @@ def show_this_incident(request, ee_fake_key):
         linker = {
             'CO-141108-001': 7,
         }
-    # print linker[ee_fake_key]
+
     I = Incident.objects.get(pk=linker[ee_fake_key])
-    # print I.license_uncertain
-    # print I.what
+
     return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': ee_fake_key})
 
 
@@ -135,8 +143,6 @@ def show_this_incident_for_authed_users(request, incident_id):
     #the key must be 8 characters long, [a-z0-9-] ee-1-173
     # CO-141108-001  -- the incident on Nelson Road with Justin Hoesse
     I = Incident.objects.get(id=incident_id)
-    # print I.license_uncertain
-    # print I.what
     return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': incident_id})
 
 

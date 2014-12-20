@@ -389,7 +389,7 @@ def strava_registration(request):
                     pass
                 if login_a_user(request, this_user, athlete_id):
                     try:
-                        print "authenticated and logged in, redirected to home page"
+                        print "authenticated and logged in, redirected to home page\n"
                     except IOError:
                         pass
                     return HttpResponseRedirect('/')
