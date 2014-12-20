@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"ex",
+				"except"
+			],
+			[
+				"e",
+				"except"
+			],
+			[
 				"re",
 				"request"
 			],
@@ -506,14 +514,6 @@
 			[
 				"maru",
 				"markup_book"
-			],
-			[
-				"ds",
-				"display_name"
-			],
-			[
-				"tar",
-				"traget_name"
 			]
 		]
 	},
@@ -563,7 +563,7 @@
 			"file": "incident/views.py",
 			"settings":
 			{
-				"buffer_size": 5773,
+				"buffer_size": 5913,
 				"line_ending": "Unix"
 			}
 		},
@@ -603,7 +603,23 @@
 			"file": "core/views.py",
 			"settings":
 			{
-				"buffer_size": 21348,
+				"buffer_size": 22358,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/faq.html",
+			"settings":
+			{
+				"buffer_size": 5438,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/users/userprofile_detail.html",
+			"settings":
+			{
+				"buffer_size": 1483,
 				"line_ending": "Unix"
 			}
 		},
@@ -1335,7 +1351,7 @@
 						"translation.y": 3954.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
@@ -1470,7 +1486,7 @@
 						"translation.y": 245.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
@@ -1605,7 +1621,7 @@
 						"translation.y": 1084.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -1740,7 +1756,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
@@ -1875,7 +1891,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
@@ -1884,15 +1900,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5773,
+						"buffer_size": 5913,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4181,
-								4181
+								1333,
+								1333
 							]
 						],
 						"settings":
@@ -2006,11 +2022,11 @@
 							"synced": false,
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
-						"translation.x": 55.0,
-						"translation.y": 1476.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -2145,7 +2161,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -2280,7 +2296,7 @@
 						"translation.y": 242.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -2415,7 +2431,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -2550,7 +2566,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -2559,15 +2575,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 21348,
+						"buffer_size": 22358,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4021,
-								4021
+								15913,
+								15913
 							]
 						],
 						"settings":
@@ -2681,8 +2697,8 @@
 							"synced": false,
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
-						"translation.x": 1.0,
-						"translation.y": 1610.0,
+						"translation.x": 0.0,
+						"translation.y": 3878.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -2690,6 +2706,172 @@
 				},
 				{
 					"buffer": 11,
+					"file": "templates/faq.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5438,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1942,
+								1942
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sublime_auto_complete": true,
+							"synced": false,
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 913.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "templates/users/userprofile_detail.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1483,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								776,
+								756
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 13,
 					"file": "users/views.py",
 					"semi_transient": false,
 					"settings":
@@ -2820,11 +3002,11 @@
 						"translation.y": 368.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 14,
 					"file": "users/models.py",
 					"semi_transient": false,
 					"settings":
@@ -2955,11 +3137,11 @@
 						"translation.y": 68.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 15,
 					"semi_transient": false,
 					"settings":
 					{
@@ -3081,14 +3263,16 @@
 							},
 							"codeintel_tooltips": "popup",
 							"incomplete_sync": null,
+							"remote_loading": false,
 							"sublime_auto_complete": true,
+							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 15,
 					"type": "text"
 				}
 			]

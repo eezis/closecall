@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from users.models import UserProfile
+from core.models import UserInput
 
 # to support the custom 400 and 500 handlers (handler500 , handler404)
 from django.shortcuts import render_to_response

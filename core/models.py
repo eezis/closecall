@@ -9,3 +9,22 @@ class BaseFields(models.Model):
 
     class Meta:
         abstract = True
+
+
+
+class UserInput(models.Model):
+    subject = models.CharField(null=True, blank=True, max_length=150)
+    first = models.CharField(null=True, blank=True, max_length=50, verbose_name="First Name")
+    last = models.CharField(null=True, blank=True, max_length=50, verbose_name="Last Name")
+    email = models.CharField(null=True, blank=True, max_length=150, verbose_name="Email Adress")
+    message = models.TextField(null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+
+    class Meta:
+        ordering = ['-created']
+
+
+    def __init__(self):
+        return self.subject
+
