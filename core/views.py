@@ -68,11 +68,17 @@ def user_profile_exists(user):
     USER_PROFILE_EXISTS = False
     try :
         user.profile
-        print "user_profile_exists --> user profile does exist"
+        try:
+            print "user_profile_exists --> user profile does exist"
+        except IOError:
+            pass
         USER_PROFILE_EXISTS = True
         return True
     except ObjectDoesNotExist:
-        print "user_profile_exists :: checking for UserProfile--> UserProfile does NOT exist"
+        try:
+            print "user_profile_exists :: checking for UserProfile--> UserProfile does NOT exist"
+        except IOError:
+            pass
         return False
 
 
@@ -84,16 +90,23 @@ def get_or_create_a_strava_based_password(athlete_id):
 # def login_a_user(request, username, athlete_id):
 def login_a_user(request, this_user, athlete_id):
     # ensure we have a valide object and that the account is still active
-    # print "DOES REQUEST HAVE USER? {}".format(request.user.username)
-    print u"attempting to login {}".format(this_user.username)
+    try:
+        print u"attempting to login {}".format(this_user.username)
+    except IOError:
+        pass
     password = get_or_create_a_strava_based_password(athlete_id)
-    print u"password {}".format(password)
-    # user = User.objects.get(username='username')
+
 
     if this_user is None:
-        print "HOUSTON WE HAVE A PROBLEM"
+        try:
+            print "HOUSTON WE HAVE A PROBLEM"
+        except IOError:
+            pass
 
-    print u"attempting to authenticate {} with {}".format(this_user.username, password)
+    try:
+        print u"attempting to authenticate {}".format(this_user.username)
+    except IOError:
+        pass
 
     # note we are going to cross over, from this_user to user
     # wanted to make the syntactical distinction, even though it was obligatory
@@ -101,34 +114,28 @@ def login_a_user(request, this_user, athlete_id):
 
     if user is not None:
         # the password verified for the user
-        print "the password was good"
         if user.is_active:
-            print("User is valid, active and authenticated")
-
-            print u"going to login {}".format(user.username)
+            try:
+                print("User is valid, active and authenticated")
+                print u"going to login {}".format(user.username)
+            except IOError:
+                pass
             login(request, user)
-            print "should be logged in \n\n"
+            # print "should be logged in \n\n"
             return True
         else:
-            print("The password is valid, but the account has been disabled!")
+            try:
+                print("The password is valid, but the account has been disabled!")
+            except IOError:
+                pass
             return False
     else:
-        # the authentication system was unable to verify the username and password
-        print("The username and password were incorrect.")
+        try:
+            # the authentication system was unable to verify the username and password
+            print("The username and password were incorrect.")
+        except IOError:
+            pass
         return False
-
-    # print "authenticated"
-    # if this_user.is_active:
-    #     print 'User is active'
-    # else:
-    #     print 'USER IS NOOOOT ACTIVE'
-
-    # if this_user and this_user.is_active:
-    #     print "going to login {}".format(this_user.username)
-    #     login(request, theis_user)
-    #     return True
-    # else:
-    #     return False
 
 
 # def get_or_create_user(email, created_username, fname, lname, password, athlete_id):
@@ -138,7 +145,10 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id):
         # looking up by username and email is stringent but I think I need that
         # user = User.objects.get(username=username, email=email)
         user = User.objects.get(username=created_username)
-        print "the user exists"
+        try:
+            print "the user exists"
+        except IOError:
+            pass
 
         if user.email != email:
             old_email = user.email
@@ -156,11 +166,13 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id):
         return user
 
     except User.DoesNotExist:
-        print u"The user does not exist, going to create User: {}".format(created_username)
-
-        # okay, does just the user or just the email exist?
-        # what if a user updated their email address at strava?
-        print "create a proxy password"
+        try:
+            print u"The user does not exist, going to create User: {}".format(created_username)
+            # okay, does just the user or just the email exist?
+            # what if a user updated their email address at strava?
+            print "create a proxy password"
+        except IOError:
+            pass
         created_password = get_or_create_a_strava_based_password(athlete_id)
         """ ****************************************************************************************************** """
         """ NOTE WELL: a simple create User and save didn ot work, I needed to use the "create_user" method of User """
@@ -169,22 +181,6 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id):
         new_user = User.objects.create_user(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
         new_user.save()
         return new_user
-
-# def get_or_make_user_profile(user, city, state, country):
-#     if user.profile:
-#         # update fields if they have changed?
-#         if user.profile.cit
-
-#         REMEMBER TO RUN MIGRATIONS -- CHANGES TO USERPROFILE MODEL
-
-#     else:
-#         # create UP
-#         UP = UserProfile(user=user, first=user.first_name, last=user.last_name, city, state, country
-
-#         # OVERRDIE THE UserProfiel save functio to calculate position if it doesn't exist
-#         # hmmm, also needs to do that if the city is or state is changed!
-
-
 
 
 # def strava_registration(request, strava_token):
@@ -195,7 +191,10 @@ def strava_registration(request):
     # pluck the code!
     strava_token = request.GET.get('code')
 
-    print strava_token
+    try:
+        print strava_token
+    except IOError:
+        pass
 
     if 'errors' in request.body:
         admin_mailer('TROUBLE - Errors from Strava Response', 'There should be an error value \n\n:'  + request.body)
@@ -274,9 +273,15 @@ def strava_registration(request):
         }
         # make the request
         r = requests.post(STRAVA_GET_AUTH_URL, params=payload)
-        print "Traying to complete Token Exchange"
+        try:
+            print "Traying to complete Token Exchange"
+        except IOError:
+            pass
         if r.status_code == 200:
-            print 'Token Exchange Completed. Strava sent athlete data.'
+            try:
+                print 'Token Exchange Completed. Strava sent athlete data.'
+            except IOError:
+                pass
             # thing are cool, lets get the shit we need from what was passed back, and then redirect to the home view!
 
             # use the Requests library's built-in JSON decoder ftw
@@ -318,9 +323,16 @@ def strava_registration(request):
 
             oauth_resp = r.json()
 
-            print "\n"
-            print oauth_resp
-            print "\n"
+            # PRINT STATEMENTS CAUSE ERRORS IF THE TERMINAL IS NOT UP -- NEED TO FIX SEE **** AT BOTTOM OF FILE
+            try:
+                print "\n"
+                print oauth_resp
+                print "\n"
+            except IOError:
+                # maybe just write to a file here instead?
+                admin_mailer('SSH DOWN', 'Fix it dumbass!')
+                pass
+
 
             access_token = oauth_resp['access_token'] # <-- the identifies athlete and application (e.g, Ernest Ezis, CCDB)
             athlete_id = oauth_resp['athlete']['id']
@@ -330,7 +342,11 @@ def strava_registration(request):
             state = oauth_resp['athlete']['state']
             country = oauth_resp['athlete']['country']
             email = oauth_resp['athlete']['email']
-            print u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email)
+            try:
+                print u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email)
+            except IOError:
+                pass
+
 
 
             # ERROR # 1
@@ -347,23 +363,35 @@ def strava_registration(request):
             created_username = created_username[:30]
 
             # this_user = get_or_create_user(email, created_username, fname, lname, password, athelete_id)
-            print u"{} {}".format(fname, lname)
-            # print u"{}".format(lname)
-            print u"{}".format(email)
-            print u"{}".format(created_username)
-            print athlete_id
+            try:
+                print u"{} {}".format(fname, lname)
+                print u"{}".format(email)
+                print u"{}".format(created_username)
+                print athlete_id
+            except IOError:
+                pass
 
             # The user may be a new registrant, or a returing user so . . . get_or_create pattern
             this_user = get_or_create_user(email, created_username, fname, lname, athlete_id)
 
-            print u"this_user test: {} <-- should equal --> {}".format(this_user.username, created_username)
-            # assert I could use an assert for that print test in production,
+            try:
+                print u"this_user test: {} <-- should equal --> {}".format(this_user.username, created_username)
+                # assert I could use an assert for that print test in production,
+            except IOError:
+                pass
+
 
             if user_profile_exists(this_user):
                 # profile exists, so log them in, redirect to home page
-                print "UserProfile exits, so just log this user in!"
+                try:
+                    print "UserProfile exits, so just log this user in!"
+                except IOError:
+                    pass
                 if login_a_user(request, this_user, athlete_id):
-                    print "authenticated and logged in, redirected to home page"
+                    try:
+                        print "authenticated and logged in, redirected to home page"
+                    except IOError:
+                        pass
                     return HttpResponseRedirect('/')
                 else:
                     # hmmm, this shouldn't happen, what if it does?
@@ -377,17 +405,26 @@ def strava_registration(request):
                     # >>> u.set_password('new password')
                     # >>> u.save()
                     admin_mailer('UNEXPECTED LOGIN ISSUE', 'See view.core if user_profile_exists login attempt. \n' + request.body )
-                    print "TROUBLE -- the login failed, user redirected to login-help-page"
+                    try:
+                        print "TROUBLE -- the login failed, user redirected to login-help-page"
+                    except IOError:
+                        pass
                     return HttpResponseRedirect('/login-help-page')
 
             else:
                 # There is no UserProfile, so this should be a first time registrant, create a UserProfile
-                print u"Creating UserProfile for {} {}".format(fname, lname)
+                try:
+                    print u"Creating UserProfile for {} {}".format(fname, lname)
+                except IOError:
+                    pass
                 up = UserProfile(user=this_user, first=fname, last=lname, city=city, state=state, country=country,
                     created_with="Strava=" + str(athlete_id), oauth_data=oauth_resp)
                 up.save()
 
-                print "Attempting login"
+                try:
+                    print "Attempting login"
+                except IOError:
+                    pass
                 login_a_user(request, this_user, athlete_id)
 
                 # seems like success is assume?
@@ -499,3 +536,14 @@ def handler500(request):
 
 
 
+# ****
+"""
+Internal Server Error: /strava-registration Traceback (most recent call last):
+
+File "/home/eezis/.virtualenvs/closecall/local/lib/python2.7/site-packages/django/core/handlers/base.py", line 111, in get_response
+  response = wrapped_callback(request, *callback_args, **callback_kwargs)
+File "/home/eezis/sites/closecall/core/views.py", line 321, in strava_registration
+  print "\n"
+IOError: [Errno 5] Input/output error
+
+"""
