@@ -1,0 +1,42 @@
+{% extends "sitebase.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block page_title %}Create a Blog Post{% endblock %}
+
+{% block metatags %}
+    <meta name="robots" content="noindex">
+{% endblock %}
+
+{% block extra_styles %}
+{% endblock %}
+
+{%block navigation %}{% include '_nav-loggedin.html' %} {% endblock %}
+
+{% block content %}
+
+
+<form action="" method="POST">
+  {% csrf_token %}
+      {{ form.media }}
+      {{ form|crispy }}
+
+  <input type="submit" class="btn btn-default" value=" Submit Post " />
+</form>
+
+  {% block extra_script %}
+
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/flick/jquery-ui.css" />
+
+        <script>
+            $(function() {
+            $( ".datePicker" ).datepicker();
+            });
+        </script>
+
+  {% endblock %}
+
+
+{% endblock %}
+

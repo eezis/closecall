@@ -469,8 +469,20 @@ def redirect_to_strava_login(request):
     # the Strava oauth process kicks off with a redirect to their site, it includes the "client id" for my application
     # and the redirect url -- 'http://closecalldatabase.com/strava-registration' -- which urls.py redirects
     # to the strava_registration view above.
+    try:
+        print "Redirecting to Strava -- do they signup?"
+    except IOError:
+        admin_mailer('To Strava', 'Did they sign up?')
+        pass
     return HttpResponseRedirect('https://www.strava.com/oauth/authorize?client_id=' + CCDB_CLIENT_ID +
         '&response_type=code&redirect_uri=' + CCDB_REDIRECT_URL)
+
+def redirect_to_strava_via_login_page(request):
+    # this is the login via strava from the login page (should be a returning user - above is *likely* a first time registrant)
+    return HttpResponseRedirect('https://www.strava.com/oauth/authorize?client_id=' + CCDB_CLIENT_ID +
+        '&response_type=code&redirect_uri=' + CCDB_REDIRECT_URL)
+
+
 
 
 # class MyRegistrationView(RegistrationView):

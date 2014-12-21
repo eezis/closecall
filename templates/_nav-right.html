@@ -18,6 +18,9 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/user-profile-detail/{{user.profile.id}}" >Your Profile</a></li>
                 <li><a href="/incident/list/">Your Reports</a></li>
+                {% if user.profile.can_blog %}
+                    <li><a href="{% url 'users-blogpost-list' %}">Your Blog Posts</a></li>
+                {% endif %}
                 <li><a href="/accounts/logout/" >Logout</a></li>
               </ul>
           </li>

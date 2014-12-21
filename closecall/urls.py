@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 # from django.views.generic.base import RedirectView
 
-from core.views import HomeView, strava_registration, redirect_to_strava_login, CreateUserInput #, MyRegistrationView
+from core.views import HomeView, strava_registration, redirect_to_strava_login, redirect_to_strava_via_login_page, CreateUserInput #, MyRegistrationView
 from publish.views import NewsView
 from users.views import CreateUserProfileView, UpdateUserProfileView, DetailUserProfileView, CheckForUserProfile
 
@@ -43,6 +43,7 @@ urlpatterns = patterns('',
 
 
     url(r'^incident/', include('incident.urls')),
+    url(r'^blog/', include('publish.urls')),
     url(r'^news/', NewsView.as_view(), name="news"),
     url(r'^eeadmin/', include(admin.site.urls)),
     (r'^summernote/', include('django_summernote.urls')),
@@ -50,6 +51,7 @@ urlpatterns = patterns('',
     url(r'^strava-registration', strava_registration, name="strava-registration"),
     # url(r'^strava-registration/(?P<state>\w+)/$', strava_registration, name="strava-registration"),
     url(r'^get-strava-login', redirect_to_strava_login, name="strava-login"),
+    url(r'^get-strava-login-from-login', redirect_to_strava_via_login_page, name="strava-login"),
     url(r'^login-help-page/', TemplateView.as_view(template_name='loginhelper.html'), name="login-helper"),
     url(r'^faq/', TemplateView.as_view(template_name='faq.html'), name="faq"),
     url(r'^smart-500/', TemplateView.as_view(template_name='smart-500.html'), name="smart-500"),

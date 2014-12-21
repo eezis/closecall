@@ -27,6 +27,7 @@ class UserProfile(BaseFields):
     # strave=34330 (where the number = their strava_id)
     created_with = models.CharField(null=True, blank=True, max_length=250)
     oauth_data = models.TextField(null=True, blank=True)
+    can_blog = models.BooleanField(default=False)
 
 
     class meta:
@@ -99,6 +100,15 @@ class UserProfile(BaseFields):
                 matched_incidents.append(i)
 
         return matched_incidents
+
+
+class UserBlogProfile(models.Model):
+    up = models.OneToOneField(UserProfile, related_name="blogprofile")
+    byline = models.CharField(null=True, max_length=150, verbose_name="Byline (how your name should appear)")
+    about_the_author = models.TextField(null=True, blank=True, verbose_name="If you want an 'About The Author' section")
+
+    def __unicode__(self):
+        return self.byline
 
 
 

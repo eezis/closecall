@@ -90,7 +90,6 @@ class DeleteIncidentView(LoginRequiredMixin, DeleteView):
 
 class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
     # NOTE: this is using incident_form.html, not update_form.html (specify the lattter if need to use it, and update it accordingly.)
-
     model = Incident
     form_class = CreateIncidentForm
     ''' Update view will use the incident_form.html by default. That will work ONLY if the Submit value on the form

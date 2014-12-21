@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 
 # Create your models here.
 
@@ -45,19 +47,29 @@ class Announcement(PublishBase):
 
 class BlogPost(PublishBase):
     """
-    This is good old fashioned blog post, my thoughts or guest thoughts
+    Good old fashioned blog post model, my thoughts or guest thoughts
     """
-    title = models.CharField(max_length=150)
-    the_post = models.TextField()
+    user = models.ForeignKey(User)
+    title = models.CharField(max_length=120, unique=True)
+    slug = models.SlugField(null=True)
+    the_post = models.TextField(null=True)
     publish_date = models.DateField(null=True, blank=True)
+    reviewed = models.BooleanField(default=False)
+    post_is_public = models.BooleanField(default=True)
+    # publish_it = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = "Blog Post"
         verbose_name_plural = "Blog Posts"
-        ordering = ['-publish_date', '-created',]
+        # ordering = ['-publish_date', '-created',]
+        ordering = ['-created',]
 
     def __unicode__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(BlogPost, self).save(*args, **kwargs)
 
 
 class InTheNews(PublishLocation):

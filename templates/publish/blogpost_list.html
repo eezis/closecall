@@ -1,0 +1,46 @@
+{% extends "sitebase.html" %}
+
+{% block page_title %}Your Blog Posts{% endblock %}
+
+{% block metatags %}
+    <meta name="robots" content="noindex">
+{% endblock %}
+
+{%block navigation %}{% include '_nav-loggedin.html' %} {% endblock %}
+
+{% block content %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 30px;">
+<h2>Your Blog Posts</h2>
+  <div class="page-header">
+    <h2><small>
+     Articles you have written
+    </small></h2>
+    <hr style="border-color:darkgrey;">
+      {% if post_list %}
+
+          <div class="row" style="padding-left:15px; padding-top: 12px;">
+             {% for post in post_list %}
+              {# <p><a href="{% url 'incident-detail' %}">{{ object }}</a></p> #}
+              <p style="font-size: 1.1em;">
+
+              <span style="padding-right: 16px;">{{post.created|date:"M d, Y"}}</span> <a href="{% url 'show-blog-post' slug=post.slug %}">{{ post.title}}</a>
+
+              {# <span style="padding-right: 16px;">{{post.created|date:"M d, Y"}}</span> <a href="{% url 'blogpost-detail' pk=post.id %}">{{ post.title}}</a> #}
+              <span class="pull-right">
+                  <span style="padding: 0 16px 0 0"><a href="{% url 'update-blogpost' pk=post.id %}">Edit/Update</a></span>
+              </span>
+
+              </p>
+            {% endfor %}
+          </div>
+
+      {% else %}
+      <p>No blog articles were found. Create your first <a href="{% url 'create-blogpost' %}">Post</a></p>
+      {% endif %}
+
+  </div>
+</div>
+
+
+{% endblock %}
