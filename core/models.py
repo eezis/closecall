@@ -17,7 +17,7 @@ class UserInput(models.Model):
     first = models.CharField(null=True, blank=True, max_length=50, verbose_name="First Name")
     last = models.CharField(null=True, blank=True, max_length=50, verbose_name="Last Name")
     email = models.CharField(null=True, blank=True, max_length=150, verbose_name="Email Adress")
-    message = models.TextField(null=True, blank=True)
+    message = models.TextField(null=True, verbose_name="Your comment, question, or feedback")
     created = models.DateTimeField(auto_now_add=True, null=True)
 
 
@@ -25,6 +25,9 @@ class UserInput(models.Model):
         ordering = ['-created']
 
 
-    def __init__(self):
-        return self.subject
+    def __unicode__(self):
+        if self.subject is None:
+            return 'No subject'
+        else:
+            return self.subject
 

@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 # from django.views.generic.base import RedirectView
 
-from core.views import HomeView, strava_registration, redirect_to_strava_login #, MyRegistrationView
+from core.views import HomeView, strava_registration, redirect_to_strava_login, CreateUserInput #, MyRegistrationView
 from publish.views import NewsView
 from users.views import CreateUserProfileView, UpdateUserProfileView, DetailUserProfileView, CheckForUserProfile
 
@@ -53,6 +53,8 @@ urlpatterns = patterns('',
     url(r'^login-help-page/', TemplateView.as_view(template_name='loginhelper.html'), name="login-helper"),
     url(r'^faq/', TemplateView.as_view(template_name='faq.html'), name="faq"),
     url(r'^smart-500/', TemplateView.as_view(template_name='smart-500.html'), name="smart-500"),
+    url(r'^not-going-to-register/', CreateUserInput.as_view(subject='Non Registration'), name='non-register'),
+    url(r'^thank-you-for-your-input/',TemplateView.as_view(template_name='thank_you_for_your_input.html'), name='thank-you-for-input'),
 
 
     # url(r'^/static/(?P<path>.*)$', '/Users/eae/code/sites/closecall/static/'),

@@ -7,6 +7,9 @@ from django.contrib import messages
 import time
 
 
+from django.views.generic.edit import CreateView
+from django.core.urlresolvers import reverse, reverse_lazy
+
 # to support oauth functionality
 import requests
 from django.core.mail import send_mail
@@ -533,6 +536,39 @@ def handler500(request):
     response.status_code = 500
     return response
 
+
+
+class CreateUserInput(CreateView):
+    model = UserInput
+    template_name = "input/user_input.html"
+    success_url = reverse_lazy('thank-you-for-input')
+
+    # define an attribute of the class (this will allow me to pass the parameter in .as_view(subject='Test')
+    subject = None
+
+    # fields = ['subject', 'first', 'last', 'email', 'message',]
+    fields = ['first', 'last', 'email', 'message',]
+
+    def get_object(self, queryset=None):
+        # return queryset.get(slug=self.slug)
+        return queryset.get(subject=self.subject)
+
+    def form_valid(self, form):
+        # print self.subject
+        form.instance.subject = self.subject
+        return super(CreateUserInput, self).form_valid(form)
+
+
+
+    # def form_valid(self, form):
+    #     # print self.kwargs.get('slug', None)
+    #     print self.slug
+    #     # form.instance.subject = subject
+    #     # try:
+    #     #     print "called"
+    #     # except IOError:
+    #     #     pass
+    #     return super(CreateUserInput, self).form_valid(form)
 
 
 

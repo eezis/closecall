@@ -1,0 +1,42 @@
+
+{% extends "sitebase.html" %}
+
+{% block page_title %}Close Call Database for Cyclists{% endblock %}
+
+{% block metatags %}
+<meta name="description" content="A collection of news stories describing driver and motorist infractions against cyclists.">
+<meta name="keywords" content="news, cycling, cyclist, database, accidents, incidents, aggressive, drivers">
+{% endblock %}
+
+{% block extra_styles %}
+h2 {
+    color: black;
+}
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+<div class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">
+<ul>
+    {% for message in messages %}
+      <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><em><b>{{ message|safe }}</b></em></p>
+    {% endfor %}
+</ul>
+</div>
+<br />
+{% endif %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
+
+  <div class="page-header">
+    <h2><small>Thank you for your input!</small></h2>
+    <!-- <hr style="border-color:darkgrey;"> -->
+  </div>
+
+
+</div>
+
+{% endblock %}
+
+
