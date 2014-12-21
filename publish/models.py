@@ -56,7 +56,7 @@ class BlogPost(PublishBase):
     publish_date = models.DateField(null=True, blank=True)
     reviewed = models.BooleanField(default=False)
     post_is_public = models.BooleanField(default=True)
-    # publish_it = models.BooleanField(default=False)
+    publish_it = models.BooleanField(default=False, verbose_name="Publish This Post")
 
     class Meta:
         verbose_name = "Blog Post"

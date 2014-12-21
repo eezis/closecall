@@ -278,7 +278,7 @@ def strava_registration(request):
         # make the request
         r = requests.post(STRAVA_GET_AUTH_URL, params=payload)
         try:
-            print "Traying to complete Token Exchange"
+            print "Trying to complete Token Exchange"
         except IOError:
             pass
         if r.status_code == 200:
@@ -470,7 +470,7 @@ def redirect_to_strava_login(request):
     # and the redirect url -- 'http://closecalldatabase.com/strava-registration' -- which urls.py redirects
     # to the strava_registration view above.
     try:
-        print "Redirecting to Strava -- do they signup?"
+        print "Redirecting to Strava -- do they signup?\n"
     except IOError:
         admin_mailer('To Strava', 'Did they sign up?')
         pass
