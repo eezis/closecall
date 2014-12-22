@@ -452,13 +452,13 @@ def strava_registration(request):
 
 
         else: # status_code was not 200, so the request back to strava failed
-            s = "Strava Token Exchange Failed. Incoming value was: " + strava_token
+            s = "Strava Token Exchange Failed." # + strava_token <-- can't do this it's NoneType
             # raise Exception(s)
             # send_mail('Strave Registration Error', s + "from core.views.strava_registration", 'closecalldatabase@gmail.com',['ernest.ezis@gmail.com',], fail_silently=False)
             admin_mailer('Strave Registration Error', s + "from core.views.strava_registration")
 
-            user_msg = """There was an error with your attempt to authorize your account at Strava, try again or use our
-            <a href="/accounts/register/">custom registration</a> to create your account"""
+            user_msg = """There was an error with your attempt to authorize your account at Strava. Is it possible that you mistyped your Strava Password? Try again or use our
+            <a href="/accounts/register/">custom registration</a> to create your account. """
             messages.add_message(request, messages.INFO, user_msg)
 
             return HttpResponseRedirect('/accounts/login/')
