@@ -34,8 +34,8 @@ class UserProfile(BaseFields):
         ordering = ['-created',]
 
     def __unicode__(self):
-        return self.first + ' ' + self.last + ' :: ' + self.user.username + ' ==> ' + self.user.email + \
-            ' -- ' + self.created.strftime('%Y-%m-%d %H:%M') + ' --  ' + self.city + ', ' + self.state
+        return unicode(self.first) + ' ' + unicode(self.last) + ' :: ' + unicode(self.user.username) + ' ==> ' + unicode(self.user.email) + \
+            ' -- ' + self.created.strftime('%Y-%m-%d %H:%M') + ' --  ' + unicode(self.city) + ', ' + unicode(self.state)
 
     def format_position(self):
         # UserProfile position is stored in a CharField, it looks like this
