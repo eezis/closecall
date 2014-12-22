@@ -1,0 +1,77 @@
+
+{% extends "sitebase.html" %}
+
+{% block page_title %}Close Call Database - Blog{% endblock %}
+
+{% block metatags %}
+<meta name="description" content="Blog postings and articles from users at The Close Call Database for Cycling">
+<meta name="keywords" content="blog, cycling, cyclist, database, accidents, incidents, aggressive, drivers, bicyling, ">
+<meta name="author" content="{{user.profile.blogprofile.byline}}">
+{% endblock %}
+
+{% block extra_styles %}
+h2 small{
+    color: black;
+}
+
+p.about {
+    font-size: 0.98em;
+    font-style: italic;
+}
+
+p {
+    color: black;
+}
+
+.post{
+
+}
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+<div class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">
+<ul>
+    {% for message in messages %}
+      <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><em><b>{{ message|safe }}</b></em></p>
+    {% endfor %}
+</ul>
+</div>
+<br />
+{% endif %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 40px;">
+
+  <div class="page-header" style="padding-bottom: 4px;">
+    <h2><small>{{article.title}}</small></h2>
+    <hr style="border-color:darkgrey;">
+    <p style="font-size:0.98em;">By: {{user.profile.blogprofile.byline}}</p>
+  </div>
+
+  {% if article.post_is_public %}
+    <p class="post">{{article.the_post|safe}}</p>
+  {% else %}
+    <p>{{article.the_post|safe|truncatewords:100}}</p>
+    <p>This article is available to <a href="/accounts/register/">registered</a> users only.</p>
+  {% endif %}
+
+
+    {% if user.profile.blogprofile.about_the_author %}
+    <hr style="border-color:darkgrey;">
+      <p class="about" style="padding-top: 20px;"><b>About the Author</b></p>
+        {{user.profile.blogprofile.about_the_author|safe}}
+      </p>
+    {% endif %}
+
+    {% if article.tags %}
+          <p  style="font-size: 0.95em; font-weight: 300; padding-top: 10px;"><samp>TAGS: {{article.tags}}</samp></p>
+    {% endif %}
+
+
+
+</div>
+
+{% endblock %}
+
+

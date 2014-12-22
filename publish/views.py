@@ -67,6 +67,15 @@ def show_blog_post(request,slug):
     return render(request, 'publish/article.html', {'article': article})
 
 
+def show_article(request, slug):
+    article = BlogPost.objects.get(slug=slug)
+    if article.publish_it & article.post_is_public:
+        return render(request, 'publish/show-article.html', {'article': article} )
+    else:
+        return
+
+
+
 
 # class DetailBlogPostView(LoginRequiredMixin, DetailView):
 #     model = BlogPost
