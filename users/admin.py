@@ -5,5 +5,9 @@ from models import UserProfile, UserBlogProfile
 
 # Register your models here.
 
-admin.site.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    search_fields = ['first', 'last', 'country',]
+    list_filter = ('country', 'state', 'city',)
+
+admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(UserBlogProfile)
