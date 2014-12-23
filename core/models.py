@@ -17,7 +17,7 @@ class UserInput(models.Model):
     first = models.CharField(null=True, blank=True, max_length=50, verbose_name="First Name")
     last = models.CharField(null=True, blank=True, max_length=50, verbose_name="Last Name")
     email = models.CharField(null=True, blank=True, max_length=150, verbose_name="Email Adress")
-    message = models.TextField(null=True, verbose_name="Your comment, question, or feedback")
+    message = models.TextField(null=True, verbose_name="Your comment, question, or proposal")
     created = models.DateTimeField(auto_now_add=True, null=True)
 
 

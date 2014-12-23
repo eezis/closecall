@@ -15,6 +15,7 @@ from django.core.mail import send_mail
 
 from forms import CreateBlogPostForm
 
+from django.http import Http404
 
 class NewsView(ListView):
     template_name = "publish/news.html"
@@ -73,8 +74,12 @@ def show_article(request, slug):
     if article.publish_it & article.post_is_public:
         return render(request, 'publish/show-article.html', {'article': article} )
     else:
-        return
+        admin_mailer('Raising 404 for show_article', 'Some requested ' + unicode(slug) + ' and it is not publishable and public. Investigate.')
+        raise Http404
 
+def list_articles(request):
+    articles = BlogPost.objects.filter(publish_it=True)
+    return render(request, 'publish/articles.html', {'articles': articles} )
 
 
 

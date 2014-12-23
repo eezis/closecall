@@ -1,0 +1,87 @@
+
+{% extends "sitebase.html" %}
+
+{% block page_title %}Close Call Database - Blog{% endblock %}
+
+{% block metatags %}
+<meta name="description" content="Blog postings and articles from users at The Close Call Database for Cycling">
+<meta name="keywords" content="blog, cycling, cyclist, database, accidents, incidents, aggressive, drivers, bicyling, ">
+<meta name="author" content="various contributors">
+{% endblock %}
+
+{% block extra_styles %}
+h2 small{
+    color: black;
+}
+
+p.about {
+    font-size: 0.98em;
+    font-style: italic;
+}
+
+p {
+    color: black;
+}
+
+.title{
+    font-size:1.20em;
+    font-weight:600;
+}
+.synopsis{
+    padding: 12px 0 0 20px;
+    font-size: 0.98em;
+}
+
+
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+<div class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">
+<ul>
+    {% for message in messages %}
+      <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><em><b>{{ message|safe }}</b></em></p>
+    {% endfor %}
+</ul>
+</div>
+<br />
+{% endif %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 40px;">
+
+  <div class="page-header" style="padding-bottom: 4px;">
+    <h2><small>Articles /&amp; Blog Posts</small></h2>
+    <hr style="border-color:darkgrey;">
+    <p>An archive of articles and posts available at CCDB.</p>
+  </div>
+
+  {% for article in articles %}
+    {% if article.post_is_public %}
+      <div class="title"><a href="/articles/{{article.slug}}">{{article.title}}</a></div>
+    {% else %}
+      {% if user.is_authenticated %}
+        <div class="title"><a href="/articles/{{article.slug}}">{{article.title}}</a></div>
+      {% else %}
+        <div class="title">{{article.title}} [<a href="/accounts/register/">registered</a> users only]</div>
+      {% endif %}
+    {% endif %}
+    <div class="synopsis">{{article.the_post|safe|truncatewords:200}}</div>
+  {# {{incident.date|date:"M d, Y" }} #}
+
+  {% endfor %}
+
+{% comment %}
+  {% if article.post_is_public %}
+    <p class="post">{{article.the_post|safe}}</p>
+  {% else %}
+    <p>{{article.the_post|safe|truncatewords:100}}</p>
+    <p>This article is available to <a href="/accounts/register/">registered</a> users only.</p>
+  {% endif %}
+{% endcomment %}
+<p>If you would like to write an article for the CCDB community, please <a href="{% url 'write-article' %}">submit your topic</a>.</p>
+</div>
+
+{% endblock %}
+
+

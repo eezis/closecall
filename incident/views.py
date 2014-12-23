@@ -23,16 +23,17 @@ Your report will be immediately available to registered users that visit The Clo
 and ride within 60 miles of the Incident's location.
 
 Email notifications, however, will not be sent out immediately. The Incident Report will be reviewed
-for content and clarity before the notification is sent. To ensure that the most helpful information
-is included, I contact you via email and ask that you clarify portions of the report before it is
+for content and clarity before any email notifications are sent. To ensure that the most helpful information
+is included, I or another representative may contact you via email and ask you to clarify portions of the report before it is
 released to a wider audience.
 
 Email notifications will be sent when the Incident Report has been accepted.
 
 Thank you,
 
-Ernest
-CCDB"""
+Ernest Ezis
+Close Call Database for Cyclists
+"""
 
 
 # class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, SuccessURLMixinUserProfile, CreateView):

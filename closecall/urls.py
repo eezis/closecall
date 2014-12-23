@@ -57,7 +57,10 @@ urlpatterns = patterns('',
     url(r'^smart-500/', TemplateView.as_view(template_name='smart-500.html'), name="smart-500"),
     url(r'^not-going-to-register/', CreateUserInput.as_view(subject='Non Registration'), name='non-register'),
     url(r'^thank-you-for-your-input/',TemplateView.as_view(template_name='thank_you_for_your_input.html'), name='thank-you-for-input'),
-    url(r'^articles/(?P<slug>.*)/$','publish.views.show_article', name="show-article")
+    url(r'^articles/$','publish.views.list_articles', name="list-articles"),
+    url(r'^articles/(?P<slug>.*)/$','publish.views.show_article', name="show-article"),
+    url(r'^privacy/',TemplateView.as_view(template_name='privacy.html'), name='privacy-policy'),
+    url(r'^write-an-article/', CreateUserInput.as_view(subject='Write An Article'), name='write-article'),
 
 
     # url(r'^/static/(?P<path>.*)$', '/Users/eae/code/sites/closecall/static/'),

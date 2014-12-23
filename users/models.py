@@ -37,6 +37,13 @@ class UserProfile(BaseFields):
         return unicode(self.first) + ' ' + unicode(self.last) + ' :: ' + unicode(self.user.username) + ' ==> ' + unicode(self.user.email) + \
             ' -- ' + self.created.strftime('%Y-%m-%d %H:%M') + ' --  ' + unicode(self.city) + ', ' + unicode(self.state)
 
+    def save(self, *args, **kwargs):
+        self.city = self.city.strip()
+        self.state = self.state.strip()
+        self.country = self.country.strip()
+        self.zipcode = self.zipcode.strip()
+        super(BlogPost, self).save(*args, **kwargs)
+
     def format_position(self):
         # UserProfile position is stored in a CharField, it looks like this
         # self.position = '(40.0149856, -105.27054559999999)'

@@ -1,3 +1,54 @@
-from django.test import TestCase
+# # import unittest
+# from django.test import Client
 
-# Create your tests here.
+# from django.test import TestCase
+
+# # Create your tests here.
+
+
+
+
+# # to enable csrf testing (should use at amlit)
+# # csrf_client = Client(enforce_csrf_checks=True)
+
+
+# """ payloads https://docs.djangoproject.com/en/1.7/topics/testing/tools/
+# c = Client()
+# c.get('/customers/details/', {' name': 'fred', 'age': 7})
+
+# /customers/details/?name=fred&age=7
+
+# or
+
+# >>> c = Client()
+# >>> c.get('/customers/details/?name=fred&age=7')
+
+# """
+
+# """
+# >>> c = Client()
+# >>> c.login(username='fred', password='secret')
+
+# # Now you can access a view that's only available to logged-in users.
+# """
+
+# class SimpleResponseTest(TestCase):
+#     def setUp(self):
+#         # Every test needs a client.
+#         self.client = Client()
+
+#     def test_details(self):
+#         # user not logged in, but can get page
+#         response = self.client.get('/')
+
+#         # Check that the response is 200 OK.
+#         self.assertEqual(response.status_code, 200)
+
+#         # Check that the rendered context contains 5 customers.
+#         self.assertEqual(len(response.context['customers']), 5)
+
+
+# def test_login():
+#     c = Client()
+#     c.login(username='fred', password='secret')
+#     # c.post('/login/', {'username': 'Oliver-Ezis', 'password': 'testing'})

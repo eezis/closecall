@@ -34,9 +34,10 @@
               </p>
             {% endfor %}
           </div>
-
+          <br />
+          <p class="pull-right"><a href="{% url 'create-blogpost' %}">Create A New Post</a></p>
       {% else %}
-      <p>No blog articles were found. Create your first <a href="{% url 'create-blogpost' %}">Post</a></p>
+      <p>No articles are available.
       {% endif %}
 
   </div>

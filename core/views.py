@@ -433,6 +433,11 @@ def strava_registration(request):
 
                 # seems like success is assume?
 
+                if city == None:
+                    city = "-------"
+                if state == None:
+                    state = "--"
+
                 # Prepping for the redirection that should occur on a succesful login
                 created_user_profile_msg = "This is your User Profile based on your Strava settings. Please Doublecheck the \
                 City and State fields below. If your rides are not based out of " + city + ", " + state +" then please update \
@@ -455,7 +460,7 @@ def strava_registration(request):
             s = "Strava Token Exchange Failed." # + strava_token <-- can't do this it's NoneType
             # raise Exception(s)
             # send_mail('Strave Registration Error', s + "from core.views.strava_registration", 'closecalldatabase@gmail.com',['ernest.ezis@gmail.com',], fail_silently=False)
-            admin_mailer('Strave Registration Error', s + "from core.views.strava_registration")
+            admin_mailer('Strava Registration Error', s + "from core.views.strava_registration")
 
             user_msg = """There was an error with your attempt to authorize your account at Strava. Is it possible that you mistyped your Strava Password? Try again or use our
             <a href="/accounts/register/">custom registration</a> to create your account. """
@@ -562,11 +567,11 @@ class CreateUserInput(CreateView):
     fields = ['first', 'last', 'email', 'message',]
 
     def get_object(self, queryset=None):
-        # return queryset.get(slug=self.slug)
         return queryset.get(subject=self.subject)
 
     def form_valid(self, form):
         # print self.subject
+        admin_mailer('REQUEST TO WRITE ARTICLE!', self.subject)
         form.instance.subject = self.subject
         return super(CreateUserInput, self).form_valid(form)
 
