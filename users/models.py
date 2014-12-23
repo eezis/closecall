@@ -38,10 +38,17 @@ class UserProfile(BaseFields):
             ' -- ' + self.created.strftime('%Y-%m-%d %H:%M') + ' --  ' + unicode(self.city) + ', ' + unicode(self.state)
 
     def save(self, *args, **kwargs):
-        self.city = self.city.strip()
-        self.state = self.state.strip()
-        self.country = self.country.strip()
-        self.zipcode = self.zipcode.strip()
+        self.city = self.city
+        self.state = self.state
+        self.country = self.country
+        # AttributeError: ‘NoneType’ object has no attribute ‘strip’
+        self.zipcode = self.zipcode
+        # self.city = self.city.strip()
+        # self.state = self.state.strip()
+        # self.country = self.country.strip()
+        # # AttributeError: ‘NoneType’ object has no attribute ‘strip’
+        # self.zipcode = self.zipcode.strip()
+
         super(UserProfile, self).save(*args, **kwargs)
 
     def format_position(self):
