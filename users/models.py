@@ -42,7 +42,7 @@ class UserProfile(BaseFields):
         self.state = self.state.strip()
         self.country = self.country.strip()
         self.zipcode = self.zipcode.strip()
-        super(BlogPost, self).save(*args, **kwargs)
+        super(UserProfile, self).save(*args, **kwargs)
 
     def format_position(self):
         # UserProfile position is stored in a CharField, it looks like this
