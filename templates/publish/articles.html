@@ -66,7 +66,7 @@ p {
         <div class="title">{{article.title}} [<a href="/accounts/register/">registered</a> users only]</div>
       {% endif %}
     {% endif %}
-    <div class="synopsis">{{article.the_post|safe|truncatewords:200}}</div>
+    <div class="synopsis">{{article.the_post|safe|truncatewords:100}}</div>
   {# {{incident.date|date:"M d, Y" }} #}
 
   {% endfor %}
@@ -79,6 +79,8 @@ p {
     <p>This article is available to <a href="/accounts/register/">registered</a> users only.</p>
   {% endif %}
 {% endcomment %}
+<hr style="border-color:darkgrey;">
+<br />
 <p>If you would like to write an article for the CCDB community, please <a href="{% url 'write-article' %}">submit your topic</a>.</p>
 </div>
 
