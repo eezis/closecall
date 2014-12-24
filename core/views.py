@@ -434,9 +434,9 @@ def strava_registration(request):
                 # seems like success is assume?
 
                 if city == None:
-                    city = "-------"
+                    city = "NA"
                 if state == None:
-                    state = "--"
+                    state = "NA"
 
                 # Prepping for the redirection that should occur on a succesful login
                 created_user_profile_msg = "This is your User Profile based on your Strava settings. Please Doublecheck the \
