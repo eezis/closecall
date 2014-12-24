@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, url
+from django.views.generic import TemplateView
 from views import CreateIncidentView, ListIncidentView, DetailIncidentView, UpdateIncidentView, DeleteIncidentView
 
 urlpatterns = patterns('',
@@ -12,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^show/([A-Z0-9-]{13})/$', 'incident.views.show_this_incident', name="show-specific-incident"),
     # url(r'^show-detail/(?P<pk>\d+)/$', 'incident.views.show_this_incident_for_authed_users', name="show-specific-incident"),
     url(r'^show-detail/(?P<incident_id>\d+)/$', 'incident.views.show_this_incident_for_authed_users', name="show-specific-incident"),
+    url(r'^reporting-step-1/$', TemplateView.as_view(template_name="incident/reporting-step-1.html") , name="reporting-1")
 
     )
 

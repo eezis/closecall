@@ -1,3 +1,7 @@
 
 
 gunicorn closecall.wsgi:application --workers=3 --bind 127.0.0.1:8000 --log-file=-
+
+
+
+http://blog.tplus1.com/blog/2010/12/31/how-to-restart-a-gunicorn-server-from-vim/
