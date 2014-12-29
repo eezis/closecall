@@ -17,9 +17,14 @@ h2 small {
 {% block content %}
 
 <div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
-<!-- PAGINATION
+
+{% comment %}
+
+PAGINATION
 http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-class-based-generic-listviews
--->
+
+{% endcomment %}
+
   <div class="page-header">
 
     <h2><small>Safety Related Cycling News</small></h2>
@@ -32,6 +37,7 @@ http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-c
       <div style="background-color: whitesmoke; padding: 12px 18px 20px 18px; margin-bottom: 30px;">
         <p><h4>{{news.title}}</h4></p>
         {# <span>{{ news.report_on|date:"D, M d, Y" }}</span><br> #}
+        {# <p>{{news.summary|markdownify|safe}}</p> #}
         <p>{{news.summary|markdownify|safe}}</p>
         {# {% if news.tags %}<p  style="font-size: 0.95em; font-weight: 300;"><mark><samp>tags: {{news.tags}}</samp></mark></p>{% endif %} #}
 
@@ -58,7 +64,7 @@ http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-c
    {# Total = {{ news_list.count }}</p> #}
    {# .... **Now the pagination section** .... #}
 
-<!-- THIS WORKS
+{% comment %}
     {% if is_paginated %}
         <div class="pagination">
             <span class="page-links">
@@ -75,7 +81,7 @@ http://stackoverflow.com/questions/5907575/how-do-i-use-pagination-with-django-c
         </div>
     {% endif %}
 
--->
+{% endcomment %}
 
 {% if is_paginated %}
 <nav>

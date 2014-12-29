@@ -62,7 +62,8 @@
 <p>Welcome back {{ user.username }}</p>
 <hr>
 
-<!-- ANNOUNCEMENTS IF ANY -->
+{#  ANNOUNCEMENTS IF ANY #}
+
 {% if announcement %}
   {% for a in announcement %}
     <p class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">{{a.the_announcement|safe}}</p>
@@ -70,18 +71,19 @@
   <hr>
 {% endif %}
 
-<!-- INCIDENTS THAT HAVE OCCURRED IN THE USERS AREA -->
+{# INCIDENTS THAT HAVE OCCURRED IN THE USERS AREA  #}
+
 {% if local_incidents %}
 <h3 class="incidents"> Incidents Reported In Your Area</h3>
   {% for incident in local_incidents %}
    <div class="incident-block">
-    <!-- date -->
+    {# <!-- date --> #}
     <p><span class="pad-right"><b>{{incident.date|date:"M d, Y" }}</b></span>
-    <!-- time, add later -->
-    <!-- where -->
+    {# <!-- time, add later --> #}
+    {# <!-- where --> #}
     {% if incident.address %}<span style="font-size: 0.92em; font-weight:bold;">{{incident.address}}</span>{% endif %}
     </p>
-    <!-- quick driver summary -->
+    {# <!-- quick driver summary --> #}
     <div class="driver-summary">
         <span class="sm-pad-rt">Driver categorized as: </span><span class="level-{{incident.danger_assessment}}">{{incident.threat_assessment}}</span>, their actions were <span class="level-{{incident.danger_assessment}}">{{incident.danger_level}}</span>.
         {% if incident.vehicle_description %}
@@ -106,13 +108,13 @@
 
   {% for incident in incidents %}
    <div class="incident-block">
-    <!-- date -->
+    {# <!-- date --> #}
     <p><span class="pad-right"><b>{{incident.date|date:"M d, Y" }}</b></span>
-    <!-- time, add later -->
-    <!-- where -->
+    {# <!-- time, add later --> #}
+    {# <!-- where --> #}
     {% if incident.address %}<span style="font-size: 0.92em; font-weight:bold;">{{incident.address}}</span>{% endif %}
     </p>
-    <!-- quick driver summary -->
+    {# <!-- quick driver summary --> #}
     <div class="driver-summary">
         <span class="sm-pad-rt">Driver categorized as: </span><span class="level-{{incident.danger_assessment}}">{{incident.threat_assessment}}</span>, their actions were <span class="level-{{incident.danger_assessment}}">{{incident.danger_level}}</span>.
         {% if incident.vehicle_description %}
@@ -128,7 +130,7 @@
    </div>
   {% endfor %}
 {% else %}
-<!-- <p><span class="alpha">Alpha Notice:</span> A list of incidents reported by this user will go here</p> -->
+{# <!-- <p><span class="alpha">Alpha Notice:</span> A list of incidents reported by this user will go here</p> --> #}
 <p>You have not reported any incidents.</p>
 {% endif %}
 <hr>
@@ -140,12 +142,12 @@
   {% endfor %}
   <hr>
 {% else %}
-<!-- <p><span class="alpha">Alpha Notice:</span> Short List of lastest news will go here in future release</p> -->
+  {# <p><span class="alpha">Alpha Notice:</span> Short List of lastest news will go here in future release</p> #}
   <hr>
 {% endif %}
 
 
-<!-- INCIDENTS THAT HAVE OCCURRED *** OUTSIDE OF *** THE USERS AREA -->
+{# INCIDENTS THAT HAVE OCCURRED *** OUTSIDE OF *** THE USERS AREA  #}
 {% if recent_incidents %}
 <h4 class="incidents"> The Lastest Incident Reports (From All Locations) </h4>
   {% for incident in recent_incidents %}
@@ -161,7 +163,7 @@
 {% endif %}
 
 
-{% else %} <!-- else not logged in! -->
+{% else %} {# else not logged in! #}
 
 {% if announcement %}
   {% for a in announcement %}

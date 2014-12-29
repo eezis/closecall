@@ -57,6 +57,7 @@ class BlogPost(PublishBase):
     reviewed = models.BooleanField(default=False)
     post_is_public = models.BooleanField(default=True)
     publish_it = models.BooleanField(default=False, verbose_name="Publish This Post")
+    social_buttons = models.BooleanField(default=True, verbose_name="Show Social-Sharing Buttons")
 
     class Meta:
         verbose_name = "Blog Post"

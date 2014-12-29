@@ -37,3 +37,4 @@ coverage.xml
 dev_settings.py
 
 django-errors.log
+local-only-data/

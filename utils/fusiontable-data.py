@@ -1,3 +1,6 @@
+# https://developers.google.com/maps/articles/toomanymarkers
+# https://developers.google.com/maps/documentation/javascript/fusiontableslayer
+
 """
 Gets the data to paste into data/test.csv that then gets imported into the fusiontable on googledrive
 """

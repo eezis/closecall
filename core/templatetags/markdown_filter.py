@@ -15,11 +15,13 @@ http://www.jw.pe/blog/post/markdown-speed-and-denormalisation/
 
 from django import template
 import markdown
+# from django.utils.safestring import SafeString
 
 register = template.Library()
 
 @register.filter
 def markdownify(text):
+    # return SafeString(markdown.markdown(text, safe_mode='escape'))
     # safe_mode governs how the function handles raw HTML
     return markdown.markdown(text, safe_mode='escape')
 
