@@ -12,7 +12,7 @@ class CreateBlogPostForm(ModelForm):
 
     class Meta:
         model = BlogPost
-        fields = ['title', 'the_post', 'tags', 'publish_date', 'publish_it',]
+        fields = ['title', 'the_post', 'tags', 'publish_date', 'publish_it', 'social_buttons', ]
 
         widgets={
             "the_post": SummernoteInplaceWidget(),

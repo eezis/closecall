@@ -56,6 +56,10 @@ p {
     <p>This article is available to <a href="/accounts/register/">registered</a> users only.</p>
   {% endif %}
 
+  {% if article.social_buttons %}
+    {% include '_social-buttons.html' %}
+  {% endif %}
+
 
     {% if article %}
     <hr style="border-color:darkgrey;">
