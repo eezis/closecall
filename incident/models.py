@@ -81,13 +81,15 @@ class Incident(models.Model):
         return levels[self.danger_assessment]
 
 
-    # def get_lat(self):
-    #     return self.position.to_string()
+    # In [97]: I.position.longitude
+    # Out[97]: Decimal('-105.1886354914489')
+
+    def get_lat(self):
+        return str(self.position.latitude)
 
 
-
-    # def get_lon(self):
-    #     return str(self.position).split(',')[1]
+    def get_lon(self):
+        return str(self.position.longitude)
 
 
     """

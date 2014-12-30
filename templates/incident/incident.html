@@ -10,6 +10,9 @@
 <meta name="robots" content="noindex">
 {% endblock %}
 
+{% block extra_css_or_js %}
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+{% endblock %}
 
 {% block extra_styles %}
 .description_section p {font-weight: 600}
@@ -64,6 +67,81 @@
       </div>
     {% endif %}
     <br />
+
+    {# Show the map here #}
+    <div id="map" style="height: 600px; width: 100%"></div>
+
 </div>
+
+{% block extra_script %}
+<script>
+
+$( document ).ready( initialize );
+$( document ).ready( codeLatLng );
+
+// $(document).ready(function() {
+//     initialize();
+// });
+
+// $( document ).ready(function() {
+//     initialize();
+//     codeLatLng();
+// });
+
+var geocoder;
+var map;
+var infowindow = new google.maps.InfoWindow();
+var marker;
+var lat = parseFloat('{{incident.get_lat}}');
+var lng = parseFloat('{{incident.get_lon}}');
+
+function initialize()
+{
+    geocoder = new google.maps.Geocoder();
+    map = new google.maps.Map(document.getElementById("map"),
+    {
+        zoom: 14,
+        center: new google.maps.LatLng(lat, lng),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+}
+
+function codeLatLng()
+{
+
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode({'latLng': latlng}, function(results, status)
+    {
+        if (status == google.maps.GeocoderStatus.OK)
+        {
+            if (results[0])
+            {
+                map.setZoom(11);
+                marker = new google.maps.Marker(
+                {
+                    position: latlng,
+                    map: map
+                });
+                infowindow.setContent(results[0].formatted_address);
+                infowindow.open(map, marker);
+            }
+            else if (results[1])
+            {
+
+                alert(results[1].formatted_address);
+            }
+            else
+            {
+                alert("No results found");
+            }
+        }
+        else
+        {
+            alert("Geocoder failed due to: " + status);
+        }
+    });
+}
+</script>
+{% endblock %}
 
 {% endblock %}
