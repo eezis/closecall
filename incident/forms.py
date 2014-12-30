@@ -32,7 +32,7 @@ missed striking one of the riders. We believe the license plate number was 163-J
         'placeholder': '10:45 am'}), label='Approximate Time') #, required=False)
     class Meta:
         model = Incident
-        fields = ['position','what', 'date', 'time', 'witnesses', 'threat_assessment', 'danger_assessment', 'vehicle_description', 'color', 'make', 'model',
+        fields = ['position','what', 'date', 'time', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
         'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
 
         widgets={
@@ -59,10 +59,10 @@ missed striking one of the riders. We believe the license plate number was 163-J
                 'placeholder':'Explorer | Tahoe | etc',
             }),
             "license_certain":forms.TextInput(attrs={
-                'placeholder':'license plate number - if certain',
+                'placeholder':'State/Province license plate number - if certain ( OR 555-55-5555 )',
             }),
             "license_uncertain":forms.TextInput(attrs={
-                'placeholder':'license plate number - if not completely certain',
+                'placeholder':'State/Province and license plate number - if not completely certain - ( OR 555-55-5555 )',
             }),
             "id_it_by":forms.TextInput(attrs={
                 'placeholder':'Dent in front right quarter panel, playboy mud flaps, etc',

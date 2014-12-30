@@ -17,7 +17,7 @@ class Incident(models.Model):
     model = models.CharField(null=True, blank=True, max_length=50)
     license_certain = models.CharField(null=True, blank=True, max_length=20, verbose_name="License Plate (use this input field if you are certain of the plate's numbers)")
     license_uncertain = models.CharField(null=True, blank=True, max_length=150, verbose_name="License Plate (use this input field if you are pretty sure, but not 100 percent certain)")
-    id_it_by = models.CharField(null=True, blank=True, max_length=250, verbose_name="List any special identifying characteristics of vehicle, if any" )
+    id_it_by = models.CharField(null=True, blank=True, max_length=250, verbose_name="List any special identifying characteristics of vehicle and passengers that you observed" )
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
     position = GeopositionField(null=True, blank=True)
