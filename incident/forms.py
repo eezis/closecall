@@ -32,7 +32,7 @@ missed striking one of the riders. We believe the license plate number was 163-J
         'placeholder': '10:45 am'}), label='Approximate Time') #, required=False)
     class Meta:
         model = Incident
-        fields = ['position','what', 'date', 'time', 'threat_assessment', 'danger_assessment', 'vehicle_description', 'color', 'make', 'model',
+        fields = ['position','what', 'date', 'time', 'witnesses', 'threat_assessment', 'danger_assessment', 'vehicle_description', 'color', 'make', 'model',
         'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
 
         widgets={
@@ -45,6 +45,9 @@ missed striking one of the riders. We believe the license plate number was 163-J
 
             "vehicle_description":forms.TextInput(attrs={
                 'placeholder': 'White Pickup Truck | Black BMW coupe | etc',
+            }),
+            "witnesses":forms.TextInput(attrs={
+                'placeholder':'Bill E. Witness, bwitness@gmail.com (cyclist); Jane Sawit, 555-555-5555 (motorist); etc',
             }),
             "color":forms.TextInput(attrs={
                 'placeholder':'the color of the vehicle in question',
