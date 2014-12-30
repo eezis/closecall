@@ -23,7 +23,8 @@ register = template.Library()
 def markdownify(text):
     # return SafeString(markdown.markdown(text, safe_mode='escape'))
     # safe_mode governs how the function handles raw HTML
-    return markdown.markdown(text, safe_mode='escape')
+    # return markdown.markdown(text, safe_mode='escape')
+    return markdown.markdown(text)
 
 
 """
