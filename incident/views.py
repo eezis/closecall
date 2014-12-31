@@ -11,7 +11,7 @@ from models import Incident
 from forms import CreateIncidentForm
 
 
-from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin, admin_mailer
+from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin, admin_mailer, incident_review_mailer
 from django.conf import settings
 from django.core.mail import send_mail
 
@@ -61,8 +61,8 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
         except IOError:
             pass
 
-        msg = "Incident created by " + self.request.user.username
-        admin_mailer('CCDB :: Incident Created', msg)
+        msg = "Incident created by " + self.request.user.username + ' :: ' + self.request.user.email
+        incident_review_mailer('CCDB :: Incident Created', msg)
 
         # now send an email message to the user
         send_mail('Close Call Database', user_msg_incident_created, 'closecalldatabase@gmail.com', [self.request.user.email])
@@ -109,8 +109,8 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
         except IOError:
             pass
         msg = u'Incident UPDATED by {}' + self.request.user.username + '\nCheck to see if it is still in compliance, \
-            or if it material and needs a resend!'
-        admin_mailer('CCDB :: Incident ** UPDATED **', msg)
+            or if it material and needs a resend! Their contact is ' + self.request.user.email
+        incident_review_mailer('CCDB :: Incident ** UPDATED **', msg)
         # send_mail('Close Call Database', 'You updated your incident', 'closecalldatabase@gmail.com', [self.request.user.email])
         return super(UpdateIncidentView, self).form_valid(form)
 
