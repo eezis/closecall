@@ -40,7 +40,7 @@ def admin_mailer(subj, msg):
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
     send_mail(subj, msg,'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com',], fail_silently=False)
 
-def inicident_review_mailer(subj, msg):
+def incident_review_mailer(subj, msg):
     ts = time.ctime()
     msg + "\n\n" + ts
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
