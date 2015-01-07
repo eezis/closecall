@@ -8,6 +8,13 @@
     <meta name="robots" content="noindex">
 {% endblock %}
 
+{# don't load bootstrap because summernote loads it too #}
+{% block bootstrap %}
+{% endblock %}
+{# summernote has this issue too #}
+{% block jquerymin %}
+{% endblock %}
+
 {% block extra_styles %}
 {% endblock %}
 
@@ -23,6 +30,11 @@
 
   <input type="submit" class="btn btn-default" value=" Submit Post " />
 </form>
+
+
+{% block bootstrapminjs %}
+{% endblock %}
+
 
   {% block extra_script %}
 

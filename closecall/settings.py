@@ -205,17 +205,20 @@ SUMMERNOTE_CONFIG = {
     # 'height': '480',
     'height': '380',
 
-
     # Customize toolbar buttons
     'toolbar': [
+        # ['style', ['style']],
+        # ['style', ['bold', 'italic', 'underline', 'clear']],
+
         ['style', ['style']],
-        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['bold', 'italic', 'underline', 'superscript', 'subscript',
+                  'strikethrough', 'clear']],
+        ['fontname', ['fontname']],
+        ['fontsize', ['fontsize']],
         ['para', ['ul', 'ol', 'height']],
         ['insert', ['link']],
-
-        # ['color', ['color']],
-
     ],
+
 
     # Set `upload_to` function for attachments.
     # 'attachment_upload_to': my_custom_upload_to_func(),
@@ -224,15 +227,15 @@ SUMMERNOTE_CONFIG = {
     # 'attachment_storage_class': 'my.custom.storage.class.name',
 
     # Set external media files for SummernoteInplaceWidget.
-    # # !!! Be sure to put {{ form.media }} in template before initiate summernote.
-    # 'inplacewidget_external_css': (
-    #     '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
-    #     '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css',
-    # ),
-    # 'inplacewidget_external_js': (
-    #     '//code.jquery.com/jquery-1.9.1.min.js',
-    #     '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
-    # ),
+    # !!! Be sure to put {{ form.media }} in template before initiate summernote.
+    'inplacewidget_external_css': (
+        '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
+        '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css',
+    ),
+    'inplacewidget_external_js': (
+        '//code.jquery.com/jquery-1.9.1.min.js',
+        '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
+    ),
 }
 
 
