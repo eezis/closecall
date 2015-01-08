@@ -66,7 +66,8 @@ DJANGO_APPS = (
     # add this, set SITE_ID = 1
     # migrate (no makemigration needed) https://docs.djangoproject.com/en/1.7/ref/contrib/sites/
     # then use the admin to set it.
-    'django.contrib.sites'
+    'django.contrib.sites',
+    'django.contrib.redirects',
 )
 
 SITE_ID = 1
@@ -105,6 +106,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 )
 
 ROOT_URLCONF = 'closecall.urls'
