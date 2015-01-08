@@ -579,8 +579,9 @@ class CreateUserInput(CreateView):
 
     def form_valid(self, form):
         # print self.subject
-        admin_mailer('REQUEST TO WRITE ARTICLE!', self.subject)
+        msg = self.request.POST['message'] + '\n\n' + self.request.POST['email']
         form.instance.subject = self.subject
+        admin_mailer(self.subject, msg)
         return super(CreateUserInput, self).form_valid(form)
 
 
