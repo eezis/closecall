@@ -10,6 +10,7 @@ except ImportError:
     print "import error -- probably on production machine -- trying that . . ."
     try:
         sys.path.append("/home/eezis/sites/closecall")
+        sys.path.append("/home/eezis/sites/closecall/closecall")
         sys.path.append("/home/eezis/.virtualenvs/closecall/bin/python2.7/site-packages")
         print "import complete"
     except:
