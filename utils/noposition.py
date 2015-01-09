@@ -47,19 +47,19 @@ def find_np_and_cure():
     np = UserProfile.objects.filter(position=None)
     # if not an empty list . . .
     if np:
-        print np
-        if np.zipcode != '':
-            address = "{} {} {} {}".format(np.city, np.state, np.zipcode, np.country)
-        else:
-            address = "{} {} {}".format(np.city, np.state, np.country)
+        for n in np:
+            if n.zipcode != None:
+                address = "{} {} {} {}".format(n.city, n.state, n.zipcode, n.country)
+            else:
+                address = "{} {} {}".format(n.city, n.state, n.country)
 
-        position = get_geocode(address)
-        if position != 'error':
-            np.position = position
-            np.save()
-            print 'Fixed Position for {}'.fomat(np.user.username)
-        else:
-            print 'Count not fix position for {} using address: {}'.format(np.user.username, address)
+            position = get_geocode(address)
+            if position != 'error':
+                n.position = position
+                n.save()
+                print 'Fixed Position for {}'.fomat(n.user.username)
+            else:
+                print 'Count not fix position for {} using address: {}'.format(n.user.username, address)
     else:
         print "There were no positions to fix"
 
