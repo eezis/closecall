@@ -57,7 +57,7 @@ def find_np_and_cure():
             if position != 'error':
                 n.position = position
                 n.save()
-                print 'Fixed Position for {}'.fomat(n.user.username)
+                print 'Fixed Position for {}'.format(n.user.username)
             else:
                 print 'Count not fix position for {} using address: {}'.format(n.user.username, address)
     else:
