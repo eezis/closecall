@@ -2,9 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from core.models import BaseFields
 
+from django.core.mail import send_mail
+
 # for finding incidents close to the user
 from incident.models import Incident
-from core.utils import distance_between_geocoded_points
+from core.utils import distance_between_geocoded_points, get_geocode
 
 # null controls the DB, blank=True controls the form (e.g., not a required field)
 
@@ -37,12 +39,29 @@ class UserProfile(BaseFields):
         return unicode(self.first) + ' ' + unicode(self.last) + ' :: ' + unicode(self.user.username) + ' ==> ' + unicode(self.user.email) + \
             ' -- ' + self.created.strftime('%Y-%m-%d %H:%M') + ' --  ' + unicode(self.city) + ', ' + unicode(self.state)
 
+    def try_to_geocode(self):
+        print 'trying to geocode!'
+        send_mail('POSITION FIX', 'Fixing Position for: ' + self.user.username, 'closecalldatabase@gmail.com',
+            ['ernest.ezis@gmail.com',], fail_silently=False)
+        if self.zipcode != None:
+            address = "{} {} {} {}".format(self.city, self.state, self.zipcode, self.country)
+        else:
+            address = "{} {} {}".format(self.city, self.state, self.country)
+        pos = get_geocode(address)
+        if pos != 'ERROR':
+            print pos
+            return pos
+        else:
+            return None
+
+
     def save(self, *args, **kwargs):
         self.city = self.city
         self.state = self.state
         self.country = self.country
         # AttributeError: NoneType object has no attribute strip
         self.zipcode = self.zipcode
+
         # self.city = self.city.strip()
         # self.state = self.state.strip()
         # self.country = self.country.strip()
@@ -54,6 +73,11 @@ class UserProfile(BaseFields):
     def format_position(self):
         # UserProfile position is stored in a CharField, it looks like this
         # self.position = '(40.0149856, -105.27054559999999)'
+
+        if self.position is None:
+            print 'fixing missing geocode'
+            self.position = self.try_to_geocode()
+
         if self.position is None:
             s = "UserProfile " + str(self.pk) + " for " + self.user.username + " has no position information!"
             raise Exception(s)

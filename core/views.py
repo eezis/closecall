@@ -47,8 +47,6 @@ def incident_review_mailer(subj, msg):
     send_mail(subj, msg,'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com', 'me@meinnovations.com',], fail_silently=False)
 
 
-
-
 def HomeView(request):
     if request.user.is_authenticated():
         I = Incident.objects.filter(user=request.user)

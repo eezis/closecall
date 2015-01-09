@@ -1,4 +1,5 @@
 from math import sin, cos, sqrt, atan2, radians
+import requests
 
 # import as:: from core.utils import distance_between_geocoded_points
 
@@ -69,3 +70,22 @@ def get_user_incidents(the_username, miles=60):
             matched_incidents.append(i)
 
     return matched_incidents
+
+
+
+"""
+Gets the geocoded postion of the address, puts it (lat, lon) format
+returns ERROR if it was unable to complete the geocode
+"""
+def get_geocode(address):
+    url = 'https://maps.googleapis.com/maps/api/geocode/json?address='
+    r = requests.get(url+address)
+    goog_resp = r.json()
+    if goog_resp['status'] == 'OK':
+        # print gresp['results']
+        lat = goog_resp['results'][0]['geometry']['location']['lat']
+        lon = goog_resp['results'][0]['geometry']['location']['lng']
+        position = "({}, {})".format(lat,lon)
+        return position
+    else:
+        return 'ERROR'

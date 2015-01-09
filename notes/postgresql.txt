@@ -1,0 +1,23 @@
+
+#to run psql -- use password from settings.py
+$ psql -h localhost closecall eaecc
+
+
+# backup
+# connect to ssh
+eezis@closecall:~$
+eezis@closecall:~$ sudo -u postgres pg_dump closecall > /home/eezis/closecall.sql  <- text back up
+eezis@closecall:~$ sudo -u postgres pg_dump -Ft closecall > /home/eezis/closecall.tar # tarball is BEST FOR A RESTORE
+
+
+
+
+HOW DO I COPY IT BACK LOCALLY?
+
+
+scp -p 1787 -r eezis@closecalldatabase.com:/home/eezis/closecall.sql /Users/eae/code/data/backups/closecall/closecall.sql
+
+
+
+
+scp do_key -p 1787 -r eezis@closecalldatabase.com:/home/eezis/closecall.sql /Users/eae/code/data/backups/closecall/closecall.sql

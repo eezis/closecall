@@ -28,9 +28,16 @@ django.setup()
 import requests
 
 from users.models import UserProfile
-url = 'https://maps.googleapis.com/maps/api/geocode/json?address='
 
+
+# THIS SAME CODE IS IN CORE.UTILS.PY, but I am leaving this hear so that it's in one unit for use
+# at the server
+"""
+Gets the geocoded postion of the address, puts it (lat, lon) format
+returns ERROR if it was unable to complete the geocode
+"""
 def get_geocode(address):
+    url = 'https://maps.googleapis.com/maps/api/geocode/json?address='
     r = requests.get(url+address)
     goog_resp = r.json()
     if goog_resp['status'] == 'OK':
@@ -40,7 +47,7 @@ def get_geocode(address):
         position = "({}, {})".format(lat,lon)
         return position
     else:
-        return 'error'
+        return 'ERROR'
 
 
 def find_np_and_cure():
@@ -55,7 +62,7 @@ def find_np_and_cure():
                 address = "{} {} {}".format(n.city, n.state, n.country)
 
             position = get_geocode(address)
-            if position != 'error':
+            if position != 'ERROR':
                 n.position = position
                 n.save()
                 print 'Fixed Position for {}'.format(n.user.username)
