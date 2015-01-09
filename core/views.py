@@ -49,6 +49,7 @@ def incident_review_mailer(subj, msg):
 
 def HomeView(request):
     if request.user.is_authenticated():
+
         I = Incident.objects.filter(user=request.user)
         N = InTheNews.objects.all().values('title','url', 'tldr')[:5]
         # Local_I = Local Incidents
@@ -58,6 +59,20 @@ def HomeView(request):
             Recent_I = Incident.objects.all().order_by('-id')[:5]
             return render(request, 'home.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
         except AttributeError:
+            msg = """
+            Last time there was a problem here, registered users were getting redirected to create a user profile. But the real problem
+            In [49]: incidents = Incident.objects.all()
+            In [54]: for i in incidents:
+                print i.position, i.address, i.user
+
+            49.2459762,-123.10122899999999 168 East 28th Avenue, Vancouver, BC V5V 3R1, Canada jwerner
+            None  Stephen Banister
+            33.8552123,-83.8922349 4098 Bay Creek Road, Loganville, GA 30052, USA John Coyle
+
+            I had to delete the incident. Save the data first.
+            """
+
+            send_mail('YIKES HomeView ERROR', msg,'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com',], fail_silently=False)
             # RelatedObjectDoesNotExist: User has no profile.
             # 1. log this
             # 2. send email

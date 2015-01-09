@@ -77,6 +77,10 @@ class UserProfile(BaseFields):
         if self.position is None:
             print 'fixing missing geocode'
             self.position = self.try_to_geocode()
+            if self.position:
+                print 'saving missing geocode {}'.format(self.position)
+                self.save()
+
 
         if self.position is None:
             s = "UserProfile " + str(self.pk) + " for " + self.user.username + " has no position information!"
