@@ -6,6 +6,9 @@ import sys
 try:
     sys.path.append("/Users/eae/code/sites/closecall")
     sys.path.append("/Users/eae/.virtualenvs/closecall/lib/python2.7/site-packages")
+    sys.path.append("/home/eezis/sites/closecall")
+    sys.path.append("/home/eezis/sites/closecall/closecall")
+    sys.path.append("/home/eezis/.virtualenvs/closecall/bin/python2.7/site-packages")
 except ImportError:
     print "import error -- probably on production machine -- trying that . . ."
     try:
