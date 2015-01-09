@@ -56,7 +56,7 @@ def HomeView(request):
         try:
             Local_I = request.user.profile.get_user_incidents()
             # Latest_I = Latest Incidents (most recent) -- might want to modify to get the most recent *dangeruous* instances
-            Recent_I = Incident.objects.all().order_by('-id')[:5]
+            Recent_I = Incident.objects.all().order_by('-id')[:8]
             return render(request, 'home.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
         except AttributeError:
             msg = """
