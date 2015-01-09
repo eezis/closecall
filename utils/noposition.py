@@ -46,7 +46,7 @@ def get_geocode(address):
 def find_np_and_cure():
     np = UserProfile.objects.filter(position=None)
     # if not an empty list . . .
-    if not np:
+    if np and not np:
         print np
         if np.zipcode != '':
             address = "{} {} {} {}".format(np.city, np.state, np.zipcode, np.country)
