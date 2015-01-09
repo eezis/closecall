@@ -52,7 +52,7 @@ def find_np_and_cure():
             np.position = position
             np.save()
             print 'Fixed Position for {}'.fomat(np.user.username)
-        else
+        else:
             print 'Count not fix position for {} using address: {}'.format(np.user.username, address)
     else:
         print "There were no positions to fix"
