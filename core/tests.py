@@ -1,10 +1,24 @@
-# # import unittest
-# from django.test import Client
+import unittest
+from django.test import Client
+from django.test import TestCase, SimpleTestCase
 
 # from django.test import TestCase
 
 # # Create your tests here.
 
+
+class FirstTimeUser(unittest.TestCase):
+    def setUp(self):
+        # Every test needs a client.
+        self.client = Client()
+
+    def the_tests(self):
+        response = self.client.get('/about/')
+
+        # Check that the response is 200 OK.
+        self.assertEqual(response.status_code, 200)
+
+        self.assertInHTML('<title>About The Close Call Database</title>',response.content)
 
 
 

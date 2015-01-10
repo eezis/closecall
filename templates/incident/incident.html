@@ -34,6 +34,11 @@
 
 {% if user.is_authenticated %}
 
+{# STAFF CAN SEE USER NAME AND EMAIL #}
+{% if user.is_active and user.is_staff %}
+    <p><span style="padding-right:20px;">{{incident.user}}</span>{{incident.user.email}}</p>
+{% endif %}
+
   <div class="page-header" style="padding-bottom:0px;">
     <h2><small>{{incident.date}}</small></h2>
     <h2><small><span>{{incident.address}}</small></h2>
@@ -51,7 +56,8 @@
     <p>License Plate (may not be 100% correct): {{incident.license_uncertain}}</p>
     {% endif %}
   </div>
-<!-- if not of the above then -  Descripton   -->
+
+{# if not of the above then -  Descripton    #}
 
     </p>
     <hr>
@@ -97,15 +103,6 @@
 
 $( document ).ready( initialize );
 $( document ).ready( codeLatLng );
-
-// $(document).ready(function() {
-//     initialize();
-// });
-
-// $( document ).ready(function() {
-//     initialize();
-//     codeLatLng();
-// });
 
 var geocoder;
 var map;
