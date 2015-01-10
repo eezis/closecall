@@ -7,7 +7,7 @@ from geoposition.fields import GeopositionField
 class Incident(models.Model):
     user = models.ForeignKey(User)
     # location = models.TextField(blank=True)
-    address = models.CharField(null=True, blank=True, max_length=200)
+    address = models.CharField(null=True, max_length=200)
     what = models.TextField(verbose_name='Describe What Happened (be factual, include direction of travel for cyclists and vehicles, note witnesses, etc.)')
     date = models.DateField(null=True, blank=True, verbose_name="Date of Incident")
     time = models.TimeField(null=True, blank=True, verbose_name="Approximate Time of Incident")
@@ -20,7 +20,7 @@ class Incident(models.Model):
     id_it_by = models.CharField(null=True, blank=True, max_length=250, verbose_name="List any special identifying characteristics of vehicle and passengers that you observed" )
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
-    position = GeopositionField(null=True, blank=True)
+    position = GeopositionField(null=True)
     witnesses = models.CharField(null=True, blank=True, max_length=255, verbose_name="Full Name and Phone or Email of Witnesses ( this field is not published )")
 
 
