@@ -57,10 +57,10 @@
     {% endif %}
   </div>
 
-{# if not of the above then -  Descripton    #}
+    {# the <hr> tag has to be conditional #}
+    {% if incident.vehicle_description or incident.license_certain or incident.license_uncertain %}<hr>{% endif %}
 
-    </p>
-    <hr>
+    {# the report #}
     <div style="padding: 18px 0 18px 0;">{{incident.what|safe}}</div>
     <hr>
     <br />
