@@ -22,6 +22,9 @@ class Incident(models.Model):
     updated = models.DateTimeField(auto_now=True, null=True)
     position = GeopositionField(null=True)
     witnesses = models.CharField(null=True, blank=True, max_length=255, verbose_name="Full Name and Phone or Email of Witnesses ( this field is not published )")
+    # sadly had to add this because some folks are having trouble writing
+    # a useful and literate report
+    visible = models.BooleanField(default=True)
 
 
     # add threat_level should be options: Belligerent, Agressive, Unsure, Probably Accident (but worth recording)
