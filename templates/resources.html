@@ -1,0 +1,61 @@
+{% extends "sitebase.html" %}
+{# {% extends "_base.html" %} #}
+
+{% block page_title %}Resources For Cyclists{% endblock %}
+
+{% block metatags %}
+<meta name="description" content="A list of resources to help cyclists understand the rules of the road.">
+<meta name="keywords" content="news, cycling, cyclist, database, accidents, incidents, aggressive, drivers">
+{% endblock %}
+
+{% block extra_styles %}
+h2 {
+    color: black;
+}
+.headline {
+    font-size: 1.06em;
+    font-weight: 700;
+}
+.summary{
+    margin: 4px;
+    padding: 8px 8px 8px 14px;
+    font-size: 0.98em;
+    line-height: 1.6em;
+}
+
+.note {
+    font-size: 0.98em;
+    line-height: 1.6em;
+}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 40px;">
+
+  <div class="page-header" style="padding-bottom:0px; margin-bottom: 2px;">
+    <h2><small>Helpful Resources</small></h2>
+    <hr style="border-color:darkgrey;">
+  </div>
+
+  <div class="headline"><a href="http://bikeleague.org/content/state-bike-laws-0" target="_blank" style="text-decoration:none;">Bike Laws by State</a> from <a href="http://bikeleague.org/" target="_blank" style="text-decoration:none;">The League of American Bicyclists</a></div>
+  <div class="summary">One of the first things that I do when reviewing and evaluating an Incident Report that occurred in the U.S. is to note the state where the incident occurred. Then I turn to this fantastic <a href="http://bikeleague.org/content/state-bike-laws-0" target="_blank" style="text-decoration:none;">guide</a> [scroll down, pick a state] in an effort to understand both the cyclist's and motorist's actions in the proper legal context. International users please bring equivalent resources in your country to my <a href="{% url 'resource-referral'%}">attention</a>.</div>
+
+  <div class="headline"><a href="http://www.peopleforbikes.org/" target="_blank" style="text-decoration:none;">PeopleForBikes</a></div>
+  <div class="summary">PeopleForBikes started out in 1999 and now has over one million members. They have ambitious <a href="http://www.peopleforbikes.org/pages/our-goals" target="_blank">goals</a> that I support. I personally became a member and donated to the organization last year.
+  </div>
+
+  <hr style="border-color:darkgrey;">
+  <div class="note">
+  I am new to the bicycle advocacy arena, I know that there are many other worthy resources out there and I will be adding to this list as I encounter them.
+  </div>
+
+
+
+
+</div>
+
+{% endblock %}
+
+

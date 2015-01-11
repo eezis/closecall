@@ -23,6 +23,7 @@ urlpatterns = patterns('',
     url(r"^$", HomeView, name="home"),
     url(r'^about/', TemplateView.as_view(template_name="about.html"), name="about"),
     url(r'^welcome/', TemplateView.as_view(template_name="welcome.html"), name="welcome"),
+    url(r'^resources/', TemplateView.as_view(template_name="resources.html"), name="resources"),
     url(r'^date-test/', TemplateView.as_view(template_name="date-test.html"), name="date-test"),
 
     # attempt to override registration so that it has first and last (this probably should have worked, probably need name='registration_register')
@@ -61,6 +62,7 @@ urlpatterns = patterns('',
     url(r'^articles/(?P<slug>.*)/$','publish.views.show_article', name="show-article"),
     url(r'^privacy/',TemplateView.as_view(template_name='privacy.html'), name='privacy-policy'),
     url(r'^write-an-article/', CreateUserInput.as_view(subject='Write An Article'), name='write-article'),
+    url(r'^resource-referral/', CreateUserInput.as_view(subject='Resource Referral'), name='resource-referral'),
 
 
     # url(r'^/static/(?P<path>.*)$', '/Users/eae/code/sites/closecall/static/'),

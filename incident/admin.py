@@ -5,8 +5,8 @@ from incident.models import Incident
 # Register your models here.
 
 class IncidentAdmin(admin.ModelAdmin):
-    # search_fields = ['first', 'last', 'country',]
-    list_filter = ('user',)
+    search_fields = ['user',]
+    # list_filter = ('user',) <-- this makes an exhaustive list with every user, I so make that a search rather than filter
     ordering = ('-created',)
 
 admin.site.register(Incident, IncidentAdmin)
