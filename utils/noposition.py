@@ -72,7 +72,22 @@ def find_np_and_cure():
         print "There were no positions to fix"
 
 
+def ensure_incidents_have_positin():
+    inp = Incident.objects.filter(position=None)
+    if inp:
+        print "HOUSTON WE HAVE A PROBLEM: At least one incident does not have a position"
+        for i in inp:
+            print "User {} entered an incident without position information {}".format(i.user.username,i.what[80])
+    else:
+        print "All Incident Reports have position information"
+
+
+
+
 find_np_and_cure()
+ensure_incidents_have_positin()
+
+
 
 # p = get_geocode('Boulder, CO')
 # print p

@@ -10,14 +10,57 @@ eezis@closecall:~$ sudo -u postgres pg_dump closecall > /home/eezis/closecall.sq
 eezis@closecall:~$ sudo -u postgres pg_dump -Ft closecall > /home/eezis/closecall.tar # tarball is BEST FOR A RESTORE
 
 
-
-
-HOW DO I COPY IT BACK LOCALLY?
-
+HOW DO I COPY IT BACK LOCALLY? [the efforst below did not work]
 
 scp -p 1787 -r eezis@closecalldatabase.com:/home/eezis/closecall.sql /Users/eae/code/data/backups/closecall/closecall.sql
-
-
-
-
 scp do_key -p 1787 -r eezis@closecalldatabase.com:/home/eezis/closecall.sql /Users/eae/code/data/backups/closecall/closecall.sql
+
+
+==============================
+ TECHNICAL ISSUES PROBLEMS
+==============================
+
+    1/9/14 -- someone entered an incident report without a location. Position was none. It threw an Attribute error here in core.views homeview
+    Local_I = request.user.profile.get_user_incidents()
+
+
+    def HomeView(request):
+        if request.user.is_authenticated():
+
+            I = Incident.objects.filter(user=request.user)
+            N = InTheNews.objects.all().values('title','url', 'tldr')[:5]
+            # Local_I = Local Incidents
+            try:
+                Local_I = request.user.profile.get_user_incidents()  <----------------*** THE PROBLEM WAS HERE ***
+                # Latest_I = Latest Incidents (most recent) -- might want to modify to get the most recent *dangeruous* instances
+                Recent_I = Incident.objects.filter(visible=True).order_by('-id')[:10]
+                return render(request, 'home.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
+            except AttributeError:
+
+
+    that redirected to a create profile page: return HttpResponseRedirect('/create-user-profile/') So users tried again and got the following error:
+
+    IntegrityError: duplicate key value violates unique constraint “users_userprofile_user_id_key” DETAIL: Key (user_id)=(1350) already exists.
+
+
+So connect to the server, run psql, set the MAX(id) for +1 or more
+
+#to run psql -- use password from settings.py
+$ psql -h localhost closecall eaecc
+
+
+closecall=> \connect closecall
+closecall=> SELECT setval('users_userprofile_id_seq', (SELECT MAX(id) FROM users_userprofile)+1);
+ setval
+--------
+   1374
+(1 row)
+
+closecall=> (SELECT MAX(id) FROM users_userprofile);
+ max
+------
+ 1369
+(1 row)
+
+
+Once that was done, I still had to find and fix the position = None issue.

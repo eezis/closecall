@@ -7,18 +7,22 @@ from django.test import TestCase, SimpleTestCase
 # # Create your tests here.
 
 
-class FirstTimeUser(unittest.TestCase):
+# class FirstTimeUser(unittest.TestCase):
+class FirstTimeUser(SimpleTestCase):
     def setUp(self):
         # Every test needs a client.
         self.client = Client()
 
-    def the_tests(self):
+    # all tests need to be prefixes "test_"
+    def test_basics(self):
+        print "testing"
         response = self.client.get('/about/')
-
         # Check that the response is 200 OK.
         self.assertEqual(response.status_code, 200)
 
         self.assertInHTML('<title>About The Close Call Database</title>',response.content)
+
+
 
 
 
