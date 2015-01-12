@@ -49,10 +49,10 @@ def email_the_users(subject, message, user_list):
 
 
 
-users = get_users_close_to_incident(64,60)
+# users = get_users_close_to_incident(64,60)
 
-for u in users:
-    print unicode(u.user.email).encode('utf-8')
+# for u in users:
+#     print unicode(u.user.email).encode('utf-8')
 
 
 
