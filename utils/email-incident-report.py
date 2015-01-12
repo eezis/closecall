@@ -100,11 +100,11 @@ Close Call Database
 user_list = get_users_close_to_incident(49,60)
 
 print '\n'
-print 'sending email'
+print 'sending emails\n'
 
 for u in user_list:
     print u'{}'.format(u.user.email)
-    # send_incident_notification(subject, msg, u.user.email)
+    send_incident_notification(subject, msg, u.user.email)
 
 print '\n'
 print 'emails have been sent'
