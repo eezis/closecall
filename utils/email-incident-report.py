@@ -104,7 +104,8 @@ print 'sending emails\n'
 
 for u in user_list:
     print u'{}'.format(u.user.email)
-    send_incident_notification(subject, msg, u.user.email)
+    print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
+    # send_incident_notification(subject, msg, u.user.email)
 
 print '\n'
 print 'emails have been sent'
