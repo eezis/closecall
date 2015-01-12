@@ -28,6 +28,7 @@ django.setup()
 import requests
 
 from users.models import UserProfile
+from incident.models import Incident
 
 
 # THIS SAME CODE IS IN CORE.UTILS.PY, but I am leaving this hear so that it's in one unit for use
