@@ -95,7 +95,9 @@ Close Call Database
 # print u
 # user_list.append(u)
 
-user_list = get_users_close_to_incident(64,60)
+
+
+user_list = get_users_close_to_incident(49,60)
 
 print '\n'
 print 'sending email'
