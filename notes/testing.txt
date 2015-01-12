@@ -1,0 +1,39 @@
+
+
+I got an error trying to run the tests.
+=======================================
+
+(closecall)closecall $ python manage.py test
+LOCAL DB
+Creating test database for alias 'default'...
+Got an error creating the test database: permission denied to create database
+
+PROBLEM: the Settings.py specified user eaecc for the database. That role did not have CreateDB rights
+
+closecall=# \du
+ django    | Create DB                                      | {}
+ djangoapp | Create DB                                      | {}
+ eae       | Superuser, Create role, Create DB, Replication | {}
+ eaecc     |                                                | {}
+ eezis     | Create role, Create DB, Cannot login           | {}
+ words     |                                                | {}
+ words5101 |
+
+SOLUTION: Alter the role and add the CREATEDB
+
+ closecall=# ALTER USER eaecc CREATEDB;
+ALTER ROLE
+
+closecall-# \du
+ django    | Create DB                                      | {}
+ djangoapp | Create DB                                      | {}
+ eae       | Superuser, Create role, Create DB, Replication | {}
+ eaecc     | Create DB                                      | {}
+ eezis     | Create role, Create DB                         | {}
+ words     |                                                | {}
+ words5101 |
+
+and it works. . .
+
+ LOCAL DB
+Creating test database for alias 'default'...

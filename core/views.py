@@ -40,13 +40,19 @@ def admin_mailer(subj, msg):
     ts = time.ctime()
     msg + "\n\n" + ts
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-    send_mail(subj, msg,'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com',], fail_silently=False)
+    send_mail(subj, msg, 'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com',], fail_silently=False)
 
 def incident_review_mailer(subj, msg):
     ts = time.ctime()
     msg + "\n\n" + ts
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-    send_mail(subj, msg,'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com', ], fail_silently=False)
+    send_mail(subj, msg, 'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com', ], fail_silently=False)
+
+def send_incident_notification(subj, msg, recipient):
+    to = []
+    to.append(recipient)
+    send_mail(subj, msg, 'closecalldatabase@gmail.com', to, fail_silently=False)
+
 
 
 def HomeView(request):
@@ -73,6 +79,10 @@ def HomeView(request):
 
             I had to delete the incident. Save the data first.
             """
+
+            the_user = u'The Error effected: {} {} \n'.format(request.user.username, request.user.email)
+
+            msg = the_user + msg
 
             send_mail('YIKES HomeView ERROR', msg,'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com',], fail_silently=False)
             # RelatedObjectDoesNotExist: User has no profile.
