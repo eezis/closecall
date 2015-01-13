@@ -22,6 +22,22 @@ class FirstTimeUser(SimpleTestCase):
 
         self.assertInHTML('<title>About The Close Call Database</title>',response.content)
 
+    def test_articles(self):
+        response = self.client.get('/articles/')
+        self.assertEqual(response.status_code, 200)
+        self.assertInHTML('An archive of articles and posts',response.content)
+
+        response = self.client.get('/articles/cars-turning-left/')
+        self.assertEqual(response.status_code, 200)
+        self.assertInHTML('The law may stipulate',response.content)
+
+        # test the issue with the G+ addenda to the url
+        response = self.client.get('/articles/cars-turning-left/https://plus.google.com/share/')
+        self.assertEqual(response.status_code, 200)
+        self.assertInHTML('The law may stipulate',response.content)
+
+
+
 
 
 

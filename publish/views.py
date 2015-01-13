@@ -69,6 +69,11 @@ def show_blog_post(request,slug):
 
 
 def show_article(request, slug):
+    # odd issue, with g+ getting appended, but can fix it here
+    # /articles/cars-turning-left/https://plus.google.com/share/
+    #  the trailing '/' gets lopped off before it gets here
+    slug = slug.replace('/https://plus.google.com/share','')
+
     article = BlogPost.objects.get(slug=slug)
 
     if article.publish_it & article.post_is_public:
