@@ -99,7 +99,10 @@ print 'sending emails\n'
 
 for u in user_list:
     print u'{}'.format(u.user.email)
-    print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
+    # print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
+    send_incident_notification(subject, msg, u.user.email)
+    # email a copy to me
+    u = Users.objects.get(username='eezis')
     send_incident_notification(subject, msg, u.user.email)
 
 print '\n'
