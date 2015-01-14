@@ -20,6 +20,7 @@ from users.models import UserProfile
 from incident.models import Incident
 from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
+from django.contrib.auth.models import User
 
 
 def get_users_close_to_incident(incident_id, radius=60):
@@ -98,12 +99,17 @@ print '\n'
 print 'sending emails\n'
 
 for u in user_list:
-    print u'{}'.format(u.user.email)
     # print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
-    send_incident_notification(subject, msg, u.user.email)
-    # email a copy to me
-    u = Users.objects.get(username='eezis')
-    send_incident_notification(subject, msg, u.user.email)
+    if u.user.email == 'eccentricfather@gmail.com':
+        pass
+    else:
+        print u'emailing: {}'.format(u.user.email)
+        send_incident_notification(subject, msg, u.user.email)
+
+
+# email a copy to me
+u = User.objects.get(username='eezis')
+send_incident_notification(subject, msg, u.user.email)
 
 print '\n'
 print 'emails have been sent'
