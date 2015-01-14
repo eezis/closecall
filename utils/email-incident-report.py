@@ -97,7 +97,7 @@ Close Call Database
 
 
 
-user_list = get_users_close_to_incident(49,60)
+user_list = get_users_close_to_incident(56,60)
 
 print '\n'
 print 'sending emails\n'

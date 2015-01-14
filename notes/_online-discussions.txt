@@ -40,3 +40,38 @@ There is one comment here, however, that I find disturbing;  it's in the vein of
 In reply, I say that the sort of society in which I'd prefer to live doesn't include someone nearly killing me by swerving a 4,000 pound vehicle two feet into the bike lane at 60 mph in order to "send a message" that cyclists don't belong on the road. And I am trying to do something about that.
 
 Thoughtful suggestions/criticisms/ideas are welcome, but I just don't have time to circle back to forums all over the world and would appreciate them at -> closecalldatabase@gmail.com
+
+
+
+
+======
+
+http://www.bicycling.com/news/advocacy/close-call-database-tracks-hostile-drivers#comment-1791618245
+
+• Reply•Share ›
+Avatar
+RunningWriting • 6 days ago
+It could be a good idea, but is there a potential for misuse? Could someone file a report just to get back at someone, for an act that has nothing to do with traffic or bikes?
+5  • Reply•Share ›
+Avatar
+sykerocker  RunningWriting • 5 days ago
+There's always that chance. But the odds of someone working up a campaign against one specific driver over a long period of time would be slim. The amount of effort it would take would be unproductive, and, as long as the reporting cyclist has to list his/her name, etc. to the report gives a good chance of it being self-correcting. If you've got (for example) 15 claims against one driver, all made by the same cyclist, you start to wonder what's going on. The thought of "vendetta" would quickly come to mind, the only question being who's got the vendetta against who.
+3  • Reply•Share ›
+Avatar
+Close Call Database  RunningWriting • a day ago
+I manage the site. These are not anonymous reports. The people that file them must stand behind them. Every Incident Report goes through a review process. I usually communicate directly with the author of every single report. No email notifications of an Incident Report will ever be sent without a review. That process will become more stringent, not less stringent, over time. Frivolous reports, nuisance reports, or reports that simply lack enough information to be meaningful are simply rejected unless corrected and amended -- two reports already have been rejected because they lacked sufficient information.
+
+This issue -- and many others -- were anticipated long before the first line of code was written.
+ • Edit• Reply•Share ›
+Avatar
+Steven Vance  Close Call Database • 10 hours ago
+What's the purpose of hiding reports from unregistered users?
+1  • Reply•Share ›
+Avatar
+Close Call Database  Steven Vance • a few seconds ago
+There are many things that I am not seeking, including; 1) needless controversy, 2) losing the cooperation of law enforcement, 3) legal issues, and 4) complete failure. I also want to improve, rather than exacerbate, the tensions between cyclists and motorists.
+
+I can't think of a faster way to achieve those undesirable outcomes -- and to also discourage a significant number of cyclists from participating -- than making the reports public.
+
+Now, having said that, you are technically incorrect. By default the reports are not public. But the reports can be selectively published. One report already is and I anticipate that others will be in the future.
+ • Edit• Reply•Share ›
