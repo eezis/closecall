@@ -66,7 +66,9 @@ Hello,
 I am sorry to report that a fellow cyclist in your area filed an Incident Report
 involving an aggressive driver. The incident occurred at 272 2nd Street, Troy, NY
 on Tuesday January 13th and was reported to the database today. The report includes
-a video
+a video.
+
+http://closecalldatabase.com/incident/show-detail/56/
 
 The cyclist involved did file a police report.
 
