@@ -64,20 +64,13 @@ msg = """
 Hello,
 
 I am sorry to report that a fellow cyclist in your area filed an Incident Report
-involving an aggressive driver. The incident occurred on West County Road 8e (the
-road that runs out and up to Carter Lake dam) on Saturday January 10th and was reported
-to the database yesterday. The cyclist was in a small group when the incident occurred.
+involving an aggressive driver. The incident occurred at 272 2nd Street, Troy, NY
+on Tuesday January 13th and was reported to the database today. The report includes
+a video
 
-The driver seems to be a repeat offender. His vehicle made contact with the
-cyclist that reported the incident. That cylist was not injured. The cyclists
-involved called the police and are following up on their complaint.
+The cyclist involved did file a police report.
 
-Please review the report -- http://closecalldatabase.com -- and email me (closecalldatabase@gmail.com) if
-you recognize the vehicle in question and can report a past encounter or provide
-other information about the driver in question.
-
-You may wish to share this email with other cyclists in your area, particularly
-if they ride the Carter Lake loop.
+You may wish to share this email with other cyclists in your area.
 
 Ride Safely,
 
@@ -105,7 +98,7 @@ print 'sending emails\n'
 for u in user_list:
     print u'{}'.format(u.user.email)
     print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
-    # send_incident_notification(subject, msg, u.user.email)
+    send_incident_notification(subject, msg, u.user.email)
 
 print '\n'
 print 'emails have been sent'
