@@ -24,6 +24,7 @@
                     <li><a href="{% url 'users-blogpost-list' %}">Your Blog Posts</a></li>
                 {% endif %}
                 <li><a href="/accounts/logout/" >Logout</a></li>
+                <li><a href="{% url 'contact-general-registered' %}">Contact</a></li>
               </ul>
           </li>
 
@@ -35,6 +36,7 @@
                 <li><a href="/accounts/login/" >Login</a></li>
                 <li><a href="/accounts/register/" >Register</a></li>
                 <li><a href="/privacy/" >Privacy</a></li>
+                <li><a href="{% url 'contact-general-unregistered' %}">Contact</a></li>
               </ul>
           </li>
 

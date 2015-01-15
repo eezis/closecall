@@ -103,6 +103,22 @@ Does this site have a privacy policy?
 <a href="/privacy/">Yes.</a>
 </div>
 
+<div class="question">
+How can I contact you?
+</div>
+
+<div class="answer">
+At the moment I am a one man show. I try to make time to ride and I regrettably have to stop to sleep. So it might take me awhile to respond.
+</div>
+<div class="answer">
+{% if user.is_authenticated %}
+<a href="{% url 'contact-general-registered' %}">Contact</a>
+{% else %}
+<a href="{% url 'contact-general-unregistered' %}">Contact</a>
+{% endif %}
+
+</div>
+
 
 <p style="padding-top:30px"><i>I will add more to the FAQ as questions arise.</i></p>
 <!--

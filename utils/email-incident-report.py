@@ -64,18 +64,18 @@ subject = "Close Call - Incident Reported in your Area"
 msg = """
 Hello,
 
-I am sorry to report that a fellow cyclist in your area filed an Incident Report
-involving an aggressive driver. The incident occurred at 272 2nd Street, Troy, NY
-on Tuesday January 13th and was reported to the database today. The report includes
-a video.
+One of the rides involved in the November 12th incident has filed an Incident Report
+that brings us up to date regarding the incident with Edward Fornel -- the driver that ran
+five cyclists off the road and drew a gun on them.
 
-http://closecalldatabase.com/incident/show-detail/56/
 
-The cyclist involved did file a police report.
+http://closecalldatabase.com/incident/show-detail/57/
+
 
 You may wish to share this email with other cyclists in your area.
 
 Ride Safely,
+
 
 
 Ernest Ezis
@@ -93,18 +93,15 @@ Close Call Database
 
 
 
-user_list = get_users_close_to_incident(56,60)
+user_list = get_users_close_to_incident(57,60)
 
 print '\n'
 print 'sending emails\n'
 
 for u in user_list:
-    print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
-    if u.user.email == 'eccentricfather@gmail.com':
-        pass
-    else:
-        print u'emailing: {}'.format(u.user.email)
-        # send_incident_notification(subject, msg, u.user.email)
+    # print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
+    print u'emailing: {}'.format(u.user.email)
+    send_incident_notification(subject, msg, u.user.email)
 
 
 # email a copy to me

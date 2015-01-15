@@ -42,6 +42,12 @@ def admin_mailer(subj, msg):
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
     send_mail(subj, msg, 'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com',], fail_silently=False)
 
+def input_mailer(subj, msg):
+    ts = time.ctime()
+    msg + "\n\n" + ts
+    # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+    send_mail(subj, msg, 'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com', 'closecalldatabase@gmail.com',], fail_silently=False)
+
 def incident_review_mailer(subj, msg):
     ts = time.ctime()
     msg + "\n\n" + ts
@@ -609,7 +615,7 @@ class CreateUserInput(CreateView):
         # print self.subject
         msg = self.request.POST['message'] + '\n\n' + self.request.POST['email']
         form.instance.subject = self.subject
-        admin_mailer(self.subject, msg)
+        input_mailer(self.subject, msg)
         return super(CreateUserInput, self).form_valid(form)
 
 

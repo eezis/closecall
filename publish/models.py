@@ -84,6 +84,7 @@ class InTheNews(PublishLocation):
     occurred_on = models.DateField(null=True, blank=True)
     report_on = models.DateField(null=True, blank=True)
     source = models.CharField(null=True, blank=True, max_length=120)
+    show_it = models.BooleanField(default=False, verbose_name='Publish/Make Visible at site')
 
     class Meta:
         verbose_name = "In The News"

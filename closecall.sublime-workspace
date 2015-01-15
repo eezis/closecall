@@ -4,6 +4,74 @@
 		"selected_items":
 		[
 			[
+				"the",
+				"the_html"
+			],
+			[
+				"emb",
+				"embed_str"
+			],
+			[
+				"you",
+				"youtube_url"
+			],
+			[
+				"vi",
+				"video_url"
+			],
+			[
+				"em",
+				"embed_str"
+			],
+			[
+				"e",
+				"embed_str"
+			],
+			[
+				"user",
+				"user"
+			],
+			[
+				"utf",
+				"utf-8"
+			],
+			[
+				"us",
+				"user"
+			],
+			[
+				"fai",
+				"fail_silently"
+			],
+			[
+				"re",
+				"request"
+			],
+			[
+				"u_",
+				"u_lon"
+			],
+			[
+				"u",
+				"u_lat"
+			],
+			[
+				"get",
+				"get_users_close_to_incident"
+			],
+			[
+				"ma",
+				"matched_users"
+			],
+			[
+				"U",
+				"u_str"
+			],
+			[
+				"in",
+				"incident_id"
+			],
+			[
 				"d",
 				"div	Tag"
 			],
@@ -28,10 +96,6 @@
 				"find_np_and_cure"
 			],
 			[
-				"get",
-				"get_geocode"
-			],
-			[
 				"B",
 				"BlogPost"
 			],
@@ -42,14 +106,6 @@
 			[
 				"padding",
 				"padding-bottom:   (property)"
-			],
-			[
-				"e",
-				"email"
-			],
-			[
-				"in",
-				"incident"
 			],
 			[
 				"wi",
@@ -112,10 +168,6 @@
 				"default"
 			],
 			[
-				"the",
-				"the_post"
-			],
-			[
 				"T",
 				"TemplateView"
 			],
@@ -134,10 +186,6 @@
 			[
 				"ex",
 				"except"
-			],
-			[
-				"re",
-				"request"
 			],
 			[
 				"access",
@@ -244,10 +292,6 @@
 				"athlete_id"
 			],
 			[
-				"user",
-				"username"
-			],
-			[
 				"new",
 				"new_user"
 			],
@@ -324,20 +368,8 @@
 				"get_lat  (function)"
 			],
 			[
-				"u",
-				"u_lon"
-			],
-			[
-				"us",
-				"username"
-			],
-			[
 				"po",
 				"position"
-			],
-			[
-				"U",
-				"UserProfileForm"
 			],
 			[
 				"M",
@@ -412,10 +444,6 @@
 				"accident_or_incident"
 			],
 			[
-				"ma",
-				"max_length"
-			],
-			[
 				"is",
 				"is_authenticated"
 			],
@@ -438,10 +466,6 @@
 			[
 				"su",
 				"success_url"
-			],
-			[
-				"vi",
-				"views"
 			],
 			[
 				"font-",
@@ -490,30 +514,6 @@
 			[
 				"context",
 				"context	get_context_data"
-			],
-			[
-				"r",
-				"request"
-			],
-			[
-				"ren",
-				"render_to_response"
-			],
-			[
-				"annon",
-				"Announcement"
-			],
-			[
-				"a",
-				"Announcement"
-			],
-			[
-				"sta",
-				"start_on_date"
-			],
-			[
-				"Pbul",
-				"PublishBase"
 			]
 		]
 	},
@@ -539,23 +539,7 @@
 			"file": "core/tests.py",
 			"settings":
 			{
-				"buffer_size": 1857,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "utils/noposition.py",
-			"settings":
-			{
-				"buffer_size": 3074,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/about.html",
-			"settings":
-			{
-				"buffer_size": 2313,
+				"buffer_size": 2531,
 				"line_ending": "Unix"
 			}
 		},
@@ -563,15 +547,31 @@
 			"file": "closecall/urls.py",
 			"settings":
 			{
-				"buffer_size": 4640,
+				"buffer_size": 4891,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "templates/ccdb-home.html",
+			"file": "users/views.py",
 			"settings":
 			{
-				"buffer_size": 16162,
+				"buffer_size": 3082,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "publish/urls.py",
+			"settings":
+			{
+				"buffer_size": 1312,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "publish/views.py",
+			"settings":
+			{
+				"buffer_size": 3204,
 				"line_ending": "Unix"
 			}
 		},
@@ -579,7 +579,23 @@
 			"file": "core/views.py",
 			"settings":
 			{
-				"buffer_size": 25683,
+				"buffer_size": 25999,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/input/user_input.html",
+			"settings":
+			{
+				"buffer_size": 1109,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "notes/_online-discussions.txt",
+			"settings":
+			{
+				"buffer_size": 5899,
 				"line_ending": "Unix"
 			}
 		},
@@ -619,7 +635,7 @@
 			"file": "users/admin.py",
 			"settings":
 			{
-				"buffer_size": 370,
+				"buffer_size": 371,
 				"line_ending": "Unix"
 			}
 		},
@@ -627,7 +643,7 @@
 			"file": "templates/_nav-right.html",
 			"settings":
 			{
-				"buffer_size": 1832,
+				"buffer_size": 1995,
 				"line_ending": "Unix"
 			}
 		},
@@ -640,11 +656,45 @@
 			}
 		},
 		{
-			"file": "templates/home.html",
+			"file": "utils/email-incident-report.py",
 			"settings":
 			{
-				"buffer_size": 9367,
+				"buffer_size": 3184,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "utils/gen-embed-youtube.py",
+			"settings":
+			{
+				"buffer_size": 794,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "notes/_BLOG_IDEAS.txt",
+			"settings":
+			{
+				"buffer_size": 4621,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<p>Last June, when the spring winds subsided and recreational cyclists were out in force, the Boulder County Sheriff’s Office setup up a targeted sting operation to ticket cyclists for failing to heed stop signs at a rural intersection. &nbsp;This is reportedly an annual event, but this past year was my first exposure to it.</p><p>\nThe chosen intersection is on a street that gets heavy cyclist traffic; it’s location is shared by a popular 30 and a popular 60 mile loop and has a convenience store that serves as a stop, rest, and refuel location for many cyclists.</p><p>\nBut I found the location peculiar. &nbsp;The selected intersection is a “T” rather than a four-way. Most of the cycling traffic is southbound where the bike traffic simply proceeds straight. I drew red lines on the image below to indicate the direction of travel for most bikes. The thicker the line, the greater the cycling traffic.\n</p><p><img src=\"/static/images/hygiene-overhead.jpg\"></p><p>\nI rode through the intersection a number of times. I never had a problem. Some riders told me that the officer sat over at the convenience store, and that some cyclists -- who felt they had come to a complete stop -- were ticketed for failing to put at least one foot down on the ground and that what constituted a “stop” was left to the officer’s discretion. When we approached the intersection, some of the guys I rode with unclipped and put a foot down to play it safe and exaggerate their stop. I came to a stop -- without putting my foot down -- and went on my way without a problem every time.</p><p>\nI rode through there one day in June after the local newspaper ran an article describing the situation. It’s a short article worth a quick <a href=\"http://www.dailycamera.com/news/ci_25952976/cyclists-say-near-stops-frequently-fined-hygiene\" target=\"_blank\">read</a>. I came to a stop and proceeded, again without incident. Then fifteen minutes later, when I was about five miles down the road enjoying a great ride on a beautiful day, I had that oh-so-enjoyable moment we have all come to know when a motorist decides we don’t belong on the road. On this particular day, the driver of a dump truck traveling in my direction decided to cross the white paint and swerve inside the bike lane, passing me within six inches at about 55 miles per hour.</p><p>\nThis was on a wide open, perfectly straight road, with wide travel lanes and a good bike lane and no other traffic in sight for half a mile in both directions. It was completely inexcusable.</p><p>\nAfter the adrenaline subsided I started to think. And it bothered at me that a few miles away the police were actually handing out tickets to cyclists for failing to put their foot down to prove a full stop, while &nbsp;on every road in the immediate vicinity vehicles were routinely passing cyclists too closely -- sometimes intentionally, sometimes out of simple ignorance. I think there is an entire generation of drivers out there that believe it’s illegal to cross a double yellow line under any circumstance. I was aware of the typical reason many law enforcement officials give for failing to enforce the law. But as I thought about my daily experiences, I started to realize that the “impossible to enforce” argument was plain and simple bullshit. That “reasoning” is based on the premise that it doesn’t occur too frequently and it’s difficult to detect. &nbsp;Both premises are false.</p><p>\nNow before I continue with that thought, I want to highlight the “public safety” issue at the intersection where cyclists were being ticketed. &nbsp;The image below shows the stop sign that most cyclists encounter. This is the southbound view with the heaviest cycling traffic. Notice that there is a bike lane. Notice that the cyclists proceeding south -- most of them -- stay in that bike lane. They never even cross a traffic lane. So look carefully at that picture. When a cyclists comes to that spot, comes to a ‘near-stop’ but fails to put their foot down, what part of the public is being protected when he or she is issued a fine?</p><p><img src=\"/static/images/hygiene-south.jpg\"></p><p>\nMy point here is simple. I am not saying that cyclists should not have to stop. My point here is that this is an example of a rather asymmetrical law enforcement exercise. &nbsp;The sheriff’s department was spending time and resources “educating” cyclists about stopping while on the roads all around them cyclists were enduring dangerous violations of the Three Foot Law. Think about that for a minute. When a cyclist fails to stop at a stop sign and an accident results, who gets hurt? The cyclist. When a driver miscalculates and passes a cyclist too closely the question is no longer who gets hurt. The cyclist gets killed. So where should the education be focused? I keep hearing about how tensions between motorists and cyclists is high and “something needs to be done about it.” But that “something” that gets done always seems like it’s getting done to the cyclists and never the drivers. &nbsp;</p><p>\nWhen I got home that day, I wrote to the police . . . </p>\n\n<div style=\"padding:12px 8px 12px 12px;\">\n<p>\nHello,\n</p>\n<p>\nI am a cyclists living in Boulder. While I understand that there are some real idiots riding out there, most of us ride responsibly. &nbsp;I have been following some of the stories in paper recently and this one really got my attention because it appeared about the same day that I almost lost my life to a motorist:\n</p>\n<p>\n<a href=\"http://www.dailycamera.com/news/ci_25952976/cyclists-say-near-stops-frequently-fined-hygiene\">\nCyclists say near-stops frequently fined in Hygiene\n</a>\n</p>\n<p>\nI am very curious what kind of \"education\" the Sheriff's department is pursuing for motorists? &nbsp;When a cyclist commits an infraction, motorists may be inconvenienced but their lives are not put in danger. When motorists commit infractions they do endanger cyclists' lives. And there is a great need for \"education\"; anyone rides regularly in this town can tell you that many drivers don't seem to know that a 3 foot law exists, many believe that it's illegal to cross the yellow line and seem like they would run a cyclist over before considering it. So I have a question:\n</p>\n<p>\nHow many motorists in Boulder County have received citations for three foot violations since the law has been in place? &nbsp;What's been done, and what's being done to educate them?\n</p>\n<p>\nThis is not a rhetorical question. I really want to know​ the answer.\n</p>\n[...]\n<p>\nAll of us cyclists deal with those people. What's being done to educate the motorists about their responsibilities?\n</p>\n<p>\nThanks for your consideration,\n</p>\n<p>\nErnest Ezis\n</p>\n</div>\n<p>\nI received a reply directing me to call the records department, where I could request the records I was seeking if I paid for the research time to pull the records. &nbsp;There was also a suggestion that I could join a committee . . . </p>\n<p>\n<div style=\"padding:12px 8px 12px 12px;\">\n“The conflicts between cyclist and motorist is taken very seriously by our agency and we strive to educate both sides on the law and common courtesy. Most of the education is done through community meetings, press releases and from the deputies that have nearly daily contact with both motorist and cyclist. There are several committees that meet regularly that are comprised of cyclist, motorist, communities that have heavy cycling impact, and law enforcement agencies to discuss the concerns of all the stakeholders and brainstorm solutions. You might be a good candidate to join one of these groups. You can find these groups through most cycling social media sites.”</p>\n</div>\n<p>\nAnyone reading this can probably tell from my writing style that I am not a good candidate for most committees.  Still, I considered it for fifteen seconds. That’s how loing to took for me to conclude that if the group was meeting regularly and the outcome was that cyclists were getting ticketed for stopping without putting a foot down while drivers were out there violating the three foot law like it was their job, that I was an especially poor candidate for that particular committee.\n</p>\n<p>\nInstead I came up with two goals. &nbsp;In the area where I ride, I want to see some actual, real life, driver education and enforcement of the Three Foot Law. &nbsp;I also want to see a few signs that make it clear to drivers that they must pass safely, that they can cross the yellow line to do so, and that might have to wait a moment before they can pass safely. Enforcement of an existing law and a few signs; that shouldn’t be an impossible dream.</p>\n<p>\nNow comes the good part. We don’t have to make rhetorical arguments that the Three Foot Law can be enforced and public education achieved in a practical manner. Why not? &nbsp;Because the diligent police department in Austin, Texas has already proved the point in practice!</p>\n<p>\nSo how do they do it? &nbsp;Easy, they send officers out onto the road, dressed as regular cyclists. &nbsp;The officers carry walkie-talkies and can communicate with one another and with a police car. When someone passes them too closely they are given a warning. When someone passes them so closely that the officer feels like he can reach out and touch the vehicle or its mirror, they are given a citation. &nbsp;It doesn’t say when the program was started or how long it ran, but the police issued 104 citations when these stories ran:</p>\n<p>\n\n<a href=\"http://www.washingtonpost.com/blogs/dr-gridlock/wp/2013/08/09/putting-a-bite-in-the-3-foot-bike-law/\" target=\"_blank\">Putting a bite in the 3-foot bike law</a>\n</p>\n<p>\n<a href=\"http://www.bikingbis.com/2013/09/16/how-to-enforce-3-foot-passing-law-to-protect-bicyclists/\" target=\"_blank\">How to enforce 3-foot passing law to protect bicyclists</a>\n</p>\n\n<p>\nIf you live in a state that has a Three Foot Law or equivalent (notice Texas does not but municipalities in Texas do) [</a></p>",
+			"settings":
+			{
+				"buffer_size": 9975,
+				"line_ending": "Unix",
+				"name": "<p>Last June, when the spring winds subsided and r"
+			}
+		},
+		{
+			"contents": "nickstengl@yahoo.com\nchrisjustincase@gmail.com\nrpremus@yahoo.com\ncmuth67@yahoo.com\ndaletriley@gmail.com\ndmastroi@yahoo.com\nernest.ezis@gmail.com\nlogan.brooks@snc.edu\nericbudd@gmail.com\njstewarthill@gmail.com\nsqwk77@aol.com\njohanne@bikerider.com\nejbrand12@gmail.com\njstewarthill@gmail.com\nernest.ezis@gmail.com\ndavefitz4@gmail.com\ngibson.steve@gmail.com\nkris@303cycling.com\nkellawj@gmail.com\nmmoir@pigseye.com\nbillgarrels@gmail.com\nwcplock@msn.com\nkellitrudel@hotmail.com\njbitzan@gmail.com\nkellylbranch@yahoo.com\nkennettpeterson@gmail.com\nteriziatea@gmail.com\nlemay.chris@gmail.com\ncolbypearce@mac.com\nshe_climber@hotmail.com\ng.harty@comcast.net\ngray8110@gmail.com\nscott.rachel84@gmail.com\ntaadow182@hotmail.com\ncsu_hickey@yahoo.com\nericbudd@gmail.com\nrick@experienceplus.com\ngeoffreymina@gmail.com\nwstaab@hotmail.com\ntwogs42@msn.com\narnoldcf@gmail.com\nchris@mynewera.com\ncolejweinman@gmail.com\nzinn.emily@gmail.com\naplsanders@yahoo.com\nscottbchristopher@gmail.com\njrobinson@fullersir.com\nkingshorthair@gmail.com\nmikespykerman@gmail.com\nmajhanc@comcast.net\njjberry99@gmail.com\nkaturner201@gmail.com\nbellaoleksy@gmail.com\nlink.brian@gmail.com\nerrinvito@gmail.com\nsam_anderson@comcast.net\nwildwillowranch@yahoo.com\namytco@gmail.com\njovz@earthlink.net\njamesandruth@juno.com\nmarisa.rorabaugh13@gmail.com\nlairder@gmail.com\nterrietpeterson@gmail.com\nheidijwahl70@gmail.com\namandakellyknutson@gmail.com\nrondgarrett@icloud.com\ngbtruongs@icloud.com\nrickanstey@gmail.com\nchinatown00_2000@yahoo.com\njhumphreys@homeadvisor.com\nlaffinrock@yahoo.com\nadam.g.wylie@gmail.com\ndmhobbs53@gmail.com\nkendrew@peaceyfamily.com\nshishou@gmail.com\ncosmo@cyclocosm.com\neric_stapleton@yahoo.com\nslhuzyk@gmail.com\nbschildt@yahoo.com\npaulrschn@gmail.com\nnickrk1@gmail.com\nburrows.casey@gmail.com\njeff.kaes@gmail.com\nhorgerw@gmail.com\njeffhcole@gmail.com\newogen@comcast.net\nifwilson.design@gmail.com\nhgrinolds@msn.com\nultrarunner@yahoo.com\nkellawj@gmail.com\neric_callmann@yahoo.com\nrestow@comcast.net",
+			"settings":
+			{
+				"buffer_size": 1968,
+				"line_ending": "Unix",
+				"name": "nickstengl@yahoo.com"
 			}
 		},
 		{
@@ -831,17 +881,19 @@
 	],
 	"file_history":
 	[
+		"/Users/eae/code/sites/closecall/notes/cameras.txt",
+		"/Users/eae/code/sites/closecall/templates/ccdb-home.html",
+		"/Users/eae/code/sites/closecall/templates/home.html",
+		"/Users/eae/code/sites/closecall/utils/noposition.py",
 		"/Users/eae/code/sites/closecall/notes/testing.txt",
 		"/Users/eae/code/sites/closecall/incident/admin.py",
 		"/Users/eae/code/sites/closecall/incident/urls.py",
 		"/Users/eae/code/sites/closecall/templates/resources.html",
 		"/Users/eae/code/sites/closecall/notes/MARKETING.TXT",
 		"/Users/eae/code/sites/closecall/notes/postgresql.txt",
-		"/Users/eae/code/sites/closecall/utils/noposition.py",
 		"/Users/eae/code/sites/closecall/users/views.py",
 		"/Users/eae/code/sites/closecall/notes/_CODE_ERRATA.txt",
 		"/Users/eae/code/sites/closecall/core/views.py",
-		"/Users/eae/code/sites/closecall/templates/home.html",
 		"/Users/eae/code/sites/closecall/utils/fusiontable-data.py",
 		"/Users/eae/code/sites/closecall/templates/sitebase.html",
 		"/Users/eae/code/sites/closecall/templates/registration/registration_form.html",
@@ -860,7 +912,6 @@
 		"/Users/eae/code/sites/closecall/templates/publish/blogpost_form.html",
 		"/Users/eae/code/sites/closecall/templates/about.html",
 		"/Users/eae/code/sites/closecall/templates/faq.html",
-		"/Users/eae/code/sites/closecall/templates/ccdb-home.html",
 		"/Users/eae/code/sites/closecall/notes/_online-discussions.txt",
 		"/Users/eae/code/sites/closecall/users/models.py",
 		"/Users/eae/code/sites/closecall/core/tests.py",
@@ -957,8 +1008,7 @@
 		"/Users/eae/code/sites/closecall/notes/_TOOLS.txt",
 		"/Users/eae/code/sites/closecall/notes/_TODO.TXT",
 		"/Users/eae/code/sites/closecall/notes/geocode.txt",
-		"/Users/eae/code/sites/closecall/nginx-root/crossdomain.xml",
-		"/Users/eae/code/sites/closecall/templates/registration/activation_email.html"
+		"/Users/eae/code/sites/closecall/nginx-root/crossdomain.xml"
 	],
 	"find":
 	{
@@ -986,9 +1036,24 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"createuserinput",
+			"create_user",
+			"if P",
+			"”",
+			"&lt;",
+			"</span</p>",
+			"<p<b style=\"font-weight:normal;\"</p>",
+			"<br",
+			"</f.*</p?>",
+			"<span.*?>",
+			"><",
+			"<font face=\"Verdana\">",
+			"</p",
+			"<p dir=\"ltr\" style=\"line-height:1.15;margin-top:0pt;margin-bottom:0pt;\">",
+			"austin",
 			"AttributeError",
 			"fix",
 			"this driver is considered",
@@ -1101,22 +1166,7 @@
 			"\\n\\n",
 			"lost hearts",
 			"\\n<p>\\n",
-			"</p",
-			"Chris",
-			"Wiggin",
-			"card",
-			"<a name=\"Pg.*?class=\"tei tei-anchor\"></a>",
-			"<span class=\"tei-pb\" id=\"pa.*?</span>",
-			"<span class=\"tei-pb\" id=\"pa.*?</a>",
-			"<p class=\"tei tei-p\">",
-			"\\n\\n",
-			"<p>",
-			"Robert W. Chambers",
-			"Algernon Blackwood",
-			"Joseph Sheriden le Fanu",
-			"Henry James",
-			"Rudyard Kipling",
-			"Edith Wharton"
+			"</p"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1124,6 +1174,16 @@
 		"regex": true,
 		"replace_history":
 		[
+			"\"",
+			"<",
+			"</p>",
+			"",
+			"</p>",
+			"",
+			"<",
+			"",
+			"</p>\\n",
+			"<p>\\n",
 			",\\n",
 			"",
 			",\\n",
@@ -1241,17 +1301,7 @@
 			"Edgar Allan Poe",
 			" ",
 			"",
-			"=",
-			"\",",
-			"",
-			"#Chapter",
-			"\\n#\\n#CHAPTER",
-			"\\n<p>\\n",
-			"</em>",
-			"<em>",
-			"=/",
-			"#\\n#",
-			"\\n<p>\\n"
+			"="
 		],
 		"reverse": false,
 		"show_context": true,
@@ -1262,7 +1312,7 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 8,
 			"sheets":
 			[
 				{
@@ -1397,7 +1447,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -1532,7 +1582,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -1541,15 +1591,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1857,
+						"buffer_size": 2531,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								241,
-								241
+								1116,
+								1116
 							]
 						],
 						"settings":
@@ -1664,27 +1714,27 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 465.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "utils/noposition.py",
+					"file": "closecall/urls.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3074,
+						"buffer_size": 4891,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1039,
-								1039
+								4406,
+								4406
 							]
 						],
 						"settings":
@@ -1797,37 +1847,6 @@
 							"sublime_auto_complete": true,
 							"synced": false,
 							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "templates/about.html",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 2313,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								29,
-								0
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1837,20 +1856,82 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "closecall/urls.py",
+					"buffer": 4,
+					"file": "users/views.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4640,
+						"buffer_size": 3082,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3598,
-								3598
+								971,
+								950
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 327.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "publish/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1312,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "publish/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3204,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2500,
+								2500
 							]
 						],
 						"settings":
@@ -1965,27 +2046,162 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 427.0,
+						"translation.y": 1060.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "templates/ccdb-home.html",
+					"buffer": 7,
+					"file": "core/views.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16162,
+						"buffer_size": 25999,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7795,
-								7805
+								24496,
+								24496
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sublime_auto_complete": true,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 11918.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "templates/input/user_input.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1109,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								236,
+								166
 							]
 						],
 						"settings":
@@ -2100,27 +2316,27 @@
 							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3955.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "core/views.py",
+					"buffer": 9,
+					"file": "notes/_online-discussions.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 25683,
+						"buffer_size": 5899,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3645,
-								3593
+								3341,
+								3341
 							]
 						],
 						"settings":
@@ -2232,17 +2448,17 @@
 							"remote_loading": false,
 							"sublime_auto_complete": true,
 							"synced": false,
-							"syntax": "Packages/Python/Python.tmLanguage"
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 962.0,
+						"translation.y": 443.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 10,
 					"file": "incident/views.py",
 					"semi_transient": false,
 					"settings":
@@ -2266,14 +2482,14 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2025.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 11,
 					"file": "incident/forms.py",
 					"semi_transient": false,
 					"settings":
@@ -2300,11 +2516,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 12,
 					"file": "incident/models.py",
 					"semi_transient": false,
 					"settings":
@@ -2431,15 +2647,15 @@
 							"synced": false,
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
-						"translation.x": 1.0,
-						"translation.y": 0.0,
+						"translation.x": 0.0,
+						"translation.y": 1227.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 13,
 					"file": "users/models.py",
 					"semi_transient": false,
 					"settings":
@@ -2451,8 +2667,8 @@
 						"selection":
 						[
 							[
-								3658,
-								3559
+								5657,
+								5624
 							]
 						],
 						"settings":
@@ -2567,27 +2783,27 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 87.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 14,
 					"file": "users/admin.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 370,
+						"buffer_size": 371,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								280,
-								280
+								241,
+								241
 							]
 						],
 						"settings":
@@ -2705,24 +2921,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 15,
 					"file": "templates/_nav-right.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1832,
+						"buffer_size": 1995,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								287,
-								287
+								1423,
+								1423
 							]
 						],
 						"settings":
@@ -2837,14 +3053,14 @@
 							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 154.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 16,
 					"file": "core/utils.py",
 					"semi_transient": false,
 					"settings":
@@ -2856,8 +3072,8 @@
 						"selection":
 						[
 							[
-								63,
-								63
+								135,
+								135
 							]
 						],
 						"settings":
@@ -2972,19 +3188,421 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 805.0,
+						"translation.y": 2.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
-					"file": "templates/home.html",
+					"buffer": 17,
+					"file": "utils/email-incident-report.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9367,
+						"buffer_size": 3184,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2754,
+								2754
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sublime_auto_complete": true,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1618.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 18,
+					"file": "utils/gen-embed-youtube.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 794,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								210,
+								210
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"sublime_auto_complete": true,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 19,
+					"file": "notes/_BLOG_IDEAS.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4621,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3719,
+								3612
+							]
+						],
+						"settings":
+						{
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sublime_auto_complete": true,
+							"synced": false,
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1774.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 20,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9975,
 						"regions":
 						{
 						},
@@ -2992,25 +3610,261 @@
 						[
 							[
 								0,
-								0
+								9975
 							]
 						],
 						"settings":
 						{
+							"auto_name": "<p>Last June, when the spring winds subsided and r",
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
 							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+							"sublime_auto_complete": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1435.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 16,
+					"type": "text"
+				},
+				{
+					"buffer": 21,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1968,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								663,
+								663
+							]
+						],
+						"settings":
+						{
+							"auto_name": "nickstengl@yahoo.com",
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"incomplete_sync": null,
+							"sublime_auto_complete": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 22,
 					"file": "templates/incident/incident.html",
 					"semi_transient": false,
 					"settings":
@@ -3141,11 +3995,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 21,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 23,
 					"file": "templates/incident/incident_detail.html",
 					"semi_transient": false,
 					"settings":
@@ -3276,11 +4130,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 24,
 					"file": "core/models.py",
 					"semi_transient": false,
 					"settings":
@@ -3307,11 +4161,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 25,
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 25,
 					"file": "publish/models.py",
 					"semi_transient": false,
 					"settings":
@@ -3442,11 +4296,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 26,
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 26,
 					"semi_transient": false,
 					"settings":
 					{
@@ -3577,7 +4431,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 22,
 					"type": "text"
 				}
 			]
