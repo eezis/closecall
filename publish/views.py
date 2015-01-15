@@ -27,6 +27,15 @@ class NewsView(ListView):
         return InTheNews.objects.filter(show_it=True)
 
 
+def news_preview(request, news_id):
+    # normally would be .get, but need to squeeze it into the for I n X iterable pattern
+    # in the template.
+    n = InTheNews.objects.filter(id=news_id)
+    return render(request, 'publish/news.html', {'news_list': n})
+
+
+
+
 """
 If there is an Announcement, I want it to show on every page I will try to make a
 context processor to do that. It needs a RequestContext (generic views use those by default )

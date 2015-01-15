@@ -4,7 +4,7 @@ from django.contrib import admin
 # from django.views.generic.base import RedirectView
 
 from core.views import HomeView, strava_registration, redirect_to_strava_login, redirect_to_strava_via_login_page, CreateUserInput #, MyRegistrationView
-from publish.views import NewsView
+from publish.views import NewsView, news_preview
 from users.views import CreateUserProfileView, UpdateUserProfileView, DetailUserProfileView, CheckForUserProfile
 
 
@@ -46,6 +46,7 @@ urlpatterns = patterns('',
     url(r'^incident/', include('incident.urls')),
     url(r'^blog/', include('publish.urls')),
     url(r'^news/', NewsView.as_view(), name="news"),
+    url(r'^preview-news/(?P<news_id>\d+)/$', news_preview, name="preview-news"),
     url(r'^eeadmin/', include(admin.site.urls)),
     (r'^summernote/', include('django_summernote.urls')),
     # url(r'^strava-registration/(?P<strava_token>\w+)/$', strava_registration, name="strava-registration"),
