@@ -23,7 +23,8 @@ class NewsView(ListView):
     context_object_name = "news_list"
     paginate_by = 5
 
-
+    def get_queryset(self):
+        return InTheNews.objects.filter(show_it=True)
 
 
 """
