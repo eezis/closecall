@@ -7,6 +7,7 @@ from django.test import TestCase, SimpleTestCase
 # # Create your tests here.
 
 
+
 # class FirstTimeUser(unittest.TestCase):
 class FirstTimeUser(SimpleTestCase):
     def setUp(self):
@@ -21,6 +22,8 @@ class FirstTimeUser(SimpleTestCase):
         self.assertEqual(response.status_code, 200)
 
         self.assertInHTML('<title>About The Close Call Database</title>',response.content)
+
+
 
     def test_articles(self):
         response = self.client.get('/articles/')

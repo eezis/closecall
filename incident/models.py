@@ -23,8 +23,22 @@ class Incident(models.Model):
     position = GeopositionField(null=True)
     witnesses = models.CharField(null=True, blank=True, max_length=255, verbose_name="Full Name and Phone or Email of Witnesses ( this field is not published )")
     # sadly had to add this because some folks are having trouble writing
-    # a useful and literate report
-    visible = models.BooleanField(default=True)
+    # a useful and literate report -- I can turn it off from the admin
+    visible = models.BooleanField(default=True) # <-- only enforced in the HomeView, needs to be in the ListView when I update UI
+    reported = models.BooleanField(default=False) # Set visible to False if a user says this is spam or porn or abusive, etc.
+
+    email_sent = models.BooleanField(default=False)
+    email_text = models.TextField(null=True, blank=True)
+    email_sent_on = models.DateTimeField(null=True)
+
+    internal_note = models.TextField(null=True, blank=True)
+
+    # Commercially Licensed Driver
+
+    # speedlimit
+    # youtube
+    # police_were_contacted? Why/Why not?
+    # police notes?
 
 
     # add threat_level should be options: Belligerent, Agressive, Unsure, Probably Accident (but worth recording)

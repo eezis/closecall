@@ -1,6 +1,13 @@
+sudo service postgresql start/stop/status/restart
+
 
 #to run psql -- use password from settings.py
 $ psql -h localhost closecall eaecc
+
+
+-- start psql as postgres superuser
+(closecall)eezis@closecall:~/sites/closecall$ sudo su - postgres
+postgres@closecall:~$ psql
 
 
 # backup
@@ -10,10 +17,42 @@ eezis@closecall:~$ sudo -u postgres pg_dump closecall > /home/eezis/closecall.sq
 eezis@closecall:~$ sudo -u postgres pg_dump -Ft closecall > /home/eezis/closecall.tar # tarball is BEST FOR A RESTORE
 
 
-HOW DO I COPY IT BACK LOCALLY? [the efforst below did not work]
+sudo -u eae pg_dump -h closecalldatabase.com -p 5432 closecall > closecall.bak
 
-scp -p 1787 -r eezis@closecalldatabase.com:/home/eezis/closecall.sql /Users/eae/code/data/backups/closecall/closecall.sql
-scp do_key -p 1787 -r eezis@closecalldatabase.com:/home/eezis/closecall.sql /Users/eae/code/data/backups/closecall/closecall.sql
+
+***
+pg_dump -h closecalldatabase.com -p 5432 closecall > closecall.bak
+
+
+=======================================
+local backup of remote db
+=======================================
+
+-- 1. to prepare, on remote ubuntu machine I started psql as the postgres superuser
+-- then on my machine, I am user eae when I am at the command line
+-- so I need to create an 'eae' user role for the remot postgres because when I use pg_dump from my local
+-- command line, it will be as the 'eae' user
+
+$ sudo su - postgres
+postgres@closecall:~$ psql
+postgres=# CREATE ROLE eae SUPERUSER;
+postgres=# ALTER ROLE eae LOGIN;
+postgres=# ALTER USER eae WITH ENCRYPTED PASSWORD 'PG******!';
+
+-- 2. now get the backup
+
+open terminal on local machine
+cd /Users/eae/backups/closecalldatabase
+pg_dump -h closecalldatabase.com -p 5432 closecall > closecall.bak
+password: 'PG******!'
+
+## *** now get the binary tarball that is BEST FOR A RESTORE
+
+pg_dump -h closecalldatabase.com -p 5432 -Ft closecall > closecall.tar
+password: 'PG******!'
+
+
+
 
 
 ==============================
@@ -64,3 +103,86 @@ closecall=> (SELECT MAX(id) FROM users_userprofile);
 
 
 Once that was done, I still had to find and fix the position = None issue.
+
+
+
+
+=======================================================================================
+Making postgres accessible to remote client [digital ocean Postgres 9.3, Ubuntu 12.04]
+=======================================================================================
+
+-- go to the config files
+
+cd /etc/postgresql/9.3/main
+
+-- edit the postgresql.conf
+
+sudo nano sudo nano postgresql.conf
+#listen_addresses = 'localhost,73.203.118.43' <-- did not work, had to use '*'
+listen_addresses = '*'
+
+-- edit the pg_hba.conf
+
+sudo nano pg_hba.conf
+
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+host    all             all             73.203.118.43/32        md5  <-- I added this line
+
+-- now restart postgresql
+
+sudo service postgresql restart
+
+
+### NOW THE FIREWALL, iptables
+
+-- list current
+
+$ sudo iptables -L
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+
+-- add a rule to get to postgresql
+
+sudo iptables -A INPUT -p tcp --destination-port 5432 -s 73.203.118.43 -j ACCEPT
+
+-- now test it from terminal on the remote workstation
+
+psql -h closecalldatabase.com -U eaecc -d closecall
+
+-- okay that worked, one more thing  MAKE THE IPTABLE PERSISTENT!
+
+sudo apt-get install iptables-persistent
+sudo service iptables-persistent start
+
+
+MAC OSX, postgres users is "underscorePostgres" --> _postgres
+
+ALTER USER _postgres WITH ENCRYPTED PASSWORD 'password';
+
+
+
+
+================================================================
+how to find pg_hba.conf postrges configuration file (this was on the Mac,
+where the postgresapp placed it someone I didn't expect/know about)
+================================================================
+
+closecalldatabase $ psql
+psql (9.3.1)
+Type "help" for help.
+
+eae=# SHOW hba_file;
+                             hba_file
+-------------------------------------------------------------------
+ /Users/eae/Library/Application Support/Postgres93/var/pg_hba.conf
+(1 row)
+
+
+
