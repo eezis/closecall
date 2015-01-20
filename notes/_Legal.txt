@@ -1,0 +1,24 @@
+
+
+
+
+======================
+Defamation & Libel
+======================
+
+http://www.alllaw.com/articles/nolo/personal-injury/can-you-sue-defamation.html
+
+
+
+Liability for Blog and Website Owners
+Initially, a blog or website owner could be liable for the defamatory statements made by others on the owner’s blog or website, because the owner was publishing the defamatory statements. In response, Congress enacted the Communications Decency Act of 1996, 47 U.S.C. § 230(c) ("Section 230"). Under Section 230, unless there is an affirmative showing by a plaintiff that an owner of a blog or website is the author of a defamatory message or post, the provider should almost always avoid liability for defamation. However, if the owner actually monitors the messages or posts on his or her blog or website, they may lose the protections afforded by Section 230.
+
+
+**** Qualified Privilege ****
+
+* "Privilege" is an important legal distinction.
+http://www.alllaw.com/articles/nolo/personal-injury/privilege-defense-defamation.html
+
+Claiming Qualified Privilege
+To successfully claim a qualified privilege, in many jurisdictions, the speaker must have made the statement in an appropriate situation (i.e., newspaper coverage or reference request), for a reasonable purpose (i.e., providing fair and accurate information), and with reasonable cause (i.e., based on knowledge gained from investigative journalism or from working with the person).
+If the statement was made maliciously -- i.e., if the plaintiff can show that it was not made with a reasonable purpose or with reasonable cause, or that the speaker made the statement knowing it was false, or with a reckless disregard for the truth -- it will not be protected by a qualified privilege.
