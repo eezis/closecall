@@ -49,10 +49,10 @@ class Incident(models.Model):
     STUPID      = 'Thoughtless'
 
     TA_CHOICES = (
-        (BELLIGERENT, 'Belligerent'),
-        (THREATENING, 'Threatening'),
-        (AGGRESSIVE,  'Aggressive'),
-        (CARELESS,    'Careless'),
+        (BELLIGERENT, 'Belligerent - the driver was malicious and undertook deliberate actions that purposefully put lives at risk'),
+        (THREATENING, 'Threatening - the driver create a dangerous situation and delivered a measured threat (close, but not too close)'),
+        (AGGRESSIVE,  'Aggressive - the driver was trying to scare, harass or intimidate (yelled, honked, etc)'),
+        (CARELESS,    'Careless - the driver caused a problem but it wasn''t deliberately hostile and may have been accidental'),
         (STUPID,      'Just Plain Stupid'),
     )
 
