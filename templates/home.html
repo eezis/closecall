@@ -142,14 +142,14 @@
   {% endfor %}
   <hr>
 {% else %}
-  {# <p><span class="alpha">Alpha Notice:</span> Short List of lastest news will go here in future release</p> #}
+  {# <p><span class="alpha">Alpha Notice:</span> Short List of latest news will go here in future release</p> #}
   <hr>
 {% endif %}
 
 
 {# INCIDENTS THAT HAVE OCCURRED *** OUTSIDE OF *** THE USERS AREA  #}
 {% if recent_incidents %}
-<h4 class="incidents"> The Lastest Incident Reports (From All Locations) </h4>
+<h4 class="incidents"> The Latest Incident Reports (From All Locations) </h4>
   {% for incident in recent_incidents %}
     <p>
     <span class="pad-right"><b>{{incident.date|date:"M d, Y" }}</b></span>
