@@ -37,7 +37,7 @@ $ sudo su - postgres
 postgres@closecall:~$ psql
 postgres=# CREATE ROLE eae SUPERUSER;
 postgres=# ALTER ROLE eae LOGIN;
-postgres=# ALTER USER eae WITH ENCRYPTED PASSWORD 'PG******!';
+postgres=# ALTER USER eae WITH ENCRYPTED PASSWORD 'PG******!';  [the stars = think geometry]
 
 -- 2. now get the backup
 

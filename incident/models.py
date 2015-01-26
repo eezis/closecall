@@ -29,7 +29,7 @@ class Incident(models.Model):
 
     email_sent = models.BooleanField(default=False)
     email_text = models.TextField(null=True, blank=True)
-    email_sent_on = models.DateTimeField(null=True)
+    email_sent_on = models.DateTimeField(null=True, blank=True)
 
     internal_note = models.TextField(null=True, blank=True)
 
