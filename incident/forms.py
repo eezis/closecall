@@ -68,7 +68,9 @@ missed striking one of the riders. We believe the license plate number was 163-J
                 'placeholder':'Dent in front right quarter panel, playboy mud flaps, etc',
             }),
 
-            "address": forms.HiddenInput(),
+            "address": forms.HiddenInput(attrs={
+                'class': 'textinput',
+                }),
 
         }
 

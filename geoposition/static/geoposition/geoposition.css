@@ -33,6 +33,9 @@
 .geoposition-address {
     float: left;
     text-align: left;
+    color: blue;
+    padding-top: 10px;
+    font-size: 1.10em;
 }
 
 
