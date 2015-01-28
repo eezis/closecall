@@ -61,6 +61,8 @@ urlpatterns = patterns('',
     url(r'^thank-you-for-your-input/',TemplateView.as_view(template_name='thank_you_for_your_input.html'), name='thank-you-for-input'),
     url(r'^articles/$','publish.views.list_articles', name="list-articles"),
     url(r'^articles/(?P<slug>.*)/$','publish.views.show_article', name="show-article"),
+    # write the following view, pattern it on preview-news above
+    #url(r'^preview-articles/(?P<slug>.*)/$', article_preview, name="preview-article"),
     url(r'^privacy/',TemplateView.as_view(template_name='privacy.html'), name='privacy-policy'),
     url(r'^write-an-article/', CreateUserInput.as_view(subject='Write An Article'), name='write-article'),
     url(r'^resource-referral/', CreateUserInput.as_view(subject='Resource Referral'), name='resource-referral'),

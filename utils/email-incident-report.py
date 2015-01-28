@@ -64,12 +64,13 @@ subject = "Close Call - Incident Reported in your Area"
 msg = """
 Hello,
 
-One of the rides involved in the November 12th incident has filed an Incident Report
-that brings us up to date regarding the incident with Edward Fornel -- the driver that ran
-five cyclists off the road and drew a gun on them.
+Two recent incidents have been reported in your area. The first incident occurred Saturday out by Carter Lake. It was not very serious but was entered into the database to create a record for that driver. The second incident occurred on Tuesday January 27th on Flagstaff. That incident
 
+In that instance a motorist exhibited some troubling behavior that started with a careless pass but escalated after the driver pulled over to inexplicably confront a cyclist and he actually punched the cyclist in the chest. The cyclist filmed the entire episode. Unfortunately, something seems a bit "off" with this particular driver and we should be wary of him. If anyone has had previous encounters with the driver in question (an orange subaru, with dents, that you will see in the video) please let email closecalldatabase@gmail.com with the information.
 
-http://closecalldatabase.com/incident/show-detail/57/
+You can read the account and see the video of the Flagstaff incident here: http://closecalldatabase.com.
+
+The police are investigating the incident on Flagstaff. http://closecalldatabase.com/incident/show-detail/70/
 
 
 You may wish to share this email with other cyclists in your area.
@@ -93,7 +94,7 @@ Close Call Database
 
 
 
-user_list = get_users_close_to_incident(57,60)
+user_list = get_users_close_to_incident(70,60)
 
 print '\n'
 print 'sending emails\n'

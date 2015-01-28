@@ -227,6 +227,8 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id):
         return new_user
 
 
+
+
 # def strava_registration(request, strava_token):
 def strava_registration(request):
 
@@ -246,6 +248,16 @@ def strava_registration(request):
 
     if strava_token is None:
         admin_mailer('Strava Regisgration Failure', 'The Strava Token is None! ' + request.body)
+        user_msg = """
+        <p>There was an error with your attempt to login using your Strava Account. You may have entered an incorrect password.
+        You may simply wish to try again.</p>
+        <p>Or you again or use our<a href="/accounts/register/">custom registration</a> process to create your account.</p>
+        """
+        messages.add_message(request, messages.INFO, user_msg)
+        # Fix these next lines up, once you know where the "Register via Strava is going to go (maybe login page is best"
+        # no_user_profile_msg = "You must create a User Profile in order to proceed."
+        # messages.add_message(request, messages.INFO, no_user_profile_msg)
+        return HttpResponseRedirect('/smart-500/')
 
 
 
