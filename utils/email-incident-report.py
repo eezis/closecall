@@ -59,28 +59,25 @@ def email_the_users(subject, message, user_list):
 
 
 
-subject = "Close Call - Incident Reported in your Area"
+subject = "Close Call Database - Incident Reported in your Area"
 
 msg = """
-Hello,
+Greetings from the Close Call Database for Cyclists.
 
-Two recent incidents have been reported in your area. The first incident occurred Saturday out by Carter Lake. It was not very serious but was entered into the database to create a record for that driver. The second incident occurred on Tuesday January 27th on Flagstaff. That incident
+Two recent incidents have been reported in your area. The first incident occurred Saturday out by Carter Lake. It was not very serious but was entered into the database to create a record for that driver. The second incident occurred on Tuesday January 27th on Flagstaff. That incident deserves some consideration.
 
-In that instance a motorist exhibited some troubling behavior that started with a careless pass but escalated after the driver pulled over to inexplicably confront a cyclist and he actually punched the cyclist in the chest. The cyclist filmed the entire episode. Unfortunately, something seems a bit "off" with this particular driver and we should be wary of him. If anyone has had previous encounters with the driver in question (an orange subaru, with dents, that you will see in the video) please let email closecalldatabase@gmail.com with the information.
+The motorist on Flagstaff exhibited some troubling behavior. In the video you can see the driver make a careless pass, traveling into the oncoming traffic lane in front of a blind corner. Then for some reason, the driver inexplicably pulled over further up the road to confront the cyclist and eventually punched the cyclist in the chest. The cyclist filmed the entire episode. Unfortunately, something seems a bit "off" with this particular driver and we should be wary of him. If anyone has had previous encounters with the driver in question -- he drives an orange subaru, with dents, you will see it in the video -- please email closecalldatabase@gmail.com with the information or file an incident report (even if it was a past encounter).
 
-You can read the account and see the video of the Flagstaff incident here: http://closecalldatabase.com.
+You can read the account and see the video of the Flagstaff incident here: http://closecalldatabase.com/incident/show-detail/70/
 
-The police are investigating the incident on Flagstaff. http://closecalldatabase.com/incident/show-detail/70/
+The police are investigating the incident.
 
+You may wish to share this email with other cyclists in your area, particularly if they ride up Flagstaff.
 
-You may wish to share this email with other cyclists in your area.
 
 Ride Safely,
 
-
-
 Ernest Ezis
-
 Close Call Database
 
 """
