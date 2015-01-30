@@ -3,7 +3,8 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 # from django.views.generic.base import RedirectView
 
-from core.views import HomeView, strava_registration, redirect_to_strava_login, redirect_to_strava_via_login_page, CreateUserInput #, MyRegistrationView
+from core.views import HomeView, strava_registration, redirect_to_strava_login, redirect_to_strava_via_login_page, CreateUserInput, \
+show_user_map #, MyRegistrationView
 from publish.views import NewsView, news_preview
 from users.views import CreateUserProfileView, UpdateUserProfileView, DetailUserProfileView, CheckForUserProfile
 
@@ -68,6 +69,8 @@ urlpatterns = patterns('',
     url(r'^resource-referral/', CreateUserInput.as_view(subject='Resource Referral'), name='resource-referral'),
     url(r'^contact-r/', CreateUserInput.as_view(subject='General Inquiry - Registered User'), name='contact-general-registered'),
     url(r'^contact-u/', CreateUserInput.as_view(subject='General Inquiry UNREGISTERED User'), name='contact-general-unregistered'),
+    url(r'^usermap/?$', show_user_map, name="home-user-map"),
+    # show all incidents is in the incident.url
 
 
     # url(r'^/static/(?P<path>.*)$', '/Users/eae/code/sites/closecall/static/'),

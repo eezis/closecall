@@ -1,0 +1,107 @@
+{% extends "sitebase.html" %}
+
+{% block metatags %}
+<meta name="description" content="Incident Reports">
+<meta name="keywords" content="cycling, cyclist, database, accidents, incidents, aggressive, drivers">
+{% endblock %}
+
+{% block page_title %}Close Call Database -- Incident Reports{% endblock %}
+
+{% block extra_styles %}
+  {% include 'home-styles.html' %}
+{% endblock %}
+
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+{# <ul class="nav nav-pills nav-justified"> #}
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation"><a href="{% url 'home' %}">Home</a></li>
+  <li role="presentation" class="active"><a href="{% url 'show-all-incidents' %}">Incident Reports</a></li>
+  <li role="presentation"><a href="{% url 'home-user-map' %}">User Map</a></li>
+</ul>
+
+<div style="padding-top:16px;">
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="hpptitle">Incident Reports -- From All Locations</h3>
+  </div>
+  <div class="panel-body" style="font-size:1.05em; line-height:1.55;">
+  {% if incidents %}
+  <br />
+  {% for incident in incidents %}
+    <p>
+    <span class="pad-right"><b>{{incident.date|date:"M d, Y" }}</b></span>
+    <span class="level-{{incident.danger_assessment}} sm-pad-rt">Threat Level: {{incident.threat_assessment}}</span>
+    {{incident.address}}
+    <a href="/incident/show-detail/{{incident.id}}/">. . . detailed report</a>
+    </p>
+  {% endfor %}
+
+
+{% comment %}
+<div class="pagination">
+    <span class="step-links">
+        {% if incidents.has_previous %}
+            <a href="?page={{ incidents.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ incidents.number }} of {{ incidents.paginator.num_pages }}.
+        </span>
+
+        {% if incidents.has_next %}
+            <a href="?page={{ incidents.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endcomment %}
+
+
+{% if is_paginated %}
+<nav>
+  <ul class="pager">
+    {% if incidents.has_previous %}
+      <li class="previous"><a href="?page={{ incidents.previous_page_number }}"><span aria-hidden="true">&larr;</span> Newer</a></li>
+    {% endif %}
+    {% if incidents.has_next %}
+      <li class="next"><a href="?page={{ incidents.next_page_number }}">Older <span aria-hidden="true">&rarr;</span></a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+ {% endif %}
+
+  {% else %}
+    No Incident Reports. Note, this is probably in error.
+  {% endif %}
+  </div>
+</div>
+
+</div>
+
+{% comment %}
+
+{% if incidents %}
+<h4 class="incidents"> The Latest Incident Reports (From All Locations) </h4>
+  {% for incident in incidents %}
+    <p>
+    <span class="pad-right"><b>{{incident.date|date:"M d, Y" }}</b></span>
+    <span class="level-{{incident.danger_assessment}} sm-pad-rt">Threat Level: {{incident.threat_assessment}}</span>
+    {{incident.address}}
+    <a href="/incident/show-detail/{{incident.id}}/">. . . detailed report</a>
+  {% endfor %}
+  <hr>
+{% else %}
+
+{% endif %}
+
+</div>
+{% endcomment %}
+
+{% endif %}
+
+{% endblock %}

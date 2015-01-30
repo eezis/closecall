@@ -583,6 +583,10 @@ class LoginRequiredMixin(FilterToUserMixin, object):
     def dispatch(self, *args, **kwargs):
         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
+def show_user_map(request):
+    return render(request, 'home-usermap.html')
+
+
 
 import logging
 logger = logging.getLogger(__name__)

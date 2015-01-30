@@ -100,9 +100,9 @@ print '\n'
 print 'sending emails\n'
 
 for u in user_list:
-    # print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
+    print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
     print u'emailing: {}'.format(u.user.email)
-    send_incident_notification(subject, msg, u.user.email)
+    # send_incident_notification(subject, msg, u.user.email)
 
 
 # email a copy to me

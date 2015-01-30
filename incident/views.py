@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404 #, get_list_or_404
 from models import Incident
 from forms import CreateIncidentForm
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin, admin_mailer, incident_review_mailer
 from django.conf import settings
@@ -144,5 +145,22 @@ def show_this_incident_for_authed_users(request, incident_id):
     # CO-141108-001  -- the incident on Nelson Road with Justin Hoesse
     I = Incident.objects.get(id=incident_id)
     return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': incident_id})
+
+def show_all_incidents(request):
+    I = Incident.objects.filter(visible=True)
+    paginator = Paginator(I, 15) #show do incindents per page
+
+    page = request.GET.get('page')
+    try:
+        I = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        I = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        I = paginator.page(paginator.num_pages)
+
+    return render(request, 'home-all-incidents.html', {'incidents': I, 'is_paginated': True})
+
 
 
