@@ -235,7 +235,8 @@ SUMMERNOTE_CONFIG = {
         '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css',
     ),
     'inplacewidget_external_js': (
-        '//code.jquery.com/jquery-1.9.1.min.js',
+        # '//code.jquery.com/jquery-1.9.1.min.js',
+        '//code.jquery.com/jquery-1.11.2.min.js',
         '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
     ),
 }

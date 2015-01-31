@@ -49,6 +49,8 @@ input[type=hidden] {
   {% block extra_css_or_js %}
   {# moved here on 12.22.14, the drop-down menu was experiencing and javascript collision or something when it loaded at the bottom #}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link href="/static/css/bootstrap-timepicker.min.css" rel="stylesheet">
+    <script src="/static/js/bootstrap-timepicker.js"></script>
   {% endblock %}
 
 {%block navigation %}{% include '_nav-loggedin.html' %} {% endblock %}
@@ -86,11 +88,26 @@ both the CreateView and UpdateView
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/flick/jquery-ui.css" />
 
+
+{% comment %}
+<script>
+$(document).ready(function(){
+    $( ".datePicker" ).datepicker();
+    $('.timePicker').timepicker();
+});
+</script>
+{% endcomment %}
+
+
+
     <script>
         $(function() {
         $( ".datePicker" ).datepicker();
         });
     </script>
+
+
+
 
 
 
