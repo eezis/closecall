@@ -128,11 +128,12 @@ def show_this_incident(request, ee_fake_key):
         # print 'DEV MODE TRUE'
         linker = {
             'CO-141108-001': 3,
+            'BIKE-LAW-HELP-1': 3,
         }
     else:
         linker = {
             'CO-141108-001': 7,
-               'bike-law-help-1': 69
+            'BIKE-LAW-HELP-1': 69,
         }
 
     I = Incident.objects.get(pk=linker[ee_fake_key])
