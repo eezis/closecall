@@ -59,10 +59,10 @@ missed striking one of the riders. We believe the license plate number was 163-J
                 'placeholder':'Explorer | Tahoe | etc',
             }),
             "license_certain":forms.TextInput(attrs={
-                'placeholder':'State/Province license plate number - if certain ( OR 555-55-5555 )',
+                'placeholder':'State/Province license plate number - if certain ( OR: 555-55-5555 )',
             }),
             "license_uncertain":forms.TextInput(attrs={
-                'placeholder':'State/Province and license plate number - if not completely certain - ( OR 555-55-5555 )',
+                'placeholder':'State/Province and license plate number - if not completely certain - ( OR: 555-55-5555 )',
             }),
             "id_it_by":forms.TextInput(attrs={
                 'placeholder':'Dent in front right quarter panel, playboy mud flaps, etc',

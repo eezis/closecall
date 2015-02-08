@@ -15,13 +15,24 @@ h2 small{
 }
 
 p.about {
-    font-size: 0.98em;
-    font-style: italic;
+    font-size: 1.05em;
+    {# font-style: italic; #}
+    line-height: 1.80;
 }
 
 p {
     color: black;
 }
+
+b {
+    font-weight:400;
+}
+
+{% comment %}
+.jumbotron {
+    background-color: #FFFFF2;
+}
+{% endcomment %}
 
 .post{
 
@@ -43,7 +54,7 @@ p {
 
 <div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 40px;">
 
-  <div class="page-header" style="padding-bottom: 4px;">
+  <div class="page-header" style="padding-bottom: 2px;">
     <h2><small>{{article.title}}</small></h2>
     <hr style="border-color:darkgrey;">
     <p style="font-size:0.98em;">By: {{user.profile.blogprofile.byline}}</p>
@@ -63,6 +74,7 @@ p {
 
 {% if user.profile.blogprofile.about_the_author %}
   <p class="about" style="padding-top: 20px;"><b>About the Author</b></p>
+   <p class="about">
     {{user.profile.blogprofile.about_the_author|safe}}
   </p>
 {% endif %}
