@@ -134,6 +134,7 @@ def show_this_incident(request, ee_fake_key):
         linker = {
             'CO-141108-001': 7,
             'BIKE-LAW-HELP-1': 69,
+            'BIKE-LAW-HELP-2': 80,
         }
 
     I = Incident.objects.get(pk=linker[ee_fake_key])
