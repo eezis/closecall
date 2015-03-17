@@ -124,19 +124,34 @@ using the DB.
 def show_this_incident(request, ee_fake_key):
     #the key must be 8 characters long, [a-z0-9-] ee-1-173
     # CO-141108-001  -- the incident on Nelson Road with Justin Hoesse
-    if settings.DEV_MODE:
-        # print 'DEV MODE TRUE'
-        linker = {
-            'CO-141108-001': 3,
-            'BIKE-LAW-HELP-1': 3,
-        }
-    else:
-        linker = {
-            'CO-141108-001': 7,
-            'BIKE-LAW-HELP-1': 69,
-            'BIKE-LAW-HELP-2': 80,
-        }
 
+    # if settings.DEV_MODE:
+    #     # print 'DEV MODE TRUE'
+    #     linker = {
+    #         'CO-141108-001': 3,
+    #         'BIKE-LAW-HELP-1': 3,
+    #         'BIKE-LAW-HELP-2': 3,
+    #     }
+    # else:
+    #     linker = {
+    #         'CO-141108-001': 7,
+    #         'BIKE-LAW-HELP-1': 69,
+    #         'BIKE-LAW-HELP-2': 80,
+    #     }
+
+
+    if ee_fake_key.endswith('/'):
+        ee_fake_key = ee_fake_key.replace('/','')
+
+    linker = {
+        'CO-141108-001': 7,
+        'BIKE-LAW-HELP-1': 69,
+        'BIKE-LAW-HELP-2': 80,
+    }
+
+
+    print "fake key: {}".format(ee_fake_key)
+    print "fake key: {}".format(linker[ee_fake_key])
     I = Incident.objects.get(pk=linker[ee_fake_key])
 
     return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': ee_fake_key})

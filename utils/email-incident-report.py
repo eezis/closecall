@@ -1,5 +1,8 @@
 """
 Given and incident ID, find all the users that are within X miles
+
+1. Change the
+
 """
 
 import sys
@@ -22,6 +25,7 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
+INCIDENT_ID = 107
 
 def get_users_close_to_incident(incident_id, radius=60):
     # get the incident
@@ -64,19 +68,15 @@ subject = "Close Call Database - Incident Reported in your Area"
 msg = """
 Greetings from the Close Call Database for Cyclists.
 
-Two recent incidents have been reported in your area. The first incident occurred Saturday out by Carter Lake. It was not very serious but was entered into the database to create a record for that driver. The second incident occurred on Tuesday January 27th on Flagstaff. That incident deserves some consideration.
+Unfortunately an incident has been reported by a cyclist in your area.
 
-The motorist on Flagstaff exhibited some troubling behavior. In the video you can see the driver make a careless pass, traveling into the oncoming traffic lane in front of a blind corner. Then for some reason, the driver inexplicably pulled over further up the road to confront the cyclist and eventually punched the cyclist in the chest. The cyclist filmed the entire episode. Unfortunately, something seems a bit "off" with this particular driver and we should be wary of him. If anyone has had previous encounters with the driver in question -- he drives an orange subaru, with dents, you will see it in the video -- please email closecalldatabase@gmail.com with the information or file an incident report (even if it was a past encounter).
+You can find the details here: http://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/
 
-You can read the account and see the video of the Flagstaff incident here: http://closecalldatabase.com/incident/show-detail/70/
+If anyone has also had an ecounter with the vehicle/driver in question, please reply to this email with details.
 
-The police are investigating the incident.
-
-You may wish to share this email with other cyclists in your area, particularly if they ride up Flagstaff.
-
+You may wish to share this information with other cyclists in your area, particularly if they ride in the area where the incident occurred.
 
 Ride Safely,
-
 
 Ernest Ezis
 
@@ -93,16 +93,26 @@ Close Call Database
 # user_list.append(u)
 
 
+msg = msg.replace('#INCIDENT_ID#', str(INCIDENT_ID))
 
-user_list = get_users_close_to_incident(70,60)
+user_list = get_users_close_to_incident(INCIDENT_ID,60)
 
 print '\n'
+print '{} users in the incident zone'.format(len(user_list))
 print 'sending emails\n'
 
+
+# TWEAK THE INCIDENT_ID CONSTANT UP TOP!
+TESTING = True
+
 for u in user_list:
-    print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
-    print u'emailing: {}'.format(u.user.email)
-    # send_incident_notification(subject, msg, u.user.email)
+    if TESTING:
+        print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
+        print u'emailing: {}'.format(u.user.email)
+    else:
+        print u'emailing: {}'.format(u.user.email)
+        send_incident_notification(subject, msg, u.user.email)
+
 
 
 # email a copy to me
@@ -110,7 +120,10 @@ u = User.objects.get(username='eezis')
 send_incident_notification(subject, msg, u.email)
 
 print '\n'
-print 'emails have been sent'
+if TESTING:
+    print 'emails have ***NOT*** been sent'
+else:
+    print 'emails have been sent'
 
 
 

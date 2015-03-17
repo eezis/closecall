@@ -30,5 +30,5 @@ from users.models import UserProfile
 UPS = UserProfile.objects.all()
 
 for u in UPS:
-    print u'"{}, {}, {}, {}", {}'.format(u.city, u.state, u.country, u.zipcode, u.created)
+    print u'"{}, {}, {}, {}", {}'.format(unicode(u.city), unicode(u.state), unicode(u.country), unicode(u.zipcode), unicode(u.created)).encode('utf-8')
 
