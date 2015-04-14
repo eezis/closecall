@@ -462,7 +462,9 @@ def strava_registration(request):
                     # >>> u = User.objects.get(username='john')
                     # >>> u.set_password('new password')
                     # >>> u.save()
-                    admin_mailer('UNEXPECTED LOGIN ISSUE', 'See view.core if user_profile_exists login attempt. \n' + request.body )
+
+                    user_having_trouble = u"{} {} : {} : usnermane={} : Id={}".format(fname, lname, email, created_username, athelete_id)
+                    admin_mailer('UNEXPECTED LOGIN ISSUE', 'See view.core if user_profile_exists login attempt. \n' + user_having_trouble )
                     try:
                         if P: print "TROUBLE -- the login failed, user redirected to login-help-page"
                     except IOError:

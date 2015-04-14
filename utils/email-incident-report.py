@@ -72,9 +72,9 @@ Unfortunately an incident has been reported by a cyclist in your area.
 
 You can find the details here: http://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/
 
-If anyone has also had an ecounter with the vehicle/driver in question, please reply to this email with details.
+If anyone believes that they have had a previous ecounter with the vehicle in question, please reply to this email with details.
 
-You may wish to share this information with other cyclists in your area, particularly if they ride in the area where the incident occurred.
+You may wish to share this information with other cyclists, particularly if they ride in the area where the incident occurred.
 
 Ride Safely,
 
@@ -103,7 +103,7 @@ print 'sending emails\n'
 
 
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
-TESTING = True
+TESTING = False
 
 for u in user_list:
     if TESTING:
