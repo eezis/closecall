@@ -1,4 +1,6 @@
 
+Any chance that bikes get sold with a little booklet that explains the laws?  And also makes suggestions for sharing the road? (it would get outdated, but should have a link to a URL with latest changes -- print once a year?)
+
 
 Allow folks to add their strava account. Then alert if incidents on their roads? Might be too much work for the benefit.
 
@@ -68,4 +70,27 @@ Cameras on Nelson
 
 Rideye -- the video cameras
 
+
+======
+
+Write an NTLK or other bot to monitor for cycling news (and also to help Ken McLeod monitor the laws)
+
+On Mon, Mar 23, 2015 at 3:21 PM, Ken McLeod <ken@bikeleague.org> wrote:
+Hi Ernest,
+
+Thanks for checking up on me. I think I’m going to hold off until the Governor signs. I’ve got a reminder on my calendar to check it periodically and I’ll need to do a review of the state law pages after most legislative sessions close in May/June. I think South Dakota (HB 1030) also passed a 3 foot bill this year and several are still active (e.g. Alabama SB 4).
+
+I’ll also be doing a review next month as part of our Bicycle Friendly States ranking. If there are other laws that come up please let me know because it is super helpful.
+
+Thanks,
+
+Ken
+
+
+===
+
+
+Add a "Why this site exists" for drivers, and show pictures like this:
+
+http://www.tenerifenews.org.es/2014/02/near-miss-prompts-cycling-club-fury/
 

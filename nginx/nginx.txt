@@ -1,3 +1,18 @@
+The location of the logs are defined in nginx.conf
+
+access_log  /var/log/nginx/nginx.access.log;
+error_log /etc/nginx/nginx.error.log;
+
+(closecall)eezis@closecall:~/sites/closecall$ tail -20 /etc/nginx/nginx.error.log;
+
+need
+
+sudo tail -100 /var/log/nginx/nginx.access.log
+
+---
+
+
+
 sudo cp nginx/nginx.conf /etc/nginx/nginx.conf
 
 TO TEST RUN THE NEXT COMMAND
@@ -21,8 +36,6 @@ $ sudo nginx -t
                 proxy_set_header X-Real-IP $remote_addr;
                 add_header P3P 'CP="ALL DSP COR PSAa PSDa OUR NOR ONL UNI COM NAV"';
         }
-    }
-
 
 
 # recommendation from gunicorn
@@ -44,3 +57,5 @@ server {
         }
 
   }
+
+
