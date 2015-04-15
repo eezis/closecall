@@ -25,7 +25,7 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 127
+INCIDENT_ID = 128
 
 def get_users_close_to_incident(incident_id, radius=60):
     # get the incident
@@ -103,7 +103,7 @@ print 'sending emails\n'
 
 
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
-TESTING = False
+TESTING = True
 
 for u in user_list:
     if TESTING:
