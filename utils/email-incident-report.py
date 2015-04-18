@@ -25,7 +25,7 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 128
+INCIDENT_ID = 134
 
 def get_users_close_to_incident(incident_id, radius=60):
     # get the incident
@@ -72,7 +72,7 @@ Unfortunately an incident has been reported by a cyclist in your area.
 
 You can find the details here: http://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/
 
-If anyone believes that they have had a previous ecounter with the vehicle in question, please reply to this email with details.
+If anyone believes that they have had a previous encounter with the vehicle in question, please reply to this email with details.
 
 You may wish to share this information with other cyclists, particularly if they ride in the area where the incident occurred.
 

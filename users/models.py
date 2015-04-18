@@ -20,7 +20,9 @@ class UserProfile(BaseFields):
     zipcode = models.CharField(null=True, blank=True, max_length=30, verbose_name="Zip/Postal Code")
     # does the user want email notifications when new incidents are reported in their area?
     email_incidents = models.BooleanField(default=True, verbose_name="Email Me When Incidents Are Reported In My Area")
-    # probably need position in order to do lookups (find incidents within 100 miles)
+    #
+    # email_articles = models.BooleanField(default=True, verbose_name="Email Me When Important ")
+    # need position in order to do lookups (find incidents within 100 miles)
     position = models.CharField(null=True, max_length=80)
     # sms_incidents = models.BooleanField(deault=True, verbose_name="Receive")
     # sms would require phone numbers
