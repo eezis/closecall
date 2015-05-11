@@ -80,6 +80,10 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
 class ListIncidentView(LoginRequiredMixin, ListView):
     model = Incident
 
+    # def get_queryset(self):
+    #     qs = super(ListIncidentView, self).get_queryset()
+    #     return qs.filter(visible=True)
+
 
 class DetailIncidentView(LoginRequiredMixin, DetailView):
     model = Incident
@@ -166,6 +170,7 @@ def show_this_incident_for_authed_users(request, incident_id):
         return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': incident_id})
     else:
         return render(request, 'incident/notavailable.html')
+
 
 def show_all_incidents(request):
     I = Incident.objects.filter(visible=True)

@@ -63,10 +63,8 @@ def send_incident_notification(subj, msg, recipient):
 
 def HomeView(request):
     if request.user.is_authenticated():
-
         I = Incident.objects.filter(user=request.user)
         N = InTheNews.objects.all().values('title','url', 'tldr')[:5]
-        # Local_I = Local Incidents
         try:
             Local_I = request.user.profile.get_user_incidents()
             # Latest_I = Latest Incidents (most recent) -- might want to modify to get the most recent *dangeruous* instances

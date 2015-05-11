@@ -138,7 +138,8 @@ class UserProfile(BaseFields):
         # u_lat = self.get_lat()
         # u_lon = self.get_lon()
         u_lat, u_lon = self.get_lat_lon()
-        incidents = Incident.objects.all()
+        # incidents = Incident.objects.all()
+        incidents = Incident.objects.filter(visible=True)
         for i in incidents:
             if distance_between_geocoded_points(u_lat, u_lon, i.position.latitude, i.position.longitude) <= miles:
                 matched_incidents.append(i)
