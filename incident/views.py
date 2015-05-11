@@ -162,7 +162,10 @@ def show_this_incident_for_authed_users(request, incident_id):
     #the key must be 8 characters long, [a-z0-9-] ee-1-173
     # CO-141108-001  -- the incident on Nelson Road with Justin Hoesse
     I = Incident.objects.get(id=incident_id)
-    return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': incident_id})
+    if I.visible:
+        return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': incident_id})
+    else:
+        return render(request, 'incident/notavailable.html')
 
 def show_all_incidents(request):
     I = Incident.objects.filter(visible=True)

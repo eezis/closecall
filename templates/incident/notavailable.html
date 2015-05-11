@@ -1,0 +1,35 @@
+{% extends "sitebase.html" %}
+
+{% block page_title %}Close Call Database - Custom Error Page{% endblock %}
+
+{% block metatags %}
+<meta name="description" content="A collection of news stories describing driver and motorist infractions against cyclists.">
+<meta name="keywords" content="news, cycling, cyclist, database, accidents, incidents, aggressive, drivers">
+{% endblock %}
+
+{% block extra_styles %}
+h2 {
+    color: black;
+}
+{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
+
+  <div class="page-header">
+    <h2><small>That Page Is Not Available</small></h2>
+    <hr style="border-color:darkgrey;">
+  </div>
+
+    <p><small><i>
+    Sorry, that incident report is not available.
+    </i></small></p>
+
+
+</div>
+
+
+{% endblock %}
+
+
