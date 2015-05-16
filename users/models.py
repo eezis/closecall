@@ -46,9 +46,9 @@ class UserProfile(BaseFields):
         send_mail('POSITION FIX', 'Fixing Position for: ' + self.user.username, 'closecalldatabase@gmail.com',
             ['ernest.ezis@gmail.com',], fail_silently=False)
         if self.zipcode != None:
-            address = "{} {} {} {}".format(self.city, self.state, self.zipcode, self.country)
+            address = u"{} {} {} {}".format(self.city, self.state, self.zipcode, self.country)
         else:
-            address = "{} {} {}".format(self.city, self.state, self.country)
+            address = u"{} {} {}".format(self.city, self.state, self.country)
         pos = get_geocode(address)
         if pos != 'ERROR':
             print pos

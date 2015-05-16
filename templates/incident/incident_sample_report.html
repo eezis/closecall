@@ -1,0 +1,148 @@
+<!-- This template is for specifically revealed incident reports -->
+
+{% extends "sitebase.html" %}
+
+{% block page_title %}CCDB Incident Report{% endblock %}
+
+{% block metatags %}
+<meta name="description" content="A database for the cycling community to document and record aggressive driving infractions by motorists">
+<meta name="keywords" content="cycling, cyclise, database, accidents, incidents, aggressive, drivers, driving">
+<meta name="robots" content="noindex">
+{% endblock %}
+
+{% block extra_css_or_js %}
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+{% endblock %}
+
+{% block extra_styles %}
+.description_section p {font-weight: 600}
+{% endblock %}
+
+
+{%block navigation %}
+  {% if user.is_authenticated %}
+    {% include '_nav-loggedin.html' %}
+  {% else %}
+    {% include '_nav-full.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 40px;">
+
+{# {% if user.is_authenticated %} #}
+
+{# STAFF CAN SEE USER NAME AND EMAIL #}
+{% if user.is_active and user.is_staff %}
+    <p><span style="padding-right:20px;">{{incident.user}}</span>{{incident.user.email}}</p>
+{% endif %}
+
+  <div class="page-header" style="padding-bottom:0px;">
+    <h2><small>{{incident.date}}</small></h2>
+    <h2><small><span>{{incident.address}}</small></h2>
+    <hr style="border-color:darkgrey;">
+  </div>
+
+  <div class="description_section">
+    {% if incident.vehicle_description %}
+    <p>{{incident.vehicle_description}}</p>
+    {% endif %}
+    {% if incident.license_certain %}
+    <p>License Plate: {{incident.license_certain}}</p>
+    {% endif %}
+    {% if incident.license_uncertain %}
+    <p>License Plate (may not be 100% correct): {{incident.license_uncertain}}</p>
+    {% endif %}
+  </div>
+
+    {# the <hr> tag has to be conditional #}
+    {% if incident.vehicle_description or incident.license_certain or incident.license_uncertain %}<hr>{% endif %}
+
+    {# the report #}
+    <div style="padding: 18px 0 18px 0;">{{incident.what|safe}}</div>
+    <hr>
+    <br />
+    <p>This incident was reported as: <b>{{incident.danger_level}}</b></p>
+    <br />
+    {% if incident.driver_is_considered_dangerous %}
+     <div class="bg-info" style="padding: 20px 20px; 10px; 20px;">
+
+    <p style="color:red"><b>Based on this report, this driver is considered a danger to cyclists.</b></p>
+    <p>If you have had an encounter with this vehicle, please <a href="{% url 'create-incident' %}"><b>REPORT IT</b></a></p>
+    <p>If you can identify this driver, please email closecalldatabase at gmail and reference "Incident {{linker_incident_num}}" </p>
+      </div>
+    {% endif %}
+    <br />
+
+    {# Show the map here #}
+    <div id="map" style="height: 600px; width: 100%"></div>
+
+</div>
+
+
+
+{% block extra_script %}
+<script>
+
+$( document ).ready( initialize );
+$( document ).ready( codeLatLng );
+
+var geocoder;
+var map;
+var infowindow = new google.maps.InfoWindow();
+var marker;
+var lat = parseFloat('{{incident.get_lat}}');
+var lng = parseFloat('{{incident.get_lon}}');
+
+function initialize()
+{
+    geocoder = new google.maps.Geocoder();
+    map = new google.maps.Map(document.getElementById("map"),
+    {
+        zoom: 14,
+        center: new google.maps.LatLng(lat, lng),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+}
+
+function codeLatLng()
+{
+
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode({'latLng': latlng}, function(results, status)
+    {
+        if (status == google.maps.GeocoderStatus.OK)
+        {
+            if (results[0])
+            {
+                map.setZoom(11);
+                marker = new google.maps.Marker(
+                {
+                    position: latlng,
+                    map: map
+                });
+                infowindow.setContent(results[0].formatted_address);
+                infowindow.open(map, marker);
+            }
+            else if (results[1])
+            {
+
+                alert(results[1].formatted_address);
+            }
+            else
+            {
+                alert("No results found");
+            }
+        }
+        else
+        {
+            alert("Geocoder failed due to: " + status);
+        }
+    });
+}
+</script>
+{% endblock %}
+
+{% endblock %}

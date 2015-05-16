@@ -19,6 +19,7 @@ from myregistration.forms import MyRegistrationForm
 from registration.views import RegistrationView
 # url(r'^register/$',RegistrationView.as_view(form_class=MyRegistrationForm), name='registration_register'),
 
+from incident.views import show_sample_report
 
 urlpatterns = patterns('',
     url(r"^$", HomeView, name="home"),
@@ -26,6 +27,8 @@ urlpatterns = patterns('',
     url(r'^welcome/', TemplateView.as_view(template_name="welcome.html"), name="welcome"),
     url(r'^resources/', TemplateView.as_view(template_name="resources.html"), name="resources"),
     url(r'^date-test/', TemplateView.as_view(template_name="date-test.html"), name="date-test"),
+
+    url(r'^incident/show/CO-141108-001/', show_sample_report, name="show-sample-report"),
 
     # attempt to override registration so that it has first and last (this probably should have worked, probably need name='registration_register')
     # url(r'^accounts/register/', MyRegistrationView.as_view(), name="register"),
@@ -42,7 +45,6 @@ urlpatterns = patterns('',
     # no parameter is given (catches the edge case where someone logs in, but they don't have a UserProfile created
     # which means something was broken in the registration process flow
     url(r'^user-profile-detail/$', CheckForUserProfile, name='check-profile-detail'),
-
 
     url(r'^incident/', include('incident.urls')),
     url(r'^blog/', include('publish.urls')),

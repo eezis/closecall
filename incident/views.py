@@ -120,6 +120,13 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
         return super(UpdateIncidentView, self).form_valid(form)
 
 
+def show_sample_report(request):
+    print 'bingo'
+    # enables for unregistered users: http://closecalldatabase.com/incident/show/CO-141108-001/
+    I = Incident.objects.get(pk=7)
+    return render(request, 'incident/incident_sample_report.html', {'incident' : I, 'linker_incident_num': 7})
+
+
 """
 This one is controlled by me, I specifically mask the id because I want this public, but most of them I don't want public so I will pass a proxy value
 if I use this feature a lot, then I should make a model and db table (Class PublicLinkProxy) and generic url, then I could update the table on the fly
