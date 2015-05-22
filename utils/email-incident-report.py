@@ -25,13 +25,18 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 185
+INCIDENT_ID = 179
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
-TESTING = True
+TESTING = False
 
 def get_users_close_to_incident(incident_id, radius=60):
     # get the incident
     i = Incident.objects.get(id=incident_id)
+    if i.closedfirstloop:
+        print "This incident has already been emailed out???"
+        break
+
+
     # create a list object to store the matches
     matched_users = []
     # we want to search the full universe of users
