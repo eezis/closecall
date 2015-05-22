@@ -38,6 +38,8 @@ class Incident(models.Model):
 
     reviewed = models.BooleanField(default=False)
     accepted = models.BooleanField(default=True)
+    # reviewed, clarified if needed, emails sent if merited
+    closedfirstloop = models.BooleanField(default=False)
 
     # Commercially Licensed Driver
 
