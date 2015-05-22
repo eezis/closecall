@@ -59,9 +59,9 @@ locally
     python manage.py makemigrations
     python manage.py migrate
     # git status (to see the migration files if you want)
-    # must add them!
+    # must add them! -- $ git add incident/migrations/0025_auto_20150522_1258.py )
     git add -A
-    git commit -a -m "update"
+    git commit -a -m "update description"
     git push
 
 Server

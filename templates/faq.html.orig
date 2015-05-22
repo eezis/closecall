@@ -1,0 +1,132 @@
+{% extends "sitebase.html" %}
+{# {% extends "_base.html" %} #}
+
+{% block page_title %}FAQ - Close Call Database for Cyclists{% endblock %}
+
+{% block metatags %}
+<meta name="description" content="A collection of news stories describing driver and motorist infractions against cyclists.">
+<meta name="keywords" content="news, cycling, cyclist, database, accidents, incidents, aggressive, drivers">
+<meta name="author" content="Ernest Ezis">
+{% endblock %}
+
+{% block extra_styles %}
+h2 {
+    color: black;
+}
+.question {
+    font-size: 1.06em;
+    font-weight: 700;
+    padding-top: 4px;
+}
+.answer{
+    margin: 4px;
+    padding: 8px 8px 8px 22px;
+    font-size: 0.98em;
+    line-height: 1.6em;
+}
+{% endblock %}
+
+{% block content %}
+<!--
+{% if messages %}
+<div class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">
+<ul>
+    {% for message in messages %}
+      <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><em><b>{{ message|safe }}</b></em></p>
+    {% endfor %}
+</ul>
+</div>
+<br />
+{% endif %}
+-->
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 40px;">
+
+  <div class="page-header" style="padding-bottom:0px; margin-bottom: 2px;">
+    <h2><small>Frequently Asked Questions</small></h2>
+    <hr style="border-color:darkgrey;">
+  </div>
+
+<div class="question">
+What can I do to help?
+</div>
+
+<div class="answer">
+Easy. Email your cycling friends, encourage them to register. This is a cyclist-to-cylist notification system. It will only work if a lot of cyclists register and act as each others' eyes and ears. It's particularly helpful to encourage other riders in your area.
+</div>
+
+
+<div class="question">
+How is "my area" defined? How big is my area?
+</div>
+
+<div class="answer">
+The Incident Reports that you see are the ones that occur within a 60 miles radius of your location; where your location is defined as the geographic center of the city or zip code that you have provided. The radius reaches across state lines and provincial borders. If you live in Washington DC, for instance, you will see Incidents that are reported in DC, Virginia, and Maryland that fall within a 60 mile radius.
+</div>
+
+<div class="question">
+Why is the radius set to 60 miles? Can I change it?
+</div>
+
+<div class="answer">
+I defaulted the radius to 60 miles to cover the range of stronger riders, who are quite capable of ranging that far from their home base. At the moment the radius that defines your area of interest cannot be changed, but it will be fully customizable in the future. So if you only wish to see Incident Reports in a tighter circle, you will be able to do so, and if you want to expand the range to view information in your region, you will be free to do that as well.
+</div>
+
+<div class="question">
+What if I ride in more than one location?
+</div>
+
+<div class="answer">
+I plan to add a feature that will allow you to subscribe to multiple areas of interest. So if you live in Seattle, WA but maybe spend your summers in Bend, OR, then you will be able to designate Seattle as your primary area of interest, and also add Bend and other locations as secondary areas of interest that you would like to track.
+</div>
+
+<div class="question">
+What's the different between and "Incident" and an "Accident"
+</div>
+
+<div class="answer">
+That's a critically important distinction. Accidents happen. Drivers make mistakes, cyclists do too. There is little we can do about that. An <i>"Incident"</i> -- as a term of art at this website -- is entirely different. <em>An Incident is when the action is intentional</em>.  In the area where I ride now, a motorist seems to have harrassed cyclists for a period of at least eight years before he finally involved in a fatal accident that took the life of a cyclist. Those drivers, the ones that are intentionally and repeatedly hostile, may represent the greatest danger to our community. They think it's fun to throw something at you, run you off the road, and they use their vehicle in a manner that has potentially lethal consequences. Those are the people to stop. They don't think you belong on the road, and worse than not caring about what happens to you, they are going out of their way to threaten you. Right now -- Winter 2014 -- this site is soley concerned with building an infrastructure and notification service to find those people. Facilities for tracking accidents and other phenomenon will be added later.
+</div>
+
+<div class="question">
+Can I add old Incidents, say stuff that happened last year or even two years ago?
+</div>
+
+<div class="answer">
+If the driver was notably belligerent, and if you can do so accurately, please do so. After a local driver was arrested in my area, other cyclists recognized him as the driver that had harassed them as well. Everyone thought their specific Incident was isolated, a one time thing, when in reality it was part of a large pattern. There was no easy way to share the infomation and connect the dots. Now you have a way to do so. Sharing information is what will enable us to see the pattern and identify the most dangerous drivers.
+</div>
+
+<div class="question">
+Does this site have a privacy policy?
+</div>
+
+<div class="answer">
+<a href="/privacy/">Yes.</a>
+</div>
+
+
+<p style="padding-top:30px"><i>I will add more to the FAQ as questions arise.</i></p>
+<!--
+<div class="question">
+What defines "my area"?
+</div>
+
+<div class="answer">
+Multiple Jurisdictions
+</div>
+
+<div class="question">
+What defines "my area"?
+</div>
+
+<div class="answer">
+Multiple Jurisdictions
+</div>
+
+-->
+
+</div>
+
+{% endblock %}
+
+

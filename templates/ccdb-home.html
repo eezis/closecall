@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- ==========================
+        Meta Tags
+    =========================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ==========================
+        Title
+    =========================== -->
+    <title>The Close Call Database for Cyclists</title>
+
+    <!-- ==========================
+        Favicons
+    =========================== -->
+    <link rel="shortcut icon" href="icons/favicon.ico">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-touch-icon-114x114.png">
+
+    <!-- ==========================
+        Fonts
+    =========================== -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- ==========================
+        CSS
+    =========================== -->
+    <link href="/static/theme/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/animate.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/yamm.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/owl.carousel.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/owl.theme.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/owl.transitions.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/creative-brands.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/color-switcher.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/color.css" rel="stylesheet" type="text/css">
+    <link href="/static/theme/css/custom.css" rel="stylesheet" type="text/css">
+
+    <!-- ==========================
+        JS
+    =========================== -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .feature p {font-size: 1.50em;}
+        .t120 {font-size: 1.20em;}
+    </style>
+
+</head>
+<body class="color-green">
+    <!-- ==========================
+        FACEBOOK - SHARE BUTTON
+    =========================== -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+{% comment %}
+    <!-- ==========================
+    COLOR SWITCHER - START
+    =========================== -->
+    <div id="color-switcher">
+        <div id="toggle-switcher"><i class="fa fa-gear"></i></div>
+        <span>Color Scheme:</span>
+        <ul class="list-unstyled list-inline">
+            <li id="blue" data-toggle="tooltip" data-placement="top" title="Blue"></li>
+            <li id="green" data-toggle="tooltip" data-placement="top" title="Green"></li>
+            <li id="orange" data-toggle="tooltip" data-placement="top" title="Orange"></li>
+            <li id="red" data-toggle="tooltip" data-placement="top" title="Red"></li>
+            <li id="purple" data-toggle="tooltip" data-placement="top" title="Purple"></li>
+            <li id="light-blue" data-toggle="tooltip" data-placement="top" title="Light Blue"></li>
+            <li id="yellow" data-toggle="tooltip" data-placement="top" title="Yellow"></li>
+            <li id="pink" data-toggle="tooltip" data-placement="top" title="Pink"></li>
+            <li id="light-green" data-toggle="tooltip" data-placement="top" title="Light Green"></li>
+            <li id="black" data-toggle="tooltip" data-placement="top" title="Black"></li>
+        </ul>
+
+        <button id="page-boxed-toggle" class="btn btn-primary">Boxed Page</button>
+    </div>
+    <!-- ==========================
+        COLOR SWITCHER - END
+    =========================== -->
+{% endcomment %}
+
+    <div id="page-wrapper" class="">
+
+
+    {# ========= HEADER --> holds NAV =============== #}
+    {% include 'theme-1/header-nav.html' %}
+
+    <!-- ==========================
+        JUMBOTRON - START
+    =========================== -->
+    <!--
+    <section class="jumbotron jumbotron2">
+        <div class="container">
+            <h2>WELCOME to the CCDB<small>A Community Project for Safer Cycling</small></h2>
+        </div>
+    </section>
+    -->
+    <!-- ==========================
+        JUMBOTRON - END
+    =========================== -->
+
+    <!-- ==========================
+        INTRODUCTION - START
+    =========================== -->
+    <section class="content" id="section-introduction">
+        <div class="container">
+            <h2 style="font-size: 3.40em;">A Community Project For Safer Cycling</h2>
+            <p><b>The Close Call Database for Cyclists</b> has been set up to connect cyclists together to share important information about the dangers that we are facing. "Share the Road" is a nice idea -- in fact, law -- but in practice too many of us are being needlessly injured, maimed, and killed. This site allows cyclists to contribute and collect critically important data for use by cycling advocates, law enforcement, law makers, and the medical community who treat our injuries.</p>
+        </div>
+    </section>
+    <!-- ==========================
+        INTRODUCTION - END
+    =========================== -->
+
+    <!-- ==========================
+        FEATURES - START
+    =========================== -->
+    <section class="content bg-color-2" id="section-features">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3">
+                    <div class="feature">
+                        <i class="fa fa-car"></i>
+                        <h3>Hostile Drivers</h3>
+                        <p style="font-size: 1.20em;">Identifying hostile drivers that intentionally harass cyclists is a primary focus of this site. The goal is to identify them, warn other cyclists in your area, and bring them to the attention of local police.</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="feature">
+                        <i class="fa fa-map-marker"></i>
+                        <h3>Collisions</h3>
+                        <p style="font-size: 1.20em;">Gather high quality, high integrity data from the cyclist's perspective that enables us to learn as much as possible from the accidents that occur, allowing us to make data-driven conclusions and seek data-driven solutions.</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="feature">
+                        <i class="fa fa-warning"></i>
+                        <h3>Dangerous Locations</h3>
+                        <p style="font-size: 1.20em;">An effort to map high risk intersections, roadways and other areas where accidents frequently occur. These areas may exhibit a large number of "close calls" and are probably candidates for infrastructure improvement.</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3">
+                    <div class="feature">
+                        <i class="fa fa-eye"></i>
+                        <h3>Crime &amp; Punishment</h3>
+                        <p style="font-size: 1.20em;">An effort to follow criminal and civil proceedings from collision to conclusion so that we can identify and attempt to address holes in the legal system that exist in some jurisdictions. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==========================
+        FEATURES - END
+    =========================== -->
+
+    <!-- ==========================
+        SEPARATOR - START
+    =========================== -->
+    <section class="content content-separator">
+        <div class="container">
+            <p class="text-lg text-center">We also need to be accountable for the way that we share the road.  &nbsp;&nbsp;So please ride responsibly!</p>
+        </div>
+    </section>
+    <!-- ==========================
+        SEPARATOR - END
+    =========================== -->
+
+    <!-- ==========================
+        ABOUT US - START
+    =========================== -->
+    <section class="content bg-color-2" id="section-about-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>About This Project</h2>
+                    <p>
+                    The idea for this site is not a new one. Hundreds if not thousands of cyclists have wished for a site like this. The only thing new is that one cyclist with technology skills got buzzed by one car too many and decided to do something about it.</p>
+                    <p>
+                    What can you do to help? The first and most important thing is to register. This is a cyclist-to-cyclist notification system. All networks grow more powerful as people join. We become each others' eyes and ears. Because the site will notify you about problems in your area, it's also in your interest to have a large number of riders in your area register. So don't just sign up. Sign up and tell your friends to do so as well.</p>
+                    <p>
+                    You can register using Strava or create a custom account.</p>
+
+                    <p>
+                    <a href="/get-strava-login"><img src="http://closecalldatabase.com/static/images/LogInWithStrava.png"></a>
+                    <span style="padding: 0 20px; 0 20px;"> OR </span>
+                    <a href="/accounts/register/"><button type="button" class="btn btn-primary">Create An Account</button></a>
+                    </p>
+
+
+                    <p>Photos courtesy of <a href="https://www.baltimorebrew.com/author/fern-shen/" target="_blank">Fern Shen</a>, from a story about <a href="https://www.baltimorebrew.com/2015/01/01/more-than-a-thousand-ride-for-tom-palermo-and-safer-biking/" target="_blank">Tom Palermo</a></p>
+
+
+                </div>
+                <div class="col-md-6">
+                    <div id="about-us-slider" class="owl-carousel owl-theme">
+                        <div class="item"><img src="/static/theme/image/palermo-bike-seat-rip.jpg" alt="" class="img-responsive"></div>
+                        <div class="item"><img src="/static/theme/image/palermo-candles.jpg" alt="" class="img-responsive"></div>
+                        <div class="item"><img src="/static/theme/image/palermo-ghost-bike.jpg" alt="" class="img-responsive"></div>
+                        <div class="item"><img src="/static/theme/image/palermo-1.jpg" alt="" class="img-responsive"></div>
+                        <div class="item"><img src="/static/theme/image/palermo-2.jpg" alt="" class="img-responsive"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ==========================
+        ABOUT US - END
+    =========================== -->
+
+    <!-- ==========================
+        RECENT BLOG POSTS - START
+    =========================== -->
+    <section class="content" id="section-blog-posts">
+        <div class="container">
+            <h2 class="text-center">Recent posts/news</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="recent-blog-post">
+                        <div class="post-date">{{blog.publish_date|date:"M d, Y" }}</div>
+                        <h3>{{blog.title}}</h3>
+                        <p>{{blog.the_post|safe|truncatewords:44}}</p>
+                        <a href="/articles/{{blog.slug}}">Read More<i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="recent-blog-post">
+                        <div class="post-date">{{news.report_on|date:"M d, Y" }}</div>
+                        <h3>{{news.title}}</h3>
+                        <p>{{news.summary|safe|truncatewords:44}}</p>
+                        <a href="/news">Read More<i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+
+              <a href="/articles" class="btn btn-inverse btn-lg"><i class="fa fa-arrow-circle-down"></i>See more Articles</a>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="/news" class="btn btn-inverse btn-lg"><i class="fa fa-arrow-circle-down"></i>See more News</a>
+            </div>
+        </div>
+    </section>
+    <!-- ==========================
+        RECENT BLOG POSTS - END
+    =========================== -->
+
+
+
+
+    <!-- ==========================
+        FOOTER - START
+    =========================== -->
+    <footer>
+        <div class="container">
+            <div class="row">
+
+
+              <div class="pull-center">
+                <ul class="brands brands-inline brands-sm brands-transition brands-circle">
+                        <li><a href="#" class="brands-facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="brands-twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="brands-google-plus"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+              </div>
+
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>© CloseCallDatabase 2015</p>
+                </div>
+
+
+                <ul class="nav navbar-nav navbar-right hidden-xs hidden-sm">
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/news/">News</a></li>
+                    <li><a href="/articles/">Blog</a></li>
+                    <li><a href="/faq/">Faq</a></li>
+                    <li><a href="/privacy/">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <!-- ==========================
+        FOOTER - END
+    =========================== -->
+
+    </div>
+
+    <!-- ==========================
+        JS
+    =========================== -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true"></script>
+    <script src="/static/theme/js/bootstrap.min.js"></script>
+    <script src="/static/theme/js/waypoints.min.js"></script>
+    <script src="/static/theme/js/owl.carousel.js"></script>
+    <script src="/static/theme/js/isotope.pkgd.min.js"></script>
+    <script src="/static/theme/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/theme/js/creative-brands.js"></script>
+    <script src="/static/theme/js/color-switcher.js"></script>
+    <script src="/static/theme/js/jquery.countTo.js"></script>
+    <script src="/static/theme/js/jquery.countdown.js"></script>
+    <script src="/static/theme/js/custom.js"></script>
+</body>
+</html>

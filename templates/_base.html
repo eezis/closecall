@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block metatags %}
+    {% endblock %}
+
+    {# ============Title============== #}
+    <title>{% block page_title %}The Close Call Database for Cyclists{% endblock %}</title>
+
+    {# ==============Favicons & Fonts ===============  #}
+    {% include 'theme-1/icons-and-fonts.html' %}
+
+    {# =========== CSS ============== #}
+    {% include 'theme-1/css-header.html' %}
+
+    {# ============ JS =============== #}
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+
+    {% block extra_css_or_js %}
+    {% endblock %}
+
+    <style type="text/css">
+      .feature p {font-size: 1.50em;}
+      .t120 {font-size: 1.20em;}
+
+      {% block extra_styles %}
+
+      {% endblock %}
+    </style>
+
+</head>
+<body class="color-green">
+    {% include 'theme-1/fb-share-button.html' %}
+
+    {# ========= color switcher ========== #}
+    {% include 'theme-1/color-switcher.html' %}
+
+
+    <div id="page-wrapper" class="page-boxed bg-color-2" >
+
+    {# ========= HEADER --> holds NAV =============== #}
+    {% include 'theme-1/header-nav.html' %}
+
+
+    <!-- ==========================
+        JUMBOTRON - START
+    =========================== -->
+    <!--
+    <section class="jumbotron jumbotron2">
+        <div class="container">
+            <h2>WELCOME to the CCDB<small>A Community Project for Safer Cycling</small></h2>
+        </div>
+    </section>
+    -->
+    <!-- ==========================
+        JUMBOTRON - END
+    =========================== -->
+
+<div class="container">
+
+      {% block content %}
+
+      {% endblock %}
+</div>
+
+
+
+
+    {# =========FOOTER ========== #}
+
+    {% include 'theme-1/footer.html' %}
+
+</div>  {# page-wrapper #}
+
+    {# =========== JS ========== #}
+    {% include 'theme-1/js-files.html' %}
+
+    {% block extra_scripts %}
+    {% endblock %}
+
+    {% include '_google_analytics.js' %}
+
+</body>
+</html>

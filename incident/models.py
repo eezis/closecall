@@ -21,17 +21,23 @@ class Incident(models.Model):
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
     position = GeopositionField(null=True)
-    witnesses = models.CharField(null=True, blank=True, max_length=255, verbose_name="Full Name and Phone or Email of Witnesses ( this field is not published )")
+    witnesses = models.CharField(null=True, blank=True, max_length=255, verbose_name="Your Name and Names of other Witnesses ( this field is not published )")
     # sadly had to add this because some folks are having trouble writing
     # a useful and literate report -- I can turn it off from the admin
-    visible = models.BooleanField(default=True) # <-- only enforced in the HomeView, needs to be in the ListView when I update UI
-    reported = models.BooleanField(default=False) # Set visible to False if a user says this is spam or porn or abusive, etc.
+    visible = models.BooleanField(default=True)
+    reported = models.BooleanField(default=False) # Reported/Flagged Set visible to False if a user says this is spam or false or abusive, etc.
+
+    reviewed = models.BooleanField(default=False)  # added to help me keep track of workflow
+    accepted = models.BooleanField(default=True)   # if not accepted, waiting for more info
 
     email_sent = models.BooleanField(default=False)
     email_text = models.TextField(null=True, blank=True)
     email_sent_on = models.DateTimeField(null=True, blank=True)
 
     internal_note = models.TextField(null=True, blank=True)
+
+    reviewed = models.BooleanField(default=False)
+    accepted = models.BooleanField(default=True)
 
     # Commercially Licensed Driver
 

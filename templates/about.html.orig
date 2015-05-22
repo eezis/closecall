@@ -1,0 +1,41 @@
+{% extends "sitebase.html" %}
+
+{% block page_title %}About The Close Call Database{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 10px;">
+<h2>About the Close Call Database</h2>
+  <hr>
+
+  <div class="page-header">
+
+    <h2><small>
+    The cycling community seems to be witnessing an increase in the number of accidents involving motor vehicles. These accidents are often tragic for the cyclist, resulting in serious injury and death. Drivers that hit cyclists reportedly flee the scene of the accident 50% of the time. Even when they are apprehended they seldom face serious consequences: police, prosecutors, juries and even judges are all motorists, few are cyclist, and trading on the sympathy of fellow motorists the driver often walks away with little more than a slap on the wrist and sometimes no charges are filed at all.
+    </small></h2>
+
+    <h2><small>
+    It sometimes seems like there is little we can do about it. This site has been created to help change that.
+    </small></h2>
+
+    <h2><small>
+    Hostile drivers are often serial offenders. When a driver "sends a message" by purposefully passing within several inches or by intentionally running you off the road they are committing a life-threatening assault and using their car as a potentially deadly weapon. Cataloging their agression and documenting their hostility helps to build a case against those drivers. This site can provide your local police and prosecutors with important information that should increase the likelihood that justice will be served if the driver ends up harming a cyclist. More importantly, serial offenders can be brought to the attention of your local police who may encourage them to change their behavior before a tragedy occurs.
+    </small></h2>
+
+
+    <h2><small>
+    Reporting an incident here will make it available to law enforcment and to your fellow cyclists. Filing a quick report may save someone's life. Registering at this site will also allow you to receive notice when danger surfaces in the community where you ride.
+    </small></h2>
+
+    <div style="padding-top:16px;">
+    <a href="/get-strava-login"><img src="/static/images/LogInWithStrava.png"></a>
+    </div>
+
+
+
+  </div>
+
+</div>
+
+
+{% endblock %}
