@@ -37,6 +37,7 @@
 {# STAFF CAN SEE USER NAME AND EMAIL #}
 {% if user.is_active and user.is_staff %}
     <p><span style="padding-right:20px;">{{incident.user}}</span>{{incident.user.email}}</p>
+    <p>{{incident.user.profile.first}} <span style="padding-right:20px;">{{incident.user.profile.last}}</span>{{incident.user.email}}</p>
 {% endif %}
 
   <div class="page-header" style="padding-bottom:0px;">
