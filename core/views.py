@@ -54,10 +54,13 @@ def incident_review_mailer(subj, msg):
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
     send_mail(subj, msg, 'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com', 'closecalldatabase@gmail' ], fail_silently=False)
 
-def send_incident_notification(subj, msg, recipient):
+def send_incident_notification(subj, msg, recipient, htmlmsg=None):
     to = []
     to.append(recipient)
-    send_mail(subj, msg, 'closecalldatabase@gmail.com', to, fail_silently=False)
+    if htmlmsg != None:
+        send_mail(subj, msg, 'closecalldatabase@gmail.com', to, fail_silently=False, html_message=htmlmsg)
+    else:
+        send_mail(subj, msg, 'closecalldatabase@gmail.com', to, fail_silently=False)
 
 
 

@@ -25,16 +25,16 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 179
+INCIDENT_ID = 188
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
-TESTING = False
+TESTING = True
 
 def get_users_close_to_incident(incident_id, radius=60):
     # get the incident
     i = Incident.objects.get(id=incident_id)
     if i.closedfirstloop:
         print "This incident has already been emailed out???"
-        break
+        raise Exception("This incident has already been emailed out???")
 
 
     # create a list object to store the matches
@@ -85,14 +85,12 @@ You may wish to share this information with other cyclists, particularly if they
 
 Ride Safely,
 
-Ernest Ezis
+Ernest Ezis/r/n
 
 Close Call Database
 
-@closecalldb
+@closecalldb/r/n
 @eezis
-
-https://www.strava.com/athletes/777405
 """
 
 
