@@ -73,24 +73,45 @@ def email_the_users(subject, message, user_list):
 subject = "Close Call Database - Incident Reported in your Area"
 
 msg = """
-Greetings from the Close Call Database for Cyclists.
-
-Unfortunately an incident has been reported by a cyclist in your area.
+Greetings from the Close Call Database for Cyclists. You are receiving this message because an incident has been reported by a cyclist in your area.
 
 You can find the details here: http://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/
 
-If anyone believes that they have had a previous encounter with the vehicle in question, please reply to this email with details.
+If you have had a previous encounter with the vehicle in question, please reply to this email with details.
 
 You may wish to share this information with other cyclists, particularly if they ride in the area where the incident occurred.
 
 Ride Safely,
 
-Ernest Ezis/r/n
+Ernest Ezis
 
 Close Call Database
 
-@closecalldb/r/n
-@eezis
+@closecalldb
+"""
+
+HTML_msg = """
+<p>Greetings from the Close Call Database for Cyclists. You are receiving this message because an incident has been reported by a cyclist in your area.</p>
+
+<p>You can find the details <a href="http://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/">here</a>.</p>
+
+<p>If you have had a previous encounter with the vehicle in question, please reply to this email with details.</p>
+
+<p>You may wish to share this information with other cyclists, particularly if they ride in the area where the incident occurred.</p>
+
+<p>Ride Safely,</p>
+
+<p><br />
+Ernest Ezis<br />
+<a href="http://closecalldatabase.com">Close Call Database</a><br /><br />
+<a href="https://twitter.com/eezis" class="twitter-follow-button" data-show-count="false"><img src="http://closecalldatabase.com/static/images/followeezis.png"></a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+&nbsp;&nbsp;&nbsp;
+<br /> <br />
+<a href="https://twitter.com/eezis" class="twitter-follow-button" data-show-count="false"><img src="http://closecalldatabase.com/static/images/followclosecalldb.png"></a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+&nbsp;&nbsp;&nbsp;
+</p>
 """
 
 
@@ -118,13 +139,15 @@ for u in user_list:
         print u'emailing: {}'.format(u.user.email)
     else:
         print u'emailing: {}'.format(u.user.email)
-        send_incident_notification(subject, msg, u.user.email)
+        # send_incident_notification(subject, msg, u.user.email)
+        send_incident_notification(subject, msg, u.email, htmlmsg=HTML_msg)
 
 
 
 # email a copy to me
 u = User.objects.get(username='eezis')
-send_incident_notification(subject, msg, u.email)
+# send_incident_notification(subject, msg, u.email)
+send_incident_notification(subject, msg, u.email, htmlmsg=HTML_msg)
 
 print '\n'
 if TESTING:
