@@ -17,6 +17,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'closecall.settings'
 import django
 django.setup()
 
+import datetime
 # import requests
 
 from users.models import UserProfile
@@ -25,50 +26,9 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 188
+INCIDENT_ID = 151
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
-TESTING = True
-
-def get_users_close_to_incident(incident_id, radius=60):
-    # get the incident
-    i = Incident.objects.get(id=incident_id)
-    if i.closedfirstloop:
-        print "This incident has already been emailed out???"
-        raise Exception("This incident has already been emailed out???")
-
-
-    # create a list object to store the matches
-    matched_users = []
-    # we want to search the full universe of users
-    U = UserProfile.objects.filter(email_incidents=True)
-    for u in U:
-        # get user's lat and lon
-        u_lat, u_lon = u.get_lat_lon()
-        # if the user is within the given radius of the incident, add them to the list of  matched users
-        if distance_between_geocoded_points(u_lat, u_lon, i.position.latitude, i.position.longitude) <= radius:
-            u_str = u"{} {} {} {}".format(u.first, u.last, u.user.username, u.user.email)
-            print u'{} {} {} {}'.format(u.first, u.last, u.user.username, u.user.email).encode('utf-8')
-            # note send the fill userprofile object back
-            matched_users.append(u)
-
-    return matched_users
-
-
-def email_the_users(subject, message, user_list):
-    for u in user_list:
-        send_incident_notification(subject, message, u.email)
-
-
-
-
-# users = get_users_close_to_incident(64,60)
-
-# for u in users:
-#     print unicode(u.user.email).encode('utf-8')
-
-
-
-
+TESTING = False
 
 subject = "Close Call Database - Incident Reported in your Area"
 
@@ -108,11 +68,61 @@ Ernest Ezis<br />
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 &nbsp;&nbsp;&nbsp;
 <br /> <br />
-<a href="https://twitter.com/eezis" class="twitter-follow-button" data-show-count="false"><img src="http://closecalldatabase.com/static/images/followclosecalldb.png"></a>
+<a href="https://twitter.com/closecalldb" class="twitter-follow-button" data-show-count="false"><img src="http://closecalldatabase.com/static/images/followclosecalldb.png"></a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 &nbsp;&nbsp;&nbsp;
 </p>
 """
+
+msg = msg.replace('#INCIDENT_ID#', str(INCIDENT_ID))
+HTML_msg = HTML_msg.replace('#INCIDENT_ID#', str(INCIDENT_ID))
+
+# sets the email_sent field to True
+# records the text of the email message that was sent out
+def update_incident_model_with_email_facts(incident_id, email_message):
+    i = Incident.objects.get(id=incident_id)
+    i.email_sent = True
+    i.email_text = email_message
+    i.email_sent_on = datetime.datetime.now()
+    i.save()
+
+
+def get_users_close_to_incident(incident_id, radius=60):
+    # get the incident
+    i = Incident.objects.get(id=incident_id)
+    if i.email_sent:
+        print "\n\r Email Flag is set, has this incident has already been emailed out???\n\r\n\r"
+        raise Exception("This incident has already been emailed out???")
+
+
+    # create a list object to store the users that will get alerts for this incident
+    matched_users = []
+    # we want to search the full universe of users that agreed to get email alerts
+    U = UserProfile.objects.filter(email_incidents=True)
+    for u in U:
+        # get user's lat and lon
+        u_lat, u_lon = u.get_lat_lon()
+        # if the user is within the given radius of the incident, add them to the list of  matched users
+        if distance_between_geocoded_points(u_lat, u_lon, i.position.latitude, i.position.longitude) <= radius:
+            u_str = u"{} {} {} {}".format(u.first, u.last, u.user.username, u.user.email)
+            print u'{} {} {} {}'.format(u.first, u.last, u.user.username, u.user.email).encode('utf-8')
+            # note send the fill userprofile object back
+            matched_users.append(u)
+
+    return matched_users
+
+
+# IS THIS EVER CALLED???
+def email_the_users(subject, message, user_list):
+    print '------------------ in email_the_users  method ----------'
+    for u in user_list:
+        send_incident_notification(subject, message, u.email)
+
+    if not TESTING:
+        email_message = msg
+        update_incident_model_with_email_facts(INCIDENT_ID, email_message)
+
+
 
 
 # print 'taking off with U object list for testing'
@@ -122,7 +132,7 @@ Ernest Ezis<br />
 # user_list.append(u)
 
 
-msg = msg.replace('#INCIDENT_ID#', str(INCIDENT_ID))
+
 
 user_list = get_users_close_to_incident(INCIDENT_ID,60)
 
@@ -131,20 +141,23 @@ print '{} users in the incident zone'.format(len(user_list))
 print 'sending emails\n'
 
 
-
-
 for u in user_list:
     if TESTING:
         print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
         print u'emailing: {}'.format(u.user.email)
     else:
         print u'emailing: {}'.format(u.user.email)
-        # send_incident_notification(subject, msg, u.user.email)
-        send_incident_notification(subject, msg, u.email, htmlmsg=HTML_msg)
+        send_incident_notification(subject, msg, u.user.email, htmlmsg=HTML_msg)
 
+# Now update the model
+if not TESTING:
+    update_incident_model_with_email_facts(INCIDENT_ID, msg)
 
 
 # email a copy to me
+print '\n'
+print 'now sending copy to eezis'
+print '\n'
 u = User.objects.get(username='eezis')
 # send_incident_notification(subject, msg, u.email)
 send_incident_notification(subject, msg, u.email, htmlmsg=HTML_msg)
