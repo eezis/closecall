@@ -1,0 +1,27 @@
+SAMPLE EMAIL LANGUAGE
+
+
+Hi Richard,
+
+I manage the Close Call Database and I am catching up on the work I missed while traveling for business last week.
+
+Your report has been reviewed and everything is in good order and has been accepted. It will be generally visible to all registered cyclists and specifically available to all the cyclists in your are when they login.  Future reports screen against prior entries so this driver will get flagged if he strikes again.
+
+Thanks for submitting your report,
+
+Ernest Ezis
+Close Call Database
+
+
+Hi Adam,
+
+I manage the Close Call Database, I apologize for taking so long to review your report, I was traveling for business last week.
+
+The report appears in good order, it's a shame you were unable to get a license plate.
+
+The rest of the data appears to be in good order. Your report will be generally visible to all registered cyclists and specifically available to all the cyclists in your are when they login.  Future reports screen against prior entries so this driver will get flagged if he strikes again.
+
+Thanks for submitting your report,
+
+Ernest Ezis
+Close Call Database
