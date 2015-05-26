@@ -7,6 +7,13 @@ Compound Forms:
 http://chriskief.com/2012/12/30/django-class-based-views-with-multiple-forms/
 
 
+=====
+Take three images, put them into one image
+=====
+
+use iagemagick to add photos together into one image:
+closecall $ convert +append incident193-1.png incident193-2.png incident193-3.png incident193.jpg
+
 ==========================================
 python manage.py collectstatic
 ==========================================
