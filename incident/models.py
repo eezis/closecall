@@ -41,6 +41,9 @@ class Incident(models.Model):
     # reviewed, clarified if needed, emails sent if merited
     closedfirstloop = models.BooleanField(default=False)
 
+    pending = models.BooleanField(default=False)
+    pending_note = models.TextField(null=True, blank=True)
+
     # Commercially Licensed Driver
 
     # speedlimit
