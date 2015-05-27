@@ -71,7 +71,8 @@ locally
     git commit -a -m "update description"
     git push
 
-Server
+Server *** NOTE *** you don't have to migrate if the local commands ran on "RemoteDB"
+
     cd sites/closecall; workon closecall
     sudo git pull
     python manage.py migrate
