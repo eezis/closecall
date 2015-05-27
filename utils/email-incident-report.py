@@ -26,9 +26,9 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 173
+INCIDENT_ID = 178
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
-TESTING = True
+TESTING = False
 
 subject = "Close Call Database - Incident Reported in your Area"
 
