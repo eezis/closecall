@@ -26,9 +26,9 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 178
+INCIDENT_ID = 174
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
-TESTING = False
+TESTING = True
 
 subject = "Close Call Database - Incident Reported in your Area"
 
@@ -57,18 +57,19 @@ HTML_msg = """
 
 <p>If you have had a previous encounter with the vehicle in question, please reply to this email with details.</p>
 
-<p>You may wish to share this information with other cyclists, particularly if they ride in the area where the incident occurred.</p>
+<p>You may wish to share email with other cyclists that ride in the area where the incident occurred.</p>
 
 <p>Ride Safely,</p>
 
 <p><br />
 Ernest Ezis<br />
-<a href="http://closecalldatabase.com">Close Call Database</a><br /><br />
-<a href="https://twitter.com/eezis" class="twitter-follow-button" data-show-count="false"><img src="http://closecalldatabase.com/static/images/followeezis.png"></a>
+<a href="http://closecalldatabase.com">Close Call Database</a>
+<br /><br />
+<a href="https://twitter.com/closecalldb" class="twitter-follow-button" data-show-count="false"><img src="http://closecalldatabase.com/static/images/followclosecalldb.png"></a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 &nbsp;&nbsp;&nbsp;
 <br /> <br />
-<a href="https://twitter.com/closecalldb" class="twitter-follow-button" data-show-count="false"><img src="http://closecalldatabase.com/static/images/followclosecalldb.png"></a>
+<a href="https://twitter.com/eezis" class="twitter-follow-button" data-show-count="false"><img src="http://closecalldatabase.com/static/images/followeezis.png"></a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 &nbsp;&nbsp;&nbsp;
 </p>
