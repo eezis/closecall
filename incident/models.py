@@ -4,11 +4,29 @@ from geoposition.fields import GeopositionField
 
 # Create your models here.
 
+
+what_verbose_str = """
+Now describe what happened. Be factual, include direction of travel for cyclists and vehicles. Example: <p style="font-size:0.90em;margin-top:10px;margin-left:24px;
+    margin-right:30px;">
+
+    I was traveling southbound on Westminster Road, two other cyclists were riding immediately behind me. The driver of a white pickup truck, also traveling south,
+    started to honk his horn at us . . . your specifics details . . . </p>
+    <p style="font-size:0.90em;margin-top:10px;margin-left:24px;margin-right:30px;">There was very little traffic on the road at the time of the encounter. The lighting was good,
+    all cyclists were inside the bike lane. </p>
+
+    <p style="font-size:0.80em;margin-top:10px;margin-left:24px;margin-right:30px;"><i>
+    <span style="font-size:1.0em; color:red">If you know the identity and home address of the driver, please do not include that information
+    in this report. You can email me that information (closecalldatabase@gmail.com) and I will include it in the non-public notes.</span></i>
+    </p>
+Tell your story with enough context so that it can be understood by cyclists that were not there and may be unfamiliar with the location.
+"""
+
 class Incident(models.Model):
     user = models.ForeignKey(User)
     # location = models.TextField(blank=True)
     address = models.CharField(null=True, max_length=200)
-    what = models.TextField(verbose_name='Describe What Happened (be factual, include direction of travel for cyclists and vehicles, note witnesses, etc.)')
+    # what = models.TextField(verbose_name='Describe What Happened (be factual, include direction of travel for cyclists and vehicles. Example: I was traveling southbound on Westminster Road, two other cyclists were riding immediately behind me. A white pickup, also traveling south . . .<br> test)')
+    what = models.TextField(verbose_name=what_verbose_str)
     date = models.DateField(null=True, blank=True, verbose_name="Date of Incident")
     time = models.TimeField(null=True, blank=True, verbose_name="Approximate Time of Incident")
     vehicle_description = models.CharField(null=True, blank=True, max_length=150, verbose_name="Vehicle Description")

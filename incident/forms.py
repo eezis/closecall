@@ -47,7 +47,7 @@ missed striking one of the riders. We believe the license plate number was 163-J
                 'placeholder': 'White Pickup Truck | Black BMW coupe | etc',
             }),
             "witnesses":forms.TextInput(attrs={
-                'placeholder':'Bill E. Witness, bwitness@gmail.com (cyclist); Jane Sawit, 555-555-5555 (motorist); etc',
+                'placeholder':'[Your Name First] Bill E. Witness, bwitness@gmail.com (cyclist); Jane Sawit, 555-555-5555 (motorist); etc',
             }),
             "color":forms.TextInput(attrs={
                 'placeholder':'the color of the vehicle in question',
@@ -58,11 +58,14 @@ missed striking one of the riders. We believe the license plate number was 163-J
             "model":forms.TextInput(attrs={
                 'placeholder':'Explorer | Tahoe | etc',
             }),
+            "vehicle_description":forms.TextInput(attrs={
+                'placeholder':'White Ford Ranger Pickup Truck (combine the fields above, this will be the published description when people read your report)',
+            }),
             "license_certain":forms.TextInput(attrs={
-                'placeholder':'State/Province license plate number - if certain ( OR: 555-55-5555 )',
+                'placeholder':'State/Province license plate number - if certain ( OR: 555-5555 )',
             }),
             "license_uncertain":forms.TextInput(attrs={
-                'placeholder':'State/Province and license plate number - if not completely certain - ( OR: 555-55-5555 )',
+                'placeholder':'State/Province and license plate number - if not completely certain - ( OR: 555-5555 )',
             }),
             "id_it_by":forms.TextInput(attrs={
                 'placeholder':'Dent in front right quarter panel, playboy mud flaps, etc',
