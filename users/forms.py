@@ -15,6 +15,8 @@ class UserProfileForm(ModelForm):
             'position': forms.HiddenInput(),
             'first': forms.TextInput({'placeholder': 'use your real first name'}),
             'last': forms.TextInput({'placeholder': 'use your real last name'}),
+            'city': forms.TextInput({'placeholder': 'NA if you live in a country lacking cities'}),
+            'state': forms.TextInput({'placeholder': 'NY CA CO / Ontario / Victoria / etc'}),
             'zipcode': forms.TextInput({'placeholder': 'provide if you live in a big city'}),
             'country': forms.TextInput({'placeholder': 'United States, United Kingdom, France, etc'}),
         }
