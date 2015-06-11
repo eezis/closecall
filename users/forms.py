@@ -13,6 +13,8 @@ class UserProfileForm(ModelForm):
         # need position to be a hidden field so that it can be updated by Google Geocoder
         widgets={
             'position': forms.HiddenInput(),
+            'First': forms.TextInput({'placeholder': 'use your real first name'}),
+            'Last': forms.TextInput({'placeholder': 'use your real last name'}),
         }
 
 
