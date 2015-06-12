@@ -26,9 +26,9 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 214
+INCIDENT_ID = 215
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
-TESTING = True
+TESTING = False
 
 subject = "Close Call Database - Incident Reported in your Area"
 
@@ -91,9 +91,9 @@ def update_incident_model_with_email_facts(incident_id, email_message):
 def get_users_close_to_incident(incident_id, radius=60):
     # get the incident
     i = Incident.objects.get(id=incident_id)
-    # if i.email_sent:
-    #     print "\n\r Email Flag is set, has this incident has already been emailed out???\n\r\n\r"
-    #     raise Exception("This incident has already been emailed out???")
+    if i.email_sent:
+        print "\n\r Email Flag is set, has this incident has already been emailed out???\n\r\n\r"
+        raise Exception("This incident has already been emailed out???")
 
 
     # create a list object to store the users that will get alerts for this incident

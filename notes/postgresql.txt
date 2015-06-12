@@ -9,7 +9,7 @@ $ psql -h localhost closecall eaecc
 (closecall)eezis@closecall:~/sites/closecall$ sudo su - postgres
 postgres@closecall:~$ psql
 
-
+list
 # backup
 # connect to ssh
 eezis@closecall:~$

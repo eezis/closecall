@@ -33,7 +33,9 @@ Email notifications will be sent when the Incident Report has been accepted.
 Thank you,
 
 Ernest Ezis
+
 Close Call Database for Cyclists
+
 """
 
 
