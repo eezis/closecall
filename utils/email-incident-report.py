@@ -26,9 +26,15 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 215
+INCIDENT_ID = 237
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
-TESTING = False
+
+TESTING = True
+MAIL_TO_EE = False
+
+# Radius = 20
+# Radius = 30
+Radius = 60
 
 subject = "Close Call Database - Incident Reported in your Area"
 
@@ -135,7 +141,7 @@ def email_the_users(subject, message, user_list):
 
 
 
-user_list = get_users_close_to_incident(INCIDENT_ID,60)
+user_list = get_users_close_to_incident(INCIDENT_ID, Radius)
 
 print '\n'
 print '{} users in the incident zone'.format(len(user_list))
@@ -156,12 +162,13 @@ if not TESTING:
 
 
 # email a copy to me
-print '\n'
-print 'now sending copy to eezis'
-print '\n'
-u = User.objects.get(username='eezis')
-# send_incident_notification(subject, msg, u.email)
-send_incident_notification(subject, msg, u.email, htmlmsg=HTML_msg)
+if MAIL_TO_EE:
+    print '\n'
+    print 'now sending copy to eezis'
+    print '\n'
+    u = User.objects.get(username='eezis')
+    # send_incident_notification(subject, msg, u.email)
+    send_incident_notification(subject, msg, u.email, htmlmsg=HTML_msg)
 
 print '\n'
 if TESTING:

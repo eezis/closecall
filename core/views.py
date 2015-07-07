@@ -446,6 +446,7 @@ def strava_registration(request):
                     if P: print "UserProfile exits, so just log this user in!"
                 except IOError:
                     pass
+
                 if login_a_user(request, this_user, athlete_id):
                     try:
                         if P: print "authenticated and logged in, redirected to home page\n"
@@ -454,6 +455,8 @@ def strava_registration(request):
                     return HttpResponseRedirect('/')
                 else:
                     # hmmm, this shouldn't happen, what if it does?
+
+
 
                     """ I could just create a new password? """
                     """ I could look up their current password and use it to try again
@@ -468,7 +471,7 @@ def strava_registration(request):
                     # admin_mailer('UNEXPECTED LOGIN ISSUE', 'See view.core if user_profile_exists login attempt. \n' + user_having_trouble )
 
                     # see 10:18 am email on 10:39 am, in the closecall gmail account
-                    admin_mailer('UNEXPECTED LOGIN ISSUE', 'See view.core if user_profile_exists login attempt. \n')
+                    admin_mailer('UNEXPECTED LOGIN ISSUE', 'See core.view if user_profile_exists login attempt. \n' + this_user)
                     try:
                         if P: print "TROUBLE -- the login failed, user redirected to login-help-page"
                     except IOError:
