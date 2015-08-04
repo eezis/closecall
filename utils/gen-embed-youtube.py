@@ -6,7 +6,6 @@
 youtube_url = 'https://youtu.be/20z9XXnjcw8'
 
 
-
 def create_html_for_youtube(video_url):
     the_html = """
     <p>You can watch the video below or view it on <a href="YOUTUBE_URL" target="_blank">You Tube</a>.</p>
