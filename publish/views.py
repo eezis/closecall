@@ -74,8 +74,11 @@ class ListBlogPostView(LoginRequiredMixin, ListView):
     context_object_name = 'post_list'
 
 def show_blog_post(request,slug):
-    article = BlogPost.objects.get(slug=slug)
-    return render(request, 'publish/article.html', {'article': article})
+    try:
+        article = BlogPost.objects.get(slug=slug)
+        return render(request, 'publish/article.html', {'article': article})
+    except BlogPost.DoesNotExist:
+        raise Http404
 
 
 def show_article(request, slug):
@@ -84,12 +87,15 @@ def show_article(request, slug):
     #  the trailing '/' gets lopped off before it gets here
     slug = slug.replace('/https://plus.google.com/share','')
 
-    article = BlogPost.objects.get(slug=slug)
+    try:
+        article = BlogPost.objects.get(slug=slug)
 
-    if article.publish_it & article.post_is_public:
-        return render(request, 'publish/show-article.html', {'article': article} )
-    else:
-        admin_mailer('Raising 404 for show_article', 'Some requested ' + unicode(slug) + ' and it is not publishable and public. Investigate.')
+        if article.publish_it & article.post_is_public:
+            return render(request, 'publish/show-article.html', {'article': article} )
+        else:
+            admin_mailer('Raising 404 for show_article', 'Some requested ' + unicode(slug) + ' and it is not publishable and public. Investigate.')
+            raise Http404
+    except BlogPost.DoesNotExist:
         raise Http404
 
 def list_articles(request):
