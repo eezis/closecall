@@ -81,3 +81,4 @@ urlpatterns = patterns('',
 urlpatterns += staticfiles_urlpatterns()
 
 handler500 = "core.views.handler500"
+handler404 = "core.views.handler404"
