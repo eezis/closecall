@@ -78,6 +78,7 @@ def show_blog_post(request,slug):
         article = BlogPost.objects.get(slug=slug)
         return render(request, 'publish/article.html', {'article': article})
     except BlogPost.DoesNotExist:
+        admin_mailer('Raising 404 for show_blog_post', 'Someone or something requested ' + unicode(slug) + ' add a redirect for that URL')
         raise Http404
 
 
@@ -96,6 +97,7 @@ def show_article(request, slug):
             admin_mailer('Raising 404 for show_article', 'Some requested ' + unicode(slug) + ' and it is not publishable and public. Investigate.')
             raise Http404
     except BlogPost.DoesNotExist:
+        admin_mailer('Raising 404 for show_article', 'Someone or something requested ' + unicode(slug) + ' add a redirect for that URL')
         raise Http404
 
 def list_articles(request):
