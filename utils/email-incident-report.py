@@ -26,10 +26,10 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 250
+INCIDENT_ID = 265
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
-TESTING = False
+TESTING = True
 MAIL_TO_EE = False
 
 # Radius = 20
