@@ -115,7 +115,16 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
             print ' == == == == == == == == == == == == == == == \n'
         except IOError:
             pass
-        msg = u'Incident UPDATED by {}' + self.request.user.username + '\nCheck to see if it is still in compliance, \
+
+        # GET THE ID OF THE INCIDENT REPORT THAT IS BEING UPDATED, AND DROP IT INTO THE EMAIL MESSAGE
+        the_incident_id = self.request.META.get('HTTP_REFERER', 'ID IS MISSING!')
+        # Looks like this -> http://localhost:8000/incident/update/226/
+
+        # swap in
+        # the_incident_id = the_incident_id.replace('http://localhost:8000/incident/update','http://closecalldatabase.com/incident/show-detail' )
+        the_incident_id = the_incident_id.replace('http://closecalldatabase.com/incident/update','http://closecalldatabase.com/incident/show-detail' )
+
+        msg = u'Incident ' + the_incident_id + ' UPDATED by {}' + self.request.user.username + '\nCheck to see if it is still in compliance, \
             or if it material and needs a resend! Their contact is ' + self.request.user.email
         incident_review_mailer('CCDB :: Incident ** UPDATED **', msg)
         # send_mail('Close Call Database', 'You updated your incident', 'closecalldatabase@gmail.com', [self.request.user.email])
