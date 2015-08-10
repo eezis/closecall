@@ -471,7 +471,7 @@ def strava_registration(request):
                     # admin_mailer('UNEXPECTED LOGIN ISSUE', 'See view.core if user_profile_exists login attempt. \n' + user_having_trouble )
 
                     # see 10:18 am email on 10:39 am, in the closecall gmail account
-                    admin_mailer('UNEXPECTED LOGIN ISSUE', 'See core.view if user_profile_exists login attempt. \n' + this_user)
+                    admin_mailer('UNEXPECTED LOGIN ISSUE', 'See core.view if user_profile_exists login attempt. \n' + this_user.username)
                     try:
                         if P: print "TROUBLE -- the login failed, user redirected to login-help-page"
                     except IOError:
