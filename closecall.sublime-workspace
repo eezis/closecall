@@ -544,18 +544,35 @@
 			}
 		},
 		{
-			"file": "incident/views.py",
+			"file": "notes/identify-driver.txt",
 			"settings":
 			{
-				"buffer_size": 8340,
+				"buffer_size": 536,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "core/views.py",
+			"file": "incident/models.py",
 			"settings":
 			{
-				"buffer_size": 27831,
+				"buffer_size": 8767,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "utils/fix_input.py",
+			"settings":
+			{
+				"buffer_size": 4562,
+				"line_ending": "Unix",
+				"name": "import re"
+			}
+		},
+		{
+			"file": "notes/__snippets.txt",
+			"settings":
+			{
+				"buffer_size": 1876,
 				"line_ending": "Unix"
 			}
 		},
@@ -568,20 +585,45 @@
 			}
 		},
 		{
+			"file": "utils/news_maker.py",
+			"settings":
+			{
+				"buffer_size": 2830,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<p>SPECIAL REPORT</p><p>Minneapolis police have issued a special warning to cyclist in Minneapolis. Individuals have been randomly assaulting cyclists by hurling chunks of cement from moving cars. The police are looking for a cream colored Bronco with a busted window. The window has a board over it (or it did at the time of the assault which occurred on 41st Street between Aldrich and Bryant.</p>\n\n<p>\nRead the news story <a href=\"http://minnesota.cbslocal.com/2015/08/09/police-issue-warning-after-cyclists-randomly-attacked-in-minneapolis/\" target=\"_blank\">here</a></p>\n\n\nAs some of you may know, cyclists in your area have been subjected to random attacks and the police have issued a special warning for cyclists to be careful and to be on the lookout for the perpetrators.\n\nYou can find more details here: http://closecalldatabase.com/incident/show-detail/271/\n\nYou may wish to share this information with other cyclists in the area.\n\nRide Safely,\n\nErnest Ezis\n\nClose Call Database\n\n@closecalldb\n\n\n<p>As some of you may know, cyclists in your area have been subjected to random attacks and the police have issued a special warning for cyclists to be careful and to be on the lookout for the perpetrators.</p>\n\n<p>You can find more details <a href=\" http://closecalldatabase.com/incident/show-detail/271/\">here</a>.</p>\n\n<p>You may wish to share this information with other cyclists in your area.</p>\n\n<p>Ride Safely,</p>",
+			"settings":
+			{
+				"buffer_size": 1428,
+				"line_ending": "Unix",
+				"name": "<p>SPECIAL REPORT</p><p>Minneapolis police have is"
+			}
+		},
+		{
+			"file": "templates/sitebase.html",
+			"settings":
+			{
+				"buffer_size": 2490,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "core/views.py",
+			"settings":
+			{
+				"buffer_size": 27831,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"contents": "<p>I have learned a lot since releasing the Close Call Database four months ago, and today I want to focus on an emerging technology that I believe is critically  important to the cycling community: on-bike video cameras.</p>\n\n<p>I captured the image below from Google Maps.  It depicts Nelson Road here in Boulder County, Colorado, headed west with the foothills in the background.</p>\n\n<p><img src=\"http://closecalldatabase.com/static/images/Nelson-Rd-Westbound.jpg\" style=\"width:100%\">\n</p>\n\n<p>Using the car for scale -- the one cleverly driving inside the bike lane -- you can see that the road features wide traffic lanes in both directions and a generous bike lane that is about 3 feet wide, maybe a bit more.  Motorists should have no problem sharing that road with cyclists.  Yet in 2014, I had several dangerous encounters on this road.  All but one occurred on the stretch of road pictured above.  In each instance, I was riding alone. In each instance, I was toward the right side of the bike lane.  In each instance, there was no oncoming traffic. Yet two different drivers did the old “let’s send this cyclist a message” trick and swerved <i>inside the bike lane while traveling 60 mph</i> where parts of their vehicles missed me by inches.  The first time it happened the vehicle was a green dumptruck.  The second time it was a large RV.</p>\n\n<p>Please take a minute to look at that roadway pictured above, and then stop and think carefully about the answer to this question: what kind of an asshole thinks it’s fun to drive a dumptruck or a 7.5 ton RV within inches of a vulnerable cyclist at 60 mph on a road like the one shown above?</p>\n\n<p>The answer: the type of asshole that thinks he can get away with it.</p>\n\n<p>A road like the one above provides great visibility for the driver.  They can see that there are no cars, no cops, no witnesses.  Where you and I see an open road, people that have some perverse behavioral problem see an opportunity to “send a message.”  And some of them do so -- that’s why this site exists.</p>\n\n<p>I want to drive that point home. <i>The drivers that do this type of thing are willing to do so because they believe they can get away with it</i>.  I can illustrate that point in a different context.  </p>\n\n<p>\nI moved to Washington DC after college and I was there when it was the oft-proclaimed “Murder Capital of the World.” The mainstream media ran story after story about “senseless” murders committed after the theft of a pair of sneakers, a wallet, a boom box, or some other low value item. They decried the irrationality of it, the wanton disregard for life, and continually asked, “What kind of person would do something like that?”</p>\n\n<p>It turns out that the question had an answer.  </p>\n\n<p>The Washington DC police force at that time was not particularly good at solving murder cases.  I am going to skip the root causes, but IMO it was the predictable consequence of well-intended but poorly implemented policy goal that resulted in terrible unintended consequences: a police force with reduced capabilities that could solve muggings and thefts but was not very good at solving murder cases. They could solve a mugging case because they had a witness: the victim was often able to identify the perpetrator. </p>\n\n<p>It didn’t take long for the criminals to recognize and react to the change in the police force’s reduced capabilities.  They made a  tragic realization and adapted; if I am going to steal those sneakers . . . and I don’t want to get caught . . . I better not leave a witness.  Bang!</p>\n\n<p>So the question, “Why did you shoot him over a pair of sneakers?” actually had a terrible answer: “<i>So I wouldn’t get caught.</i>”  </p>\n\n<p>But my point here is simple. The sociopaths and ‘antisocial personalities’ that populate our communities might not think like us, but that does not mean that they are irrational and stupid. They are managing their risks and they act when they think there is a low possibility or no possibility of being caught.</p>\n\n<p>So I am sure you start to see why I think cameras are critically important to the cycling community.  They are going to act as a deterrent that will curtail intentional harassment when the drivers that engage in dangerous behavior realize that there is a good chance they will not get away with it.  I like the way that cycliq.com summarized it in their mission statement:</p>\n\n<div style=\"margin:2px 22px 12px 22px; font-size:0.95em;\">\n<p>Our mission is to make motorists aware they’re being recorded in the hope they provide you with additional space and respect while sharing the road, consequently making road cycling safer and more enjoyable for everyone.</p>\n\n\n<p>This can only be achieved by widespread awareness and the Cycliq team are fully committed to making this a reality. And the more the cycling community become involved the faster this can be achieved…so please play your part and let people know Fly6's are 'out there' monitoring motorists regularly!</p>\n</div>\n\n<p>I like this message because I love deterrence: the best Incident Report is the one that never happens. But there are other reasons all road cyclists should consider purchasing a camera.  </p>\n\n<p>As I have reviewed the incidents that get reported I have learned that cyclists lose the “it’s your word against his word” battle every single time.  In an incident that still troubles me, after honking his horn at a small group of six riders, the driver of a pickup truck engaged in an aggressive punishment pass, purposefully steering into them as he completed his pass and actually brushing one of the riders on the elbow with his truck.  The group of cyclists called 911 (as you can imagine, the motorist did not call the police).  Not only did the responding officer cite the law incorrectly to the cyclist, but after talking to the driver -- who may have a history with cyclists -- the officer dismissed the word of six cyclists in favor of the lie being told by the driver.  So not only do cyclists routinely lose this “standoff” of competing stories, but in this case, a driver that is almost certainly a continuing danger, now understand just <i>how easy it is to assault cyclists and get away with it</i>.  Instead of punishment and contrition, this guy has a story to share with his buddies about the time he scared the shit out of some cyclists and the cop was on his side.</p>\n\n<p>Obviously, cameras provide some clear, objective evidence of what actually happened.  If you are riding in a lawful manner and sharing the road properly, this is only going to work in your favor, because right now the motorist always seems to win this battle. The other important thing that happens here, is that in most situations the camera captures something that many cyclists do not: the make and model of the car and the license plate. That is critical data, and all too often, a frightened or shaken cyclists is unable to collect it with certainty.  In a situation like that, the police can do nothing for you even if they are convinced your narrative is correct and they want to help you.</p>\n\n<p>This next part, isn’t going to be fun to discuss, but it is going to be important.  When more serious collisions occur, cyclists can be seriously injured or killed.  In the first case, people experiencing a blow to the head are often unable to recall what happened in the moments that led up to the collision.  In these situations, that fact is exploited by the attorney defending the motorist.  The driver can and will be highly incentivized to provide a story that may differ substantially from the actual events that took place.  A cyclist that suffered a blow to the head may not be able to offer a convincing recollection that provides a credible competing narrative.  </p>\n\n<p>Now I hate to say this next thing, but after what I have learned over the past four months, I feel like I need to say it.  If you ride responsibly, having a camera may be an important “insurance policy” to protect your family. The fact is, motorists hit and kill cyclists at an alarming rate.  I would like to tell you that when it happens, justice is served.  But I cannot because that would be a lie.  The fact is that proving fault can be very difficult and even when it’s demonstrated that the driver is at fault the laws are often woefully inadequate when it comes to consequences and they sometimes receive ridiculously light punishments.  The aggravating complication in this sad set of circumstances is that a dead cyclist cannot defend themselves, and the living motorists is all too happy to state that the cyclist was riding in the middle of the road. </p>\n\n<p>If you have a family, you should reconcile yourself right now to the prospect that if something were to happen to you while riding, the way the laws stand now, it’s likely that your family would receive little satisfaction from the traffic courts where it the incident would be adjudicated.  To do so, they may have to engage an attorney and proceed through the civil courts.  A deceased cyclist can offer no competing narrative to counter the driver’s “the cyclist was in the middle of the road” story.  In a situation like that, having strong, video evidence of what actually happened may be the difference between a satisfactory and unsatisfactory outcome for your family. </p>\n\n<p>So cameras may provide us with many benefits: an effective deterrent; as well as objective evidence that 1) breaks the “your word vs their word” battle that cyclists currently lose and 2) it can speak for you when you cannot speak for yourself.  Keep in mind that courtrooms are packed with judges, attorneys and jurors that are drivers but not cyclists. They will naturally sympathize with the driver. Video not only provides critical object evidence, it can create some empathy by helping non-cyclists to experience the incident from the cyclist’s perspective as well.</p>\n\n<p>Regarding the actual cameras themselves, this is going to be a tough and competitive landscape that is going to evolve quickly over the next few years.  While there are large industry players like GoPro, and many generic manufacturers providing similar functionality, I have found that when passionate cyclists make gear for other cyclists, the results are often worth the price (hat tip to <a href=\"http://shop.panachecyclewear.com/\" target=\"_blank\">Panache</a> for proving this point so effectively to me with impressive cycling kits that fit me far better and more comfortably than I ever thought possible).  So I was really happy to make contact with both <a href=\"http://www.rideye.com/\" target=\"_blank\">RIDEYE</a> and <a href=\"http://cycliq.com/\" target=\"_blank\">Cycliq</a> over the past few months.  I believe their focus on a cycling-specific rather than general purpose camera is going to offer the best value to cyclists now and in the future.  I am not in a position to recommend one camera over another for a couple reasons, including the fact that I only have experience with a Fly6.  But I can start to tell you about an important new chapter at the Close Call Database.</p>\n\n<p>I recently opened my door to find a large box on my porch.  Inside the box I found a generous gift.  Andrew Hagen and the other folks at Cycliq wanted to support the Close Call Database and sent ten Fly6 cameras.  </p>\n<br />\n<p><img src=\"http://closecalldatabase.com/static/images/fly6byten.jpg\" style=\"width:100%;\">\n</p>\n<br />\n<p>I didn’t have to think hard about what to do with them.  I distributed them to select riders in my area.  Since my goal is to maximize coverage of the roadways in and around Boulder, Colorado, I placed the cameras with people that ride a lot, ride where I don’t, and ride in different scenarios (commuter, recreational, commuter & recreational, etc).  My hope is that on any given day, we are getting good coverage of the local roads and capturing a balanced view of what local cyclists are experiencing.  </p>\n\n<p>The addition of nearly unimpeachable video evidence to the Close Call Database is also going to provide it with greater capabilities.  It’s still premature for me to disclose what’s being planned but I can say that by cooperating with the existing cycling advocacy ecosystem, as well was with an important satellite player, a new “best practice” may emerge that greatly improves the response that can be made to aggressive drivers.  I hope to have more news there next month.</p>\n\n<p>I do want to mention one more thing.  In addition to capturing drivers doing foolish things, my camera has also captured a number of boneheaded cyclists.  My liaison in the Boulder County Sheriff’s Office asked me a great question earlier in the year: “What can be done to reduce motorist frustration with cyclists?”  It was a very important question because it challenged me to broaden my perspective and take a balanced view of the “share the road” ethos.  I have observed some really poor cyclist behavior over the past couple months. I am going to have a forthcoming post about that. But with regard to the cameras, we should keep in mind that the dash cams that are so popular in some parts of the world are likely to start capturing cyclist behavior as well. </p>\n\n<p>For those of you interested in the cameras, my experience is limited to the Fly6 but I am <i>very pleased</i> with it -- I value attention to detail and even the packaging of the product underscores the thought, attention, and care that went into the product.  It provides me with the rear light I needed and the camera I never had (laws that are presented to protect cyclists are often used against us, read <a href=\"http://www.bikelaw.com/2015/04/06/iowa-bicycle-light-law-an-update/\" target=\"_blank\" >this article</a> to see how that happens). It gives me peace of mind for my family.  When I started this site, I suspected that the cameras would start to enjoy wide adoption once the price points fell. I am happy to report that is starting to happen and in the states the Fly6 is now available for $169 from <a href=\"http://www.rei.com/product/890483/cycliq-fly6-hd-camera-and-rear-bike-light/\" target=\"_blank\">REI</a>. I think the other thing I discovered is that I really like having a backward facing camera. </p>\n\n<p>My focus here has not been on the cameras, but on the reasons you should consider buying one.  But I don’t want to leave you hanging in that regard, here are some of the many existing reviews (for the cycling specific cameras from RIDEYE and Cycliq):</p> <br />\n\n<p>\n<b>Update 4/25/2015</b> For those that are curious, I uploaded some video from my ride today. The video was shot with the Fly6. The quality is degraded when uploaded and processed at youtube, but this gives you an idea of what it's like to have a rearward-facing camera. If you read about the epic flooding that hit Boulder in 2013, you can see some of the damage during this ride. I recommend selecting the \"watch on you youtube\" rather than viewing it in the smaller frame below.\n</p>\n\n<p>\n<b>Update 5/13/2015</b> I discovered an added benefit. On 5/12/2015, I was approaching a rail road crossing. The crossing is smoother in the bike lane than it is in the travel lane. As a result some drivers swerve into the bike lane to avoid the bumps (<i>most</i> of them look first). As I approached the crossing the driver that I was overtaking suddenly started to swerve into the bike lane. I yelled loudly to let him know that I was there and veered to the right to avoid a collision. Stuff like that happens, and I really wasn't upset. I didn't think he did it on purpose and I was cool with it. However, for some inexplicable reason, the driver wanted to yell <i>at me</i> even though <i>it was completely and unambiguously his fault!</i> He pulled alongside and started to yell and I simply looked at him and calmly said, \"I have it all on film.\" It was funny to watch him realize what that meant. Rather than continuing his nonensical tirade, he rolled up his window and drove away. And I got back to the business of riding. \n</p>\n<br />\n<p>\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/J2S1dPYehHI\" frameborder=\"0\" allowfullscreen></iframe>\n</p>\n\n\n</p>\n\n<hr>\n\n<p>Products from <a href=\"http://rideye.com/\" target=\"_blank\">RIDEYE</a>:\n<ul>\n<li><a href=\"http://www.dcrainmaker.com/2015/04/5-random-things-i-did-this-weekend-13.html\" target=\"_blank\">DC Rainmaker's recent comments on RIDEYE (see #4)</a></li>\n\n<li><a href=\"https://www.kickstarter.com/projects/rideye/rideye-the-black-box-camera-for-your-bike\" target=\"_blank\">Their kickstarter campaign</a></li>\n\n<li><a href=\"http://www.rideye.com/\" target=\"_blank\">To Purchase</a></li>\n\n</ul>\n</p>\n\n\n<br />\n<p>Products from <a href=\"http://cycliq.com/\" target=\"_blank\">Cycliq</a>:\n<ul>\n<li>\n<a href=\"http://www.dcrainmaker.com/2014/09/eurobike-snippets-trainers.html\" target=\"_blank\">DC Rainmaker's comments on the current Fly6</a>\n</li>\n<li>\n<a href=\"http://www.dcrainmaker.com/2014/02/fly6-hd-camera-light.html\" target=\"_blank\">DC Rainmaker's review of the first Fly6</a>\n</li>\n\n\n<li>\n<a href=\"http://www.roadbikerider.com/product-reviews/safety-equipment/fly6-combination-tail-light-hd-camera-updated\" target=\"_blank\">RoadBikeRider on the Fly6</a>\n</li>\n\n\n<li>\n<a href=\"http://www.dcrainmaker.com/2015/01/cycliq-mounted-camera.html\" target=\"_blank\">DC Rainmaker's Fly12 Sneak Peak</a>\n</li>\n<li><a href\"https://www.kickstarter.com/projects/fly6/fly12-cycling-accessory-1080p-camera-and-front-lig\" target=\"_blank\">Fly12 Kick Starter</a></li>\n\n<li><a href=\"http://www.rei.com/product/890483/cycliq-fly6-hd-camera-and-rear-bike-light/\" target=\"_blank\">To Purchase Fly6 in the U.S. (or check your Local Bike Shop)</a></li>\n\n<li><a href=\"http://cycliq.com/product\" target=\"_blank\">To Purchase Fly6 and Pre-Order the Fly12</a></li>\n\n\n</ul>\n</p>\n\n<br />\n\n",
 			"settings":
 			{
 				"buffer_size": 17857,
 				"line_ending": "Unix",
 				"name": "<p>I have learned a lot since releasing the Close"
-			}
-		},
-		{
-			"file": "notes/__snippets.txt",
-			"settings":
-			{
-				"buffer_size": 731,
-				"line_ending": "Unix"
 			}
 		},
 		{
@@ -781,12 +823,15 @@
 		"/Users/eae/code/sites/closecall/static",
 		"/Users/eae/code/sites/closecall/static/js",
 		"/Users/eae/code/sites/closecall/templates",
+		"/Users/eae/code/sites/closecall/templates/incident",
 		"/Users/eae/code/sites/closecall/templates/publish",
 		"/Users/eae/code/sites/closecall/users",
 		"/Users/eae/code/sites/closecall/utils"
 	],
 	"file_history":
 	[
+		"/Users/eae/code/sites/closecall/incident/views.py",
+		"/Users/eae/code/sites/closecall/incident/models.py",
 		"/Users/eae/code/sites/closecall/templates/sitebase.html",
 		"/Users/eae/code/sites/closecall/templates/publish/articles.html",
 		"/Users/eae/code/sites/closecall/templates/resources.html",
@@ -796,13 +841,11 @@
 		"/Users/eae/code/sites/closecall/templates/faq.html",
 		"/Users/eae/code/sites/closecall/publish/urls.py",
 		"/Users/eae/code/sites/closecall/notes/postgresql.txt",
-		"/Users/eae/code/sites/closecall/incident/views.py",
 		"/Users/eae/code/sites/closecall/users/forms.py",
 		"/Users/eae/code/sites/closecall/users/models.py",
 		"/Users/eae/code/sites/closecall/users/views.py",
 		"/Users/eae/code/sites/closecall/templates/users/userprofile_form.html",
 		"/Volumes/Fly6/CONFIG.TXT",
-		"/Users/eae/code/sites/closecall/incident/models.py",
 		"/Users/eae/code/sites/closecall/incident/forms.py",
 		"/Users/eae/code/sites/closecall/notes/__snippets.txt",
 		"/Users/eae/code/sites/closecall/notes/Laws-wishlist-.txt",
@@ -945,6 +988,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Database",
 			"PATH_INFO",
 			"\\n\\n",
 			"view.core",
@@ -1071,8 +1115,7 @@
 			"-",
 			"_.\\)",
 			"\\(_",
-			"_",
-			"_. "
+			"_"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1218,7 +1261,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -1351,10 +1394,10 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 5435.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
@@ -1487,10 +1530,10 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 38.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
@@ -1506,8 +1549,8 @@
 						"selection":
 						[
 							[
-								855,
-								855
+								992,
+								992
 							]
 						],
 						"settings":
@@ -1519,32 +1562,61 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 414.0,
+						"translation.y": 293.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "incident/views.py",
+					"file": "notes/identify-driver.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8340,
+						"buffer_size": 536,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4887,
-								4887
+								435,
+								435
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
+							"incomplete_sync": null,
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "incident/models.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 8767,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								910,
+								910
+							]
+						],
+						"settings":
+						{
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
@@ -1554,24 +1626,57 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "core/views.py",
+					"buffer": 5,
+					"file": "utils/fix_input.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 27831,
+						"buffer_size": 4562,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								20235,
-								20235
+								428,
+								428
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"auto_name": "import re",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "notes/__snippets.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1876,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1196,
+								764
 							]
 						],
 						"settings":
@@ -1580,17 +1685,17 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/Python/Python.tmLanguage"
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 9374.0,
+						"translation.y": 598.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "utils/gen-embed-youtube.py",
 					"semi_transient": false,
 					"settings":
@@ -1618,11 +1723,139 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 8,
+					"file": "utils/news_maker.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2830,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								274,
+								2826
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"auto_name": "",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1428,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								941,
+								577
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<p>SPECIAL REPORT</p><p>Minneapolis police have is",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "templates/sitebase.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2490,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								850,
+								850
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "core/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 27831,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								20318,
+								20318
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1633,8 +1866,8 @@
 						"selection":
 						[
 							[
-								0,
-								17857
+								598,
+								598
 							]
 						],
 						"settings":
@@ -1653,39 +1886,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 7,
-					"file": "notes/__snippets.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 731,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								494,
-								626
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
+					"buffer": 13,
 					"file": "publish/views.py",
 					"semi_transient": false,
 					"settings":
@@ -1713,11 +1914,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 14,
 					"file": "closecall/urls.py",
 					"semi_transient": false,
 					"settings":
@@ -1741,15 +1942,15 @@
 							"synced": false,
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
-						"translation.x": 1.0,
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 15,
 					"file": "notes/video-log.txt",
 					"semi_transient": false,
 					"settings":
@@ -1778,11 +1979,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 16,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1913,11 +2114,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 17,
 					"file": "core/tests.py",
 					"semi_transient": false,
 					"settings":
@@ -2048,11 +2249,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 18,
 					"file": "notes/_CODE_ERRATA.txt",
 					"semi_transient": false,
 					"settings":
@@ -2080,11 +2281,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 19,
 					"semi_transient": false,
 					"settings":
 					{
@@ -2112,7 +2313,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 14,
 					"type": "text"
 				}
 			]

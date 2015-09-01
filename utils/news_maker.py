@@ -10,11 +10,11 @@ my_title = "Driver Mixing Alcohol and Meds Kills Cyclist. Police Blame Cyclist."
 hat_tip = ""
 
 comments = """
-I cannot say this enough: if you are a cyclist, get an on-bike camera. Do it for your family.
+I cannot say this enough: if you are a cyclist, get an on-bike camera. Do it for your family. Do it now.
 
-This is not a pleasant story. Unfortunately, it's not a common one. Driver strikes and kills cyclist. As the only remaining witness, the driver's version of the "truth" becomes The Truth.
+This is not a pleasant story. Unfortunately, it's a common one. Driver strikes and kills cyclist. As the only remaining witness, the driver's version of the "truth" becomes The Truth.
 
-As every rider knows, and as the law clearly provides, there are times when a cyclist -- for their own safety -- must abandon the principle “that the rider shall ride as near to the right side of the roadway as practicable.” In this case, we have two drivers and one cyclist. The first driver is sober. The second driver is drunk and on three different medications; Xanax, Sertraline and Nortriptyline.
+As every rider knows <i>and as the law clearly provides</i> there are times when a cyclist -- for their own safety -- must abandon the principle “that the rider shall ride as near to the right side of the roadway as practicable.” In this case, we have two drivers and one cyclist. The first driver is sober. The second driver is drunk and on three different medications; Xanax, Sertraline and Nortriptyline.
 
 For the record, here are warnings associated with each of the drugs:
 
@@ -32,6 +32,8 @@ While the cyclist is held to the strictest interpretation of the law -- one that
 
 
 "Police say the driver of the car was Holly Gonyeau, 36, of Ferrisburgh. And police say she was driving drunk. A preliminary breath test shows her blood alcohol content was 0.123. Gonyeau was cited into court for drunk driving, but not the more severe charge of DUI with death resulting."
+
+
 
 So, I want to scream this at the top of my lungs to every cyclist in the world. Buy a #$(#&#) video camera for your bike and use it! If something happens to you it may be the only thing that provides objective evidence of what actually happened and who was at fault.
 
