@@ -1,0 +1,15 @@
+To identify a driver or check a license plate:
+
+
+This site allows you to test the license plate #, give back a VIN and make/model/year info.
+
+    http://www.autocheck.com/vehiclehistory/autocheck/en/search-by-license-plate
+
+Now take the VIN and get better make/model/year:
+
+    http://www.vindecoderz.com/EN/check-lookup/1N6BA0EC2AN309544
+
+
+Now get more data, including the ability to see the owner (was $2.95 for the one I was testing)
+
+    http://www.verispy.com/vin-search/product-selection_6.php?vin=1N6BA0EC2AN309544&aff_item_id=10
