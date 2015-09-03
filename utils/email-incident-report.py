@@ -26,7 +26,7 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 30X
+INCIDENT_ID = 30x
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
 TESTING = True
@@ -174,7 +174,7 @@ print '\n'
 if TESTING:
     print 'emails have ***NOT*** been sent'
 else:
-    print 'emails have been sent'
+    print 'emails have been sent for {}'.format(str(INCIDENT_ID))
 
 
 

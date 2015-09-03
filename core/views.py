@@ -248,11 +248,11 @@ def strava_registration(request):
 
 
     if strava_token is None:
-        admin_mailer('Strava Regisgration Failure', 'The Strava Token is None! ' + request.body)
+        admin_mailer('Strava Regisgration Failure', 'The Strava Token is None! ' + request.GET.get('username') )
         user_msg = """
-        <p>There was an error with your attempt to login using your Strava Account. You may have entered an incorrect password.
-        You may simply wish to try again.</p>
-        <p>Or you again or use our<a href="/accounts/register/">custom registration</a> process to create your account.</p>
+        <p>There was an error with your attempt to login using your Strava Account. You may have entered an incorrect username and password
+        combination. You may simply wish to try again.</p>
+        <p>IF YOU DO NOT HAVE A STRAVA ACCOUNT, use the <a href="/accounts/register/">custom registration</a> process to create your account.</p>
         """
         messages.add_message(request, messages.INFO, user_msg)
         # Fix these next lines up, once you know where the "Register via Strava is going to go (maybe login page is best"
