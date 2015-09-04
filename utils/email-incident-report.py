@@ -26,7 +26,7 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 30x
+INCIDENT_ID = 30X
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
 TESTING = True
@@ -43,9 +43,9 @@ Greetings from the Close Call Database for Cyclists. You are receiving this mess
 
 You can find the details here: http://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/
 
-If you have had a previous encounter with the vehicle in question, please reply to this email with details.
+Please review this incident and note the vehicle and driver descriptions. If you have had a previous encounter with the vehicle in question, please reply to this email with details.
 
-You may wish to share this information with other cyclists, particularly if they ride in the area where the incident occurred.
+You may wish to share this email with other cyclists, particularly if they ride in the area where the incident occurred.
 
 Ride Safely,
 
@@ -59,11 +59,11 @@ Close Call Database
 HTML_msg = """
 <p>Greetings from the Close Call Database for Cyclists. You are receiving this message because an incident has been reported by a cyclist in your area.</p>
 
+<p>Please review the incident and note the vehicle and driver descriptions. If you have had a previous encounter with the vehicle in question, please reply to this email with details.</p>
+
+<p>You may wish to share this email with other cyclists that ride in the area where the incident occurred.</p>
+
 <p>You can find the details <a href="http://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/">here</a>.</p>
-
-<p>If you have had a previous encounter with the vehicle in question, please reply to this email with details.</p>
-
-<p>You may wish to share email with other cyclists that ride in the area where the incident occurred.</p>
 
 <p>Ride Safely,</p>
 
