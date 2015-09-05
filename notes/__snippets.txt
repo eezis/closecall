@@ -20,7 +20,7 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 
 
 <p>
-<img src="http://closecalldatabase.com/static/images/reports/incident-302-1.JPG" style="width:100%; max-width:600px;">
+<img src="http://closecalldatabase.com/static/images/reports/incident-307.jpg" style="width:100%; max-width:600px;">
 </p><br />
 
 <p>
@@ -28,9 +28,15 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 </p><br />
 
 
-he pulled up entirely to close behind us and held down the horn for at least a few hundred yards,
+=== VIDEO ====
 
-o--o
+# convert to .mp4
+ffmpeg -i 11020005.AVI leehillsep52015.mp4
+
+ ffmpeg -i concat:"2015-09-05-LeeHill-2.mp4|2015-09-05-LeeHill-slomo.mp4" -codec copy 2015-09-05-LeeHill-asshole.mp4
+
+ffmpeg -f concat -i leehillcombine.txt -codec copy output.mp4
+
 
 
 ==== EMAIL REPLIES

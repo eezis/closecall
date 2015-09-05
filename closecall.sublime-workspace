@@ -563,7 +563,7 @@
 			"file": "notes/__snippets.txt",
 			"settings":
 			{
-				"buffer_size": 2018,
+				"buffer_size": 2016,
 				"line_ending": "Unix"
 			}
 		},
@@ -1535,8 +1535,8 @@
 						"selection":
 						[
 							[
-								875,
-								875
+								798,
+								798
 							]
 						],
 						"settings":
@@ -1624,15 +1624,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2018,
+						"buffer_size": 2016,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								768,
-								629
+								625,
+								494
 							]
 						],
 						"settings":
@@ -1644,7 +1644,7 @@
 							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 291.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1676,7 +1676,7 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 80.0,
-						"translation.y": 4606.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
