@@ -46,7 +46,7 @@ p {
   <div class="page-header" style="padding-bottom: 4px;">
     <h2><small>{{article.title}}</small></h2>
     <hr style="border-color:darkgrey;">
-    <p style="font-size:0.98em;">By: {{article.user.profile.blogprofile.byline}}</p>
+    <p style="font-size:0.98em;">By: {{article.user.profile.blogprofile.byline}}<span class="pull-right">{{article.publish_date|date:"M j, Y" }}</span></p>
   </div>
 
   {% if article.post_is_public %}

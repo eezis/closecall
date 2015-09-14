@@ -544,6 +544,14 @@
 			}
 		},
 		{
+			"file": "notes/__snippets.txt",
+			"settings":
+			{
+				"buffer_size": 2238,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "utils/gen-embed-youtube.py",
 			"settings":
 			{
@@ -560,14 +568,6 @@
 			}
 		},
 		{
-			"file": "notes/__snippets.txt",
-			"settings":
-			{
-				"buffer_size": 2016,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "core/views.py",
 			"settings":
 			{
@@ -576,10 +576,10 @@
 			}
 		},
 		{
-			"contents": "Searching 336 files for \"unicode\" (regex)\n\n/Users/eae/code/sites/closecall/.ipynb_checkpoints/Distance Between Points-checkpoint.ipynb:\n  427       \"collapsed\": false,\n  428       \"input\": [\n  429:       \"from __future__ import unicode_literals\\n\",\n  430        \"from geoposition.conf import settings\\n\",\n  431        \"from \\n\",\n  ...\n  455       \"collapsed\": false,\n  456       \"input\": [\n  457:       \"from __future__ import unicode_literals\\n\",\n  458        \"from geoposition.widgets import GeopositionWidget\\n\",\n  459        \"from geoposition import geoposition\"\n  ...\n  468         \"traceback\": [\n  469          \"\\u001b[0;31m---------------------------------------------------------------------------\\u001b[0m\\n\\u001b[0;31mImportError\\u001b[0m                               Traceback (most recent call last)\",\n  470:         \"\\u001b[0;32m<ipython-input-21-31d3c051f18c>\\u001b[0m in \\u001b[0;36m<module>\\u001b[0;34m()\\u001b[0m\\n\\u001b[1;32m      1\\u001b[0m \\u001b[0;32mfrom\\u001b[0m \\u001b[0m__future__\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0municode_literals\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[1;32m      2\\u001b[0m \\u001b[0;32mfrom\\u001b[0m \\u001b[0mgeoposition\\u001b[0m\\u001b[0;34m.\\u001b[0m\\u001b[0mwidgets\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0mGeopositionWidget\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[0;32m----> 3\\u001b[0;31m \\u001b[0;32mfrom\\u001b[0m \\u001b[0mgeoposition\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0mgeoposition\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[0m\",\n  471          \"\\u001b[0;31mImportError\\u001b[0m: cannot import name geoposition\"\n  472         ]\n\n/Users/eae/code/sites/closecall/core/migrations/0001_initial.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/core/migrations/0002_auto_20141220_1456.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/core/migrations/0003_auto_20141221_0011.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/core/migrations/0004_auto_20141229_2159.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/core/models.py:\n   26  \n   27  \n   28:     def __unicode__(self):\n   29          if self.subject is None:\n   30              return 'No subject'\n\n/Users/eae/code/sites/closecall/Distance Between Points.ipynb:\n  427       \"collapsed\": false,\n  428       \"input\": [\n  429:       \"from __future__ import unicode_literals\\n\",\n  430        \"from geoposition.conf import settings\\n\",\n  431        \"from \\n\",\n  ...\n  455       \"collapsed\": false,\n  456       \"input\": [\n  457:       \"from __future__ import unicode_literals\\n\",\n  458        \"from geoposition.widgets import GeopositionWidget\\n\",\n  459        \"from geoposition import geoposition\"\n  ...\n  468         \"traceback\": [\n  469          \"\\u001b[0;31m---------------------------------------------------------------------------\\u001b[0m\\n\\u001b[0;31mImportError\\u001b[0m                               Traceback (most recent call last)\",\n  470:         \"\\u001b[0;32m<ipython-input-21-31d3c051f18c>\\u001b[0m in \\u001b[0;36m<module>\\u001b[0;34m()\\u001b[0m\\n\\u001b[1;32m      1\\u001b[0m \\u001b[0;32mfrom\\u001b[0m \\u001b[0m__future__\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0municode_literals\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[1;32m      2\\u001b[0m \\u001b[0;32mfrom\\u001b[0m \\u001b[0mgeoposition\\u001b[0m\\u001b[0;34m.\\u001b[0m\\u001b[0mwidgets\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0mGeopositionWidget\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[0;32m----> 3\\u001b[0;31m \\u001b[0;32mfrom\\u001b[0m \\u001b[0mgeoposition\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0mgeoposition\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[0m\",\n  471          \"\\u001b[0;31mImportError\\u001b[0m: cannot import name geoposition\"\n  472         ]\n\n/Users/eae/code/sites/closecall/geoposition/__init__.py:\n    1: from __future__ import unicode_literals\n    2  \n    3  from decimal import Decimal\n\n/Users/eae/code/sites/closecall/geoposition/fields.py:\n    1: from __future__ import unicode_literals\n    2  \n    3  from django.db import models\n\n/Users/eae/code/sites/closecall/geoposition/forms.py:\n    1: from __future__ import unicode_literals\n    2  \n    3  from django import forms\n\n/Users/eae/code/sites/closecall/geoposition/models.py:\n    1: from __future__ import unicode_literals\n    2  from .conf import settings\n    3  \n\n/Users/eae/code/sites/closecall/geoposition/widgets.py:\n    1: from __future__ import unicode_literals\n    2  \n    3  import json\n\n/Users/eae/code/sites/closecall/incident/migrations/0001_initial.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0002_incident_position.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0003_remove_incident_position.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0004_incident_position.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0005_auto_20141120_2253.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0006_auto_20141120_2341.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0007_auto_20141126_0025.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0008_auto_20141126_1604.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0009_auto_20141130_0115.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0010_auto_20141130_0132.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0011_auto_20141130_1807.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0012_auto_20141205_2328.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0013_auto_20141205_2340.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0014_auto_20141209_2128.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0015_incident_witnesses.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0016_auto_20141230_1851.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0017_auto_20141230_2349.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0018_auto_20150110_0019.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0019_incident_visible.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0020_auto_20150120_0045.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0021_auto_20150126_1727.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0022_auto_20150126_1822.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0023_auto_20150126_1836.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0024_auto_20150126_1838.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0025_auto_20150522_1258.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0026_incident_closedfirstloop.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0027_auto_20150526_2251.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/models.py:\n  156          ordering = ['-date']\n  157  \n  158:     def __unicode__(self):\n  159          return self.user.username + \" \" + self.what[:100]\n  160  \n\n/Users/eae/code/sites/closecall/local-only-data/registration-debug.txt:\n 2821  \n 2822  \n 2823: === unicode changes === CreateUserProfileView.form_valid :: Amlit-CCDB-TEST -- amlit.editor@gmail.com\n 2824  \n 2825  \n\n/Users/eae/code/sites/closecall/myregistration/forms.py:\n    1: from __future__ import unicode_literals\n    2  from django import forms\n    3  from registration.forms import RegistrationForm\n\n/Users/eae/code/sites/closecall/publish/migrations/0001_initial.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0002_auto_20141126_0046.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0003_auto_20141126_0145.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0004_auto_20141126_1604.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0005_auto_20141126_1614.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0006_auto_20141126_1627.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0007_auto_20141126_1656.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0008_announcement_show_it.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0009_inthenews_source.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0010_auto_20141221_0351.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0011_auto_20141221_0359.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0012_auto_20141221_1500.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0013_auto_20141221_1604.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0014_auto_20141221_1706.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0015_blogpost_post_is_public.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0016_blogpost_publish_it.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0017_auto_20141222_0310.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0018_blogpost_social_buttons.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0019_inthenews_show_it.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/models.py:\n   42          ordering = ['-start_on_date', '-created',]\n   43  \n   44:     def __unicode__(self):\n   45          return self.the_announcement[:80]\n   46  \n   ..\n   66          ordering = ['-created',]\n   67  \n   68:     def __unicode__(self):\n   69          return self.title\n   70  \n   ..\n   93          ordering = ['-report_on', '-created',]\n   94  \n   95:     def __unicode__(self):\n   96          return self.title\n   97  \n\n/Users/eae/code/sites/closecall/publish/views.py:\n   79          return render(request, 'publish/article.html', {'article': article})\n   80      except BlogPost.DoesNotExist:\n   81:         admin_mailer('Raising 404 for show_blog_post', 'Someone or something requested ' + unicode(request.get_full_path()) + ' add a redirect for that URL')\n   82          raise Http404\n   83  \n   ..\n   95              return render(request, 'publish/show-article.html', {'article': article} )\n   96          else:\n   97:             admin_mailer('Raising 404 for show_article', 'Some requested ' + unicode(slug) + ' and it is not publishable and public. Investigate.')\n   98              raise Http404\n   99      except BlogPost.DoesNotExist:\n  100:         # print unicode(request.get_full_path())\n  101:         admin_mailer('Raising 404 for show_article', 'Someone or something requested /articles/' + unicode(request.get_full_path()) + '/ add a redirect for that URL')\n  102          raise Http404\n  103  \n\n/Users/eae/code/sites/closecall/users/migrations/0001_initial.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0002_auto_20141205_2328.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0003_auto_20141214_0031.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0004_auto_20141214_1804.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0005_userprofile_oauth_data.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0006_auto_20141221_1706.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0007_auto_20141221_1738.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0008_auto_20141229_2159.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/models.py:\n   38          ordering = ['-created',]\n   39  \n   40:     def __unicode__(self):\n   41:         return unicode(self.first) + ' ' + unicode(self.last) + ' :: ' + unicode(self.user.username) + ' ==> ' + unicode(self.user.email) + \\\n   42:             ' -- ' + self.created.strftime('%Y-%m-%d %H:%M') + ' --  ' + unicode(self.city) + ', ' + unicode(self.state)\n   43  \n   44      def try_to_geocode(self):\n   ..\n  153      about_the_author = models.TextField(null=True, blank=True, verbose_name=\"If you want an 'About The Author' section\")\n  154  \n  155:     def __unicode__(self):\n  156          return self.byline\n  157  \n\n/Users/eae/code/sites/closecall/utils/fusiontable-data.py:\n   31  \n   32  for u in UPS:\n   33:     print u'\"{}, {}, {}, {}\", {}'.format(unicode(u.city), unicode(u.state), unicode(u.country), unicode(u.zipcode), unicode(u.created)).encode('utf-8')\n   34  \n   35  \n\n93 matches across 73 files\n",
+			"contents": "Searching 336 files for \"unicode\" (regex)\n\n/Users/eae/code/sites/closecall/.ipynb_checkpoints/Distance Between Points-checkpoint.ipynb:\n  427       \"collapsed\": false,\n  428       \"input\": [\n  429:       \"from __future__ import unicode_literals\\n\",\n  430        \"from geoposition.conf import settings\\n\",\n  431        \"from \\n\",\n  ...\n  455       \"collapsed\": false,\n  456       \"input\": [\n  457:       \"from __future__ import unicode_literals\\n\",\n  458        \"from geoposition.widgets import GeopositionWidget\\n\",\n  459        \"from geoposition import geoposition\"\n  ...\n  468         \"traceback\": [\n  469          \"\\u001b[0;31m---------------------------------------------------------------------------\\u001b[0m\\n\\u001b[0;31mImportError\\u001b[0m                               Traceback (most recent call last)\",\n  470:         \"\\u001b[0;32m<ipython-input-21-31d3c051f18c>\\u001b[0m in \\u001b[0;36m<module>\\u001b[0;34m()\\u001b[0m\\n\\u001b[1;32m      1\\u001b[0m \\u001b[0;32mfrom\\u001b[0m \\u001b[0m__future__\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0municode_literals\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[1;32m      2\\u001b[0m \\u001b[0;32mfrom\\u001b[0m \\u001b[0mgeoposition\\u001b[0m\\u001b[0;34m.\\u001b[0m\\u001b[0mwidgets\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0mGeopositionWidget\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[0;32m----> 3\\u001b[0;31m \\u001b[0;32mfrom\\u001b[0m \\u001b[0mgeoposition\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0mgeoposition\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[0m\",\n  471          \"\\u001b[0;31mImportError\\u001b[0m: cannot import name geoposition\"\n  472         ]\n\n/Users/eae/code/sites/closecall/core/migrations/0001_initial.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/core/migrations/0002_auto_20141220_1456.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/core/migrations/0003_auto_20141221_0011.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/core/migrations/0004_auto_20141229_2159.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/core/models.py:\n   26  \n   27  \n   28:     def __unicode__(self):\n   29          if self.subject is None:\n   30              return 'No subject'\n\n/Users/eae/code/sites/closecall/Distance Between Points.ipynb:\n  427       \"collapsed\": false,\n  428       \"input\": [\n  429:       \"from __future__ import unicode_literals\\n\",\n  430        \"from geoposition.conf import settings\\n\",\n  431        \"from \\n\",\n  ...\n  455       \"collapsed\": false,\n  456       \"input\": [\n  457:       \"from __future__ import unicode_literals\\n\",\n  458        \"from geoposition.widgets import GeopositionWidget\\n\",\n  459        \"from geoposition import geoposition\"\n  ...\n  468         \"traceback\": [\n  469          \"\\u001b[0;31m---------------------------------------------------------------------------\\u001b[0m\\n\\u001b[0;31mImportError\\u001b[0m                               Traceback (most recent call last)\",\n  470:         \"\\u001b[0;32m<ipython-input-21-31d3c051f18c>\\u001b[0m in \\u001b[0;36m<module>\\u001b[0;34m()\\u001b[0m\\n\\u001b[1;32m      1\\u001b[0m \\u001b[0;32mfrom\\u001b[0m \\u001b[0m__future__\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0municode_literals\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[1;32m      2\\u001b[0m \\u001b[0;32mfrom\\u001b[0m \\u001b[0mgeoposition\\u001b[0m\\u001b[0;34m.\\u001b[0m\\u001b[0mwidgets\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0mGeopositionWidget\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[0;32m----> 3\\u001b[0;31m \\u001b[0;32mfrom\\u001b[0m \\u001b[0mgeoposition\\u001b[0m \\u001b[0;32mimport\\u001b[0m \\u001b[0mgeoposition\\u001b[0m\\u001b[0;34m\\u001b[0m\\u001b[0m\\n\\u001b[0m\",\n  471          \"\\u001b[0;31mImportError\\u001b[0m: cannot import name geoposition\"\n  472         ]\n\n/Users/eae/code/sites/closecall/geoposition/__init__.py:\n    1: from __future__ import unicode_literals\n    2  \n    3  from decimal import Decimal\n\n/Users/eae/code/sites/closecall/geoposition/fields.py:\n    1: from __future__ import unicode_literals\n    2  \n    3  from django.db import models\n\n/Users/eae/code/sites/closecall/geoposition/forms.py:\n    1: from __future__ import unicode_literals\n    2  \n    3  from django import forms\n\n/Users/eae/code/sites/closecall/geoposition/models.py:\n    1: from __future__ import unicode_literals\n    2  from .conf import settings\n    3  \n\n/Users/eae/code/sites/closecall/geoposition/widgets.py:\n    1: from __future__ import unicode_literals\n    2  \n    3  import json\n\n/Users/eae/code/sites/closecall/incident/migrations/0001_initial.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0002_incident_position.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0003_remove_incident_position.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0004_incident_position.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0005_auto_20141120_2253.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0006_auto_20141120_2341.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0007_auto_20141126_0025.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0008_auto_20141126_1604.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0009_auto_20141130_0115.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0010_auto_20141130_0132.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0011_auto_20141130_1807.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0012_auto_20141205_2328.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0013_auto_20141205_2340.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0014_auto_20141209_2128.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0015_incident_witnesses.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0016_auto_20141230_1851.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0017_auto_20141230_2349.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0018_auto_20150110_0019.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0019_incident_visible.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0020_auto_20150120_0045.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0021_auto_20150126_1727.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0022_auto_20150126_1822.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0023_auto_20150126_1836.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0024_auto_20150126_1838.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0025_auto_20150522_1258.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0026_incident_closedfirstloop.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/migrations/0027_auto_20150526_2251.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/incident/models.py:\n  156          ordering = ['-date']\n  157  \n  158:     def __unicode__(self):\n  159          return self.user.username + \" \" + self.what[:100]\n  160  \n\n/Users/eae/code/sites/closecall/local-only-data/registration-debug.txt:\n 2821  \n 2822  \n 2823: === unicode changes === CreateUserProfileView.form_valid :: Amlit-CCDB-TEST -- amlit.editor@gmail.com\n 2824  \n 2825  \n\n/Users/eae/code/sites/closecall/myregistration/forms.py:\n    1: from __future__ import unicode_literals\n    2  from django import forms\n    3  from registration.forms import RegistrationForm\n\n/Users/eae/code/sites/closecall/publish/migrations/0001_initial.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0002_auto_20141126_0046.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0003_auto_20141126_0145.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0004_auto_20141126_1604.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0005_auto_20141126_1614.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0006_auto_20141126_1627.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0007_auto_20141126_1656.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0008_announcement_show_it.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0009_inthenews_source.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0010_auto_20141221_0351.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0011_auto_20141221_0359.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0012_auto_20141221_1500.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0013_auto_20141221_1604.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0014_auto_20141221_1706.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0015_blogpost_post_is_public.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0016_blogpost_publish_it.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0017_auto_20141222_0310.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0018_blogpost_social_buttons.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/migrations/0019_inthenews_show_it.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/publish/models.py:\n   42          ordering = ['-start_on_date', '-created',]\n   43  \n   44:     def __unicode__(self):\n   45          return self.the_announcement[:80]\n   46  \n   ..\n   66          ordering = ['-created',]\n   67  \n   68:     def __unicode__(self):\n   69          return self.title\n   70  \n   ..\n   93          ordering = ['-report_on', '-created',]\n   94  \n   95:     def __unicode__(self):\n   96          return self.title\n   97  \n\n/Users/eae/code/sites/closecall/publish/views.py:\n   79          return render(request, 'publish/article.html', {'article': article})\n   80      except BlogPost.DoesNotExist:\n   81:         admin_mailer('Raising 404 for show_blog_post', 'Someone or something requested ' + unicode(request.get_full_path()) + ' add a redirect for that URL')\n   82          raise Http404\n   83  \n   ..\n   95              return render(request, 'publish/show-article.html', {'article': article} )\n   96          else:\n   97:             admin_mailer('Raising 404 for show_article', 'Some requested ' + unicode(slug) + ' and it is not publishable and public. Investigate.')\n   98              raise Http404\n   99      except BlogPost.DoesNotExist:\n  100:         # print unicode(request.get_full_path())\n  101:         admin_mailer('Raising 404 for show_article', 'Someone or something requested /articles/' + unicode(request.get_full_path()) + '/ add a redirect for that URL')\n  102          raise Http404\n  103  \n\n/Users/eae/code/sites/closecall/users/migrations/0001_initial.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0002_auto_20141205_2328.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0003_auto_20141214_0031.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0004_auto_20141214_1804.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0005_userprofile_oauth_data.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0006_auto_20141221_1706.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0007_auto_20141221_1738.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/migrations/0008_auto_20141229_2159.py:\n    1  # -*- coding: utf-8 -*-\n    2: from __future__ import unicode_literals\n    3  \n    4  from django.db import models, migrations\n\n/Users/eae/code/sites/closecall/users/models.py:\n   38          ordering = ['-created',]\n   39  \n   40:     def __unicode__(self):\n   41:         return unicode(self.first) + ' ' + unicode(self.last) + ' :: ' + unicode(self.user.username) + ' ==> ' + unicode(self.user.email) + \\\n   42:             ' -- ' + self.created.strftime('%Y-%m-%d %H:%M') + ' --  ' + unicode(self.city) + ', ' + unicode(self.state)\n   43  \n   44      def try_to_geocode(self):\n   ..\n  153      about_the_author = models.TextField(null=True, blank=True, verbose_name=\"If you want an 'About The Author' section\")\n  154  \n  155:     def __unicode__(self):\n  156          return self.byline\n  157  \n\n/Users/eae/code/sites/closecall/utils/fusiontable-data.py:\n   31  \n   32  for u in UPS:\n   33:     print u'\"{}, {}, {}, {}\", {}'.format(unicode(u.city), unicode(u.state), unicode(u.country), unicode(u.zipcode), unicode(u.created)).encode('utf-8')\n   34  \n   35  \n\n93 matches across 73 files\n\n\nSearching 346 files for \"See core.view if user_profile_exists login attempt\" (regex)\n\n/Users/eae/code/sites/closecall/core/views.py:\n  472  \n  473                      # see 10:18 am email on 10:39 am, in the closecall gmail account\n  474:                     admin_mailer('UNEXPECTED LOGIN ISSUE', 'See core.view if user_profile_exists login attempt. \\n' + this_user.username)\n  475                      try:\n  476                          if P: print \"TROUBLE -- the login failed, user redirected to login-help-page\"\n\n1 match in 1 file\n",
 			"settings":
 			{
-				"buffer_size": 19506,
+				"buffer_size": 20046,
 				"line_ending": "Unix",
 				"name": "Find Results",
 				"scratch": true
@@ -974,6 +974,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"See core.view if user_profile_exists login attempt",
 			"strava token",
 			"unicode",
 			"Database",
@@ -1100,8 +1101,7 @@
 			"after a p",
 			"</i>\\.",
 			"<p><i>",
-			"-",
-			"_.\\)"
+			"-"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1535,8 +1535,8 @@
 						"selection":
 						[
 							[
-								798,
-								798
+								839,
+								839
 							]
 						],
 						"settings":
@@ -1548,7 +1548,7 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 496.0,
+						"translation.y": 281.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1556,6 +1556,38 @@
 				},
 				{
 					"buffer": 3,
+					"file": "notes/__snippets.txt",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2238,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								911,
+								911
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": "utils/gen-embed-youtube.py",
 					"semi_transient": false,
 					"settings":
@@ -1583,11 +1615,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "notes/identify-driver.txt",
 					"semi_transient": false,
 					"settings":
@@ -1615,39 +1647,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "notes/__snippets.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2016,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								625,
-								494
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -1675,8 +1675,8 @@
 							"synced": false,
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
-						"translation.x": 80.0,
-						"translation.y": 0.0,
+						"translation.x": 0.0,
+						"translation.y": 5452.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
@@ -1687,7 +1687,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 19506,
+						"buffer_size": 20046,
 						"regions":
 						{
 							"match":
@@ -2066,6 +2066,10 @@
 									[
 										19426,
 										19433
+									],
+									[
+										19808,
+										19858
 									]
 								],
 								"scope": ""
@@ -2074,8 +2078,8 @@
 						"selection":
 						[
 							[
-								15901,
-								15901
+								19623,
+								19623
 							]
 						],
 						"settings":
@@ -2083,7 +2087,7 @@
 							"detect_indentation": false,
 							"incomplete_sync": null,
 							"line_numbers": false,
-							"output_tag": 1,
+							"output_tag": 2,
 							"remote_loading": false,
 							"result_base_dir": "",
 							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
@@ -2094,10 +2098,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 8657.0,
+						"translation.y": 11088.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -2128,7 +2132,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -2161,7 +2165,7 @@
 						"translation.y": 290.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
