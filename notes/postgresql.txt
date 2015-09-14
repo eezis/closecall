@@ -1,3 +1,20 @@
+
+=== QUICK BACKUP OF REMOTE DB LOCALLY ======
+
+open terminal on local machine
+cd /Users/eae/backups/closecalldatabase
+pg_dump -h closecalldatabase.com -p 5432 closecall > closecall.bak
+password: 'PG******!'
+
+## *** now get the binary tarball that is BEST FOR A RESTORE
+
+pg_dump -h closecalldatabase.com -p 5432 -Ft closecall > closecall.tar
+password: 'PG******!'
+
+============================================
+
+
+
 sudo service postgresql start/stop/status/restart
 
 
@@ -25,7 +42,7 @@ pg_dump -h closecalldatabase.com -p 5432 closecall > closecall.bak
 
 
 =======================================
-local backup of remote db
+local backup of remote db - FIRST TIME - SETUP
 =======================================
 
 -- 1. to prepare, on remote ubuntu machine I started psql as the postgres superuser

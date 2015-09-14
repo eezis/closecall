@@ -89,7 +89,13 @@ def HomeView(request):
 
             the_user = u'The Error effected: {} {} \n'.format(request.user.username, request.user.email)
 
-            msg = the_user + msg
+            new_msg = """
+            Was this a recent registration? Does a profile exist for this user? The last time I saw this message,
+            it was from TandemRider who had a User and an Active registration, but his profile did not exist.
+            Is there some sort of Pilot Error here? Should they be directed to their profile page? \n\n
+            """
+
+            msg = the_user + new_msg + msg
 
             send_mail('YIKES HomeView ERROR', msg,'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com',], fail_silently=False)
             # RelatedObjectDoesNotExist: User has no profile.
