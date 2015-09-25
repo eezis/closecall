@@ -544,6 +544,23 @@
 			}
 		},
 		{
+			"contents": "<p>While traveling northwest on Buzzards Bay Ave motorist in white van Mass Tag 75C H20 approached from behind and immediately used horn excessively to insist I move to edge of road. As he pulled next to me he yelled that \"you guys all think you own the road. You need to follow the law.\" I made the left onto Gardiners Road and van followed me down the hill and used horn again. I pulled to side to let him pass at which point he pulled in front of me and mostly blocked the road. He got out of his van and confronted me. F___ words exchanged and I rode off.</p><p>Five minutes later I find he has followed me into Woods Hole and wants another confrontation. He pulled into Woods Hole Library parking lot and gets out of the van when he sees me on the phone. I called 911 and spoke to Falmouth Police who cover Woods Hole. Coincidentally Falmouth Police cruiser drove by which &nbsp;I quickly flagged down. Two officers took my statement and drivers statement. Officers said it was my word vs drivers so there wasn't much they could do other than file a report <b style=\"color:red:>Editor's Note: this is why every cyclist should consider riding with video. The police didn't just let the driver go, they unwittingly taught him how easy it is to harass a cyclist and get away with it. If you want to make a difference, ride lawfully and get an on-bike camera</b>. The driver is a house painter with a job in Woods Hole so must be in the area regularly. I suggest bicyclists watch for his older white van MA Tag 75C H20 and avoid at all costs. Drivers comments were directed at me AND ALL CYCLISTS leading me to conclude he is bent on getting us off the road. &nbsp;</p><p><br></p><p>A report was filed with Falmouth Police on 9/21/15.&nbsp;</p>",
+			"settings":
+			{
+				"buffer_size": 1745,
+				"line_ending": "Unix",
+				"name": "<p>While traveling northwest on Buzzards Bay Ave m"
+			}
+		},
+		{
+			"file": "templates/_social-buttons.html",
+			"settings":
+			{
+				"buffer_size": 720,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "templates/publish/article.html",
 			"settings":
 			{
@@ -563,7 +580,7 @@
 			"file": "notes/__snippets.txt",
 			"settings":
 			{
-				"buffer_size": 2231,
+				"buffer_size": 2232,
 				"line_ending": "Unix"
 			}
 		},
@@ -577,10 +594,7 @@
 			}
 		},
 		{
-			"contents": "import sys\ntry:\n    sys.path.append(\"/Users/eae/code/sites/closecall\")\n    sys.path.append(\"/Users/eae/.virtualenvs/closecall/lib/python2.7/site-packages\")\nexcept ImportError:\n    print \"import error -- probably on production machine -- trying that . . .\"\n    try:\n        sys.path.append(\"/home/eezis/sites/closecall\")\n        sys.path.append(\"/home/eezis/.virtualenvs/closecall/bin/python2.7/site-packages\")\n        print \"import complete\"\n    except:\n        \"Can't import that virtualenv, is the path correct?\"\n\nimport os\nos.environ['DJANGO_SETTINGS_MODULE'] = 'closecall.settings'\nimport django\ndjango.setup()\n\nfrom users.models import UserProfile\n\nusername = 'Matt Kobzik'\n\nU = UserProfile.objects.get()\n\nprint u.email\n\n",
 			"file": "utils/update-user-info.py",
-			"file_size": 724,
-			"file_write_time": 130868436470000000,
 			"settings":
 			{
 				"buffer_size": 726,
@@ -848,10 +862,10 @@
 		"/Users/eae/code/sites/closecall/oauth",
 		"/Users/eae/code/sites/closecall/oauth/strava",
 		"/Users/eae/code/sites/closecall/publish",
+		"/Users/eae/code/sites/closecall/sandbox",
 		"/Users/eae/code/sites/closecall/static",
 		"/Users/eae/code/sites/closecall/static/js",
 		"/Users/eae/code/sites/closecall/templates",
-		"/Users/eae/code/sites/closecall/templates/incident",
 		"/Users/eae/code/sites/closecall/templates/publish",
 		"/Users/eae/code/sites/closecall/users",
 		"/Users/eae/code/sites/closecall/utils"
@@ -1289,7 +1303,7 @@
 	"groups":
 	[
 		{
-			"selected": 12,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -1425,7 +1439,7 @@
 						"translation.y": 2033.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
@@ -1561,7 +1575,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -1577,8 +1591,8 @@
 						"selection":
 						[
 							[
-								839,
-								839
+								2327,
+								2832
 							]
 						],
 						"settings":
@@ -1590,14 +1604,76 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 281.0,
+						"translation.y": 1354.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1745,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1745,
+								1745
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<p>While traveling northwest on Buzzards Bay Ave m",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "templates/_social-buttons.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 720,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								720,
+								720
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
 					"file": "templates/publish/article.html",
 					"semi_transient": false,
 					"settings":
@@ -1609,8 +1685,8 @@
 						"selection":
 						[
 							[
-								1376,
-								1376
+								1729,
+								1693
 							]
 						],
 						"settings":
@@ -1622,14 +1698,14 @@
 							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 731.0,
+						"translation.y": 1126.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 6,
 					"file": "templates/publish/show-article.html",
 					"semi_transient": false,
 					"settings":
@@ -1657,24 +1733,24 @@
 						"translation.y": 510.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 7,
 					"file": "notes/__snippets.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2231,
+						"buffer_size": 2232,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								759,
-								627
+								9,
+								9
 							]
 						],
 						"settings":
@@ -1689,11 +1765,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 8,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1712,17 +1788,19 @@
 						{
 							"auto_name": "<p>I have learned a lot since releasing the Close",
 							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 1881.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 7,
+					"buffer": 9,
 					"file": "utils/update-user-info.py",
 					"semi_transient": false,
 					"settings":
@@ -1742,17 +1820,19 @@
 						{
 							"auto_complete": false,
 							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
+					"buffer": 10,
 					"file": "utils/gen-embed-youtube.py",
 					"semi_transient": false,
 					"settings":
@@ -1780,11 +1860,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 13,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 11,
 					"file": "notes/identify-driver.txt",
 					"semi_transient": false,
 					"settings":
@@ -1812,11 +1892,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 12,
 					"file": "core/views.py",
 					"semi_transient": false,
 					"settings":
@@ -1844,11 +1924,11 @@
 						"translation.y": 1452.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
+					"buffer": 13,
 					"file": "notes/postgresql.txt",
 					"semi_transient": false,
 					"settings":
@@ -1860,8 +1940,8 @@
 						"selection":
 						[
 							[
-								340,
-								270
+								363,
+								363
 							]
 						],
 						"settings":
@@ -1876,11 +1956,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 12,
+					"buffer": 14,
 					"file": "notes/_BLOG_IDEAS.txt",
 					"semi_transient": false,
 					"settings":
@@ -1905,14 +1985,14 @@
 							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 3257.0,
+						"translation.y": 2690.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 15,
 					"file": "publish/views.py",
 					"semi_transient": false,
 					"settings":
@@ -1939,11 +2019,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 14,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 16,
 					"file": "utils/fix_input.py",
 					"semi_transient": false,
 					"settings":
@@ -1972,11 +2052,11 @@
 						"translation.y": 290.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 17,
 					"file": "utils/news_maker.py",
 					"semi_transient": false,
 					"settings":
@@ -2005,11 +2085,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 18,
+					"stack_index": 20,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 18,
 					"semi_transient": false,
 					"settings":
 					{
@@ -2036,11 +2116,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 19,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
+					"buffer": 19,
 					"semi_transient": false,
 					"settings":
 					{
@@ -2067,11 +2147,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 18,
 					"type": "text"
 				},
 				{
-					"buffer": 18,
+					"buffer": 20,
 					"file": "notes/video-log.txt",
 					"semi_transient": false,
 					"settings":
@@ -2100,11 +2180,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 21,
 					"semi_transient": false,
 					"settings":
 					{
@@ -2235,11 +2315,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 24,
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 22,
 					"file": "core/tests.py",
 					"semi_transient": false,
 					"settings":
@@ -2370,11 +2450,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 23,
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 23,
 					"file": "notes/_CODE_ERRATA.txt",
 					"semi_transient": false,
 					"settings":
@@ -2402,11 +2482,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 22,
 					"type": "text"
 				},
 				{
-					"buffer": 22,
+					"buffer": 24,
 					"semi_transient": false,
 					"settings":
 					{
@@ -2434,7 +2514,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 21,
 					"type": "text"
 				}
 			]

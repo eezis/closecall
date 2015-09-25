@@ -23,3 +23,4 @@ username = 'Matt Kobzik'
 U = UserProfile.objects.get()
 
 print u.email
+
