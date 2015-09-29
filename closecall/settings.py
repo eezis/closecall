@@ -33,6 +33,8 @@ TEMPLATE_DEBUG = True
 # ALLOWED_HOSTS = ['*', '104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', 'closecall', ]
 ALLOWED_HOSTS = ['*',]
 
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30 * 3 # three months
+
 
 # https://docs.djangoproject.com/en/1.7/ref/settings/#template-context-processors
 # must add manually if you are going to then add your own
