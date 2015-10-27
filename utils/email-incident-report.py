@@ -33,9 +33,9 @@ TESTING = True
 MAIL_TO_EE = False
 
 # Radius = 20
-# Radius = 30
+Radius = 30
 # Radius = 40
-Radius = 60
+# Radius = 60
 subject = "Close Call Database - Incident Reported in your Area"
 
 msg = """

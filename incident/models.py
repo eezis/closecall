@@ -51,6 +51,8 @@ class Incident(models.Model):
     # a useful and literate report -- I can turn it off from the admin
     visible = models.BooleanField(default=True)
     reported = models.BooleanField(default=False) # Reported/Flagged Set visible to False if a user says this is spam or false or abusive, etc.
+    cited = models.BooleanField(default=False)
+    cited_note = models.TextField(null=True, blank=True)
 
     reviewed = models.BooleanField(default=False)  # added to help me keep track of workflow
     accepted = models.BooleanField(default=True)   # if not accepted, waiting for more info
