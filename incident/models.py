@@ -54,6 +54,9 @@ class Incident(models.Model):
     cited = models.BooleanField(default=False)
     cited_note = models.TextField(null=True, blank=True)
 
+    warned = models.BooleanField(default=False)
+    warned_note = models.TextField(null=True, blank=True)
+
     reviewed = models.BooleanField(default=False)  # added to help me keep track of workflow
     accepted = models.BooleanField(default=True)   # if not accepted, waiting for more info
 
