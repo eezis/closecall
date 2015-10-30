@@ -536,14 +536,6 @@
 			}
 		},
 		{
-			"file": "templates/faq.html",
-			"settings":
-			{
-				"buffer_size": 6169,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "utils/gen-embed-youtube.py",
 			"settings":
 			{
@@ -552,35 +544,18 @@
 			}
 		},
 		{
+			"file": "incident/models.py",
+			"settings":
+			{
+				"buffer_size": 9382,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "notes/__snippets.txt",
 			"settings":
 			{
 				"buffer_size": 2335,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<p>\nA group of 12 of us out training together were riding East on Waikawa Beach road\narriving at the intersection with State Highway 1 at just\nbefore 10:50am (I took a photo of the car involved shortly\nafter so know the time was a few mins before the photo\n(which was at 10:53)\n</p>\n<p>\nAs a group we stopped at the intersection with Waikawa Beach\nrd and SH1 - where were we turning right onto State Highway\n1.   There were no cars on Waikawa Beach rd at the\nintersection so we assumed the primary position across the\nfront of the give way markings...   The road code says we're\nentitled to do this - and it's also by far and away the\nsafest way to get a group of cyclists across a busy road -\nas we can all go at once - when it's safe - rather than in\ndribs and drabs we'd have to do if we were lined up in\nsingle file...   \n</p>\n<p>\nThere was quite a bit of traffic on SH1 so we were waiting\nfor a good safe break in the traffic.  A car rolled up\nbehind us from Waikawa Beach direction - and clearly took\noffence that we were there in front of her - and kept moving\nher car forward and hit into the back of one of our riders.  I didn't realise she'd\ndone that at this stage - but saw other riders moving\nforward so turned to see a clearly very agitated lady\ndriver.  She then got out of the car and was clearly very\nannoyed and asked us if we should be there.   I asked her\nwhere she would have us go?  And she pointed at the side of\nthe road to the left and shouted \"over there\".   I told her\nto piss off (probably not the most diplomatic thing to say\nbut she was being very aggressive in her manner) - and she\ngot back in her car.  At this point there was a break in the\ntraffic and we all moved across the road (turning right) and\nin a few hundred meters turned left into Manukau..   \n</p>\n<p>\nI was speaking to one of our riders as we rode down to Manukau - and\nshe informed me that the lady in the car had actually hit\ninto the back of her at the intersection (hitting the back\nwheel of her bike) - which I hadn't seen and didn't realise.\nSo I turned back and got a photo of her as she turned\nbehind us - also into Manukau.  \n</p>\n<p>\nThe incident has been reported to the police but haven't heard \nanything back at this stage. \n</p>",
-			"settings":
-			{
-				"buffer_size": 2240,
-				"line_ending": "Unix",
-				"name": "<p>"
-			}
-		},
-		{
-			"file": "templates/publish/article.html",
-			"settings":
-			{
-				"buffer_size": 2408,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "templates/publish/show-article.html",
-			"settings":
-			{
-				"buffer_size": 2120,
 				"line_ending": "Unix"
 			}
 		},
@@ -598,22 +573,6 @@
 			"settings":
 			{
 				"buffer_size": 726,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "notes/identify-driver.txt",
-			"settings":
-			{
-				"buffer_size": 536,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "core/views.py",
-			"settings":
-			{
-				"buffer_size": 28275,
 				"line_ending": "Unix"
 			}
 		},
@@ -656,15 +615,6 @@
 			{
 				"buffer_size": 2830,
 				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<p>SPECIAL REPORT</p><p>Minneapolis police have issued a special warning to cyclist in Minneapolis. Individuals have been randomly assaulting cyclists by hurling chunks of cement from moving cars. The police are looking for a cream colored Bronco with a busted window. The window has a board over it (or it did at the time of the assault which occurred on 41st Street between Aldrich and Bryant.</p>\n\n<p>\nRead the news story <a href=\"http://minnesota.cbslocal.com/2015/08/09/police-issue-warning-after-cyclists-randomly-attacked-in-minneapolis/\" target=\"_blank\">here</a></p>\n\n\nAs some of you may know, cyclists in your area have been subjected to random attacks and the police have issued a special warning for cyclists to be careful and to be on the lookout for the perpetrators.\n\nYou can find more details here: http://closecalldatabase.com/incident/show-detail/271/\n\nYou may wish to share this information with other cyclists in the area.\n\nRide Safely,\n\nErnest Ezis\n\nClose Call Database\n\n@closecalldb\n\n\n<p>As some of you may know, cyclists in your area have been subjected to random attacks and the police have issued a special warning for cyclists to be careful and to be on the lookout for the perpetrators.</p>\n\n<p>You can find more details <a href=\" http://closecalldatabase.com/incident/show-detail/271/\">here</a>.</p>\n\n<p>You may wish to share this information with other cyclists in your area.</p>\n\n<p>Ride Safely,</p>",
-			"settings":
-			{
-				"buffer_size": 1428,
-				"line_ending": "Unix",
-				"name": "<p>SPECIAL REPORT</p><p>Minneapolis police have is"
 			}
 		},
 		{
@@ -840,14 +790,8 @@
 	"expanded_folders":
 	[
 		"/Users/eae/code/sites/closecall",
-		"/Users/eae/code/sites/closecall/core",
-		"/Users/eae/code/sites/closecall/geoposition",
-		"/Users/eae/code/sites/closecall/geoposition/static",
-		"/Users/eae/code/sites/closecall/geoposition/static/geoposition",
-		"/Users/eae/code/sites/closecall/geoposition/templates",
-		"/Users/eae/code/sites/closecall/geoposition/templates/geoposition",
-		"/Users/eae/code/sites/closecall/geoposition/templates/geoposition/widgets",
 		"/Users/eae/code/sites/closecall/incident",
+		"/Users/eae/code/sites/closecall/notes",
 		"/Users/eae/code/sites/closecall/publish",
 		"/Users/eae/code/sites/closecall/static",
 		"/Users/eae/code/sites/closecall/static/js",
@@ -859,6 +803,11 @@
 	],
 	"file_history":
 	[
+		"/Users/eae/code/sites/closecall/core/views.py",
+		"/Users/eae/code/sites/closecall/notes/identify-driver.txt",
+		"/Users/eae/code/sites/closecall/templates/faq.html",
+		"/Users/eae/code/sites/closecall/templates/publish/article.html",
+		"/Users/eae/code/sites/closecall/templates/publish/show-article.html",
 		"/Users/eae/code/sites/closecall/templates/incident/reporting-step-1.html",
 		"/Users/eae/code/sites/closecall/templates/about.html",
 		"/Users/eae/code/sites/closecall/templates/home.html",
@@ -866,14 +815,12 @@
 		"/Users/eae/code/sites/closecall/closecall/dev_settings.py",
 		"/Users/eae/code/sites/closecall/closecall/urls.py",
 		"/Users/eae/code/sites/closecall/publish/views.py",
-		"/Users/eae/code/sites/closecall/core/views.py",
 		"/Users/eae/code/sites/closecall/templates/sitebase.html",
 		"/Users/eae/code/sites/closecall/incident/views.py",
 		"/Users/eae/code/sites/closecall/templates/publish/articles.html",
 		"/Users/eae/code/sites/closecall/templates/resources.html",
 		"/Users/eae/code/sites/closecall/templates/smart-404.html",
 		"/Users/eae/code/sites/closecall/utils/fuzzy-match.py",
-		"/Users/eae/code/sites/closecall/templates/faq.html",
 		"/Users/eae/code/sites/closecall/publish/urls.py",
 		"/Users/eae/code/sites/closecall/notes/postgresql.txt",
 		"/Users/eae/code/sites/closecall/users/forms.py",
@@ -903,7 +850,6 @@
 		"/Users/eae/code/sites/closecall/data/full-list-3-2-15.csv",
 		"/Users/eae/code/sites/closecall/data/add-to-existing-3-2-15.csv",
 		"/Users/eae/code/sites/closecall/templates/publish/blogpost_list.html",
-		"/Users/eae/code/sites/closecall/templates/publish/article.html",
 		"/Users/eae/code/sites/closecall/utils/get_users.py",
 		"/Users/eae/code/sites/closecall/templates/home-styles.html",
 		"/Users/eae/code/sites/closecall/templates/incident/incident_form.html",
@@ -961,7 +907,6 @@
 		"/Users/eae/code/sites/closecall/templates/theme-1/fb-share-root.html",
 		"/Users/eae/code/sites/closecall/templates/theme-1/icons-and-fonts.html",
 		"/Users/eae/code/sites/closecall/templates/about.html.orig",
-		"/Users/eae/code/sites/closecall/templates/publish/show-article.html",
 		"/Users/eae/code/sites/closecall/templates/privacy.html",
 		"/Users/eae/code/sites/closecall/templates/_social-buttons.html",
 		"/Users/eae/code/sites/closecall/core/admin.py",
@@ -985,8 +930,7 @@
 		"/Users/eae/code/sites/closecall/geoposition/widgets.py",
 		"/Users/eae/code/sites/closecall/notes/djang-geopostion.txt",
 		"/Users/eae/code/sites/closecall/geoposition/static/geoposition/geoposition.js",
-		"/Users/eae/code/sites/closecall/registration/__init__.py",
-		"/Users/eae/code/sites/closecall/notes/digital-ocean-server-setup.txt"
+		"/Users/eae/code/sites/closecall/registration/__init__.py"
 	],
 	"find":
 	{
@@ -1017,6 +961,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"migrate",
 			"Now describe what happened",
 			"home",
 			"desire",
@@ -1143,8 +1088,7 @@
 			"to the footman",
 			"kettle",
 			"_",
-			"forgotten your tea",
-			"</b></i>.\\)"
+			"forgotten your tea"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1290,7 +1234,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -1426,7 +1370,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 15,
 					"type": "text"
 				},
 				{
@@ -1458,43 +1402,11 @@
 						"translation.y": 356.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 14,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "templates/faq.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6169,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5616,
-								5616
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 2543.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "utils/gen-embed-youtube.py",
 					"semi_transient": false,
 					"settings":
@@ -1522,7 +1434,39 @@
 						"translation.y": 1.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "incident/models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9382,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4196,
+								4196
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 643.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
@@ -1538,8 +1482,8 @@
 						"selection":
 						[
 							[
-								746,
-								863
+								578,
+								614
 							]
 						],
 						"settings":
@@ -1554,106 +1498,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2240,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2240,
-								2240
-							]
-						],
-						"settings":
-						{
-							"auto_name": "<p>",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 107.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "templates/publish/article.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2408,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1729,
-								1693
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "templates/publish/show-article.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2120,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1314,
-								1314
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1680,11 +1529,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 9,
+					"buffer": 6,
 					"file": "utils/update-user-info.py",
 					"semi_transient": false,
 					"settings":
@@ -1712,75 +1561,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 9,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "notes/identify-driver.txt",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 536,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								338,
-								278
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 14,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "core/views.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 28275,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3839,
-								3839
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 1452.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 13,
-					"type": "text"
-				},
-				{
-					"buffer": 12,
+					"buffer": 7,
 					"file": "notes/postgresql.txt",
 					"semi_transient": false,
 					"settings":
@@ -1808,11 +1593,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
-					"buffer": 13,
+					"buffer": 8,
 					"file": "notes/_BLOG_IDEAS.txt",
 					"semi_transient": false,
 					"settings":
@@ -1837,14 +1622,14 @@
 							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 2690.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 12,
+					"stack_index": 11,
 					"type": "text"
 				},
 				{
-					"buffer": 14,
+					"buffer": 9,
 					"file": "publish/views.py",
 					"semi_transient": false,
 					"settings":
@@ -1871,11 +1656,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 16,
+					"stack_index": 12,
 					"type": "text"
 				},
 				{
-					"buffer": 15,
+					"buffer": 10,
 					"file": "utils/fix_input.py",
 					"semi_transient": false,
 					"settings":
@@ -1901,14 +1686,14 @@
 							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 290.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 15,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 16,
+					"buffer": 11,
 					"file": "utils/news_maker.py",
 					"semi_transient": false,
 					"settings":
@@ -1937,42 +1722,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 19,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 17,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1428,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								941,
-								577
-							]
-						],
-						"settings":
-						{
-							"auto_name": "<p>SPECIAL REPORT</p><p>Minneapolis police have is",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 18,
-					"type": "text"
-				},
-				{
-					"buffer": 18,
+					"buffer": 12,
 					"semi_transient": false,
 					"settings":
 					{
@@ -1999,11 +1753,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 17,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 19,
+					"buffer": 13,
 					"file": "notes/video-log.txt",
 					"semi_transient": false,
 					"settings":
@@ -2032,11 +1786,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 20,
+					"buffer": 14,
 					"semi_transient": false,
 					"settings":
 					{
@@ -2167,11 +1921,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 23,
+					"stack_index": 17,
 					"type": "text"
 				},
 				{
-					"buffer": 21,
+					"buffer": 15,
 					"file": "core/tests.py",
 					"semi_transient": false,
 					"settings":
@@ -2302,11 +2056,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 22,
+					"stack_index": 16,
 					"type": "text"
 				},
 				{
-					"buffer": 22,
+					"buffer": 16,
 					"file": "notes/_CODE_ERRATA.txt",
 					"semi_transient": false,
 					"settings":
@@ -2318,8 +2072,8 @@
 						"selection":
 						[
 							[
-								513,
-								513
+								2776,
+								2151
 							]
 						],
 						"settings":
@@ -2331,14 +2085,14 @@
 							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1340.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 21,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 23,
+					"buffer": 17,
 					"semi_transient": false,
 					"settings":
 					{
@@ -2366,7 +2120,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 20,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]

@@ -79,35 +79,24 @@ both the CreateView and UpdateView
 
 {% block extra_script %}
 
-{% comment %}
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-{% endcomment %}
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/flick/jquery-ui.css" />
 
 
 {% comment %}
-<script>
-$(document).ready(function(){
-    $( ".datePicker" ).datepicker();
-    $('.timePicker').timepicker();
-});
-</script>
+Google map stopped displaying on 10.29.15, js?sensor=false:38 presenting as Uncaught InvalidValueError: not an Object
+I will update the query version.
+
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/flick/jquery-ui.css" />
 {% endcomment %}
 
-
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/flick/jquery-ui.css" />
 
     <script>
         $(function() {
         $( ".datePicker" ).datepicker();
         });
     </script>
-
-
-
 
 
 

@@ -131,7 +131,19 @@ if (jQuery != undefined) {
             $container.append($searchRow, $mapContainer, $addressRow);
             // $container.append($addressRow, $mapContainer, $searchRow);
 
+
+            // 10.27.15 the map stopped working -- would not display from some people
+            // was visible to me on 10.29.15
+            // fix was here: https://github.com/philippbosch/django-geoposition/issues/55
+            // no longer works with null, so will start it in CO
+            //40.0293046,-105.2750825
+            // had to adjust the Zoom as well mapOptions['zoom'] = 3;
+            latitude = 40.0293046
+            longitude = -105.27
+
             mapLatLng = new google.maps.LatLng(latitude, longitude);
+
+
 
             mapOptions = $.extend({}, mapDefaults, mapCustomOptions);
 
@@ -140,7 +152,8 @@ if (jQuery != undefined) {
             }
 
             if (!mapOptions['zoom']) {
-                mapOptions['zoom'] = latitude && longitude ? 15 : 1;
+                // mapOptions['zoom'] = latitude && longitude ? 15 : 1;
+                mapOptions['zoom'] = 3;
             }
 
             map = new google.maps.Map($mapContainer.get(0), mapOptions);
