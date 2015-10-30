@@ -36,6 +36,17 @@ ALLOWED_HOSTS = ['*',]
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30 * 3 # three months
 
 
+GEOPOSITION_MAP_OPTIONS = {
+    'minZoom': 3,
+    'maxZoom': 15,
+}
+
+GEOPOSITION_MARKER_OPTIONS = {
+    'cursor': 'move'
+}
+
+
+
 # https://docs.djangoproject.com/en/1.7/ref/settings/#template-context-processors
 # must add manually if you are going to then add your own
 TEMPLATE_CONTEXT_PROCESSORS = (

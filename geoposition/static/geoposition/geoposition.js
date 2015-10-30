@@ -139,11 +139,20 @@ if (jQuery != undefined) {
             //40.0293046,-105.2750825
             // had to adjust the Zoom as well mapOptions['zoom'] = 3;
             // MUST USE COLLECT STATIC AT THE SERVER!
-            latitude = 40.0293046
-            longitude = -105.27
+            // latitude = 40.0293046
+            // longitude = -105.27
+            //
+            // There was a side effect to initializing here. The admin panel would
+            // initialize with these values and overwrite the incident values! (unless you used save)
+            // (could not not use save and continue editing -- would overwrite again on the init)
+            //
+            // addressed by issuing default position in the model
+            //
+            // from geoposition import Geoposition
+            //
+            // position = GeopositionField(default=Geoposition(40.008682, -105.272883))
 
             mapLatLng = new google.maps.LatLng(latitude, longitude);
-
 
 
             mapOptions = $.extend({}, mapDefaults, mapCustomOptions);

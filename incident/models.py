@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from geoposition.fields import GeopositionField
+from geoposition import Geoposition
 
 # Create your models here.
 
@@ -45,7 +46,9 @@ class Incident(models.Model):
     id_it_by = models.CharField(null=True, blank=True, max_length=250, verbose_name="List any special identifying characteristics of vehicle and passengers that you observed" )
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
-    position = GeopositionField(null=True)
+    # position = GeopositionField(null=True)
+    # this will initialize the first drawing of the map
+    position = GeopositionField(default=Geoposition(40.008682, -105.272883))
     witnesses = models.CharField(null=True, blank=True, max_length=255, verbose_name="Your Name and Names of other Witnesses ( this field is not published )")
     # sadly had to add this because some folks are having trouble writing
     # a useful and literate report -- I can turn it off from the admin
