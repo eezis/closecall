@@ -6,7 +6,7 @@ __pycache__/
 *.so
 
 #sublime
-*.sublime-workspace
+closecall.sublime-workspace
 
 # Distribution / packaging
 bin/
