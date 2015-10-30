@@ -138,6 +138,7 @@ if (jQuery != undefined) {
             // no longer works with null, so will start it in CO
             //40.0293046,-105.2750825
             // had to adjust the Zoom as well mapOptions['zoom'] = 3;
+            // MUST USE COLLECT STATIC AT THE SERVER!
             latitude = 40.0293046
             longitude = -105.27
 
