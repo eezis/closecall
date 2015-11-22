@@ -72,6 +72,7 @@ urlpatterns = patterns('',
     url(r'^contact-r/', CreateUserInput.as_view(subject='General Inquiry - Registered User'), name='contact-general-registered'),
     url(r'^contact-u/', CreateUserInput.as_view(subject='General Inquiry UNREGISTERED User'), name='contact-general-unregistered'),
     url(r'^usermap/?$', show_user_map, name="home-user-map"),
+    url(r'^clustered-user-map/?$', TemplateView.as_view(template_name='clustermarkertest.html'), name="clustered-users"),
     # show all incidents is in the incident.url
 
 
