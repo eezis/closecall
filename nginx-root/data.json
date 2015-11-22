@@ -1,4 +1,4 @@
-var data = { "count": 5143,
+var data = { "count": 50,
   "members": [
   {"member": test1, "longitude": 40.1672068, "latitude": -105.1019275 },
   {"member": test2, "longitude": 40.103874, "latitude": -105.1708193 },
