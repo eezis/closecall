@@ -38,16 +38,16 @@ print 'var data = {{ "count": {},'.format(total)
 print '  "members": ['
 
 # "longitude": -64.404945, "latitude": -32.202924
-total = 5
+total = 50
 count = 0
-for u in UPS[:50]:
+for u in UPS[:total]:
     count += 1
     lat, lon = u.get_lat_lon()
     # print '  {{"{}": {}, "longitude": {}, "latitude": {} }}'.format('member', 'test', lat, lon)
     if count < total:
-        print '  {{"{}": {}, "longitude": {}, "latitude": {} }},'.format('member', 'test', lat, lon)
+        print '  {{"{}": {}, "longitude": {}, "latitude": {} }},'.format('member', 'test'+str(count), lat, lon)
     else:
-        print '  {{"{}": {}, "longitude": {}, "latitude": {} }}'.format('member', 'test', lat, lon)
+        print '  {{"{}": {}, "longitude": {}, "latitude": {} }}'.format('member', 'test'+str(count), lat, lon)
 
 
 print ' ]}'
