@@ -34,12 +34,13 @@ print UPS.count()
 #     print u'"{}, {}, {}, {}", {}'.format(unicode(u.city), unicode(u.state), unicode(u.country), unicode(u.zipcode), unicode(u.created)).encode('utf-8')
 
 total = UPS.count()
-total = 50
+# total = 50
 
 print 'var data = {{ "count": {},'.format(total)
 print '  "members": ['
 count = 0
-for u in UPS[:total]:
+# for u in UPS[:total]:
+for u in UPS:
     count += 1
     lat, lon = u.get_lat_lon()
     # print '  {{"{}": {}, "longitude": {}, "latitude": {} }}'.format('member', 'test', lat, lon)

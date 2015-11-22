@@ -29,7 +29,7 @@
 
     <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="http://closecalldatabase.com/data.json"></script>
-    <script src="https://github.com/googlemaps/js-marker-clusterer/blob/gh-pages/src/markerclusterer.js"></script>
+    <script src="http://closecalldatabase.com/static/js/markerclusterer.js"></script>
 
     <script>
       function initialize() {
@@ -42,10 +42,12 @@
         });
 
         var markers = [];
-        for (var i = 0; i < 100; i++) {
-          var dataPhoto = data.photos[i];
-          var latLng = new google.maps.LatLng(dataPhoto.latitude,
-              dataPhoto.longitude);
+        var totalMemembers = data.count;
+        console.log(totalMemembers);
+        for (var i = 0; i < totalMemembers; i++) {
+          var dataMember = data.members[i];
+          var latLng = new google.maps.LatLng(dataMember.latitude,
+              dataMember.longitude);
           var marker = new google.maps.Marker({
             position: latLng
           });
