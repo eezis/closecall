@@ -1,0 +1,26 @@
+The map is made from a fusion table. The map is here:
+
+Google Drive / CCDB / Early Registrations at The Close Call Database
+https://www.google.com/fusiontables/DataSource?docid=1kkG-JAOLZFp85VWIFZ0N75hnF-_xHFnlkWNSGJ1f#rows:id=1
+
+user-map.html template calls it.
+
+To update
+=========
+
+Find out the last entries in the spreadsheet above.
+
+run fustiontable-data.py
+
+copy the results to a file, find the new entries (look a the last entry in the spreadsheet, delete the top of the list)
+
+save the file data/add-to-existing-mm-dd-yy.csv
+
+File/Import that into the spreadsheet above
+File/Geocode to start the geocoding process
+
+
+
+
+
+
