@@ -45,9 +45,9 @@ for u in UPS:
     lat, lon = u.get_lat_lon()
     # print '  {{"{}": {}, "longitude": {}, "latitude": {} }}'.format('member', 'test', lat, lon)
     if count < total:
-        print '  {{"{}": {}, "longitude": {}, "latitude": {} }},'.format('member', u.id, lat, lon)
+        print '  {{"{}": {}, "longitude": {}, "latitude": {} }},'.format('member', u.id, lon, lat)
     else:
-        print '  {{"{}": {}, "longitude": {}, "latitude": {} }}'.format('member', u.id, lat, lon)
+        print '  {{"{}": {}, "longitude": {}, "latitude": {} }}'.format('member', u.id, lon, lat)
 
 
 print ' ]}'
