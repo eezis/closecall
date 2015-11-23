@@ -1,4 +1,4 @@
-{% extends "home-helper.html" %}
+{% extends "sitebase.html" %}
 
 {% block metatags %}
 <meta name="description" content="Incident Reports">
@@ -13,8 +13,6 @@
 
 
 {% block content %}
-
-{# TEST - home-all-incidents.html #}
 
 {% if user.is_authenticated %}
 
@@ -60,7 +58,35 @@
     </table>
   </div>
 
+{% comment %}
+  {% for incident in incidents %}
+    <p>
+    <span class="pad-right"><b>{{incident.date|date:"M d, Y" }}</b></span>
+    <span class="level-{{incident.danger_assessment}} sm-pad-rt">Threat Level: {{incident.threat_assessment}}</span>
+    {{incident.address}}
+    <a href="/incident/show-detail/{{incident.id}}/">. . . detailed report</a>
+    </p>
+  {% endfor %}
+{% comment %}
 
+
+{% comment %}
+<div class="pagination">
+    <span class="step-links">
+        {% if incidents.has_previous %}
+            <a href="?page={{ incidents.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ incidents.number }} of {{ incidents.paginator.num_pages }}.
+        </span>
+
+        {% if incidents.has_next %}
+            <a href="?page={{ incidents.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endcomment %}
 
 
 
@@ -87,6 +113,24 @@
 
 </div>
 
+{% comment %}
+
+{% if incidents %}
+<h4 class="incidents"> The Latest Incident Reports (From All Locations) </h4>
+  {% for incident in incidents %}
+    <p>
+    <span class="pad-right"><b>{{incident.date|date:"M d, Y" }}</b></span>
+    <span class="level-{{incident.danger_assessment}} sm-pad-rt">Threat Level: {{incident.threat_assessment}}</span>
+    {{incident.address}}
+    <a href="/incident/show-detail/{{incident.id}}/">. . . detailed report</a>
+  {% endfor %}
+  <hr>
+{% else %}
+
+{% endif %}
+
+</div>
+{% endcomment %}
 
 {% endif %}
 

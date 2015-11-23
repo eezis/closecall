@@ -1,0 +1,48 @@
+
+
+{% if announcement %}
+  {% for a in announcement %}
+    <p class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">{{a.the_announcement|safe}}</p>
+  {% endfor %}
+{% endif %}
+
+<div class="jumbotron" style="margin-top: 10px; padding-top: 10px; margin-bottom: 10px; padding-bottom: 40px;">
+<h2>Welcome to the Close Call Database</h2>
+<hr>
+<h3 style="padding-top: 12px;">A Community Project for Safer Cycling</h3>
+  <div class="page-header" style="margin: 26px 0 20px;">
+
+    <h2><small>
+    Drivers that are hostile to cyclists are often serial offenders. Cataloging their aggression and documenting their hostility towards cyclists provides important information to fellow cyclists, local police and prosecutors. When you record an incident here, it will be shared with cyclists in your area. When other cyclists report an Incident, it will be shared with you.
+
+    When problem drivers are identified this site will contact police where the Incidents have occurred so that they can intervene before another tragedy occurs. If that same driver does harm a cyclist at a later date, the information in the Incident Reports will increase the likelihood that justice is served.
+    </h2></small>
+
+    <h2><small>
+    If you would like to be notified of aggressive drivers in your area, or if you would like to report an incident with a hostile driver simply <a href="/get-strava-login"><img src="/static/images/LogInWithStrava.png"></a> or <a href="/accounts/register/" style="text-decoration: none;">register</a> to create an account. [If you are already registered and are returning to review incident reports, access the login screen from the menu at the top of the page]
+    </h2></small>
+
+    <h2><small>
+    No one is going to solve this problem for us. We have to do it ourselves. Please choose to be part of the solution.
+    </h2></small>
+
+    <h2><small>
+    In case you need more, I wrote a <a href="/articles/the-rationale-behind-the-close-call-database/">post</a> explaining my rationale and motivation. Still don't get it? Read this story at <a href="http://www.cnn.com/2015/05/13/living/feat-bike-helmet-cameras/" target="_blank">CNN</a>.
+    </h2></small>
+
+    <h2><small>
+    <i>Note, this site augments but does not replace current practices. If you have had a threatening encounter with a motorist you should still report it to the police!</i>
+    </h2></small>
+
+
+  </div>
+</div>
+
+{# the user-new-map.html template will load the new map and the old map #}
+{% include 'user-new-map.html' %}
+
+
+
+
+
+

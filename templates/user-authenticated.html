@@ -1,0 +1,77 @@
+{#  ANNOUNCEMENTS IF ANY #}
+
+{% if announcement %}
+  {% for a in announcement %}
+    <p class="bg-info" style="padding: 10px 20px; 10px; 20px; color:darkred;">{{a.the_announcement|safe}}</p>
+  {% endfor %}
+  <hr>
+{% endif %}
+
+{# INCIDENTS THAT HAVE OCCURRED IN THE USERS AREA  #}
+
+<ul class="nav nav-tabs nav-justified">
+  <li role="presentation" class="active"><a href="{% url 'home' %}">Home</a></li>
+  <li role="presentation"><a href="{% url 'show-all-incidents' %}">All Incident Reports</a></li>
+  <li role="presentation"><a href="{% url 'home-user-map' %}">User Map</a></li>
+  {# <li role="presentation"><a href="/clustered-user-map">User Map</a></li> #}
+
+</ul>
+
+
+{% if local_incidents %}
+
+<div style="padding-top:16px;">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="hpptitle">Incidents Reported In Your Area</h3>
+    </div>
+    <div class="panel-body" style="font-size:1.2em; line-height:1.55;">
+
+  {% for incident in local_incidents %}
+   <div class="incident-block">
+    {# <!-- date --> #}
+    <p><span class="pad-right" style="font-size: 0.9em;"><b>{{incident.date|date:"M d, Y" }}</b></span>
+    {# <!-- time, add later --> #}
+    {# <!-- where --> #}
+    {% if incident.address %}<span style="font-size: 0.8em; font-weight:bold;">{{incident.address}}</span>{% endif %}
+    </p>
+    {# <!-- quick driver summary --> #}
+    <div class="driver-summary">
+        <span class="sm-pad-rt">Driver categorized as: </span><span class="level-{{incident.danger_assessment}}">{{incident.threat_assessment}}</span>, their actions were <span class="level-{{incident.danger_assessment}}">{{incident.danger_level}}</span>.
+        {% if incident.vehicle_description %}
+          They were driving a <b>{{incident.vehicle_description}}</b>.
+          {% if incident.license_certain %} License plate: <b>{{incident.license_certain}}</b> {% endif %}
+          {% if incident.license_uncertain%} License plate may be: <b>{{incident.license_uncertain}}</b>{% endif %}
+        {% endif %}
+
+      <div class="incident-summary">{{incident.what|safe|truncatewords:50}} <a href="/incident/show-detail/{{incident.id}}/">read more</a></div>
+      <hr style="border-top: dotted 1px;" />
+    </div>
+   </div>
+  {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% else %}  {# if else for local incidents #}
+
+
+
+<div style="padding-top:16px;">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="hpptitle">Excellent News: No Incidents have been reported in your area!</h3>
+    </div>
+    <div class="panel-body" style="font-size:1.2em; line-height:1.55;">
+      You are successfully registered. Any future Incident Reports that are filed in your area will be available to you right here. To get a better idea of how the system works, you can view an Incident from a different location right <a href="/incident/show/CO-141108-001/">here</a> or you can <a href="{% url 'show-all-incidents' %}">view them all</a>.</p>
+    </div>
+  </div>
+</div>
+
+
+{% endif %}
+{# end of if local_incidents #}
+

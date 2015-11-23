@@ -72,6 +72,9 @@ def HomeView(request):
             Local_I = request.user.profile.get_user_incidents()
             # Latest_I = Latest Incidents (most recent) -- might want to modify to get the most recent *dangeruous* instances
             Recent_I = Incident.objects.filter(visible=True).order_by('-id')[:10]
+            # return render(request, 'home.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
+            # see line 113 as well if you make changes to the response object
+            # return render(request, 'home-new-map.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
             return render(request, 'home.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
         except AttributeError:
             msg = """
@@ -107,6 +110,7 @@ def HomeView(request):
             return HttpResponseRedirect('/create-user-profile/')
 
     else:
+        # return render(request, 'home.html')
         return render(request, 'home.html')
 
 

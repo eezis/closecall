@@ -1,4 +1,4 @@
-{% extends "sitebase.html" %}
+{% extends "home-helper.html" %}
 
 {% block metatags %}
 <meta name="description" content="Geographic distribution of registered cyclists">
@@ -9,10 +9,27 @@
 
 {% block extra_styles %}
   {% include 'home-styles.html' %}
+
+      #map-container {
+        padding: 6px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ccc #ccc #999 #ccc;
+        -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+        box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+        width: 100%;
+      }
+      #map {
+        width: 100%;
+        height: 600px;
+      }
+
 {% endblock %}
 
 
 {% block content %}
+
 
 {% if user.is_authenticated %}
 
@@ -24,21 +41,8 @@
 
 <div style="padding-top:16px;">
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="hpptitle">Geographic Distribution of the Close Call Database Community</h3>
-  </div>
-  <div class="panel-body" style="font-size:1.2em; line-height:1.55;">
-    The database's effectiveness increases with membership and coverage. The map below shows the location of currently registered users with some limitations. For instance, it only shows one dot for every city &amp; zip code/postal code combination even if there are many registrants. So at the moment (May 2015) Boulder Colorado has 221 registrations but the map below only shows six dots; one for each zip code. Still I wanted to share the map in order to provide the community here with a general picture of registered user locations. The site is off to a great start and registrations continue to come in as word of the site spreads from one cyclist to another and it gets mentioned around the web on blogs, Twitter, Facebook, etc. To get the most out of this service, you want to encourage other cyclists <em>in your area</em> to join.
-  </div>
-</div>
-
-
-<div class="jumbotron" style="margin-top: 10px; padding-top: 30px; margin-bottom: 10px; padding-bottom: 40px;">
-
-<iframe width="100%" height="600" scrolling="no" frameborder="no" src="https://www.google.com/fusiontables/embedviz?q=select+col0+from+1kkG-JAOLZFp85VWIFZ0N75hnF-_xHFnlkWNSGJ1f&amp;viz=MAP&amp;h=false&amp;lat=39.603641326430605&amp;lng=-104.24564615546865&amp;t=1&amp;z=2&amp;l=col0&amp;y=2&amp;tmplt=3&amp;hml=GEOCODABLE"></iframe>
-</div>
-
+{# the user-new-map.html template will load the new map and the old map #}
+{% include 'user-new-map.html' %}
 
 </div>
 
