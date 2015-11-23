@@ -1,3 +1,13 @@
+
+The new map:
+
+https://developers.google.com/maps/articles/toomanymarkers#distancebasedclustering
+
+I generate my data -- the data.json file (which is in ngnix-root directory) via the clustermap-data.py program.
+
+
+--  Directions for the bottom map
+
 The map is made from a fusion table. The map is here:
 
 Google Drive / CCDB / Early Registrations at The Close Call Database
