@@ -76,6 +76,10 @@ def handle_a_model_save(sender, **kwargs):
             userprofile = kwargs.get('instance')
             # if there is not lat & lon then we need to create it, then update the cache
             print userprofile.get_lat_lon()
+
+            # build the string, then write the file, or just write the .dat and let workflow do it
+            # workflow might be best
+
         else:
             print
     except:
