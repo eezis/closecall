@@ -44,6 +44,7 @@ class CreateUserProfileView(LoginRequiredMixin, ValidFormMixin, CreateView):
         print u"CreateUserProfileView.form_valid :: {} -- {}".format(self.request.user, self.request.user.email)
         return super(CreateUserProfileView, self).form_valid(form)
 
+
 class DetailUserProfileView(LoginRequiredMixin, DetailView):
     model = UserProfile
     template_name = "users/userprofile_detail.html"

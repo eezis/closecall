@@ -26,12 +26,12 @@ django.setup()
 
 from users.models import UserProfile
 
-UPS = UserProfile.objects.all()
+
+# doesn't need to be ordered, but useful during development
+# UPS = UserProfile.objects.all()
+UPS = UserProfile.objects.all().order_by('id')
 
 print UPS.count()
-
-# for u in UPS:
-#     print u'"{}, {}, {}, {}", {}'.format(unicode(u.city), unicode(u.state), unicode(u.country), unicode(u.zipcode), unicode(u.created)).encode('utf-8')
 
 total = UPS.count()
 # total = 50
@@ -51,6 +51,25 @@ for u in UPS:
 
 
 print ' ]}'
+
+
+
+# def make_big_string(UPS):
+#     count = 0
+#     jdata = 'var data = {{ "count": {},\n'.format(UPS.count)
+#     jdata = jdata + '  "members": ['
+#     for u in UPS:
+#         count += 1
+#         lat, lon = u.get_lat_lon()
+
+#     if count < total:
+#         print '  {{"{}": {}, "longitude": {}, "latitude": {} }},'.format('member', u.id, lon, lat)
+#     else:
+#         print '  {{"{}": {}, "longitude": {}, "latitude": {} }}'.format('member', u.id, lon, lat)
+
+
+# print ' ]}'
+
 
 # https://googlemaps.github.io/js-marker-clusterer/examples/data.json
 

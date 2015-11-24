@@ -21,6 +21,9 @@ from registration.views import RegistrationView
 
 from incident.views import show_sample_report
 
+import users.receivers
+
+
 urlpatterns = patterns('',
     url(r"^$", HomeView, name="home"),
     url(r'^about/', TemplateView.as_view(template_name="about.html"), name="about"),

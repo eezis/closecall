@@ -64,12 +64,6 @@ class UserProfile(BaseFields):
         # AttributeError: NoneType object has no attribute strip
         self.zipcode = self.zipcode
 
-        # self.city = self.city.strip()
-        # self.state = self.state.strip()
-        # self.country = self.country.strip()
-
-        # self.zipcode = self.zipcode.strip()
-
         super(UserProfile, self).save(*args, **kwargs)
 
     def format_position(self):
