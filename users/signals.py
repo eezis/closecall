@@ -2,7 +2,22 @@
 I wish to update the UserMap in real time. The plan is . . .
 
 1. Use a post_save signal after a UserProfile is created to contact this file
-    https://snakeycode.wordpress.com/2014/10/17/django-signals-example/
+    http://www.koopman.me/2015/01/django-signals-example/
+    a. create this file (signals.py)
+    b. create apps.py -- use AppConfig to "register" this file
+
+    from django.apps import AppConfig
+
+    class UserProfileConfig(AppConfig):
+        name = 'users'
+        verbose_name = 'UserProfiles App'
+
+        def ready(self):
+            import users.signals
+
+    c. edit __init__.py;
+
+        default_app_config = 'users.apps.UserProfileConfig'
 
 2. Check for a Lat & Lon -- create it not there
 
@@ -45,6 +60,26 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from models import UserProfile
 
+# from django.conf import settings
+import os.path
+
+
 @receiver(post_save, sender=UserProfile)
 def handle_a_model_save(sender, **kwargs):
     print 'signals: a UserProfile was saved'
+
+    try:
+        # https://docs.djangoproject.com/en/dev/ref/signals/#post-save
+        # Arguments sent with this signal:
+        # sender, instance (The actual instance being saved) created, raw, using, update_fields
+        if kwargs.get('created', True):
+            userprofile = kwargs.get('instance')
+            # if there is not lat & lon then we need to create it, then update the cache
+            print userprofile.get_lat_lon()
+        else:
+            print
+    except:
+        pass
+
+
+

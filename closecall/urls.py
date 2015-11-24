@@ -3,19 +3,14 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 # from django.views.generic.base import RedirectView
 
-# signal handling here, import this module ***early***
-import users.receivers
-
 from core.views import HomeView, strava_registration, redirect_to_strava_login, redirect_to_strava_via_login_page, CreateUserInput, \
 show_user_map #, MyRegistrationView
 from publish.views import NewsView, news_preview
 from users.views import CreateUserProfileView, UpdateUserProfileView, DetailUserProfileView, CheckForUserProfile
 
-
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-
 
 # I subclassed the registration.forms class RegistrationForm, so now I need to the the URL to use my form class
 from myregistration.forms import MyRegistrationForm
