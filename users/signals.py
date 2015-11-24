@@ -75,13 +75,14 @@ def handle_a_model_save(sender, **kwargs):
         if kwargs.get('created', True):
             userprofile = kwargs.get('instance')
             # if there is not lat & lon then we need to create it, then update the cache
+            # other wise the update will get created in the middle of file creation.
+            # should inspect and verify the file somehow
             print userprofile.get_lat_lon()
 
             # build the string, then write the file, or just write the .dat and let workflow do it
             # workflow might be best
-
         else:
-            print
+            print "the kwargs.get('created', True) failed -- so it was probably an update?"
     except:
         pass
 
