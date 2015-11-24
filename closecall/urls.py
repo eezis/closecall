@@ -3,6 +3,9 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 # from django.views.generic.base import RedirectView
 
+# signal handling here, import this module ***early***
+import users.receivers
+
 from core.views import HomeView, strava_registration, redirect_to_strava_login, redirect_to_strava_via_login_page, CreateUserInput, \
 show_user_map #, MyRegistrationView
 from publish.views import NewsView, news_preview
@@ -20,8 +23,6 @@ from registration.views import RegistrationView
 # url(r'^register/$',RegistrationView.as_view(form_class=MyRegistrationForm), name='registration_register'),
 
 from incident.views import show_sample_report
-
-import users.receivers
 
 
 urlpatterns = patterns('',

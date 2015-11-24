@@ -2,6 +2,7 @@
 I wish to update the UserMap in real time. The plan is . . .
 
 1. Use a post_save signal after a UserProfile is created to contact this file
+    https://snakeycode.wordpress.com/2014/10/17/django-signals-example/
 
 2. Check for a Lat & Lon -- create it not there
 
@@ -42,7 +43,6 @@ process_dat: *.dat: python process.py $0
 
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-
 from models import UserProfile
 
 @receiver(post_save, sender=UserProfile)
