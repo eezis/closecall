@@ -64,6 +64,17 @@ from models import UserProfile
 import os.path
 
 
+# NOTE WELL PRINT STATEMENTS ARE ONLY VISIBLE AT THE SERVER IN THE TAB WHERE
+# $ gunicorn closecall.wsgi:application --workers=3 --bind 127.0.0.1:8000 --log-file=-
+# was run!
+# [2015-11-24 13:31:06 +0000] [13353] [INFO] Booting worker with pid: 13353
+# signals: a UserProfile was saved
+# (37.09024, -95.71289100000001)
+# CreateUserProfileView.form_valid :: kjack1111 -- kjackgilchrist@gmail.com
+# signals: a UserProfile was saved
+# the kwargs.get('created', True) failed -- so it was probably an update?
+
+
 @receiver(post_save, sender=UserProfile)
 def handle_a_model_save(sender, **kwargs):
     print 'signals: a UserProfile was saved'
@@ -77,13 +88,17 @@ def handle_a_model_save(sender, **kwargs):
             # if there is not lat & lon then we need to create it, then update the cache
             # other wise the update will get created in the middle of file creation.
             # should inspect and verify the file somehow
-            print userprofile.get_lat_lon()
-
+            try:
+                print userprofile.get_lat_lon()
+            except:
+                print "UserProfile.get_lat_lon failed - it excepted"
+                pass
             # build the string, then write the file, or just write the .dat and let workflow do it
             # workflow might be best
         else:
             print "the kwargs.get('created', True) failed -- so it was probably an update?"
     except:
+        print "Exception raised by: if kwargs.get('created', True):"
         pass
 
 
