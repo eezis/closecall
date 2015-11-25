@@ -42,6 +42,9 @@ count = 0
 # for u in UPS[:total]:
 for u in UPS:
     count += 1
+    # SO THIS CALL WILL TRIGGER SOME PRINT STATEMENTS IF A NEW POSITION NEEDS TO BE GEOCODED
+    # THAT'S A PROBLEM?
+    # PROBABLY NOT IF BUILDING A STRING AND WRITING TO A FILE -- like I was testing in ipython
     lat, lon = u.get_lat_lon()
     # print '  {{"{}": {}, "longitude": {}, "latitude": {} }}'.format('member', 'test', lat, lon)
     if count < total:

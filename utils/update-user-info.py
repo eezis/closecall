@@ -17,10 +17,21 @@ import django
 django.setup()
 
 from users.models import UserProfile
+from django.contrib.auth.models import User
 
-username = 'Matt Kobzik'
+# username = 'Matt Kobzik'
+username = 'Sam Thomas'
 
-U = UserProfile.objects.get()
+u = User.objects.get(username=username)
+print u
+print
+# u.email = 'sthomas1990@gmail.com'
+# print u
+# u.save()
+
+# # U = UserProfile.objects.get()
+# U.email = 'sthomas1990@gmail.com'
+# U.save()
 
 print u.email
 
