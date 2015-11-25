@@ -42,7 +42,7 @@ class UserProfile(BaseFields):
             ' -- ' + self.created.strftime('%Y-%m-%d %H:%M') + ' --  ' + unicode(self.city) + ', ' + unicode(self.state)
 
     def try_to_geocode(self):
-        print 'trying to geocode!'
+        print 'TRY_TO_GEOCODE_CALLED: trying to geocode!'
         send_mail('POSITION FIX', 'Fixing Position for: ' + self.user.username, 'closecalldatabase@gmail.com',
             ['ernest.ezis@gmail.com',], fail_silently=False)
         if self.zipcode != None:
@@ -71,10 +71,10 @@ class UserProfile(BaseFields):
         # self.position = '(40.0149856, -105.27054559999999)'
 
         if self.position is None:
-            print 'fixing missing geocode'
+            print 'FORMAT_POSITION: fixing missing geocode'
             self.position = self.try_to_geocode()
             if self.position:
-                print 'saving missing geocode {}'.format(self.position)
+                print 'FORMAT_POSITION: saving missing geocode {}'.format(self.position)
                 self.save()
 
 
