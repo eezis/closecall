@@ -215,7 +215,7 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
         # EE 11.25.15 . . . the above statement was True! on 11.25.15, a second Sam Thomas, also using Strava,
         # tried to register, the created_username was Sam Thomas, it selected the existing one of course,
         # then, worse, it 'updated' the original guy's email with the one passed in here!
-        user = User.objects.get(username=username, email=email)
+        user = User.objects.get(username=created_username, email=email)
         # user = User.objects.get(username=created_username)
         try:
             try:
