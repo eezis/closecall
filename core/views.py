@@ -34,6 +34,7 @@ from incident.models import Incident
 from publish.models import InTheNews
 
 from random import randint
+from django.db import IntegrityError
 
 P = True
 
