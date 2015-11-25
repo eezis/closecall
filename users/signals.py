@@ -82,14 +82,14 @@ def handle_a_model_save(sender, **kwargs):
             try:
                 print userprofile.get_lat_lon()
             except:
-                print "signals.py:hams: UserProfile.get_lat_lon failed - it excepted"
+                print "signals.py:hams: UserProfile.get_lat_lon failed - it excepted\n"
                 pass
             # build the string, then write the file, or just write the .dat and let workflow do it
             # workflow might be best
         else:
-            print "signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update?"
+            print "signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update?\n"
     except:
-        print "signals.py:hams: Exception raised by: if kwargs.get('created', True):"
+        print "signals.py:hams: Exception raised by: if kwargs.get('created', True):\n"
         pass
 
 

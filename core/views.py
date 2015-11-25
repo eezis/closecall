@@ -193,30 +193,68 @@ def login_a_user(request, this_user, athlete_id):
         return False
 
 
+
+def create_new_user(email, created_username, fname, lname, athlete_id=None):
+    created_password = get_or_create_a_strava_based_password(athlete_id)
+    """ ****************************************************************************************************** """
+    """ NOTE WELL: a simple create User and save didn ot work, I needed to use the "create_user" method of User """
+    """ ****************************************************************************************************** """
+    # new_user = User(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
+    new_user = User.objects.create_user(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
+    new_user.save()
+    return new_user
+
+
+
+
 # def get_or_create_user(email, created_username, fname, lname, password, athlete_id):
-def get_or_create_user(email, created_username, fname, lname, athlete_id):
+def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
     # if user exists
     try:
         # looking up by username and email is stringent but I think I need that
-        # user = User.objects.get(username=username, email=email)
-        user = User.objects.get(username=created_username)
+        # EE 11.25.15 . . . the above statement was True! on 11.25.15, a second Sam Thomas, also using Strava,
+        # tried to register, the created_username was Sam Thomas, it selected the existing one of course,
+        # then, worse, it 'updated' the original guy's email with the one passed in here!
+        user = User.objects.get(username=username, email=email)
+        # user = User.objects.get(username=created_username)
         try:
-            if P: print "the user exists"
+            try:
+                previously_recorded_id = user.profile.created_with.split('=')[1]
+                if previously_recorded_id == athlete_id:
+                    if P: print "the user exists"
+
+                    # this should catch an instance where a Strava user started as eezis@yahoo.com, then updated profile to
+                    # eezis@gmail.com :: have already trapped to make sure it is the same strava user based on athlete_id
+                    if user.email != email:
+                        old_email = user.email
+                        # if email on record does not match the current one at strava, swap the current one in and save it
+                        user.email = email
+                        user.save()
+                        # notify me about it, at least for now so I can monitor how this works
+
+                        s = 'User: ' + user.username + ' seems to have updated their email address from ' + old_email + ' to ' + email
+                        #+'. You may wish to confirm that this is what happened to prove that your logic is sound.'
+
+                        send_mail('Strava: user changed email?',"from core.views.strava_registration \n\n", 'closecalldatabase@gmail.com',
+                            ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+
+                else: # the username and email match, but not the athlete_id from Strava
+                    s = 'Strava id from oauth is {} but on record it is {}. Investigate \
+                    for username {} \n\n'.format(athlete_id, previously_recorded_id, user.username)
+
+                    send_mail( s, 'closecalldatabase@gmail.com',
+                        ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+
+                    # since the athlete_ids do not match, create a new user
+                    # rather than returning a bad match
+                    user = create_new_user(email, created_username, fname, lname, athlete_id)
+
+            except:
+                pass
+
         except IOError:
             pass
 
-        if user.email != email:
-            old_email = user.email
-            # if email on record does not match the current one at strava, swap the current one in and save it
-            user.email = email
-            user.save()
-            # notify me about it, at least for now so I can monitor how this works
-
-            s = 'User: ' + user.username + ' seems to have updated their email address from ' + old_email + ' to ' + email
-            #+'. You may wish to confirm that this is what happened to prove that your logic is sound.'
-
-            send_mail('Strava: user changed email?',"from core.views.strava_registration \n\n", 'closecalldatabase@gmail.com',
-                ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
 
         return user
 
@@ -228,14 +266,16 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id):
             if P: print "create a proxy password"
         except IOError:
             pass
-        created_password = get_or_create_a_strava_based_password(athlete_id)
-        """ ****************************************************************************************************** """
-        """ NOTE WELL: a simple create User and save didn ot work, I needed to use the "create_user" method of User """
-        """ ****************************************************************************************************** """
-        # new_user = User(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
-        new_user = User.objects.create_user(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
-        new_user.save()
-        return new_user
+
+        return create_new_user(email, created_username, fname, lname, athlete_id)
+        # created_password = get_or_create_a_strava_based_password(athlete_id)
+        # """ ****************************************************************************************************** """
+        # """ NOTE WELL: a simple create User and save didn ot work, I needed to use the "create_user" method of User """
+        # """ ****************************************************************************************************** """
+        # # new_user = User(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
+        # new_user = User.objects.create_user(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
+        # new_user.save()
+        # return new_user
 
 
 
