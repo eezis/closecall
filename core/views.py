@@ -219,35 +219,37 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
         # user = User.objects.get(username=created_username)
         try:
             try:
-                previously_recorded_id = user.profile.created_with.split('=')[1]
-                if previously_recorded_id == athlete_id:
-                    if P: print "the user exists"
+                if user.profile.created_with not in [None, '']:
+                    previously_recorded_id = user.profile.created_with.split('=')[1]
 
-                    # this should catch an instance where a Strava user started as eezis@yahoo.com, then updated profile to
-                    # eezis@gmail.com :: have already trapped to make sure it is the same strava user based on athlete_id
-                    if user.email != email:
-                        old_email = user.email
-                        # if email on record does not match the current one at strava, swap the current one in and save it
-                        user.email = email
-                        user.save()
-                        # notify me about it, at least for now so I can monitor how this works
+                    if previously_recorded_id == athlete_id:
+                        if P: print "the user exists, same athlete_id too"
 
-                        s = 'User: ' + user.username + ' seems to have updated their email address from ' + old_email + ' to ' + email
-                        #+'. You may wish to confirm that this is what happened to prove that your logic is sound.'
+                        # this should catch an instance where a Strava user started as eezis@yahoo.com, then updated profile to
+                        # eezis@gmail.com :: have already trapped to make sure it is the same strava user based on athlete_id
+                        if user.email != email:
+                            old_email = user.email
+                            # if email on record does not match the current one at strava, swap the current one in and save it
+                            user.email = email
+                            user.save()
+                            # notify me about it, at least for now so I can monitor how this works
 
-                        send_mail('Strava: user changed email?',"from core.views.strava_registration \n\n", 'closecalldatabase@gmail.com',
+                            s = 'User: ' + user.username + ' seems to have updated their email address from ' + old_email + ' to ' + email
+                            #+'. You may wish to confirm that this is what happened to prove that your logic is sound.'
+
+                            send_mail('Strava: user changed email?',"from core.views.strava_registration \n\n", 'closecalldatabase@gmail.com',
+                                ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+
+                    else: # the username and email match, but not the athlete_id from Strava
+                        s = 'Strava id from oauth is {} but on record it is {}. Investigate \
+                        for username {} \n\n'.format(athlete_id, previously_recorded_id, user.username)
+
+                        send_mail( s, 'closecalldatabase@gmail.com',
                             ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
 
-                else: # the username and email match, but not the athlete_id from Strava
-                    s = 'Strava id from oauth is {} but on record it is {}. Investigate \
-                    for username {} \n\n'.format(athlete_id, previously_recorded_id, user.username)
-
-                    send_mail( s, 'closecalldatabase@gmail.com',
-                        ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-
-                    # since the athlete_ids do not match, create a new user
-                    # rather than returning a bad match
-                    user = create_new_user(email, created_username, fname, lname, athlete_id)
+                        # since the athlete_ids do not match, create a new user
+                        # rather than returning a bad match
+                        user = create_new_user(email, created_username, fname, lname, athlete_id)
 
             except:
                 pass
