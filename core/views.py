@@ -208,8 +208,8 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
     except IntegrityError:
         # this means we have an instance where there is already on Sam Thomas, and seccond one is trying to join-probably from Strava
         # let's try to add the athlete_id or a random number
-        if athelete_id is not None:
-            created_username = created_username + '-' + athelete_id
+        if athlete_id is not None:
+            created_username = created_username + '-' + athlete_id
         else:
             # I can live with the 1 in 1000 chance we gen a duplicate if the user is not coming from Strava
             created_username = created_username + '-' + str((randint(1,1000)))
