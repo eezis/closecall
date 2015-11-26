@@ -87,7 +87,7 @@ def handle_a_model_save(sender, **kwargs):
             # build the string, then write the file, or just write the .dat and let workflow do it
             # workflow might be best
         else:
-            print "signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update?\n"
+            print "signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?\n"
     except:
         print "signals.py:hams: Exception raised by: if kwargs.get('created', True):\n"
         pass
