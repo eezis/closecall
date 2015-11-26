@@ -272,7 +272,10 @@ def existing_strava_user(UserFromDB, authing_email, authing_id):
             return False
     except:
         # There was an issue retrivieving created with, return false and investigate what happened
-        safe_print('EXCEPTION RETRIEVING created_with field: This can be normal', True, True)
+        # explanation = 'EXCEPTION RETRIEVING created_with field. This can be normal. For instance there was \
+        # an existing Sam Thoams from Strava. A Second one attemtped to register. That would produce a valid user \
+        # to pass to this function, but then it would cause an exception '
+        safe_print('EXCEPTION RETRIEVING created_with field: This can be normal ', True, True)
         return False
 
 
@@ -296,6 +299,7 @@ well and update if appropriate
 def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
     try:
         user = User.objects.get(username=created_username)
+        #  if user is None it should already have excepted and will not run this code
         if existing_strava_user(user, email, athlete_id):
             safe_print("Existing_strava_user returned TRUE")
             return user
