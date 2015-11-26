@@ -267,7 +267,7 @@ else
     create a user object and return it
 
 caveats: Strava usernames are not unique, user of email and user name is better, but
-strava users can change their email. Strava uniqueness is on the athelete_id, but that
+strava users can change their email. Strava uniqueness is on the athlete_id, but that
 is part of the UserProfile. Since this can be called by a returning Strava user that is
 simply logging in, we need to check the athlete_id. If it's a match we should check email as
 well and update if appropriate
@@ -275,7 +275,7 @@ well and update if appropriate
 def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
     try:
         user = User.objects.get(username=created_username)
-        if existing_strava_user(user, email, athelete_id):
+        if existing_strava_user(user, email, athlete_id):
             return user
         else:
             return create_new_user(email, created_username, fname, lname, athlete_id)
@@ -544,7 +544,7 @@ def strava_registration(request):
             created_username = fname + ' ' + lname
             created_username = created_username[:30]
 
-            # this_user = get_or_create_user(email, created_username, fname, lname, password, athelete_id)
+            # this_user = get_or_create_user(email, created_username, fname, lname, password, athlete_id)
             try:
                 if P:
                     print u"{} {}".format(fname, lname)
@@ -584,7 +584,7 @@ def strava_registration(request):
                     # >>> u.set_password('new password')
                     # >>> u.save()
 
-                    # user_having_trouble = u"{} {} : {} : usnermane={} : Id={}".format(fname, lname, email, created_username, athelete_id)
+                    # user_having_trouble = u"{} {} : {} : usnermane={} : Id={}".format(fname, lname, email, created_username, athlete_id)
                     # admin_mailer('UNEXPECTED LOGIN ISSUE', 'See view.core if user_profile_exists login attempt. \n' + user_having_trouble )
 
                     # see 10:18 am email on 10:39 am, in the closecall gmail account
