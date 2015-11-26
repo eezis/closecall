@@ -259,7 +259,7 @@ def existing_strava_user(UserFromDB, authing_email, authing_id):
                 safe_print('Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG')
                 # update the email on the off chance that the user has updated the email in there strava profile
 
-                # update_strava_email_if_it_has_changed(UserFromDB, authing_email)
+                update_strava_email_if_it_has_changed(UserFromDB, authing_email)
 
                 return True
             else:
