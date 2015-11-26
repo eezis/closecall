@@ -8,10 +8,10 @@ import os
 # get the OS indendent home direction
 home_dir = os.path.expanduser("~")
 # print home_dir
-sys.path.append(home_dir + "/code/sites/closecall")
+sys.path.append(home_dir + "/sites/closecall")
 sys.path.append(home_dir + "/.virtualenvs/closecall/lib/python2.7/site-packages")
 
-print sys.path
+# print sys.path
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'closecall.settings'
 import django
