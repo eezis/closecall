@@ -235,8 +235,11 @@ def existing_strava_user(UserFromDB, authing_email, authing_ID):
     exists = False
     #safely try to retrieve the recorded Strava Profile ID
     try:
+        safe_print("Here")
         if UserFromDB.profile.created_with not in [None, '']:
+            safe_print("Attempt to pull Strava ID")
             previously_recorded_id = user.profile.created_with.split('=')[1]
+            safe_print("Existing Strava ID is {}, authing one is {}".format(previously_recorded_id, authing_ID))
             if previously_recorded_id == athlete_id:
                 safe_print('Existing Strava User: id is '.format(athlete_id))
                 # update the email on the off chance that the user has updated the email in there strava profile
@@ -252,7 +255,7 @@ def existing_strava_user(UserFromDB, authing_email, authing_ID):
             return False
     except:
         # There was an issue retrivieving created with, return false and investigate what happened
-        safe_print('EXCEPTION RETRIEVING created_with field: invesigate and fix', True, True)
+        safe_print('EXCEPTION RETRIEVING created_with field: This can be normal', True, True)
         return False
 
 
