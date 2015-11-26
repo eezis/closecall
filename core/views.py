@@ -249,7 +249,8 @@ def existing_strava_user(UserFromDB, authing_email, authing_id):
             safe_print("User is {}".format(UserFromDB.email))
             previously_recorded_id = UserFromDB.profile.created_with.split('=')[1]
             safe_print("Existing Strava ID is {}, authing one is {}".format(previously_recorded_id, authing_id))
-
+            safe_print(previously_recorded_id)
+            safe_print(authing_id)
             if previously_recorded_id == authing_id:
                 safe_print('Existing Strava User: id is '.format(authing_id))
                 # update the email on the off chance that the user has updated the email in there strava profile
