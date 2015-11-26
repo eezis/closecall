@@ -240,7 +240,7 @@ def update_strava_email_if_it_has_changed(TheUser, authing_email):
         TheUser.save()
 
 
-def existing_strava_user(UserFromDB, authing_email, authing_ID):
+def existing_strava_user(UserFromDB, authing_email, authing_id):
     #safely try to retrieve the recorded Strava Profile ID
     try:
         safe_print("Here")
@@ -248,7 +248,7 @@ def existing_strava_user(UserFromDB, authing_email, authing_ID):
             safe_print("Attempt to pull Strava ID")
             safe_print("User is {}".format(UserFromDB.email))
             previously_recorded_id = UserFromDB.profile.created_with.split('=')[1]
-            safe_print("Existing Strava ID is {}, authing one is {}".format(previously_recorded_id, authing_ID))
+            safe_print("Existing Strava ID is {}, authing one is {}".format(previously_recorded_id, authing_id))
             if previously_recorded_id == authing_id:
                 safe_print('Existing Strava User: id is '.format(athlete_id))
                 # update the email on the off chance that the user has updated the email in there strava profile
