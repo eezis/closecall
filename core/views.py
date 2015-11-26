@@ -243,19 +243,20 @@ def update_strava_email_if_it_has_changed(TheUser, authing_email):
 def existing_strava_user(UserFromDB, authing_email, authing_id):
     #safely try to retrieve the recorded Strava Profile ID
     try:
-        safe_print("Here")
+        safe_print("Checking to see if this is an existing user")
         if UserFromDB.profile.created_with not in [None, '']:
-            safe_print("Attempt to pull Strava ID")
-            safe_print("User is {}".format(UserFromDB.email))
+            safe_print("Attemptingt to pull Strava ID")
+            # safe_print("User email is {}".format(UserFromDB.email))
             previously_recorded_id = UserFromDB.profile.created_with.split('=')[1]
             safe_print("Existing Strava ID is {}, authing one is {}".format(previously_recorded_id, authing_id))
-            safe_print(previously_recorded_id)
-            safe_print(authing_id)
+
+            # safe_print(previously_recorded_id)
+            # safe_print(authing_id)
 
             # all good to here
-
+            # THIS CODE WAS FAILING WITHOUT THE STRING CAST
             if str(previously_recorded_id).strip() == str(authing_id).strip():
-                safe_print('Existing Strava User: id is '.format(authing_id))
+                safe_print('Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG')
                 # update the email on the off chance that the user has updated the email in there strava profile
 
                 # update_strava_email_if_it_has_changed(UserFromDB, authing_email)
@@ -296,9 +297,10 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
     try:
         user = User.objects.get(username=created_username)
         if existing_strava_user(user, email, athlete_id):
-            safe_print(" existing_strava_user was TRUE")
+            safe_print("Existing_strava_user returned TRUE")
             return user
         else:
+            safe_print("Existing_strava_user returned False, go create new user")
             return create_new_user(email, created_username, fname, lname, athlete_id)
 
     except User.DoesNotExist:
