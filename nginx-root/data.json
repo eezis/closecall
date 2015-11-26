@@ -1,4 +1,4 @@
-var data = { "count": 5278,
+var data = { "count": 5279,
   "members": [
   {"member": 3, "longitude": -105.2838511, "latitude": 40.0454736 },
   {"member": 8, "longitude": -105.2838511, "latitude": 40.0454736 },
@@ -5277,5 +5277,6 @@ var data = { "count": 5278,
   {"member": 5429, "longitude": -78.5097228, "latitude": 35.9798734 },
   {"member": 5430, "longitude": -88.1144943, "latitude": 42.0577989 },
   {"member": 5431, "longitude": -116.9675814, "latitude": 32.7963222 },
-  {"member": 5432, "longitude": -86.2483921, "latitude": 43.2341813 }
+  {"member": 5432, "longitude": -86.2483921, "latitude": 43.2341813 },
+  {"member": 5433, "longitude": -1.437804, "latitude": 55.0400162 }
  ]}
