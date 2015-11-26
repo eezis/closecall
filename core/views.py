@@ -145,22 +145,6 @@ def user_profile_exists(user):
         safe_print("User Profile does NOT Exist!")
         return False
 
-    # USER_PROFILE_EXISTS = False
-    # try :
-    #     user.profile
-    #     try:
-    #         if P: print "user profile does exist"
-    #     except IOError:
-    #         pass
-    #     USER_PROFILE_EXISTS = True
-    #     return True
-    # except ObjectDoesNotExist:
-    #     try:
-    #         if P: print "UserProfile does NOT exist"
-    #     except IOError:
-    #         pass
-    #     return False
-
 
 def get_or_create_a_strava_based_password(athlete_id):
     # throw a little salt onto the password based on the strava's athlete id
@@ -312,76 +296,6 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
     except User.DoesNotExist:
         safe_print("The user does not exist, going to create User Object".format(created_username))
         return create_new_user(email, created_username, fname, lname, athlete_id)
-
-
-
-
-# def get_or_create_user(email, created_username, fname, lname, password, athlete_id):
-# def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
-
-#     try:
-#         # looking up by username and email is stringent but I think I need that
-#         # EE 11.25.15 . . . the above statement was True! on 11.25.15, a second Sam Thomas, also using Strava,
-#         # tried to register, the created_username was Sam Thomas, it selected the existing one of course,
-#         # then, worse, it 'updated' the original guy's email with the one passed in here!
-#         user = User.objects.get(username=created_username, email=email)
-#         # user = User.objects.get(username=created_username)
-#         try:
-#             try:
-#                 if user.profile.created_with not in [None, '']:
-#                     previously_recorded_id = user.profile.created_with.split('=')[1]
-
-#                     if previously_recorded_id == athlete_id:
-#                         if P: print "the user exists, same athlete_id too"
-
-#                         # this should catch an instance where a Strava user started as eezis@yahoo.com, then updated profile to
-#                         # eezis@gmail.com :: have already trapped to make sure it is the same strava user based on athlete_id
-#                         if user.email != email:
-#                             old_email = user.email
-#                             # if email on record does not match the current one at strava, swap the current one in and save it
-#                             user.email = email
-#                             user.save()
-#                             # notify me about it, at least for now so I can monitor how this works
-
-#                             s = 'User: ' + user.username + ' seems to have updated their email address from ' + old_email + ' to ' + email
-#                             #+'. You may wish to confirm that this is what happened to prove that your logic is sound.'
-
-#                             send_mail('Strava: user changed email?',"from core.views.strava_registration \n\n", 'closecalldatabase@gmail.com',
-#                                 ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-
-#                     else: # the username and email match, but not the athlete_id from Strava
-#                         s = 'Strava id from oauth is {} but on record it is {}. Investigate \
-#                         for username {} \n\n'.format(athlete_id, previously_recorded_id, user.username)
-
-#                         send_mail( s, 'closecalldatabase@gmail.com',
-#                             ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-
-#                         # since the athlete_ids do not match, create a new user
-#                         # rather than returning a bad match
-#                         user = create_new_user(email, created_username, fname, lname, athlete_id)
-
-#             except:
-#                 pass
-
-#         except IOError:
-#             pass
-
-
-#         return user
-
-    # # If the user does not exist, create a new user and return that object
-    # except User.DoesNotExist:
-    #     try:
-    #         if P: print u"The user does not exist, going to create User Object: {}".format(created_username)
-    #         # okay, does just the user or just the email exist?
-    #         # what if a user updated their email address at strava?
-    #         if P: print "create a proxy password"
-    #     except IOError:
-    #         pass
-
-    #     return create_new_user(email, created_username, fname, lname, athlete_id)
-
-
 
 
 

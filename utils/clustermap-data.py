@@ -1,14 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# https://developers.google.com/maps/articles/toomanymarkers
-# https://developers.google.com/maps/documentation/javascript/fusiontableslayer
-# https://www.google.com/fusiontables/DataSource?docid=1kkG-JAOLZFp85VWIFZ0N75hnF-_xHFnlkWNSGJ1f#rows:id=1
-# see the _map_of_members.txt file for directions
-
-"""
-Gets the data to paste into data/test.csv that then gets imported into the fusiontable on googledrive
-"""
-
 import sys
 reload(sys) # just to be sure
 sys.setdefaultencoding('utf-8')
