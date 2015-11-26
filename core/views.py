@@ -220,6 +220,7 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
             # I can live with the 1 in 1000 chance we gen a duplicate if the user is not coming from Strava
             created_username = created_username + '-' + str((randint(1,1000)))
 
+        safe_print('created_username is: {}'.format(created_username))
         new_user = User.objects.create_user(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
         new_user.save()
 
@@ -254,7 +255,7 @@ def existing_strava_user(UserFromDB, authing_email, authing_id):
             # safe_print(authing_id)
 
             # all good to here
-            # THIS CODE WAS FAILING WITHOUT THE STRING CAST
+            # THIS CODE WAS FAILING WITHOUT THE STRING CAST -- makes sense, JSON Data from strava it's a number
             if str(previously_recorded_id).strip() == str(authing_id).strip():
                 safe_print('Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG')
                 # update the email on the off chance that the user has updated the email in there strava profile
@@ -264,8 +265,9 @@ def existing_strava_user(UserFromDB, authing_email, authing_id):
                 return True
             else:
                 # if the id's don't match it is not the same user
-                safe_print('Registering User has same user name as existing Strava User, but a different')
-                safe_print('Strava Profile ID, therefore it is a new user to register')
+                safe_print('Registering User has same user name as existing Strava User: {}'.format(UserFromDB.username))
+                safe_print('But a different Strave Profile ID.')
+                safe_print('Therefore it is a new user to register')
                 return False
         else:
             safe_print('\nWas expecting a Strava ID in the created_with field, but didn''t find it!\n', True, True)
@@ -592,7 +594,7 @@ def strava_registration(request):
             #     pass
 
 
-            safe_print("About to test if User_Profile_Exists -- we have user, \n but maybe not an existing profile \n Is it a new user or returning?")
+            safe_print("About to test if User_Profile_Exists -- we have a valid user object, \n but maybe not an existing profile \n Is it a new user or returning?")
             if user_profile_exists(this_user):
                 # profile exists, so log them in, redirect to home page
                 safe_print("UserProfile exits, so just log this user in!")
@@ -622,7 +624,7 @@ def strava_registration(request):
                     return HttpResponseRedirect('/login-help-page')
 
             else:
-                # There is no UserProfile, so this should be a first time registrant, create a UserProfile
+                safe_print("There is no UserProfile, so this should be a first time registrant. Create a profile")
                 safe_print(u"Creating UserProfile for {} {}".format(fname, lname))
                 up = UserProfile(user=this_user, first=fname, last=lname, city=city, state=state, country=country,
                     created_with="Strava=" + str(athlete_id), oauth_data=oauth_resp)
