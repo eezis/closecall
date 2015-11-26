@@ -38,11 +38,23 @@ from django.db import IntegrityError
 
 P = True
 
+# Printing is controlled via the P flag, pass any IOError exceptions
+def safe_print(msg, print_it=True, email_it=False):
+    if P and print_it:
+        try:
+            print msg
+        except IOError:
+            pass
+    if email_it:
+        send_mail(msg, 'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+
+
 def admin_mailer(subj, msg):
     ts = time.ctime()
     msg + "\n\n" + ts
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
     send_mail(subj, msg, 'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com',], fail_silently=False)
+
 
 def input_mailer(subj, msg):
     ts = time.ctime()
@@ -50,11 +62,13 @@ def input_mailer(subj, msg):
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
     send_mail(subj, msg, 'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com',], fail_silently=False)
 
+
 def incident_review_mailer(subj, msg):
     ts = time.ctime()
     msg + "\n\n" + ts
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
     send_mail(subj, msg, 'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com', 'closecalldatabase@gmail' ], fail_silently=False)
+
 
 def send_incident_notification(subj, msg, recipient, htmlmsg=None):
     to = []
@@ -140,29 +154,21 @@ def user_profile_exists(user):
 
 def get_or_create_a_strava_based_password(athlete_id):
     # throw a little salt onto the password based on the strava's athlete id
+    safe_print('generating a stava based password')
     return "!!-stava-cCdB-" + str(athlete_id) + '--2-3-1'
 
 
 # def login_a_user(request, username, athlete_id):
 def login_a_user(request, this_user, athlete_id):
     # ensure we have a valide object and that the account is still active
-    try:
-        if P: print u"attempting to login {}".format(this_user.username)
-    except IOError:
-        pass
+    safe_print(u"attempting to login {}".format(this_user.username))
+
     password = get_or_create_a_strava_based_password(athlete_id)
 
-
     if this_user is None:
-        try:
-            if P: print "HOUSTON WE HAVE A PROBLEM"
-        except IOError:
-            pass
+        safe_print("HOUSTON WE HAVE A PROBLEM")
 
-    try:
-        if P: print u"attempting to authenticate {}".format(this_user.username)
-    except IOError:
-        pass
+    safe_print(u"attempting to authenticate {}".format(this_user.username))
 
     # note we are going to cross over, from this_user to user
     # wanted to make the syntactical distinction, even though it was obligatory
@@ -171,27 +177,15 @@ def login_a_user(request, this_user, athlete_id):
     if user is not None:
         # the password verified for the user
         if user.is_active:
-            try:
-                if P:
-                    print("User is valid, active and authenticated")
-                    print u"going to login {}".format(user.username)
-            except IOError:
-                pass
+            safe_print("User is valid, active and authenticated")
+            safe_print(u"going to login {}".format(user.username))
             login(request, user)
-            # print "should be logged in \n\n"
             return True
         else:
-            try:
-                if P: print("The password is valid, but the account has been disabled!")
-            except IOError:
-                pass
+            safe_print("The password is valid, but the account has been disabled!")
             return False
     else:
-        try:
-            # the authentication system was unable to verify the username and password
-            if P: print("The username and password were incorrect.")
-        except IOError:
-            pass
+        safe_print("The username and password were incorrect.")
         return False
 
 
@@ -199,7 +193,7 @@ def login_a_user(request, this_user, athlete_id):
 def create_new_user(email, created_username, fname, lname, athlete_id=None):
     created_password = get_or_create_a_strava_based_password(athlete_id)
     """ ****************************************************************************************************** """
-    """ NOTE WELL: a simple create User and save didn ot work, I needed to use the "create_user" method of User """
+    """ NOTE WELL: a simple create User and save did not work, I needed to use the "create_user" method of User """
     """ ****************************************************************************************************** """
     # new_user = User(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
     try:
@@ -208,7 +202,8 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
     except IntegrityError:
         # this means we have an instance where there is already on Sam Thomas, and seccond one is trying to join-probably from Strava
         # let's try to add the athlete_id or a random number
-        if athlete_id is not None:
+        safe_print(u"INTEGRITY ERROR: Probably two Strava user with same name, {} {}, attempting to fix by generating unique username".format(fname,lname))
+        if athlete_id not in [None, '']:
             created_username = created_username + '-' + athlete_id
         else:
             # I can live with the 1 in 1000 chance we gen a duplicate if the user is not coming from Strava
@@ -222,77 +217,141 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
 
 
 
-# def get_or_create_user(email, created_username, fname, lname, password, athlete_id):
-def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
-    # if user exists
+def update_strava_email_if_it_has_changed(TheUser, authing_email):
+    if TheUser.email != authing_email:
+        # Notify about this unusual condition
+        s1 = "CONFIRM THIS\n"
+        s2 = 'UserName {} registered with original strava email as {} and has changed it to {}\n'.format(TheUser.username, TheUser.email, authing_email)
+        s3 = 'In the admin, look at the oauth_data field to see the original email address, then confirm with user if you want.'
+        safe_print(s1+s2+s3, True, True)
+        # Now update the email
+        TheUser.email == authing_email
+        TheUser.save()
+
+
+def existing_strava_user(UserFromDB, authing_email, authing_ID):
+    # match on Strava's profile id?
+    exists = False
+    #safely try to retrieve the recorded Strava Profile ID
     try:
-        # looking up by username and email is stringent but I think I need that
-        # EE 11.25.15 . . . the above statement was True! on 11.25.15, a second Sam Thomas, also using Strava,
-        # tried to register, the created_username was Sam Thomas, it selected the existing one of course,
-        # then, worse, it 'updated' the original guy's email with the one passed in here!
-        user = User.objects.get(username=created_username, email=email)
-        # user = User.objects.get(username=created_username)
-        try:
-            try:
-                if user.profile.created_with not in [None, '']:
-                    previously_recorded_id = user.profile.created_with.split('=')[1]
-
-                    if previously_recorded_id == athlete_id:
-                        if P: print "the user exists, same athlete_id too"
-
-                        # this should catch an instance where a Strava user started as eezis@yahoo.com, then updated profile to
-                        # eezis@gmail.com :: have already trapped to make sure it is the same strava user based on athlete_id
-                        if user.email != email:
-                            old_email = user.email
-                            # if email on record does not match the current one at strava, swap the current one in and save it
-                            user.email = email
-                            user.save()
-                            # notify me about it, at least for now so I can monitor how this works
-
-                            s = 'User: ' + user.username + ' seems to have updated their email address from ' + old_email + ' to ' + email
-                            #+'. You may wish to confirm that this is what happened to prove that your logic is sound.'
-
-                            send_mail('Strava: user changed email?',"from core.views.strava_registration \n\n", 'closecalldatabase@gmail.com',
-                                ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-
-                    else: # the username and email match, but not the athlete_id from Strava
-                        s = 'Strava id from oauth is {} but on record it is {}. Investigate \
-                        for username {} \n\n'.format(athlete_id, previously_recorded_id, user.username)
-
-                        send_mail( s, 'closecalldatabase@gmail.com',
-                            ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-
-                        # since the athlete_ids do not match, create a new user
-                        # rather than returning a bad match
-                        user = create_new_user(email, created_username, fname, lname, athlete_id)
-
-            except:
-                pass
-
-        except IOError:
-            pass
+        if UserFromDB.profile.created_with not in [None, '']:
+            previously_recorded_id = user.profile.created_with.split('=')[1]
+            if previously_recorded_id == athlete_id:
+                safe_print('Existing Strava User: id is '.format(athlete_id))
+                # update the email on the off chance that the user has updated the email in there strava profile
+                update_strava_email_if_it_has_changed(UserFromDB, authing_email)
+                return True
+            else:
+                # if the id's don't match it is not the same user
+                safe_print('Registering User has same user name as existing Strava User, but a different')
+                safe_print('Strava Profile ID, therefore it is a new user to register')
+                return False
+        else:
+            safe_print('\nWas expecting a Strava ID in the created_with field, but didn''t find it!\n', True, True)
+            return False
+    except:
+        # There was an issue retrivieving created with, return false and investigate what happened
+        safe_print('EXCEPTION RETRIEVING created_with field: invesigate and fix', True, True)
+        return False
 
 
-        return user
+
+# EE 11.26.15 - this new code replaces the old code I commented out below
+"""
+if user exists
+    and has the same Strava Profile ID
+        return the user object
+    if different ID
+    create a user object and return it
+else
+    create a user object and return it
+
+caveats: Strava usernames are not unique, user of email and user name is better, but
+strava users can change their email. Strava uniqueness is on the athelete_id, but that
+is part of the UserProfile. Since this can be called by a returning Strava user that is
+simply logging in, we need to check the athlete_id. If it's a match we should check email as
+well and update if appropriate
+"""
+def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
+    try:
+        user = User.objects.get(username=created_username)
+        if existing_strava_user(user, email, athelete_id):
+            return user
+        else:
+            return create_new_user(email, created_username, fname, lname, athlete_id)
 
     except User.DoesNotExist:
-        try:
-            if P: print u"The user does not exist, going to create User Object: {}".format(created_username)
-            # okay, does just the user or just the email exist?
-            # what if a user updated their email address at strava?
-            if P: print "create a proxy password"
-        except IOError:
-            pass
-
+        safe_print("The user does not exist, going to create User Object".format(created_username))
         return create_new_user(email, created_username, fname, lname, athlete_id)
-        # created_password = get_or_create_a_strava_based_password(athlete_id)
-        # """ ****************************************************************************************************** """
-        # """ NOTE WELL: a simple create User and save didn ot work, I needed to use the "create_user" method of User """
-        # """ ****************************************************************************************************** """
-        # # new_user = User(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
-        # new_user = User.objects.create_user(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
-        # new_user.save()
-        # return new_user
+
+
+
+
+# def get_or_create_user(email, created_username, fname, lname, password, athlete_id):
+# def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
+
+#     try:
+#         # looking up by username and email is stringent but I think I need that
+#         # EE 11.25.15 . . . the above statement was True! on 11.25.15, a second Sam Thomas, also using Strava,
+#         # tried to register, the created_username was Sam Thomas, it selected the existing one of course,
+#         # then, worse, it 'updated' the original guy's email with the one passed in here!
+#         user = User.objects.get(username=created_username, email=email)
+#         # user = User.objects.get(username=created_username)
+#         try:
+#             try:
+#                 if user.profile.created_with not in [None, '']:
+#                     previously_recorded_id = user.profile.created_with.split('=')[1]
+
+#                     if previously_recorded_id == athlete_id:
+#                         if P: print "the user exists, same athlete_id too"
+
+#                         # this should catch an instance where a Strava user started as eezis@yahoo.com, then updated profile to
+#                         # eezis@gmail.com :: have already trapped to make sure it is the same strava user based on athlete_id
+#                         if user.email != email:
+#                             old_email = user.email
+#                             # if email on record does not match the current one at strava, swap the current one in and save it
+#                             user.email = email
+#                             user.save()
+#                             # notify me about it, at least for now so I can monitor how this works
+
+#                             s = 'User: ' + user.username + ' seems to have updated their email address from ' + old_email + ' to ' + email
+#                             #+'. You may wish to confirm that this is what happened to prove that your logic is sound.'
+
+#                             send_mail('Strava: user changed email?',"from core.views.strava_registration \n\n", 'closecalldatabase@gmail.com',
+#                                 ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+
+#                     else: # the username and email match, but not the athlete_id from Strava
+#                         s = 'Strava id from oauth is {} but on record it is {}. Investigate \
+#                         for username {} \n\n'.format(athlete_id, previously_recorded_id, user.username)
+
+#                         send_mail( s, 'closecalldatabase@gmail.com',
+#                             ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+
+#                         # since the athlete_ids do not match, create a new user
+#                         # rather than returning a bad match
+#                         user = create_new_user(email, created_username, fname, lname, athlete_id)
+
+#             except:
+#                 pass
+
+#         except IOError:
+#             pass
+
+
+#         return user
+
+    # # If the user does not exist, create a new user and return that object
+    # except User.DoesNotExist:
+    #     try:
+    #         if P: print u"The user does not exist, going to create User Object: {}".format(created_username)
+    #         # okay, does just the user or just the email exist?
+    #         # what if a user updated their email address at strava?
+    #         if P: print "create a proxy password"
+    #     except IOError:
+    #         pass
+
+    #     return create_new_user(email, created_username, fname, lname, athlete_id)
+
 
 
 
@@ -305,10 +364,7 @@ def strava_registration(request):
     # pluck the code!
     strava_token = request.GET.get('code')
 
-    try:
-        if P: print "Strava Token: {}".format(strava_token)
-    except IOError:
-        pass
+    safe_print("Strava Token: {}".format(strava_token))
 
     if 'errors' in request.body:
         admin_mailer('TROUBLE - Errors from Strava Response', 'There should be an error value \n\n:'  + request.body)
@@ -466,10 +522,12 @@ def strava_registration(request):
             state = oauth_resp['athlete']['state']
             country = oauth_resp['athlete']['country']
             email = oauth_resp['athlete']['email']
-            try:
-                if P: print u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email)
-            except IOError:
-                pass
+
+            safe_print(u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email))
+            # try:
+            #     if P: print u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email)
+            # except IOError:
+            #     pass
 
 
 
@@ -509,21 +567,13 @@ def strava_registration(request):
 
             if user_profile_exists(this_user):
                 # profile exists, so log them in, redirect to home page
-                try:
-                    if P: print "UserProfile exits, so just log this user in!"
-                except IOError:
-                    pass
+                safe_print("UserProfile exits, so just log this user in!")
 
                 if login_a_user(request, this_user, athlete_id):
-                    try:
-                        if P: print "authenticated and logged in, redirected to home page\n"
-                    except IOError:
-                        pass
+                    safe_print("authenticated and logged in, redirected to home page\n")
                     return HttpResponseRedirect('/')
                 else:
                     # hmmm, this shouldn't happen, what if it does?
-
-
 
                     """ I could just create a new password? """
                     """ I could look up their current password and use it to try again
@@ -539,26 +589,19 @@ def strava_registration(request):
 
                     # see 10:18 am email on 10:39 am, in the closecall gmail account
                     admin_mailer('UNEXPECTED LOGIN ISSUE', 'See core.view if user_profile_exists login attempt. \n' + this_user.username)
-                    try:
-                        if P: print "TROUBLE -- the login failed, user redirected to login-help-page"
-                    except IOError:
-                        pass
+                    safe_print("TROUBLE -- the login failed, user redirected to login-help-page")
+
                     return HttpResponseRedirect('/login-help-page')
 
             else:
                 # There is no UserProfile, so this should be a first time registrant, create a UserProfile
-                try:
-                    if P: print u"Creating UserProfile for {} {}".format(fname, lname)
-                except IOError:
-                    pass
+                safe_print(u"Creating UserProfile for {} {}".format(fname, lname))
                 up = UserProfile(user=this_user, first=fname, last=lname, city=city, state=state, country=country,
                     created_with="Strava=" + str(athlete_id), oauth_data=oauth_resp)
                 up.save()
 
-                try:
-                    if P: print "Attempting login"
-                except IOError:
-                    pass
+                safe_print("Attempting login")
+
                 login_a_user(request, this_user, athlete_id)
 
                 # seems like success is assume?
@@ -604,11 +647,9 @@ def redirect_to_strava_login(request):
     # the Strava oauth process kicks off with a redirect to their site, it includes the "client id" for my application
     # and the redirect url -- 'http://closecalldatabase.com/strava-registration' -- which urls.py redirects
     # to the strava_registration view above.
-    try:
-        if P: print "Redirecting to Strava oauth\n"
-    except IOError:
-        # admin_mailer('To Strava', 'Did they sign up?')
-        pass
+
+    safe_print("Redirecting to Strava oauth\n")
+
     return HttpResponseRedirect('https://www.strava.com/oauth/authorize?client_id=' + CCDB_CLIENT_ID +
         '&response_type=code&redirect_uri=' + CCDB_REDIRECT_URL)
 
