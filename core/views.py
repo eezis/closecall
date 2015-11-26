@@ -238,7 +238,7 @@ def existing_strava_user(UserFromDB, authing_email, authing_ID):
         safe_print("Here")
         if UserFromDB.profile.created_with not in [None, '']:
             safe_print("Attempt to pull Strava ID")
-            previously_recorded_id = user.profile.created_with.split('=')[1]
+            previously_recorded_id = UserFromDB.profile.created_with.split('=')[1]
             safe_print("Existing Strava ID is {}, authing one is {}".format(previously_recorded_id, authing_ID))
             if previously_recorded_id == athlete_id:
                 safe_print('Existing Strava User: id is '.format(athlete_id))
