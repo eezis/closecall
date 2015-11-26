@@ -46,7 +46,8 @@ def safe_print(msg, print_it=True, email_it=False):
         except IOError:
             pass
     if email_it:
-        send_mail(msg, 'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+        subject = "Cores View: Registration Message"
+        send_mail(subject, msg, 'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
 
 
 def admin_mailer(subj, msg):
