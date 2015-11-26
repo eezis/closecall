@@ -164,7 +164,7 @@ def user_profile_exists(user):
 
 def get_or_create_a_strava_based_password(athlete_id):
     # throw a little salt onto the password based on the strava's athlete id
-    safe_print('generating a stava based password')
+    safe_print('generating a strava based password')
     return "!!-stava-cCdB-" + str(athlete_id) + '--2-3-1'
 
 
@@ -201,6 +201,7 @@ def login_a_user(request, this_user, athlete_id):
 
 
 def create_new_user(email, created_username, fname, lname, athlete_id=None):
+    safe_print("\nEntering create_new_user \n")
     created_password = get_or_create_a_strava_based_password(athlete_id)
     """ ****************************************************************************************************** """
     """ NOTE WELL: a simple create User and save did not work, I needed to use the "create_user" method of User """
@@ -253,7 +254,11 @@ def existing_strava_user(UserFromDB, authing_email, authing_ID):
             if previously_recorded_id == athlete_id:
                 safe_print('Existing Strava User: id is '.format(athlete_id))
                 # update the email on the off chance that the user has updated the email in there strava profile
-                update_strava_email_if_it_has_changed(UserFromDB, authing_email)
+
+
+                # update_strava_email_if_it_has_changed(UserFromDB, authing_email)
+
+
                 return True
             else:
                 # if the id's don't match it is not the same user
@@ -290,6 +295,7 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
     try:
         user = User.objects.get(username=created_username)
         if existing_strava_user(user, email, athlete_id):
+            safe_print(" existing_strava_user was TRUE")
             return user
         else:
             return create_new_user(email, created_username, fname, lname, athlete_id)
