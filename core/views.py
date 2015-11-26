@@ -136,21 +136,30 @@ CCDB_REDIRECT_URL = 'http://closecalldatabase.com/strava-registration'
 USER_PROFILE_EXISTS = False
 
 def user_profile_exists(user):
-    USER_PROFILE_EXISTS = False
-    try :
-        user.profile
-        try:
-            if P: print "user profile does exist"
-        except IOError:
-            pass
-        USER_PROFILE_EXISTS = True
-        return True
-    except ObjectDoesNotExist:
-        try:
-            if P: print "UserProfile does NOT exist"
-        except IOError:
-            pass
+    safe_print("Inside user_profile_exists")
+    try:
+        if user.profile:
+            safe_print("User Profile Exists")
+            return True
+    except:
+        safe_print("User does  NOT  Profile Exists")
         return False
+
+    # USER_PROFILE_EXISTS = False
+    # try :
+    #     user.profile
+    #     try:
+    #         if P: print "user profile does exist"
+    #     except IOError:
+    #         pass
+    #     USER_PROFILE_EXISTS = True
+    #     return True
+    # except ObjectDoesNotExist:
+    #     try:
+    #         if P: print "UserProfile does NOT exist"
+    #     except IOError:
+    #         pass
+    #     return False
 
 
 def get_or_create_a_strava_based_password(athlete_id):
@@ -570,6 +579,7 @@ def strava_registration(request):
             #     pass
 
 
+            safe_print("About to test if User_Profile_Exists -- we have user, \n but maybe not an existing profile \n Is it a new user or returning?")
             if user_profile_exists(this_user):
                 # profile exists, so log them in, redirect to home page
                 safe_print("UserProfile exits, so just log this user in!")
