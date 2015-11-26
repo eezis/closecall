@@ -142,7 +142,7 @@ def user_profile_exists(user):
             safe_print("User Profile Exists")
             return True
     except:
-        safe_print("User does  NOT  Profile Exists")
+        safe_print("User Profile does NOT Exist!")
         return False
 
     # USER_PROFILE_EXISTS = False
