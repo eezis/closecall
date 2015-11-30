@@ -1,4 +1,4 @@
-var data = { "count": 5279,
+var data = { "count": 5292,
   "members": [
   {"member": 3, "longitude": -105.2838511, "latitude": 40.0454736 },
   {"member": 8, "longitude": -105.2838511, "latitude": 40.0454736 },
@@ -5278,5 +5278,18 @@ var data = { "count": 5279,
   {"member": 5430, "longitude": -88.1144943, "latitude": 42.0577989 },
   {"member": 5431, "longitude": -116.9675814, "latitude": 32.7963222 },
   {"member": 5432, "longitude": -86.2483921, "latitude": 43.2341813 },
-  {"member": 5433, "longitude": -1.437804, "latitude": 55.0400162 }
+  {"member": 5433, "longitude": -1.437804, "latitude": 55.0400162 },
+  {"member": 5434, "longitude": 103.8677444, "latitude": 1.3553794 },
+  {"member": 5436, "longitude": -79.3922539, "latitude": 35.1740471 },
+  {"member": 5437, "longitude": -82.6392899, "latitude": 30.1896756 },
+  {"member": 5438, "longitude": -79.1774268, "latitude": 35.7524399 },
+  {"member": 5439, "longitude": -86.3619163, "latitude": 32.4798575 },
+  {"member": 5440, "longitude": 0.0226193, "latitude": 51.4820239 },
+  {"member": 5441, "longitude": 145.0463443, "latitude": -37.8239564 },
+  {"member": 5442, "longitude": -122.274227, "latitude": 37.3190255 },
+  {"member": 5443, "longitude": -70.9903438, "latitude": 42.0835153 },
+  {"member": 5444, "longitude": -79.3922539, "latitude": 35.1740471 },
+  {"member": 5445, "longitude": -77.6020569, "latitude": 43.1301942 },
+  {"member": 5446, "longitude": -79.40647, "latitude": 43.7569841 },
+  {"member": 5447, "longitude": -117.2919818, "latitude": 33.0369867 }
  ]}
