@@ -1,0 +1,2891 @@
+See uher.txt
+
+
+Last login: Sun Nov 29 15:38:20 on ttys000
+myhost:~ eae$ cd .ssh;  ssh eezis@104.131.56.181 -p 1787
+eezis@104.131.56.181's password:
+Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-37-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Sun Nov 29 17:39:09 EST 2015
+
+  System load:  0.0               Processes:           101
+  Usage of /:   5.9% of 39.25GB   Users logged in:     0
+  Memory usage: 13%               IP address for eth0: 104.131.56.181
+  Swap usage:   0%
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+21 packages can be updated.
+10 updates are security updates.
+
+Last login: Sun Nov 29 17:39:10 2015 from 24.9.60.175
+eezis:~~$ gunicorn closecall.wsgi:application --workers=3 --bind 127.0.0.1:8000 --log-file=-
+The program 'gunicorn' is currently not installed. You can install it by typing:
+sudo apt-get install gunicorn
+eezis:~~$ cd sites/closecall; workon closecall
+(closecall)eezis:closecall~$ gunicorn closecall.wsgi:application --workers=3 --bind 127.0.0.1:8000 --log-file=-
+[2015-11-29 17:39:56 +0000] [437] [INFO] Starting gunicorn 19.1.1
+[2015-11-29 17:39:56 +0000] [437] [INFO] Listening at: http://127.0.0.1:8000 (437)
+[2015-11-29 17:39:56 +0000] [437] [INFO] Using worker: sync
+[2015-11-29 17:39:56 +0000] [442] [INFO] Booting worker with pid: 442
+[2015-11-29 17:39:56 +0000] [443] [INFO] Booting worker with pid: 443
+[2015-11-29 17:39:56 +0000] [444] [INFO] Booting worker with pid: 444
+APP CONFIG READY HAS BEEN RUN!
+APP CONFIG READY HAS BEEN RUN!
+APP CONFIG READY HAS BEEN RUN!
+
+
+packet_write_wait: Connection to 104.131.56.181: Broken pipe
+myhost:.ssh eae$ cd .ssh;  ssh eezis@104.131.56.181 -p 1787
+-bash: cd: .ssh: No such file or directory
+eezis@104.131.56.181's password:
+Welcome to Ubuntu 14.04.3 LTS (GNU/Linux 3.13.0-37-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Sun Nov 29 17:39:13 EST 2015
+
+  System load:  0.08              Processes:           102
+  Usage of /:   5.9% of 39.25GB   Users logged in:     1
+  Memory usage: 13%               IP address for eth0: 104.131.56.181
+  Swap usage:   0%
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+21 packages can be updated.
+10 updates are security updates.
+
+Last login: Sun Nov 29 17:39:14 2015 from 24.9.60.175
+eezis:~~$ sudo apt-get update
+[sudo] password for eezis:
+Hit http://security.ubuntu.com trusty-security InRelease
+Hit http://security.ubuntu.com trusty-security/main Sources
+Hit http://security.ubuntu.com trusty-security/restricted Sources
+Hit http://security.ubuntu.com trusty-security/universe Sources
+Hit http://security.ubuntu.com trusty-security/multiverse Sources
+Hit http://security.ubuntu.com trusty-security/main amd64 Packages
+Hit http://security.ubuntu.com trusty-security/restricted amd64 Packages
+Hit http://security.ubuntu.com trusty-security/universe amd64 Packages
+Hit http://security.ubuntu.com trusty-security/multiverse amd64 Packages
+Hit http://security.ubuntu.com trusty-security/main i386 Packages
+Hit http://security.ubuntu.com trusty-security/restricted i386 Packages
+Hit http://security.ubuntu.com trusty-security/universe i386 Packages
+Hit http://security.ubuntu.com trusty-security/multiverse i386 Packages
+Hit http://security.ubuntu.com trusty-security/main Translation-en
+Hit http://security.ubuntu.com trusty-security/multiverse Translation-en
+Hit http://security.ubuntu.com trusty-security/restricted Translation-en
+Hit http://security.ubuntu.com trusty-security/universe Translation-en
+Ign http://mirrors.digitalocean.com trusty InRelease
+Get:1 http://mirrors.digitalocean.com trusty-updates InRelease [64.4 kB]
+Get:2 http://mirrors.digitalocean.com trusty-backports InRelease [64.5 kB]
+Get:3 http://mirrors.digitalocean.com trusty Release.gpg [933 B]
+Get:4 http://mirrors.digitalocean.com trusty-updates/main Sources [246 kB]
+Get:5 http://mirrors.digitalocean.com trusty-updates/restricted Sources [5,359 B]
+Get:6 http://mirrors.digitalocean.com trusty-updates/universe Sources [144 kB]
+Get:7 http://mirrors.digitalocean.com trusty-updates/multiverse Sources [5,162 B]
+Get:8 http://mirrors.digitalocean.com trusty-updates/main amd64 Packages [656 kB]
+Get:9 http://mirrors.digitalocean.com trusty-updates/restricted amd64 Packages [15.9 kB]
+Get:10 http://mirrors.digitalocean.com trusty-updates/universe amd64 Packages [329 kB]
+Get:11 http://mirrors.digitalocean.com trusty-updates/multiverse amd64 Packages [13.0 kB]
+Get:12 http://mirrors.digitalocean.com trusty-updates/main i386 Packages [634 kB]
+Get:13 http://mirrors.digitalocean.com trusty-updates/restricted i386 Packages [15.6 kB]
+Get:14 http://mirrors.digitalocean.com trusty-updates/universe i386 Packages [329 kB]
+Get:15 http://mirrors.digitalocean.com trusty-updates/multiverse i386 Packages [13.1 kB]
+Hit http://mirrors.digitalocean.com trusty-updates/main Translation-en
+Hit http://mirrors.digitalocean.com trusty-updates/multiverse Translation-en
+Hit http://mirrors.digitalocean.com trusty-updates/restricted Translation-en
+Hit http://mirrors.digitalocean.com trusty-updates/universe Translation-en
+Get:16 http://mirrors.digitalocean.com trusty-backports/main Sources [8,221 B]
+Get:17 http://mirrors.digitalocean.com trusty-backports/restricted Sources [28 B]
+Get:18 http://mirrors.digitalocean.com trusty-backports/universe Sources [33.2 kB]
+Get:19 http://mirrors.digitalocean.com trusty-backports/multiverse Sources [1,898 B]
+Get:20 http://mirrors.digitalocean.com trusty-backports/main amd64 Packages [9,402 B]
+Get:21 http://mirrors.digitalocean.com trusty-backports/restricted amd64 Packages [28 B]
+Get:22 http://mirrors.digitalocean.com trusty-backports/universe amd64 Packages [39.6 kB]
+Get:23 http://mirrors.digitalocean.com trusty-backports/multiverse amd64 Packages [1,571 B]
+Get:24 http://mirrors.digitalocean.com trusty-backports/main i386 Packages [9,411 B]
+Get:25 http://mirrors.digitalocean.com trusty-backports/restricted i386 Packages [28 B]
+Get:26 http://mirrors.digitalocean.com trusty-backports/universe i386 Packages [39.6 kB]
+Get:27 http://mirrors.digitalocean.com trusty-backports/multiverse i386 Packages [1,552 B]
+Hit http://mirrors.digitalocean.com trusty-backports/main Translation-en
+Hit http://mirrors.digitalocean.com trusty-backports/multiverse Translation-en
+Hit http://mirrors.digitalocean.com trusty-backports/restricted Translation-en
+Hit http://mirrors.digitalocean.com trusty-backports/universe Translation-en
+Hit http://mirrors.digitalocean.com trusty Release
+Hit http://mirrors.digitalocean.com trusty/main Sources
+Hit http://mirrors.digitalocean.com trusty/restricted Sources
+Hit http://mirrors.digitalocean.com trusty/universe Sources
+Hit http://mirrors.digitalocean.com trusty/multiverse Sources
+Hit http://mirrors.digitalocean.com trusty/main amd64 Packages
+Hit http://mirrors.digitalocean.com trusty/restricted amd64 Packages
+Hit http://mirrors.digitalocean.com trusty/universe amd64 Packages
+Hit http://mirrors.digitalocean.com trusty/multiverse amd64 Packages
+Hit http://mirrors.digitalocean.com trusty/main i386 Packages
+Hit http://mirrors.digitalocean.com trusty/restricted i386 Packages
+Hit http://mirrors.digitalocean.com trusty/universe i386 Packages
+Hit http://mirrors.digitalocean.com trusty/multiverse i386 Packages
+Hit http://mirrors.digitalocean.com trusty/main Translation-en
+Hit http://mirrors.digitalocean.com trusty/multiverse Translation-en
+Hit http://mirrors.digitalocean.com trusty/restricted Translation-en
+Hit http://mirrors.digitalocean.com trusty/universe Translation-en
+Ign http://mirrors.digitalocean.com trusty/main Translation-en_US
+Ign http://mirrors.digitalocean.com trusty/multiverse Translation-en_US
+Ign http://mirrors.digitalocean.com trusty/restricted Translation-en_US
+Ign http://mirrors.digitalocean.com trusty/universe Translation-en_US
+Fetched 2,681 kB in 8s (317 kB/s)
+Reading package lists... Done
+eezis:~~$ sudo apt-get upgrade
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Calculating upgrade... Done
+The following packages have been kept back:
+  linux-generic linux-headers-generic linux-image-generic python-pip
+The following packages will be upgraded:
+  dpkg dpkg-dev libdpkg-perl
+3 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+Need to get 2,858 kB of archives.
+After this operation, 1,024 B of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://mirrors.digitalocean.com/ubuntu/ trusty-updates/main dpkg amd64 1.17.5ubuntu5.5 [1,953 kB]
+Get:2 http://mirrors.digitalocean.com/ubuntu/ trusty-updates/main dpkg-dev all 1.17.5ubuntu5.5 [726 kB]
+Get:3 http://mirrors.digitalocean.com/ubuntu/ trusty-updates/main libdpkg-perl all 1.17.5ubuntu5.5 [179 kB]
+Fetched 2,858 kB in 1s (2,603 kB/s)
+(Reading database ... 97562 files and directories currently installed.)
+Preparing to unpack .../dpkg_1.17.5ubuntu5.5_amd64.deb ...
+Unpacking dpkg (1.17.5ubuntu5.5) over (1.17.5ubuntu5.4) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Setting up dpkg (1.17.5ubuntu5.5) ...
+(Reading database ... 97562 files and directories currently installed.)
+Preparing to unpack .../dpkg-dev_1.17.5ubuntu5.5_all.deb ...
+Unpacking dpkg-dev (1.17.5ubuntu5.5) over (1.17.5ubuntu5.4) ...
+Preparing to unpack .../libdpkg-perl_1.17.5ubuntu5.5_all.deb ...
+Unpacking libdpkg-perl (1.17.5ubuntu5.5) over (1.17.5ubuntu5.4) ...
+Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+Setting up libdpkg-perl (1.17.5ubuntu5.5) ...
+Setting up dpkg-dev (1.17.5ubuntu5.5) ...
+eezis:~~$ cd sites/closecall; workon closecall
+(closecall)eezis:closecall~$ gunicorn closecall.wsgi:application --workers=3 --bind 127.0.0.1:8000 --log-file=-
+[2015-11-30 08:02:24 +0000] [6634] [INFO] Starting gunicorn 19.1.1
+[2015-11-30 08:02:24 +0000] [6634] [INFO] Listening at: http://127.0.0.1:8000 (6634)
+[2015-11-30 08:02:24 +0000] [6634] [INFO] Using worker: sync
+[2015-11-30 08:02:24 +0000] [6639] [INFO] Booting worker with pid: 6639
+[2015-11-30 08:02:24 +0000] [6640] [INFO] Booting worker with pid: 6640
+[2015-11-30 08:02:24 +0000] [6641] [INFO] Booting worker with pid: 6641
+APP CONFIG READY HAS BEEN RUN!
+APP CONFIG READY HAS BEEN RUN!
+APP CONFIG READY HAS BEEN RUN!
+
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: d3cb4c8a4f50fa072eea457477b8624570cebd98
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Lee Barber Rochester, NY, USA NY United States lbarber@gmail.com
+Lee Barber
+lbarber@gmail.com
+Lee Barber
+1338455
+The user does not exist, going to create User Object
+
+Entering create_new_user
+
+generating a strava based password
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile does NOT Exist!
+There is no UserProfile, so this should be a first time registrant. Create a profile
+Creating UserProfile for Lee Barber
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Lee Barber :: Lee Barber ==> lbarber@gmail.com -- 2015-11-30 13:44 --  Rochester, NY, USA, NY>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc0f4c10>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+FORMAT_POSITION: fixing missing geocode
+TRY_TO_GEOCODE_CALLED: trying to geocode!
+(43.16103, -77.6109219)
+FORMAT_POSITION: saving missing geocode (43.16103, -77.6109219)
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Lee Barber :: Lee Barber ==> lbarber@gmail.com -- 2015-11-30 13:44 --  Rochester, NY, USA, NY>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc0f4c10>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+(43.16103, -77.6109219)
+Attempting login
+attempting to login Lee Barber
+generating a strava based password
+attempting to authenticate Lee Barber
+User is valid, active and authenticated
+going to login Lee Barber
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Lee Barber :: Lee Barber ==> lbarber@gmail.com -- 2015-11-30 13:44 --  Rochester, NY>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc0f4c90>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Lee Barber :: Lee Barber ==> lbarber@gmail.com -- 2015-11-30 13:44 --  Rochester, NY>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc0f4c90>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+
+CreateIncidentView.get_initial :: Lee Barber 5661
+
+Redirecting to Strava oauth
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Jean Doiron :: Jean Doiron ==> xyzbike5@yahoo.ca -- 2015-11-30 19:09 --  Toronto, Ontario>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc0f4c90>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+(43.7569841, -79.40647000000001)
+CreateUserProfileView.form_valid :: Jean Doiron -- xyzbike5@yahoo.ca
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Jean Doiron :: Jean Doiron ==> xyzbike5@yahoo.ca -- 2015-11-30 19:09 --  Toronto, Ontario>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc0f4c90>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Jean Doiron :: Jean Doiron ==> xyzbike5@yahoo.ca -- 2015-11-30 19:09 --  Toronto, Ontario>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc0f4c90>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+Redirecting to Strava oauth
+
+Strava Token: 29b6f2d9d47e9dfc8b1d30d66b4bc883ab3d767b
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Kyle Phillips Encinitas California United States phillipskyle1989@gmail.com
+Kyle Phillips
+phillipskyle1989@gmail.com
+Kyle Phillips
+11725229
+The user does not exist, going to create User Object
+
+Entering create_new_user
+
+generating a strava based password
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile does NOT Exist!
+There is no UserProfile, so this should be a first time registrant. Create a profile
+Creating UserProfile for Kyle Phillips
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Kyle Phillips :: Kyle Phillips ==> phillipskyle1989@gmail.com -- 2015-11-30 19:39 --  Encinitas, California>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc0f4d10>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+FORMAT_POSITION: fixing missing geocode
+TRY_TO_GEOCODE_CALLED: trying to geocode!
+(33.0369867, -117.2919818)
+FORMAT_POSITION: saving missing geocode (33.0369867, -117.2919818)
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Kyle Phillips :: Kyle Phillips ==> phillipskyle1989@gmail.com -- 2015-11-30 19:39 --  Encinitas, California>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc0f4d10>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+(33.0369867, -117.2919818)
+Attempting login
+attempting to login Kyle Phillips
+generating a strava based password
+attempting to authenticate Kyle Phillips
+User is valid, active and authenticated
+going to login Kyle Phillips
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Kyle Phillips :: Kyle Phillips ==> phillipskyle1989@gmail.com -- 2015-11-30 19:39 --  Encinitas, California>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc0f4c90>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Kyle Phillips :: Kyle Phillips ==> phillipskyle1989@gmail.com -- 2015-11-30 19:39 --  Encinitas, California>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc0f4c90>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+
+CreateIncidentView.get_initial :: Kyle Phillips 5663
+
+
+ == == == == == == == == == == == == == == ==
+Incident has been updated
+ == == == == == == == == == == == == == == ==
+
+Redirecting to Strava oauth
+
+Strava Token: 57c36c8304fe23aff71e58e09aff03c3690c29d0
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Dave Salovesh Washington DC United States darsal@gmail.com
+Dave Salovesh
+darsal@gmail.com
+Dave Salovesh
+140048
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 140048, authing one is 140048
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Dave Salovesh
+generating a strava based password
+attempting to authenticate Dave Salovesh
+User is valid, active and authenticated
+going to login Dave Salovesh
+authenticated and logged in, redirected to home page
+
+
+CreateIncidentView.get_initial :: Dave Salovesh 93
+
+
+CreateIncidentView.get_initial :: Dave Salovesh 93
+
+
+CreateIncidentView.form_valid :: Dave Salovesh
+
+Redirecting to Strava oauth
+
+Strava Token: 94cbb32f1112d805fb9e09bb1ffaccaf8e60a822
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Michelle Miller Damascus MD United States monita_miller@hotmail.com
+Michelle Miller
+monita_miller@hotmail.com
+Michelle Miller
+310571
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 310571, authing one is 310571
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Michelle Miller
+generating a strava based password
+attempting to authenticate Michelle Miller
+User is valid, active and authenticated
+going to login Michelle Miller
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 5a2309db0664182046378a0e58da2d3e8873a111
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Kevin Canini Arlington Virginia United States kcanini@gmail.com
+Kevin Canini
+kcanini@gmail.com
+Kevin Canini
+8239
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 8239, authing one is 8239
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Kevin Canini
+generating a strava based password
+attempting to authenticate Kevin Canini
+User is valid, active and authenticated
+going to login Kevin Canini
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: b787aa5a1535e42910149b89501bab25bbb86780
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Jodi Jacobson Silver Spring MD United States jacobsonjodi@gmail.com
+Jodi Jacobson
+jacobsonjodi@gmail.com
+Jodi Jacobson
+8780535
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 8780535, authing one is 8780535
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Jodi Jacobson
+generating a strava based password
+attempting to authenticate Jodi Jacobson
+User is valid, active and authenticated
+going to login Jodi Jacobson
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 35bf9f2a3abd0181b755cd8e82605f060d501dbc
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Craig Chester Washington District of Columbia United States cpchester@gmail.com
+Craig Chester
+cpchester@gmail.com
+Craig Chester
+1988898
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 1988898, authing one is 1988898
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Craig Chester
+generating a strava based password
+attempting to authenticate Craig Chester
+User is valid, active and authenticated
+going to login Craig Chester
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 398462c8f71c7bf4d504c9b4bf6a0126e7df9930
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Matthew Kearney Washington DC United States kearneym@gmail.com
+Matthew Kearney
+kearneym@gmail.com
+Matthew Kearney
+1492047
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 1492047, authing one is 1492047
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Matthew Kearney
+generating a strava based password
+attempting to authenticate Matthew Kearney
+User is valid, active and authenticated
+going to login Matthew Kearney
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+[2015-11-30 18:30:36 +0000] [6634] [INFO] Handling signal: hup
+[2015-11-30 18:30:36 +0000] [6634] [INFO] Hang up: Master
+[2015-11-30 18:30:36 +0000] [8110] [INFO] Booting worker with pid: 8110
+[2015-11-30 23:30:36 +0000] [6639] [INFO] Worker exiting (pid: 6639)
+[2015-11-30 18:30:36 +0000] [8112] [INFO] Booting worker with pid: 8112
+[2015-11-30 23:30:36 +0000] [6640] [INFO] Worker exiting (pid: 6640)
+[2015-11-30 23:30:36 +0000] [6641] [INFO] Worker exiting (pid: 6641)
+[2015-11-30 18:30:36 +0000] [8111] [INFO] Booting worker with pid: 8111
+APP CONFIG READY HAS BEEN RUN!
+APP CONFIG READY HAS BEEN RUN!
+APP CONFIG READY HAS BEEN RUN!
+
+Redirecting to Strava oauth
+
+Strava Token: a41aabda7dfaa9b5802733aca7b88d2568fe0de0
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Philip Altschuler Potomac MD United States paltschuler@gmail.com
+Philip Altschuler
+paltschuler@gmail.com
+Philip Altschuler
+819693
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 819693, authing one is 819693
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Philip Altschuler
+generating a strava based password
+attempting to authenticate Philip Altschuler
+User is valid, active and authenticated
+going to login Philip Altschuler
+authenticated and logged in, redirected to home page
+
+Strava Token: e9fa4c7ec3ee42e8acb5823822b5198fb7a79786
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Demetris Taylor Bowie MD United States thebiggman1@gmail.com
+Demetris Taylor
+thebiggman1@gmail.com
+Demetris Taylor
+75333
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 75333, authing one is 75333
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Demetris Taylor
+generating a strava based password
+attempting to authenticate Demetris Taylor
+User is valid, active and authenticated
+going to login Demetris Taylor
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 53d3531a8331f83069588fb95a73cc0fbc7b22b8
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Rudi Riet Washington DC United States rdriet@gmail.com
+Rudi Riet
+rdriet@gmail.com
+Rudi Riet
+132993
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 132993, authing one is 132993
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Rudi Riet
+generating a strava based password
+attempting to authenticate Rudi Riet
+User is valid, active and authenticated
+going to login Rudi Riet
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 49d6423c4657b33e34ff8d23e79016f0b2164a0c
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Phil Kaskela   United States philip.kaskela@gmail.com
+Phil Kaskela
+philip.kaskela@gmail.com
+Phil Kaskela
+5816958
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 5816958, authing one is 5816958
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Phil Kaskela
+generating a strava based password
+attempting to authenticate Phil Kaskela
+User is valid, active and authenticated
+going to login Phil Kaskela
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: 96f19727c56f905d162d127559e98c092ca41b26
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Charles Biro Washington District of Columbia United States cjbiro@yahoo.com
+Charles Biro
+cjbiro@yahoo.com
+Charles Biro
+170520
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 170520, authing one is 170520
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Charles Biro
+generating a strava based password
+attempting to authenticate Charles Biro
+User is valid, active and authenticated
+going to login Charles Biro
+authenticated and logged in, redirected to home page
+
+Strava Token: 0e5bbc3e3461643476a033137f2079db7077d304
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Matt Pickworth Herndon VA United States matt@pickworth.us
+Matt Pickworth
+matt@pickworth.us
+Matt Pickworth
+9790
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9790, authing one is 9790
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Matt Pickworth
+generating a strava based password
+attempting to authenticate Matt Pickworth
+User is valid, active and authenticated
+going to login Matt Pickworth
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: bdbd0209aa6b9941028f2e5fa885d60bf90c4210
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Michelle N. Arlington VA United States michelle.neff@gmail.com
+Michelle N.
+michelle.neff@gmail.com
+Michelle N.
+1396553
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 1396553, authing one is 1396553
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Michelle N.
+generating a strava based password
+attempting to authenticate Michelle N.
+User is valid, active and authenticated
+going to login Michelle N.
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: bf97e6abfbd880ab4ddb416d16d1ebf128340bab
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Charlie Thomas Arlington VA United States chasthos1@verizon.net
+Charlie Thomas
+chasthos1@verizon.net
+Charlie Thomas
+2580920
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 2580920, authing one is 2580920
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Charlie Thomas
+generating a strava based password
+attempting to authenticate Charlie Thomas
+User is valid, active and authenticated
+going to login Charlie Thomas
+authenticated and logged in, redirected to home page
+
+Strava Token: 8aa06bc1d3726073fe255eac0047af5c8e39fb38
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Molly Ruland Washington DC United States mamadank@gmail.com
+Molly Ruland
+mamadank@gmail.com
+Molly Ruland
+2252604
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 2252604, authing one is 2252604
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Molly Ruland
+generating a strava based password
+attempting to authenticate Molly Ruland
+User is valid, active and authenticated
+going to login Molly Ruland
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 2a2c4669240e1ff3b62871f0bd17c69e30d12afe
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Alex Bishop Columbia MD United States friscopowers@verizon.net
+Alex Bishop
+friscopowers@verizon.net
+Alex Bishop
+2319179
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 2319179, authing one is 2319179
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Alex Bishop
+generating a strava based password
+attempting to authenticate Alex Bishop
+User is valid, active and authenticated
+going to login Alex Bishop
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: a1356f4a84ed0258c319fc2e808bf0561de603cd
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: david helms Silver Spring Maryland United States david.helms570@gmail.com
+david helms
+david.helms570@gmail.com
+david helms
+203004
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 203004, authing one is 203004
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login david helms
+generating a strava based password
+attempting to authenticate david helms
+User is valid, active and authenticated
+going to login david helms
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: ab018344651502d5db23e4fa5e06b0a927c75804
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Jason White Prince George's, MD, USA MD United States jsnsotheracct@gmail.com
+Jason White
+jsnsotheracct@gmail.com
+Jason White
+1828763
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 1828763, authing one is 1828763
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Jason White
+generating a strava based password
+attempting to authenticate Jason White
+User is valid, active and authenticated
+going to login Jason White
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: 8fa384138d9eed2692d0770440d4fbb36f67eecb
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Seymour  MD United States online@kriscmore.com
+Chris Seymour
+online@kriscmore.com
+Chris Seymour
+723323
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 723323, authing one is 723323
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Seymour
+generating a strava based password
+attempting to authenticate Chris Seymour
+User is valid, active and authenticated
+going to login Chris Seymour
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: c9f213f644c3dff962174a314f919af4190d44df
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Randy Napiza Arlington VA United States randy.napiza@gmail.com
+Randy Napiza
+randy.napiza@gmail.com
+Randy Napiza
+313677
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 313677, authing one is 313677
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Randy Napiza
+generating a strava based password
+attempting to authenticate Randy Napiza
+User is valid, active and authenticated
+going to login Randy Napiza
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: b14df4abd1fd28c8852f6ef36ca8d08e7e353913
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Teresa Amundson Arlington Virginia United States tsavage@law.gwu.edu
+Teresa Amundson
+tsavage@law.gwu.edu
+Teresa Amundson
+3264590
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 3264590, authing one is 3264590
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Teresa Amundson
+generating a strava based password
+attempting to authenticate Teresa Amundson
+User is valid, active and authenticated
+going to login Teresa Amundson
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 45607dbd434b8051c8dd7d234428dd8b14a9a424
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Jonathan Epstein Alexandria VA United States jhe@jonathanepstein.net
+Jonathan Epstein
+jhe@jonathanepstein.net
+Jonathan Epstein
+4645561
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 4645561, authing one is 4645561
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Jonathan Epstein
+generating a strava based password
+attempting to authenticate Jonathan Epstein
+User is valid, active and authenticated
+going to login Jonathan Epstein
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: 8412a1eb62d2be08b572ff83cc8ad808dec16950
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Frank Franz Fairfax Virginia United States frank_franz@hotmail.com
+Frank Franz
+frank_franz@hotmail.com
+Frank Franz
+10039030
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 10039030, authing one is 10039030
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Frank Franz
+generating a strava based password
+attempting to authenticate Frank Franz
+User is valid, active and authenticated
+going to login Frank Franz
+authenticated and logged in, redirected to home page
+
+Strava Token: 145fcb4d0837bc90e37369c7bcec32dfdbc7ca37
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: John Schaller Reston VA United States john.schaller@outlook.com
+John Schaller
+john.schaller@outlook.com
+John Schaller
+437521
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 437521, authing one is 437521
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login John Schaller
+generating a strava based password
+attempting to authenticate John Schaller
+User is valid, active and authenticated
+going to login John Schaller
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: cc492bc38b981a7e2d2e2a5872c1823028ba88bc
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Stephen Szibler Washington D.C. DC United States sszibler@fastmail.fm
+Stephen Szibler
+sszibler@fastmail.fm
+Stephen Szibler
+120519
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 120519, authing one is 120519
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Stephen Szibler
+generating a strava based password
+attempting to authenticate Stephen Szibler
+User is valid, active and authenticated
+going to login Stephen Szibler
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: 069027170f1956f3611fdb8b92ff32cbbea8b589
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: OceanRacer SlowCyclist Bethesda MD United States moalpha0@gmail.com
+OceanRacer SlowCyclist
+moalpha0@gmail.com
+OceanRacer SlowCyclist
+6039619
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 6039619, authing one is 6039619
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login OceanRacer SlowCyclist
+generating a strava based password
+attempting to authenticate OceanRacer SlowCyclist
+User is valid, active and authenticated
+going to login OceanRacer SlowCyclist
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 550cca5366cc0481262694f39843c8904a41f482
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Kate Ivins None None None kate_ivins@yahoo.com
+Kate Ivins
+kate_ivins@yahoo.com
+Kate Ivins
+11541498
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 11541498, authing one is 11541498
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Kate Ivins
+generating a strava based password
+attempting to authenticate Kate Ivins
+User is valid, active and authenticated
+going to login Kate Ivins
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: 536f4aaca46d28425e0bb52518ba60c0c396d956
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: jason d Takoma Park MD United States thegoatmanofmd@gmail.com
+jason d
+thegoatmanofmd@gmail.com
+jason d
+6555282
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 6555282, authing one is 6555282
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login jason d
+generating a strava based password
+attempting to authenticate jason d
+User is valid, active and authenticated
+going to login jason d
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 6ef8bbc2dbfcb62b64d0e46a55a3bcb87a1a58a4
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chad McKenzie Lorton Virginia United States vinsnob@gmail.com
+Chad McKenzie
+vinsnob@gmail.com
+Chad McKenzie
+3809179
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 3809179, authing one is 3809179
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chad McKenzie
+generating a strava based password
+attempting to authenticate Chad McKenzie
+User is valid, active and authenticated
+going to login Chad McKenzie
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Mark Smith :: opus1dog ==> opus1dog@aol.com -- 2015-12-01 00:29 --  Annapolis, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+(38.9784453, -76.49218289999999)
+CreateUserProfileView.form_valid :: opus1dog -- opus1dog@aol.com
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Mark Smith :: opus1dog ==> opus1dog@aol.com -- 2015-12-01 00:29 --  Annapolis, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Mark Smith :: opus1dog ==> opus1dog@aol.com -- 2015-12-01 00:29 --  Annapolis, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+Redirecting to Strava oauth
+
+Strava Token: ecdfb10cb14737d5fb4bdcd8e4c8ff6aaab1766b
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Stephen Rinaldi Olney MD United States evets_r@hotmail.com
+Stephen Rinaldi
+evets_r@hotmail.com
+Stephen Rinaldi
+2258241
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 2258241, authing one is 2258241
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Stephen Rinaldi
+generating a strava based password
+attempting to authenticate Stephen Rinaldi
+User is valid, active and authenticated
+going to login Stephen Rinaldi
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 977d5141315d92c5ebe461c7ad4c94dc660ccce0
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Mike Lamb Perry Hall MD United States mlamb01@gmail.com
+Mike Lamb
+mlamb01@gmail.com
+Mike Lamb
+116704
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 116704, authing one is 116704
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Mike Lamb
+generating a strava based password
+attempting to authenticate Mike Lamb
+User is valid, active and authenticated
+going to login Mike Lamb
+authenticated and logged in, redirected to home page
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Cris Eck :: crismeck ==> crismeck@gmail.com -- 2015-12-01 00:34 --  Annapolis, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+(38.9784453, -76.49218289999999)
+CreateUserProfileView.form_valid :: crismeck -- crismeck@gmail.com
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Cris Eck :: crismeck ==> crismeck@gmail.com -- 2015-12-01 00:34 --  Annapolis, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Cris Eck :: crismeck ==> crismeck@gmail.com -- 2015-12-01 00:34 --  Annapolis, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Cris Eck :: crismeck ==> crismeck@gmail.com -- 2015-12-01 00:34 --  Annapolis, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Cris Eck :: crismeck ==> crismeck@gmail.com -- 2015-12-01 00:34 --  Annapolis, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+Redirecting to Strava oauth
+
+Strava Token: c081382647c9cef534df9a6e78bb5da1231392ed
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Christopher Range None None None lcms0516@comcast.net
+Christopher Range
+lcms0516@comcast.net
+Christopher Range
+11235791
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 11235791, authing one is 11235791
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Christopher Range
+generating a strava based password
+attempting to authenticate Christopher Range
+User is valid, active and authenticated
+going to login Christopher Range
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: cf04031f631fee16b4294e908c7c9dc1068e603a
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Dwayne Haines Upper Marlboro MD United States dhaines227@gmail.com
+Dwayne Haines
+dhaines227@gmail.com
+Dwayne Haines
+822367
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 822367, authing one is 822367
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Dwayne Haines
+generating a strava based password
+attempting to authenticate Dwayne Haines
+User is valid, active and authenticated
+going to login Dwayne Haines
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 3a734d57a29863d2cc3c4707d05fa99f670866d4
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Michael Bell Arlington VA United States mykbell@yahoo.com
+Michael Bell
+mykbell@yahoo.com
+Michael Bell
+1735025
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 1735025, authing one is 1735025
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Michael Bell
+generating a strava based password
+attempting to authenticate Michael Bell
+User is valid, active and authenticated
+going to login Michael Bell
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 8db6e120f487bb866c7070dcb321e19e0bd4182a
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Matthew O Ellicott City MD United States mtortyl+strava@gmail.com
+Matthew O
+mtortyl+strava@gmail.com
+Matthew O
+3401183
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 3401183, authing one is 3401183
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Matthew O
+generating a strava based password
+attempting to authenticate Matthew O
+User is valid, active and authenticated
+going to login Matthew O
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: f98a47e1d85d1161a4739f2c60905796dc43211e
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Jim Durbin Fairfax VA United States jgdurbin@verizon.net
+Jim Durbin
+jgdurbin@verizon.net
+Jim Durbin
+1757555
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 1757555, authing one is 1757555
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Jim Durbin
+generating a strava based password
+attempting to authenticate Jim Durbin
+User is valid, active and authenticated
+going to login Jim Durbin
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: f8da30217199323a66d06eddf727cb49e8293e1f
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Rover Gorski Washington DC United States dc.cyclocross@gmail.com
+Rover Gorski
+dc.cyclocross@gmail.com
+Rover Gorski
+2488751
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 2488751, authing one is 2488751
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Rover Gorski
+generating a strava based password
+attempting to authenticate Rover Gorski
+User is valid, active and authenticated
+going to login Rover Gorski
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: f89507ceeef1bbe95c806076bd0663bd9326845d
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Steve Tucker Takoma Park MD United States steve@takomapet.com
+Steve Tucker
+steve@takomapet.com
+Steve Tucker
+2898875
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 2898875, authing one is 2898875
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Steve Tucker
+generating a strava based password
+attempting to authenticate Steve Tucker
+User is valid, active and authenticated
+going to login Steve Tucker
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 4b5a4efe64419bd72d74e95c21a695beb61f53de
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Alex Pline Annapolis MD United States alex@teampline.org
+Alex Pline
+alex@teampline.org
+Alex Pline
+161130
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 161130, authing one is 161130
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Alex Pline
+generating a strava based password
+attempting to authenticate Alex Pline
+User is valid, active and authenticated
+going to login Alex Pline
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 8cb1b414591f43f8dec04d8d1d53f9ae25c9790b
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Tracy B Olney MD United States tracybogard@verizon.net
+Tracy B
+tracybogard@verizon.net
+Tracy B
+970553
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 970553, authing one is 970553
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Tracy B
+generating a strava based password
+attempting to authenticate Tracy B
+User is valid, active and authenticated
+going to login Tracy B
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: ce071f9f133b8652f9c538b3ed1e5b2dbc29872a
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Logan Davis Alexandria VA United States logan.davis@gmail.com
+Logan Davis
+logan.davis@gmail.com
+Logan Davis
+1106008
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 1106008, authing one is 1106008
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Logan Davis
+generating a strava based password
+attempting to authenticate Logan Davis
+User is valid, active and authenticated
+going to login Logan Davis
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: bcf927450cc51d6dfbd7847cf9b95ac95eae9767
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Bob Trencheny @AlexandriaBiker Alexandria  VA United States tbobx@aol.com
+Bob Trencheny @AlexandriaBiker
+tbobx@aol.com
+Bob Trencheny @AlexandriaBiker
+162679
+The user does not exist, going to create User Object
+
+Entering create_new_user
+
+generating a strava based password
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile does NOT Exist!
+There is no UserProfile, so this should be a first time registrant. Create a profile
+Creating UserProfile for Bob Trencheny @AlexandriaBiker
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Bob Trencheny @AlexandriaBiker :: Bob Trencheny @AlexandriaBiker ==> tbobx@aol.com -- 2015-12-01 01:47 --  Alexandria , VA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+FORMAT_POSITION: fixing missing geocode
+TRY_TO_GEOCODE_CALLED: trying to geocode!
+(38.8048355, -77.0469214)
+FORMAT_POSITION: saving missing geocode (38.8048355, -77.0469214)
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Bob Trencheny @AlexandriaBiker :: Bob Trencheny @AlexandriaBiker ==> tbobx@aol.com -- 2015-12-01 01:47 --  Alexandria , VA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+(38.8048355, -77.0469214)
+Attempting login
+attempting to login Bob Trencheny @AlexandriaBiker
+generating a strava based password
+attempting to authenticate Bob Trencheny @AlexandriaBiker
+User is valid, active and authenticated
+going to login Bob Trencheny @AlexandriaBiker
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Bob Trencheny @AlexandriaBiker :: Bob Trencheny @AlexandriaBiker ==> tbobx@aol.com -- 2015-12-01 01:47 --  Bradenton, FL>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Bob Trencheny @AlexandriaBiker :: Bob Trencheny @AlexandriaBiker ==> tbobx@aol.com -- 2015-12-01 01:47 --  Bradenton, FL>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+Redirecting to Strava oauth
+
+Strava Token: bfe34bf74496170d7b2545dfe2d386b8e56264f0
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Ed Hazelwood Washington District of Columbia United States eehazelwood@comcast.net
+Ed Hazelwood
+eehazelwood@comcast.net
+Ed Hazelwood
+62308
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 62308, authing one is 62308
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Ed Hazelwood
+generating a strava based password
+attempting to authenticate Ed Hazelwood
+User is valid, active and authenticated
+going to login Ed Hazelwood
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 3c2e70664b39aea987f0f33ae8623c5cdde09024
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Nick Danger  Maryland United States nickdanger@basicisp.net
+Nick Danger
+nickdanger@basicisp.net
+Nick Danger
+3738450
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 3738450, authing one is 3738450
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Nick Danger
+generating a strava based password
+attempting to authenticate Nick Danger
+User is valid, active and authenticated
+going to login Nick Danger
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: d24b3aaa1420e6777ed2ef7f2af3ff3884e253ba
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Scott Davis Annapolis MD United States scomdav@gmail.com
+Scott Davis
+scomdav@gmail.com
+Scott Davis
+3317768
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 3317768, authing one is 3317768
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Scott Davis
+generating a strava based password
+attempting to authenticate Scott Davis
+User is valid, active and authenticated
+going to login Scott Davis
+authenticated and logged in, redirected to home page
+
+Strava Token: ff3a5d20c044fa08b068e18756e64cafaf24286b
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Elizabeth Hunter Darnestown Maryland United States eli_hunter@yahoo.com
+Elizabeth Hunter
+eli_hunter@yahoo.com
+Elizabeth Hunter
+692425
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 692425, authing one is 692425
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Elizabeth Hunter
+generating a strava based password
+attempting to authenticate Elizabeth Hunter
+User is valid, active and authenticated
+going to login Elizabeth Hunter
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: da0406fb9d0061e21578b4df1d7807fcaf9b531f
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: ruatan@verizon.net Lewis College Park Maryland United States ruatan@verizon.net
+ruatan@verizon.net Lewis
+ruatan@verizon.net
+ruatan@verizon.net Lewis
+10034543
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 10034543, authing one is 10034543
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login ruatan@verizon.net Lewis
+generating a strava based password
+attempting to authenticate ruatan@verizon.net Lewis
+User is valid, active and authenticated
+going to login ruatan@verizon.net Lewis
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: c4aa0c5dbd7e0bf0eb34f1e1f6d14913e3e532a7
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Jim Mortson Falls Church VA United States jmortson@gmail.com
+Jim Mortson
+jmortson@gmail.com
+Jim Mortson
+17378
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 17378, authing one is 17378
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Jim Mortson
+generating a strava based password
+attempting to authenticate Jim Mortson
+User is valid, active and authenticated
+going to login Jim Mortson
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: 342aa19a10e9432de7147469899f40242766eb72
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Shue McLean VA United States chris.shue@gmail.com
+Chris Shue
+chris.shue@gmail.com
+Chris Shue
+1414475
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 1414475, authing one is 1414475
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Shue
+generating a strava based password
+attempting to authenticate Chris Shue
+User is valid, active and authenticated
+going to login Chris Shue
+authenticated and logged in, redirected to home page
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Derik Spoon :: Spoon ==> derikspoon1@gmail.com -- 2015-12-01 03:09 --  Johnston, IA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103190>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+(41.6709834, -93.71304929999997)
+CreateUserProfileView.form_valid :: Spoon -- derikspoon1@gmail.com
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Derik Spoon :: Spoon ==> derikspoon1@gmail.com -- 2015-12-01 03:09 --  Johnston, IA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103190>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Derik Spoon :: Spoon ==> derikspoon1@gmail.com -- 2015-12-01 03:09 --  Johnston, IA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103190>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+Redirecting to Strava oauth
+
+Strava Token: 5dabb25ed7671547d3ee07dc1f2ecbaa9abf6267
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Woody Rogers Arlington Virginia United States woodyrogers@gmail.com
+Woody Rogers
+woodyrogers@gmail.com
+Woody Rogers
+10050684
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 10050684, authing one is 10050684
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Woody Rogers
+generating a strava based password
+attempting to authenticate Woody Rogers
+User is valid, active and authenticated
+going to login Woody Rogers
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 656d23f972d455ffd248b5132f3387149489fa64
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Adam Goldberg Fairfax VA United States adam_g@yahoo.com
+Adam Goldberg
+adam_g@yahoo.com
+Adam Goldberg
+140140
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 140140, authing one is 140140
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Adam Goldberg
+generating a strava based password
+attempting to authenticate Adam Goldberg
+User is valid, active and authenticated
+going to login Adam Goldberg
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: c05c7e66b67c7e8a25d908c72a540662404d969e
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: James Falcone Potwin Kansas United States jfalcone2@gmail.com
+James Falcone
+jfalcone2@gmail.com
+James Falcone
+9454427
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9454427, authing one is 9454427
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login James Falcone
+generating a strava based password
+attempting to authenticate James Falcone
+User is valid, active and authenticated
+going to login James Falcone
+authenticated and logged in, redirected to home page
+
+bingo
+Redirecting to Strava oauth
+
+Strava Token: abc08c335e8ef81cf3e10370e340a603274898bd
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Greg Cantori Pasadena MD United States gcantori@gmail.com
+Greg Cantori
+gcantori@gmail.com
+Greg Cantori
+2678915
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 2678915, authing one is 2678915
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+CONFIRM THIS
+UserName Greg Cantori registered with original strava email as gcantori1@comcast.net and has changed it to gcantori@gmail.com
+In the admin, look at the oauth_data field to see the original email address, then confirm with user if you want.
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Greg Cantori
+generating a strava based password
+attempting to authenticate Greg Cantori
+User is valid, active and authenticated
+going to login Greg Cantori
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: f5b6610d58cfdfdddf19a05a045fe95f8a4a38aa
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Somnath Roy Navi Mumbai Maharashtra India rideonwheelsindia@gmail.com
+Somnath Roy
+rideonwheelsindia@gmail.com
+Somnath Roy
+11813202
+The user does not exist, going to create User Object
+
+Entering create_new_user
+
+generating a strava based password
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile does NOT Exist!
+There is no UserProfile, so this should be a first time registrant. Create a profile
+Creating UserProfile for Somnath Roy
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Somnath Roy :: Somnath Roy ==> rideonwheelsindia@gmail.com -- 2015-12-01 05:08 --  Navi Mumbai, Maharashtra>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103190>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+FORMAT_POSITION: fixing missing geocode
+TRY_TO_GEOCODE_CALLED: trying to geocode!
+(19.0330488, 73.0296625)
+FORMAT_POSITION: saving missing geocode (19.0330488, 73.0296625)
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Somnath Roy :: Somnath Roy ==> rideonwheelsindia@gmail.com -- 2015-12-01 05:08 --  Navi Mumbai, Maharashtra>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103190>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+(19.0330488, 73.0296625)
+Attempting login
+attempting to login Somnath Roy
+generating a strava based password
+attempting to authenticate Somnath Roy
+User is valid, active and authenticated
+going to login Somnath Roy
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Somnath Roy :: Somnath Roy ==> rideonwheelsindia@gmail.com -- 2015-12-01 05:08 --  Navi Mumbai, Maharashtra>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Somnath Roy :: Somnath Roy ==> rideonwheelsindia@gmail.com -- 2015-12-01 05:08 --  Navi Mumbai, Maharashtra>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+bingo
+Redirecting to Strava oauth
+
+bingo
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Romel Jacinto :: RJ_Commuter ==> webstuff@techbandit.com -- 2015-12-01 06:47 --  San Francisco, CA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+(37.7485824, -122.4184108)
+CreateUserProfileView.form_valid :: RJ_Commuter -- webstuff@techbandit.com
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Romel Jacinto :: RJ_Commuter ==> webstuff@techbandit.com -- 2015-12-01 06:47 --  San Francisco, CA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Romel Jacinto :: RJ_Commuter ==> webstuff@techbandit.com -- 2015-12-01 06:47 --  San Francisco, CA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Romel Jacinto :: RJ_Commuter ==> webstuff@techbandit.com -- 2015-12-01 06:47 --  San Francisco, CA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Romel Jacinto :: RJ_Commuter ==> webstuff@techbandit.com -- 2015-12-01 06:47 --  San Francisco, CA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Romel Jacinto :: RJ_Commuter ==> webstuff@techbandit.com -- 2015-12-01 06:47 --  San Francisco, CA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Romel Jacinto :: RJ_Commuter ==> webstuff@techbandit.com -- 2015-12-01 06:47 --  San Francisco, CA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+Redirecting to Strava oauth
+
+Strava Token: 91124a3165dbf51cc8efef291a65ade07d08312c
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Siamak Zarrindast Santa Clarita California United States szarrindast@torabian.com
+Siamak Zarrindast
+szarrindast@torabian.com
+Siamak Zarrindast
+121529
+The user does not exist, going to create User Object
+
+Entering create_new_user
+
+generating a strava based password
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile does NOT Exist!
+There is no UserProfile, so this should be a first time registrant. Create a profile
+Creating UserProfile for Siamak Zarrindast
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Siamak Zarrindast :: Siamak Zarrindast ==> szarrindast@torabian.com -- 2015-12-01 07:11 --  Santa Clarita, California>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+FORMAT_POSITION: fixing missing geocode
+TRY_TO_GEOCODE_CALLED: trying to geocode!
+(34.3916641, -118.542586)
+FORMAT_POSITION: saving missing geocode (34.3916641, -118.542586)
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Siamak Zarrindast :: Siamak Zarrindast ==> szarrindast@torabian.com -- 2015-12-01 07:11 --  Santa Clarita, California>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+(34.3916641, -118.542586)
+Attempting login
+attempting to login Siamak Zarrindast
+generating a strava based password
+attempting to authenticate Siamak Zarrindast
+User is valid, active and authenticated
+going to login Siamak Zarrindast
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Siamak Zarrindast :: Siamak Zarrindast ==> szarrindast@torabian.com -- 2015-12-01 07:11 --  Santa Clarita, California>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103190>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Siamak Zarrindast :: Siamak Zarrindast ==> szarrindast@torabian.com -- 2015-12-01 07:11 --  Santa Clarita, California>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103190>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+Redirecting to Strava oauth
+
+Strava Token: ce2873d6d65342b3af6b7200ce2603ce96b22a45
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Todd Geiger Upper Marlboro Maryland United States t.geiger@verizon.net
+Todd Geiger
+t.geiger@verizon.net
+Todd Geiger
+771703
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 771703, authing one is 771703
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Todd Geiger
+generating a strava based password
+attempting to authenticate Todd Geiger
+User is valid, active and authenticated
+going to login Todd Geiger
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: b3d10858f16a66cf44fe817dfa0c3edfc824041d
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: theresa sanlorenzo Mayo MD United States theresa.sanlorenzo@gmail.com
+theresa sanlorenzo
+theresa.sanlorenzo@gmail.com
+theresa sanlorenzo
+556438
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 556438, authing one is 556438
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login theresa sanlorenzo
+generating a strava based password
+attempting to authenticate theresa sanlorenzo
+User is valid, active and authenticated
+going to login theresa sanlorenzo
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: a5a1e1a494548ed8a9b0c33cf792bc2889922247
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Mike O'Connell Arlington VA United States mikeoc1@hotmail.com
+Mike O'Connell
+mikeoc1@hotmail.com
+Mike O'Connell
+659236
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 659236, authing one is 659236
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Mike O'Connell
+generating a strava based password
+attempting to authenticate Mike O'Connell
+User is valid, active and authenticated
+going to login Mike O'Connell
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: f277b8b2a7251630d27ce91bd7e28143990c077d
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9246628, authing one is 9246628
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+The username and password were incorrect.
+TROUBLE -- the login failed, user redirected to login-help-page
+Redirecting to Strava oauth
+
+Strava Token: 52412d226f4bd81f1361e51f6fb332befaea5ffb
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9246628, authing one is 9246628
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+The username and password were incorrect.
+TROUBLE -- the login failed, user redirected to login-help-page
+Redirecting to Strava oauth
+
+Strava Token: 7297e5356050dddea6b83b37a2620e2572d07548
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9246628, authing one is 9246628
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+The username and password were incorrect.
+TROUBLE -- the login failed, user redirected to login-help-page
+Redirecting to Strava oauth
+
+Strava Token: e53b675773308f8adf30252bba716378ee267ed7
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: David Huchler Sterling VA United States dhuchler234@gmail.com
+David Huchler
+dhuchler234@gmail.com
+David Huchler
+4031161
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 4031161, authing one is 4031161
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login David Huchler
+generating a strava based password
+attempting to authenticate David Huchler
+User is valid, active and authenticated
+going to login David Huchler
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 620874ae54018ae41918608bef5ea52dbb159dd3
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Robert Steele Fort Belvoir Virginia United States airborne.s2000@gmail.com
+Robert Steele
+airborne.s2000@gmail.com
+Robert Steele
+2339488
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 2339488, authing one is 2339488
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Robert Steele
+generating a strava based password
+attempting to authenticate Robert Steele
+User is valid, active and authenticated
+going to login Robert Steele
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 43a659a1fe02e79297d2f2db35e94ed08b050652
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: randall nixon  West Friendship MD United States nixonsfarm@gmail.com
+randall nixon
+nixonsfarm@gmail.com
+randall nixon
+189486
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 189486, authing one is 189486
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login randall nixon
+generating a strava based password
+attempting to authenticate randall nixon
+User is valid, active and authenticated
+going to login randall nixon
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 8b7ad8f4236bb92ed184fc271e12c9ebbbdc8917
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Keith Rickett Shady Side MD United States xkrickett@comcast.net
+Keith Rickett
+xkrickett@comcast.net
+Keith Rickett
+7538782
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 7538782, authing one is 7538782
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Keith Rickett
+generating a strava based password
+attempting to authenticate Keith Rickett
+User is valid, active and authenticated
+going to login Keith Rickett
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: d70f5c5ab58e5ef02eee10b17331558381bfc10e
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Alex Adagio None None None adagioa@vt.edu
+Alex Adagio
+adagioa@vt.edu
+Alex Adagio
+12318249
+The user does not exist, going to create User Object
+
+Entering create_new_user
+
+generating a strava based password
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile does NOT Exist!
+There is no UserProfile, so this should be a first time registrant. Create a profile
+Creating UserProfile for Alex Adagio
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Alex Adagio :: Alex Adagio ==> adagioa@vt.edu -- 2015-12-01 14:15 --  None, None>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+FORMAT_POSITION: fixing missing geocode
+TRY_TO_GEOCODE_CALLED: trying to geocode!
+(44.9400562, 7.5299328)
+FORMAT_POSITION: saving missing geocode (44.9400562, 7.5299328)
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Alex Adagio :: Alex Adagio ==> adagioa@vt.edu -- 2015-12-01 14:15 --  None, None>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+(44.9400562, 7.5299328)
+Attempting login
+attempting to login Alex Adagio
+generating a strava based password
+attempting to authenticate Alex Adagio
+User is valid, active and authenticated
+going to login Alex Adagio
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Alex Adagio :: Alex Adagio ==> adagioa@vt.edu -- 2015-12-01 14:15 --  Falls Church, Virginia>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Alex Adagio :: Alex Adagio ==> adagioa@vt.edu -- 2015-12-01 14:15 --  Falls Church, Virginia>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+Redirecting to Strava oauth
+
+Strava Token: 5f59af4fb986cd3cf994115bceae5fba5bfb1ad6
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Rich Kennedy Annapolis MD United States fxrblue@yahoo.com
+Rich Kennedy
+fxrblue@yahoo.com
+Rich Kennedy
+958017
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 958017, authing one is 958017
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Rich Kennedy
+generating a strava based password
+attempting to authenticate Rich Kennedy
+User is valid, active and authenticated
+going to login Rich Kennedy
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: f4c30992b0f09692868e06877eebdc52bd80c8ed
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Luther Swift Washington District of Columbia United States lswift70@yahoo.com
+Luther Swift
+lswift70@yahoo.com
+Luther Swift
+174677
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 174677, authing one is 174677
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Luther Swift
+generating a strava based password
+attempting to authenticate Luther Swift
+User is valid, active and authenticated
+going to login Luther Swift
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 9f70c9253cd0f65325069c78675f3b27dd90fdb9
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Steve kolokowsky San Diego CA United States steve.kolokowsky@gmail.com
+Steve kolokowsky
+steve.kolokowsky@gmail.com
+Steve kolokowsky
+628908
+The user does not exist, going to create User Object
+
+Entering create_new_user
+
+generating a strava based password
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile does NOT Exist!
+There is no UserProfile, so this should be a first time registrant. Create a profile
+Creating UserProfile for Steve kolokowsky
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Steve kolokowsky :: Steve kolokowsky ==> steve.kolokowsky@gmail.com -- 2015-12-01 16:02 --  San Diego, CA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+FORMAT_POSITION: fixing missing geocode
+TRY_TO_GEOCODE_CALLED: trying to geocode!
+(32.715738, -117.1610838)
+FORMAT_POSITION: saving missing geocode (32.715738, -117.1610838)
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Steve kolokowsky :: Steve kolokowsky ==> steve.kolokowsky@gmail.com -- 2015-12-01 16:02 --  San Diego, CA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+(32.715738, -117.1610838)
+Attempting login
+attempting to login Steve kolokowsky
+generating a strava based password
+attempting to authenticate Steve kolokowsky
+User is valid, active and authenticated
+going to login Steve kolokowsky
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Steve kolokowsky :: Steve kolokowsky ==> steve.kolokowsky@gmail.com -- 2015-12-01 16:02 --  San Diego, CA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103190>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Steve kolokowsky :: Steve kolokowsky ==> steve.kolokowsky@gmail.com -- 2015-12-01 16:02 --  San Diego, CA>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103190>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+Redirecting to Strava oauth
+
+Strava Token: 2a64d650673f1eda0239a185fd25f6161e69933a
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Marc Lasky Washington District of Columbia United States marclasky@comcast.net
+Marc Lasky
+marclasky@comcast.net
+Marc Lasky
+1410499
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 1410499, authing one is 1410499
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Marc Lasky
+generating a strava based password
+attempting to authenticate Marc Lasky
+User is valid, active and authenticated
+going to login Marc Lasky
+authenticated and logged in, redirected to home page
+
+
+Redirecting to Strava oauth
+
+Strava Token: a3f06d4e1baff28fef8dd758ef7adaf991cbe9ef
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Skip White Bethesda MD United States swhite@pobox.com
+Skip White
+swhite@pobox.com
+Skip White
+1572735
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 1572735, authing one is 1572735
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Skip White
+generating a strava based password
+attempting to authenticate Skip White
+User is valid, active and authenticated
+going to login Skip White
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: a739ef93b069e83a953b8f1f01d58a03afe9f7a9
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Liz Gossens None None None lgo1018@gmail.com
+Liz Gossens
+lgo1018@gmail.com
+Liz Gossens
+12319276
+The user does not exist, going to create User Object
+
+Entering create_new_user
+
+generating a strava based password
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile does NOT Exist!
+There is no UserProfile, so this should be a first time registrant. Create a profile
+Creating UserProfile for Liz Gossens
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Liz Gossens :: Liz Gossens ==> lgo1018@gmail.com -- 2015-12-01 16:23 --  None, None>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+FORMAT_POSITION: fixing missing geocode
+TRY_TO_GEOCODE_CALLED: trying to geocode!
+(44.9400562, 7.5299328)
+FORMAT_POSITION: saving missing geocode (44.9400562, 7.5299328)
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Liz Gossens :: Liz Gossens ==> lgo1018@gmail.com -- 2015-12-01 16:23 --  None, None>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103110>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+(44.9400562, 7.5299328)
+Attempting login
+attempting to login Liz Gossens
+generating a strava based password
+attempting to authenticate Liz Gossens
+User is valid, active and authenticated
+going to login Liz Gossens
+Redirecting to Strava oauth
+
+Strava Token: c7f8fc23f50cf497c5f0444ac0bfd26fc3dbf974
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Michael Cunningham Catonsville MD United States michael.patrick.cunningham@gmail.com
+Michael Cunningham
+michael.patrick.cunningham@gmail.com
+Michael Cunningham
+250854
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 250854, authing one is 250854
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Michael Cunningham
+generating a strava based password
+attempting to authenticate Michael Cunningham
+User is valid, active and authenticated
+going to login Michael Cunningham
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Strava Token: 869e390be668c21cfbda86d43619d08e82e75ba1
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Brian Freburger Alexandria VA United States freburgerbe@cox.net
+Brian Freburger
+freburgerbe@cox.net
+Brian Freburger
+5319790
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 5319790, authing one is 5319790
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Brian Freburger
+generating a strava based password
+attempting to authenticate Brian Freburger
+User is valid, active and authenticated
+going to login Brian Freburger
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: a662866505e6b50f69bdc23bf68f3dc74f375b92
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9246628, authing one is 9246628
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+The username and password were incorrect.
+TROUBLE -- the login failed, user redirected to login-help-page
+Redirecting to Strava oauth
+
+Strava Token: 8c7b3e2234d105859e2a8cf404fd65a06399450e
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9246628, authing one is 9246628
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+The username and password were incorrect.
+TROUBLE -- the login failed, user redirected to login-help-page
+Redirecting to Strava oauth
+
+Strava Token: 9b2df639d3d53858aa91a0da05dbf66181951ac3
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9246628, authing one is 9246628
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+The username and password were incorrect.
+TROUBLE -- the login failed, user redirected to login-help-page
+
+------ deleted uher USER, had only deleted the profile earlier
+
+Redirecting to Strava oauth
+
+Strava Token: 5a182972eff5adc46e9f29a3f267277ae314b9b0
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Matt LaFratta Alexandria VA United States mlafratt@gmail.com
+Matt LaFratta
+mlafratt@gmail.com
+Matt LaFratta
+567314
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 567314, authing one is 567314
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Matt LaFratta
+generating a strava based password
+attempting to authenticate Matt LaFratta
+User is valid, active and authenticated
+going to login Matt LaFratta
+authenticated and logged in, redirected to home page
+
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: 46ca02ddee3c9dfcbafbd388b8e8083796e852fb
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9246628, authing one is 9246628
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+The username and password were incorrect.
+TROUBLE -- the login failed, user redirected to login-help-page
+Redirecting to Strava oauth
+
+Strava Token: c2f3033c43c6f1de8396bf931cb3d490c635e9be
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9246628, authing one is 9246628
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+The username and password were incorrect.
+TROUBLE -- the login failed, user redirected to login-help-page
+Redirecting to Strava oauth
+
+Redirecting to Strava oauth
+
+Strava Token: 8c65e7f1c18faa0c6d7bad130fc01f58d4ef0dad
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+The user does not exist, going to create User Object
+
+Entering create_new_user
+
+generating a strava based password
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile does NOT Exist!
+There is no UserProfile, so this should be a first time registrant. Create a profile
+Creating UserProfile for Chris Uher
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Chris Uher :: Chris Uher ==> christopher.uher@gmail.com -- 2015-12-01 19:38 --  Severn, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': True, 'raw': False, 'using': 'default'}
+signals.py:hams: inside 'created true'
+FORMAT_POSITION: fixing missing geocode
+TRY_TO_GEOCODE_CALLED: trying to geocode!
+(39.1370528, -76.6983022)
+FORMAT_POSITION: saving missing geocode (39.1370528, -76.6983022)
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Chris Uher :: Chris Uher ==> christopher.uher@gmail.com -- 2015-12-01 19:38 --  Severn, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+(39.1370528, -76.6983022)
+Attempting login
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+User is valid, active and authenticated
+going to login Chris Uher
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Chris Uher :: Chris Uher ==> christopher.uher@gmail.com -- 2015-12-01 19:38 --  Severn, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+signals.py:hams: post_save received
+   kwargs {'update_fields': None, 'instance': <UserProfile: Chris Uher :: Chris Uher ==> christopher.uher@gmail.com -- 2015-12-01 19:38 --  Severn, MD>, 'signal': <django.db.models.signals.ModelSignal object at 0x7f88dc103090>, 'created': False, 'raw': False, 'using': 'default'}
+signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?
+
+Redirecting to Strava oauth
+
+Strava Token: de836967cd7b4de8f1a7461679edb7c0c2a3b073
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Steve Friedman Chevy Chase MD United States shf918@me.com
+Steve Friedman
+shf918@me.com
+Steve Friedman
+310898
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 310898, authing one is 310898
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Steve Friedman
+generating a strava based password
+attempting to authenticate Steve Friedman
+User is valid, active and authenticated
+going to login Steve Friedman
+authenticated and logged in, redirected to home page
+
+Strava Token: 49ac43921cdf91e814a87c41570948d79a2ff4f0
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Ernest Ezis Boulder CO United States ernest.ezis@gmail.com
+Ernest Ezis
+ernest.ezis@gmail.com
+Ernest Ezis
+777405
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 777405, authing one is 777405
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Ernest Ezis
+generating a strava based password
+attempting to authenticate Ernest Ezis
+User is valid, active and authenticated
+going to login Ernest Ezis
+authenticated and logged in, redirected to home page
+
+

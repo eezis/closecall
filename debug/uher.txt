@@ -1,0 +1,96 @@
+Background:
+
+Chris singed up on 7/7/15 with Strava.
+
+On 12.1.15 he created an account manually
+
+So now there were two accounts sharing one email:
+
+Chrus Uher
+cuher  <-- manual
+
+So it looks like the password for the Strava Account was probably changed at some point, by the new account? Do I enable loggin in via email?
+
+I NEED TO OVERRIDE THE MANUAL LOGIN PROCESS AND STOP SOMEONE FROM CREATING A NEW PROFILE IF THEIR EMAIL ALREADY EXISTS. MY USER NEEDS TO BE UNIQUE ON EMAIL, BUT GIVE THEM A REASON TOO!
+
+USER.VIEWS
+    LOOK TO SEE IF EMAIL EXISTS -- Don't let them create if it does!
+
+
+Strava Token: f277b8b2a7251630d27ce91bd7e28143990c077d
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9246628, authing one is 9246628
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+The username and password were incorrect.
+TROUBLE -- the login failed, user redirected to login-help-page
+Redirecting to Strava oauth
+
+Strava Token: 52412d226f4bd81f1361e51f6fb332befaea5ffb
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9246628, authing one is 9246628
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+The username and password were incorrect.
+TROUBLE -- the login failed, user redirected to login-help-page
+Redirecting to Strava oauth
+
+Strava Token: 7297e5356050dddea6b83b37a2620e2572d07548
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+CURRENT STRAVA REGISTRANT:: Chris Uher Severn MD United States christopher.uher@gmail.com
+Chris Uher
+christopher.uher@gmail.com
+Chris Uher
+9246628
+Checking to see if this is an existing user
+Attemptingt to pull Strava ID
+Existing Strava ID is 9246628, authing one is 9246628
+Strava IDs matched, check for updated email address - TURN ON AFTER DEBUG
+Existing_strava_user returned TRUE
+About to test if User_Profile_Exists -- we have a valid user object,
+ but maybe not an existing profile
+ Is it a new user or returning?
+Inside user_profile_exists
+User Profile Exists
+UserProfile exits, so just log this user in!
+attempting to login Chris Uher
+generating a strava based password
+attempting to authenticate Chris Uher
+The username and password were incorrect.
+TROUBLE -- the login failed, user redirected to login-help-page
+Redirecting to Strava oauth
