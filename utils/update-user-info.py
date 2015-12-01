@@ -20,18 +20,29 @@ from users.models import UserProfile
 from django.contrib.auth.models import User
 
 # username = 'Matt Kobzik'
-username = 'Sam Thomas'
+# username = 'Sam Thomas'
+username = 'Greg Cantori'
+
 
 u = User.objects.get(username=username)
 print u
 print
-# u.email = 'sthomas1990@gmail.com'
-# print u
-# u.save()
+print u.email
+u.email = 'gcantori@gmail.com'
+u.save()
+
+u = User.objects.get(username=username)
+print
+print 'changed'
+print
+print u
+print
+print u.email
+
 
 # # U = UserProfile.objects.get()
 # U.email = 'sthomas1990@gmail.com'
 # U.save()
 
-print u.email
+# print u.email
 

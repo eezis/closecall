@@ -231,7 +231,7 @@ def update_strava_email_if_it_has_changed(TheUser, authing_email):
         s3 = 'In the admin, look at the oauth_data field to see the original email address, then confirm with user if you want.'
         safe_print(s1+s2+s3, True, True)
         # Now update the email
-        TheUser.email == authing_email
+        TheUser.email = authing_email
         TheUser.save()
 
 
