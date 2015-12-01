@@ -163,10 +163,12 @@ def login_a_user(request, this_user, athlete_id):
         safe_print("HOUSTON WE HAVE A PROBLEM -- login_a_user should not have gotten a null user! Fix earlier in code.")
 
     safe_print(u"attempting to authenticate {}".format(this_user.username))
-    safe_print(u"Testing to see if this works {}".format(this_user.profile.username))
-    if this_user.username != the_user.profile.username:
-        msg = "Userpofile.username is {} and User.Username is {}".format(this_user.profile.username, this_user.username)
-        admin_mailer('Mismatched Usernames', msg)
+    # the next line throws an exception
+    # AttributeError: ‘UserProfile’ object has no attribute ‘username’
+    # safe_print(u"Testing to see if this works {}".format(this_user.profile.username))
+    # if this_user.username != the_user.profile.username:
+    #     msg = "Userpofile.username is {} and User.Username is {}".format(this_user.profile.username, this_user.username)
+    #     admin_mailer('Mismatched Usernames', msg)
 
 
     # note we are going to cross over, from this_user to user
