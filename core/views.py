@@ -160,13 +160,19 @@ def login_a_user(request, this_user, athlete_id):
     password = get_or_create_a_strava_based_password(athlete_id)
 
     if this_user is None:
-        safe_print("HOUSTON WE HAVE A PROBLEM")
+        safe_print("HOUSTON WE HAVE A PROBLEM -- login_a_user should not have gotten a null user! Fix earlier in code.")
 
     safe_print(u"attempting to authenticate {}".format(this_user.username))
+    safe_print(u"Testing to see if this works {}".format(this_user.profile.username))
+    if this_user.username != the_user.profile.username:
+        msg = "Userpofile.username is {} and User.Username is {}".format(this_user.profile.username, this_user.username)
+        admin_mailer('Mismatched Usernames', msg)
+
 
     # note we are going to cross over, from this_user to user
     # wanted to make the syntactical distinction, even though it was obligatory
     user = authenticate(username=this_user.username, password=password)
+
 
     if user is not None:
         # the password verified for the user
@@ -179,6 +185,8 @@ def login_a_user(request, this_user, athlete_id):
             safe_print("The password is valid, but the account has been disabled!")
             return False
     else:
+        # so what happened here? We just did a "get or create password" because it's a strava user
+        # so the User.username doesn't exist? Do I need to pass this_user.profile.username?
         safe_print("The username and password were incorrect.")
         return False
 
