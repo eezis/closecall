@@ -46,7 +46,7 @@ data_file = "{}/nginx-root/data.json".format(settings.PROJECT_ROOT)
 
 
 def create_the_file():
-    print 'creating the new file'
+    print 'creating the new file: {}'.format(new_data_file)
     UPS = UserProfile.objects.all().order_by('id')
     fh = open(new_data_file, 'w')
 
