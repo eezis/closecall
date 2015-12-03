@@ -33,7 +33,10 @@ TEMPLATE_DEBUG = True
 # ALLOWED_HOSTS = ['*', '104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', 'closecall', ]
 ALLOWED_HOSTS = ['*',]
 
-SESSION_COOKIE_AGE = 60 * 60 * 24 * 30 * 3 # three months
+# this is set by the second so 60 * 5 = 5 minutes
+# fifteen months - I went from 3 months to 15 on 12/3/15
+# because some users have a hard time managing their logins
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30 * 15
 
 
 GEOPOSITION_MAP_OPTIONS = {
