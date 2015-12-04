@@ -188,9 +188,13 @@ def show_this_incident_for_authed_users(request, incident_id):
     if request.user.is_authenticated():
         username = request.user.username
         useremail = request.user.email
-        expires_in_x_seconds = request.session.get_expiry_date()
+        expires_in_x_seconds = request.session.get_expiry_age()
+        days = expires_in_x_seconds / (86400)
+        expires_on_date = request.session.get_expiry_date()
         print
-        print "FOR USER {}, AT EMAIL {}, THE SESSION WILL EXPIRE ON: {}".format(username, useremail, expires_in_x_seconds)
+        print "FOR USER {}, AT EMAIL {}".format(username, useremail)
+        print "THE SESSION WILL EXPIRE ON: {}  That is {} days".format(expires_on_date, days)
+        print
 
     I = Incident.objects.get(id=incident_id)
     if I.visible:
