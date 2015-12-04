@@ -192,15 +192,19 @@ def show_this_incident_for_authed_users(request, incident_id):
         days = expires_in_x_seconds / (86400)
         expires_on_date = request.session.get_expiry_date()
         print
-        print "FOR USER {}, AT EMAIL {}".format(username, useremail)
+        print "USER {} :: EMAIL {} :: Looking at {}".format(username, useremail, incident_id)
         print "THE SESSION WILL EXPIRE ON: {}  That is {} days".format(expires_on_date, days)
         print
 
-    I = Incident.objects.get(id=incident_id)
-    if I.visible:
-        return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': incident_id})
-    else:
+    try:
+        I = Incident.objects.get(id=incident_id)
+        if I.visible:
+            return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': incident_id})
+        else:
+            return render(request, 'incident/notavailable.html')
+    except Incident.DoesNotExist:
         return render(request, 'incident/notavailable.html')
+
 
 
 def show_all_incidents(request):
