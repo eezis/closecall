@@ -183,12 +183,14 @@ def show_this_incident(request, ee_fake_key):
 def show_this_incident_for_authed_users(request, incident_id):
     #the key must be 8 characters long, [a-z0-9-] ee-1-173
 
-    # if request.user.is_authenticated():
-    #     username = request.user.username
-    #     useremail = request.user.email
-    #     expires_in_x_seconds = request.session.get_expiry_date()
-    #     print
-    #     print "FOR USER {}, AT EMAIL {}, THE SESSION WILL EXPIRE ON: {}".format(expires_in_x_seconds)
+    # 12.3.15 -- I want to make sure that the expiry, set in settings.py, is being set properly
+    # so that users do not have to keep logging in
+    if request.user.is_authenticated():
+        username = request.user.username
+        useremail = request.user.email
+        expires_in_x_seconds = request.session.get_expiry_date()
+        print
+        print "FOR USER {}, AT EMAIL {}, THE SESSION WILL EXPIRE ON: {}".format(username, useremail, expires_in_x_seconds)
 
     I = Incident.objects.get(id=incident_id)
     if I.visible:
