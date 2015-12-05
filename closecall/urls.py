@@ -24,7 +24,7 @@ from api import views
 from api.views import IncidentViewSet
 from rest_framework import routers
 router = routers.DefaultRouter()
-router.register(r'api/v1/incidents', views.IncidentViewSet)
+router.register(r'api/v1/974fcb20-9458-48ae-b373-09de4885309a/incidents', views.IncidentViewSet)
 
 urlpatterns = patterns('',
     url(r"^$", HomeView, name="home"),
