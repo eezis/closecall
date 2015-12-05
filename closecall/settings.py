@@ -94,6 +94,7 @@ THIRD_PARTY_APPS = (
     'geoposition',
     'registration',
     'django_summernote', #editor
+    'rest_framework',
 )
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -291,6 +292,14 @@ SUMMERNOTE_CONFIG = {
 #         },
 #     }
 # }
+
+
+REST_FRAMEWORK = {
+    # restrict to admin users
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    # turn on pagination
+    # 'PAGE_SIZE': 10
+}
 
 
 try:
