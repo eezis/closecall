@@ -57,6 +57,11 @@ class Incident(models.Model):
     # so comment uncomment next line, comment the default line, then migrate
     # position = GeopositionField(null=True)
     position = GeopositionField(default=Geoposition(40.008682, -105.272883))
+    # I am adding these to support the API, should have added them at the outset, 12/4/15
+    # override save method, set them there
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
+
     witnesses = models.CharField(null=True, blank=True, max_length=255, verbose_name="Your Name and Names of other Witnesses ( this field is not published )")
     # sadly had to add this because some folks are having trouble writing
     # a useful and literate report -- I can turn it off from the admin
@@ -127,6 +132,18 @@ class Incident(models.Model):
     )
     dav = "Danger Assessment: In your opinion, this encounter was . . . "
     danger_assessment = models.IntegerField(null=True, choices=THREAT_CHOICES, default=DANGEROUS, verbose_name=dav)
+
+
+    def save(self, *args, **kwargs):
+        try:
+            # position is of type GEO Position, so might have to cast this?
+            self.latitude = self.position.latitude
+            self.longitude = self.position.longitude
+        except:
+            pass
+
+        super(Incident, self).save(*args, **kwargs)
+
 
     def incident_was_dangerous(self):
         return self.danger_assessment >= self.DANGEROUS

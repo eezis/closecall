@@ -19,6 +19,12 @@ from registration.views import RegistrationView
 
 from incident.views import show_sample_report
 
+#djangorestframework
+from api import views
+from api.views import IncidentViewSet
+from rest_framework import routers
+router = routers.DefaultRouter()
+router.register(r'api/v1/incidents', views.IncidentViewSet)
 
 urlpatterns = patterns('',
     url(r"^$", HomeView, name="home"),
@@ -74,6 +80,11 @@ urlpatterns = patterns('',
     # url(r'^clustered-user-map/?$', TemplateView.as_view(template_name='user-new-map.html'), name="home-new-user-map"),
     # url(r'^clustered-user-map/?$', TemplateView.as_view(template_name='user-new-map.html'), name="home-user-map"),
     # show all incidents is in the incident.url
+
+    # over to djangorest framework
+    url(r'^', include(router.urls)),
+    # url(r'^api/', include('api.urls')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
 
     # url(r'^/static/(?P<path>.*)$', '/Users/eae/code/sites/closecall/static/'),
