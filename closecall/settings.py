@@ -296,7 +296,10 @@ SUMMERNOTE_CONFIG = {
 
 REST_FRAMEWORK = {
     # restrict to admin users
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'DEFAULT_PERMISSION_CLASSES': (
+        # 'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.IsAuthenticated',
+        ),
     # turn on pagination
     # 'PAGE_SIZE': 10
 }
