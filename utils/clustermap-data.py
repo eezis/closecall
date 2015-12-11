@@ -12,6 +12,7 @@ var data = { "count": 5300,
   {"member": 13, "longitude": -105.2077798, "latitude": 40.0005378 },
   {"member": 14, "longitude": -105.2838511, "latitude": 40.0454736 },
   {"member": 15, "longitude": -105.2399774, "latitude": 40.0293099 },
+  ...
   {"member": 5454, "longitude": -118.542586, "latitude": 34.3916641 },
   {"member": 5455, "longitude": -77.1398878, "latitude": 38.8485316 }
  ]}

@@ -17,6 +17,8 @@ USER.VIEWS
     LOOK TO SEE IF EMAIL EXISTS -- Don't let them create if it does!
 
 
+THE TROUBLE MIGHT BE WITH THIS_USER.USERNAME, VS THIS_USER.PROFILE.USERNAME
+
 Strava Token: f277b8b2a7251630d27ce91bd7e28143990c077d
 Trying to complete Token Exchange
 Token Exchange Completed. Strava sent athlete data.
