@@ -89,7 +89,11 @@ def handle_a_model_save(sender, **kwargs):
         else:
             print "signals.py:hams: The kwargs.get('created', True) failed -- so it was probably an update, maybe adding a geocode?\n"
     except:
-        print "signals.py:hams: Exception raised by: if kwargs.get('created', True):\n"
+        # I added a try/except around this because it somehow genearated IOError: [Errno 5] Input/output error
+        try:
+            print "signals.py:hams: Exception raised by: if kwargs.get('created', True):\n"
+        except:
+            pass
         pass
 
 

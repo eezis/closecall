@@ -1,5 +1,19 @@
 # -*- coding: utf-8 -*-
 
+"""
+
+THIS FILE IS NOT RUN TO UPDATE THE CLUSTERMAP.
+
+TO UPDATE CLUSTERMAP DATA, GO TO REMOTE SERVER AND:
+
+$ sudo python utils/clustermap-data.py
+
+"""
+
+
+
+
+
 import sys
 reload(sys) # just to be sure
 sys.setdefaultencoding('utf-8')
