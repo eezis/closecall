@@ -86,6 +86,7 @@ urlpatterns = patterns('',
     # url(r'^api/', include('api.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
+    url(r'^ajax-test/?$', TemplateView.as_view(template_name='test/ajax-test.html'), name="ajax-test"),
 
     # url(r'^/static/(?P<path>.*)$', '/Users/eae/code/sites/closecall/static/'),
 ) # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
