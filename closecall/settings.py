@@ -298,7 +298,8 @@ REST_FRAMEWORK = {
     # restrict to admin users
     'DEFAULT_PERMISSION_CLASSES': (
         # 'rest_framework.permissions.IsAdminUser',
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
         ),
     # turn on pagination
     # 'PAGE_SIZE': 10
