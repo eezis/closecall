@@ -132,7 +132,7 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
 
 
 def show_sample_report(request):
-    print 'bingo'
+    print 'Sample Report Requested from incident.views'
     # enables for unregistered users: http://closecalldatabase.com/incident/show/CO-141108-001/
     I = Incident.objects.get(pk=7)
     return render(request, 'incident/incident_sample_report.html', {'incident' : I, 'linker_incident_num': 7})
