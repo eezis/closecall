@@ -192,7 +192,7 @@ def show_this_incident_for_authed_users(request, incident_id):
         days = expires_in_x_seconds / (86400)
         expires_on_date = request.session.get_expiry_date()
         print
-        print "USER {} :: EMAIL {} :: Looking at {}".format(username, useremail, incident_id)
+        print u"USER {} :: EMAIL {} :: Looking at {}".format(username, useremail, incident_id)
         print "THE SESSION WILL EXPIRE ON: {}  That is {} days".format(expires_on_date, days)
         print
 
