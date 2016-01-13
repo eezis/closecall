@@ -1,3 +1,7 @@
+TO UPDATE CLUSTERMAP DATA, GO TO REMOTE SERVER AND:
+
+$ sudo python utils/clustermap-data.py
+
 
 The new map:
 
