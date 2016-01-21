@@ -507,6 +507,12 @@ def strava_registration(request):
             except IOError:
                 pass
 
+            if len(email) >= 76:
+                # are very long emails causing an occassional login issue?
+                admin_mailer('UNEXPECTED LOGIN ISSUE', 'Are long emails causing problems? See core.views line ~510. \n'
+                    + email + '\n' + created_username + '\n' + fname + '\n' + lname + '\n' + athlete_id)
+
+
             # The user may be a new registrant, or a returing user so . . . get_or_create pattern
             this_user = get_or_create_user(email, created_username, fname, lname, athlete_id)
 
