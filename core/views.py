@@ -217,6 +217,9 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
         safe_print('created_username is: {}'.format(created_username))
         new_user = User.objects.create_user(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
         new_user.save()
+    except DataError:
+        admin_mailer('UNEXPECTED LOGIN ISSUE', 'Are long emails causing problems? See core.views line ~221. \n'
+            + email + '\n' + created_username + '\n' + fname + '\n' + lname + '\n' + athlete_id)
 
     return new_user
 
@@ -506,11 +509,6 @@ def strava_registration(request):
                     print athlete_id
             except IOError:
                 pass
-
-            if len(email) >= 76:
-                # are very long emails causing an occassional login issue?
-                admin_mailer('UNEXPECTED LOGIN ISSUE', 'Are long emails causing problems? See core.views line ~510. \n'
-                    + email + '\n' + created_username + '\n' + fname + '\n' + lname + '\n' + athlete_id)
 
 
             # The user may be a new registrant, or a returing user so . . . get_or_create pattern
