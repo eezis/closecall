@@ -5,14 +5,21 @@ Given and incident ID, find all the users that are within X miles
 
 """
 
-import sys
-sys.path.append("/Users/eae/code/sites/closecall")
-sys.path.append("/Users/eae/.virtualenvs/closecall/lib/python2.7/site-packages")
-sys.path.append("/home/eezis/sites/closecall")
-sys.path.append("/home/eezis/sites/closecall/closecall")
-sys.path.append("/home/eezis/.virtualenvs/closecall/bin/python2.7/site-packages")
+#import sys
+# sys.path.append("/Users/eae/code/sites/closecall")
+# sys.path.append("/Users/eae/.virtualenvs/closecall/lib/python2.7/site-packages")
+# sys.path.append("/home/eezis/sites/closecall")
+# sys.path.append("/home/eezis/sites/closecall/closecall")
+# sys.path.append("/home/eezis/.virtualenvs/closecall/bin/python2.7/site-packages")
 
 import os
+# get the OS indendent home direction
+home_dir = os.path.expanduser("~")
+import sys
+# print home_dir
+sys.path.append(home_dir + "/code/sites/closecall")
+sys.path.append(home_dir + "/.virtualenvs/closecall/lib/python2.7/site-packages")
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'closecall.settings'
 import django
 django.setup()
@@ -26,16 +33,16 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 422
+INCIDENT_ID = 425
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
 TESTING = True
 MAIL_TO_EE = False
 
 #Radius = 10
-Radius = 30
+#Radius = 30
 # Radius = 40
-# Radius = 60
+Radius = 60
 
 subject = "Close Call Database - Incident Reported in your Area"
 
