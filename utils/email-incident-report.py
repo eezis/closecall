@@ -18,6 +18,7 @@ home_dir = os.path.expanduser("~")
 import sys
 # print home_dir
 sys.path.append(home_dir + "/code/sites/closecall")
+sys.path.append(home_dir + "/sites/closecall")
 sys.path.append(home_dir + "/.virtualenvs/closecall/lib/python2.7/site-packages")
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'closecall.settings'
