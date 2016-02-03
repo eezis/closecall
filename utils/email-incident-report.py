@@ -37,7 +37,7 @@ from django.contrib.auth.models import User
 INCIDENT_ID = 433
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
-TESTING = False
+TESTING = True
 MAIL_TO_EE = False
 
 #Radius = 10
