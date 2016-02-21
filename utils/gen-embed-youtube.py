@@ -3,7 +3,7 @@
 
 
 
-youtube_url = 'https://www.youtube.com/watch?v=D6jKv6jBAUA'
+youtube_url = 'https://youtu.be/YiUUt0gPojY'
 
 
 def create_html_for_youtube(video_url):
