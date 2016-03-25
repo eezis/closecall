@@ -1,5 +1,7 @@
 from django import forms
 from django.forms import ModelForm
+# 1.9 release notes
+# django.forms.extras is deprecated. You can find SelectDateWidget in django.forms.widgets (or simply django.forms) instead.
 from django.forms.extras.widgets import SelectDateWidget
 
 # from tinymce.widgets import TinyMCE
