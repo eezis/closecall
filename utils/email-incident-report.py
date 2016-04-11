@@ -12,6 +12,7 @@ Given and incident ID, find all the users that are within X miles
 # sys.path.append("/home/eezis/sites/closecall/closecall")
 # sys.path.append("/home/eezis/.virtualenvs/closecall/bin/python2.7/site-packages")
 
+
 import os
 # get the OS indendent home direction
 home_dir = os.path.expanduser("~")
@@ -34,17 +35,17 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 486
+INCIDENT_ID = 309
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
-TESTING = False
+TESTING = True
 MAIL_TO_EE = False
 
 # Radius = 10
 # Radius = 30
 # Radius = 35
 # Radius = 40
-Radius = 60
+Radius = 80
 
 subject = "Close Call Database - Incident Reported in your Area"
 
@@ -90,7 +91,6 @@ Ernest Ezis<br />
 &nbsp;&nbsp;&nbsp;
 </p>
 """
-
 msg = msg.replace('#INCIDENT_ID#', str(INCIDENT_ID))
 HTML_msg = HTML_msg.replace('#INCIDENT_ID#', str(INCIDENT_ID))
 
