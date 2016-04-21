@@ -37,6 +37,8 @@ class Incident(models.Model):
     what = models.TextField(verbose_name=what_verbose_str)
     date = models.DateField(null=True, blank=True, verbose_name="Date of Incident")
     time = models.TimeField(null=True, blank=True, verbose_name="Approximate Time of Incident")
+    # create a proxy string to ensure proper migration of TimeField to a String Version
+    timestr = models.CharField(null=True, blank=True, max_length=50, verbose_name="Approximate Time of Incident")
     vehicle_description = models.CharField(null=True, blank=True, max_length=150, verbose_name="Vehicle Description")
     color = models.CharField(null=True, blank=True, max_length=30)
     make = models.CharField(null=True, blank=True, max_length=50)
