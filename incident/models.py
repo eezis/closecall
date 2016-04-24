@@ -56,7 +56,12 @@ class Incident(models.Model):
     # There are some values Django cannot serialize into migration files.
     # For more, see https://docs.djangoproject.com/en/dev/topics/migrations/#migration-serializing
 
-    # so comment uncomment next line, comment the default line, then migrate
+    # To fix change and migrate this model, you must UNCOMMENT the
+    # position = GeopositionField(null=True)
+    # AND COMMENT the production line that sets the default
+    # position = GeopositionField(default=Geoposition(40.008682, -105.272883))
+    # do the makemigration and migrate, then reverse the comments to reset to original
+    # state (the next line commented, the trailing line uncommented)
     # position = GeopositionField(null=True)
     position = GeopositionField(default=Geoposition(40.008682, -105.272883))
     # I am adding these to support the API, should have added them at the outset, 12/4/15
