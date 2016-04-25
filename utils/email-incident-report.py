@@ -35,16 +35,17 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
-INCIDENT_ID = 500
+INCIDENT_ID = 505
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
 TESTING = True
 MAIL_TO_EE = False
 
 # Radius = 10
-# Radius = 30
+# Radius=20
+Radius = 30
 # Radius = 35
-Radius = 40
+# Radius = 40
 # Radius = 60
 
 subject = "Close Call Database - Incident Reported in your Area"

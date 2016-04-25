@@ -30,13 +30,16 @@ missed striking one of the riders. We believe the license plate number was 163-J
 
     # "A good incident report should include \n Number of people in the party \n direction you were travelling in",}))
     date = forms.DateField(("%m/%d/%Y",), widget=forms.DateInput(format="%m/%d/%Y", attrs={'class': 'datePicker',}), label='Date of Incident:',)
-    time = forms.TimeField(("%H:%M %p",), widget=forms.TimeInput(format="%H:%M %p", attrs={'class': 'timePicker', 'id': 'timePicker',
-        'placeholder': '10:45 am'}), label='Approximate Time') #, required=False)
+    # time = forms.TimeField(("%H:%M %p",), widget=forms.TimeInput(format="%H:%M %p", attrs={'class': 'timePicker', 'id': 'timePicker',
+    #     'placeholder': '10:45 am'}), label='Approximate Time') #, required=False)
+    timestr = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '10:45 am'}), label='Approximate Time') #, required=False)
+
     class Meta:
         model = Incident
-        fields = ['position','what', 'date', 'time', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
+        # fields = ['position','what', 'date', 'time', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
+        # 'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
+        fields = ['position','what', 'date', 'timestr', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
         'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
-
         widgets={
             "what": SummernoteInplaceWidget(),
 
