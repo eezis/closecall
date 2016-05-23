@@ -29,7 +29,8 @@ for content and clarity before any email notifications are sent. To ensure that 
 is included, I or another representative may contact you via email and ask you to clarify portions of the report before it is
 released to a wider audience.
 
-Email notifications will be sent when the Incident Report has been accepted.
+While I understand that every incident is extremely serious when you are on the receiving end, not every submission
+will result in an email alert.
 
 Thank you,
 
