@@ -187,10 +187,15 @@ function MarkerClusterer(map, opt_markers, opt_options) {
  * @type {string}
  * @private
  */
-MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_PATH_ =
-    'https://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/' +
-    'images/m';
 
+/**
+* MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_PATH_ =
+*    'https://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/' +
+*     'images/m';
+*/
+
+MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_PATH_ =
+    'http://closecalldatabase.com/static/images/marker-clusterer/m'
 
 /**
  * The marker cluster image path.
