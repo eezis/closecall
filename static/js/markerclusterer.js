@@ -194,6 +194,8 @@ function MarkerClusterer(map, opt_markers, opt_options) {
 *     'images/m';
 */
 
+
+/** EE UPDATE On 5.25 -- NOTE HAD TO COPY THE JS TO THE NGNIX-ROOT AT THE SERVER **/
 MarkerClusterer.prototype.MARKER_CLUSTER_IMAGE_PATH_ =
     'http://closecalldatabase.com/static/images/marker-clusterer/m'
 
