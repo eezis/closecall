@@ -45,6 +45,10 @@ class Incident(models.Model):
     model = models.CharField(null=True, blank=True, max_length=50)
     license_certain = models.CharField(null=True, blank=True, max_length=20, verbose_name="License Plate (use this input field if you are certain of the plate's numbers)")
     license_uncertain = models.CharField(null=True, blank=True, max_length=150, verbose_name="License Plate (use this input field if you are pretty sure, but not 100 percent certain)")
+    # this went into production with incident ID 548 -- it is a convenience field
+    # and would not be reliable unless the first 500 entries were rechecked and
+    # this field was updated
+    # licnese_confirmd = models.BooleanField(default=False)
     id_it_by = models.CharField(null=True, blank=True, max_length=250, verbose_name="List any special identifying characteristics of vehicle and passengers that you observed" )
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
