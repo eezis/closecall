@@ -1,6 +1,8 @@
 
 
-Use smartconverter app to convert the video for the mac, it made a videos/smartconverter/.....mov file.
+Use smartconverter app to convert the video for the mac, it made a movies/smartconverter/.....mov file.
+
+Select the "QuckTime" button (e.g. convert for QuickTime)
 
 Use QuickTime from there.
 
