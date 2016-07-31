@@ -35,7 +35,11 @@ from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
+<<<<<<< HEAD
 INCIDENT_ID = 624
+=======
+INCIDENT_ID = 588
+>>>>>>> 630bb2be7b1e02a2354be312028aa4b3486da402
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
 TESTING = True
