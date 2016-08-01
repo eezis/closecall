@@ -209,7 +209,11 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
         # let's try to add the athlete_id or a random number
         safe_print(u"INTEGRITY ERROR: Probably two Strava user with same name, {} {}, attempting to fix by generating unique username".format(fname,lname))
         if athlete_id not in [None, '']:
-            created_username = created_username + '-' + athlete_id
+            try:
+                created_username = created_username + '-' + athlete_id
+            except TypeError:
+                admin_mailer('TypeError, cores/views.py', 'The values are: \n'
+                    + 'created_username: ' + created_username + '\n athlete_id ' + athlete_id )
         else:
             # I can live with the 1 in 1000 chance we gen a duplicate if the user is not coming from Strava
             created_username = created_username + '-' + str((randint(1,1000)))
