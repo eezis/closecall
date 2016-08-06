@@ -36,7 +36,7 @@ from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
 
-INCIDENT_ID = 654
+INCIDENT_ID = 652
 
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
@@ -49,7 +49,7 @@ MAIL_TO_EE = False
 # Radius = 35
 # Radius = 40
 # Radius = 50
-Radius = 80
+Radius = 60
 
 subject = "Close Call Database - Incident Reported in your Area"
 
