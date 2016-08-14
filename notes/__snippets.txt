@@ -79,7 +79,7 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 </p>
 
 <p><br />
-<img src="http://closecalldatabase.com/static/images/reports/incident-659.jpg" style="max-width:100%;">
+<img src="http://closecalldatabase.com/static/images/reports/incident-672-1.jpg" style="max-width:100%;">
 </p>
 
 <p>
@@ -91,6 +91,17 @@ incident-408-1.jpg
 Image of driver: http://imgur.com/1WYSQkm
 
 Image of vehicle: http://imgur.com/bupZEV7
+
+
+RESPONSIVE HTML5 video
+https://www.html5andbeyond.com/html5-video-tag-simple-responsive-fix/
+<p><br>
+<video style="max-width:100%; height:auto;" controls>
+<source src="http://www.bambalibam.com/close_call_database/08011203_0332_clip.mp4 " type="video/mp4">
+</video>
+</p>
+
+
 
 <p><br />
 <img src="http://imgur.com/1WYSQkm" style="max-width:100%;">
