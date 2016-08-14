@@ -36,7 +36,7 @@ from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
 
-INCIDENT_ID = 659
+INCIDENT_ID = 669
 
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
@@ -44,10 +44,10 @@ TESTING = True
 MAIL_TO_EE = False
 
 # Radius = 10
-# Radius=20
+Radius=25
 # Radius = 30
 # Radius = 35
-Radius = 40
+# Radius = 40
 # Radius = 50
 # Radius = 60
 
@@ -161,12 +161,11 @@ print '\n'
 print '{} users in the incident zone'.format(len(user_list))
 print 'sending emails\n'
 
-
-for u in user_list:
-    if TESTING:
-        print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
-        print u'emailing: {}'.format(u.user.email)
-    else:
+if TESTING:
+    print "EMAILS ARE OFF TO PREVENT A MISTAKE, INCIDENT ID NEEDS TO BE CHANGED?"
+    # print u'emailing: {}'.format(u.user.email)
+else:
+    for u in user_list:
         print u'emailing: {}'.format(u.user.email)
         send_incident_notification(subject, msg, u.user.email, htmlmsg=HTML_msg)
 
