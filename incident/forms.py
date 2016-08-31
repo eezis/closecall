@@ -64,7 +64,7 @@ missed striking one of the riders. We believe the license plate number was 163-J
                 'placeholder':'Explorer | Tahoe | etc',
             }),
             "vehicle_description":forms.TextInput(attrs={
-                'placeholder':'White Ford Ranger Pickup Truck (combine the fields above, this will be the published description when people read your report)',
+                'placeholder':'White Ford Ranger Pickup Truck (this will be the published description when people read your report)',
             }),
             "license_certain":forms.TextInput(attrs={
                 'placeholder':'State/Province license plate number - if certain ( OR: 555-5555 )',
