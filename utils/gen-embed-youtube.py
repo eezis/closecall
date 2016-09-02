@@ -2,7 +2,7 @@
 # <iframe width="560" height="315" src="//www.youtube.com/embed/tVAvp9a82TM" frameborder="0" allowfullscreen></iframe>
 
 
-youtube_url = 'https://youtu.be/1qAq4ZrjVEU'
+youtube_url = 'https://www.facebook.com/motorcyclemagician/videos/10208139685744692/'
 
 
 def create_html_for_youtube(video_url):
