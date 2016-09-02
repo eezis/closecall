@@ -26,11 +26,13 @@ and ride within 60 miles of the Incident's location.
 
 Email notifications, however, will not be sent out immediately. The Incident Report will be reviewed
 for content and clarity before any email notifications are sent. To ensure that the most helpful information
-is included, I or another representative may contact you via email and ask you to clarify portions of the report before it is
+is included I may contact you via email and ask you to clarify portions of the report before it is
 released to a wider audience.
 
 While I understand that every incident is extremely serious when you are on the receiving end, not every submission
 will result in an email alert.
+
+If you have a picture or a URL for a video that should be included with your report, simply reply to this email with that information.
 
 Thank you,
 
