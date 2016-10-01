@@ -4,7 +4,6 @@ Markdown==2.5.2
 MarkupSafe==0.23
 backports.ssl-match-hostname==3.4.0.2
 certifi==14.05.14
-distribute==0.6.49
 django-appconf==0.6
 django-crispy-forms==1.4.0
 django-extensions==1.4.6
