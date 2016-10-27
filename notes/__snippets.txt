@@ -27,7 +27,7 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 </p><br />
 
 <p>
-<img src="http://closecalldatabase.com/static/images/reports/Incident-472-2.jpg" style="width:100%; max-width:600px;">
+<img src="http://closecalldatabase.com/static/images/reports/Incident-472-2.jpg" style="width:100%; ">
 </p><br />
 <p>
 <img src="http://closecalldatabase.com/static/images/reports/chris-stout-incident.JPG" style="width:100%; max-width:600px;">
