@@ -21,7 +21,7 @@
 {% endif %}
 
 <div class="col-sm-12">
-If you have a Strava account, I reccomend that you . . .
+<p><em>If you registered using Strava</em>, than login with strava . . .</p>
 </div>
 <div class="col-sm-4">
   <div class="strava" style="padding: 16px 0 26px 0;">
@@ -29,7 +29,9 @@ If you have a Strava account, I reccomend that you . . .
     <a href="/get-strava-login-from-login"><img src="/static/images/LogInWithStrava@2x.png"></a>
   </div>
 </div>
-<div class="col-sm-12" style="padding-bottom: 16px;">If you don't have a Strava account, you can do it the old-fashioned way . . . </div>
+<div class="col-sm-12" style="padding-bottom: 16px;">
+  <p>If you did not register with Strava, then login here . . .</p>
+</div>
 
 <div class="col-sm-4">
   <form action="" method="POST">
@@ -40,7 +42,7 @@ If you have a Strava account, I reccomend that you . . .
     <input type="hidden" name="next" value="{{ next }}" />
   </form>
 
-  <div style="padding-top:20px;">
+  <div style="padding-top:40px;">
     <p>{% trans "Forgot your Password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
     <p>{% trans "Not a Member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
   </div>
