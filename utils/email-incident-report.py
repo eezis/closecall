@@ -43,8 +43,8 @@ INCIDENT_ID = 9xx
 TESTING = True
 MAIL_TO_EE = False
 
-# Radius = 10
-Radius = 15
+Radius = 10
+# Radius = 15
 # Radius = 20
 # Radius = 30
 # Radius = 40
