@@ -36,7 +36,7 @@ from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
 
-INCIDENT_ID = 932
+INCIDENT_ID = 953
 
 
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
@@ -47,8 +47,8 @@ MAIL_TO_EE = False
 # Radius = 10
 # Radius = 15
 # Radius = 20
-Radius = 30
-# Radius = 40
+# Radius = 30
+Radius = 40
 # Radius = 50
 # Radius = 60
 
