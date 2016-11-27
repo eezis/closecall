@@ -131,6 +131,9 @@ def HomeView(request):
         return render(request, 'home.html')
 
 
+def SupportView(request):
+    return render(request, 'support-ccdb.html')
+
 CCDB_CLIENT_ID= '3869'
 CCDB_REDIRECT_URL = 'http://closecalldatabase.com/strava-registration'
 USER_PROFILE_EXISTS = False

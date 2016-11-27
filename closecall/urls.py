@@ -4,7 +4,7 @@ from django.contrib import admin
 # from django.views.generic.base import RedirectView
 
 from core.views import HomeView, strava_registration, redirect_to_strava_login, redirect_to_strava_via_login_page, CreateUserInput, \
-show_user_map #, MyRegistrationView
+show_user_map, SupportView #, MyRegistrationView
 from publish.views import NewsView, news_preview
 from users.views import CreateUserProfileView, UpdateUserProfileView, DetailUserProfileView, CheckForUserProfile
 
@@ -54,6 +54,7 @@ urlpatterns = patterns('',
     url(r'^incident/', include('incident.urls')),
     url(r'^blog/', include('publish.urls')),
     url(r'^news/', NewsView.as_view(), name="news"),
+    url(r'^support/', SupportView, name="support"),
     url(r'^preview-news/(?P<news_id>\d+)/$', news_preview, name="preview-news"),
     url(r'^eeadmin/', include(admin.site.urls)),
     (r'^summernote/', include('django_summernote.urls')),
