@@ -55,7 +55,7 @@ urlpatterns = patterns('',
     url(r'^blog/', include('publish.urls')),
     url(r'^news/', NewsView.as_view(), name="news"),
     # url(r'^support/?$', SupportView, name="support"),
-    url(r'^support/?$', TemplateView.as_view(template_name='support-ccdb.html'), name="support"),
+    url(r'^support/?$', TemplateView.as_view(template_name='support-ccdb.html'), name="support-ccdb"),
 
     url(r'^preview-news/(?P<news_id>\d+)/$', news_preview, name="preview-news"),
     url(r'^eeadmin/', include(admin.site.urls)),
