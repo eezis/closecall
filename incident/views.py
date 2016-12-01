@@ -72,8 +72,15 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
         except IOError:
             pass
 
+        # EE 11/30/16, I want the ID number on the emails -- if it works but in into the user_msg_incident_created e
+        # email below too
+        try:
+            subj = 'CCDB :: Incident ' + str(Incident.pk) + ' Created'
+        except:
+            subj = 'CCDB :: Incident Created'
+
         msg = "Incident created by " + self.request.user.username + ' :: ' + self.request.user.email
-        incident_review_mailer('CCDB :: Incident Created', msg)
+        incident_review_mailer(subj, msg)
 
         # now send an email message to the user
         send_mail('Close Call Database', user_msg_incident_created, 'closecalldatabase@gmail.com', [self.request.user.email])
