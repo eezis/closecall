@@ -21,9 +21,9 @@ from django.core.mail import send_mail
 user_msg_incident_created = \
 """Thank you for submitting an Incident Report.
 
-[10.26.2016 NOTE: I manage this project in my "free time." I often cannot get to the reports until the evening.
-Due to all the registrations and new report submissions that have come in as a result of the Velonews article,
-it may take me a day or two to process your report. Thanks for your patience and understanding.]
+[NOTE: I manage this project in my "free time." It may take me a day or two -- sometimes longer -- to process your report.
+If you have a submission that demands immediate attention, please email me directly at: ernest.ezis@gmail.com.
+Thanks for your patience and understanding.]
 
 Your report will be immediately available to registered users that visit The Close Call Database website
 and ride within 60 miles of the Incident's location.
