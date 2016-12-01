@@ -36,7 +36,7 @@ from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
 
-INCIDENT_ID = 990
+INCIDENT_ID = 992
 
 
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
@@ -47,8 +47,8 @@ MAIL_TO_EE = False
 # Radius = 10
 # Radius = 15
 # Radius = 20
-# Radius = 30
-Radius = 40
+Radius = 30
+# Radius = 40
 # Radius = 50
 # Radius = 60
 
@@ -96,8 +96,11 @@ Ernest Ezis<br />
 &nbsp;&nbsp;&nbsp;
 </p>
 """
+
 msg = msg.replace('#INCIDENT_ID#', str(INCIDENT_ID))
 HTML_msg = HTML_msg.replace('#INCIDENT_ID#', str(INCIDENT_ID))
+
+
 
 # sets the email_sent field to True
 # records the text of the email message that was sent out

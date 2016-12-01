@@ -261,6 +261,8 @@ SUMMERNOTE_CONFIG = {
 
 # settings.py
 # ValueError: Unable to configure handler 'file': [Errno 13] Permission denied: '/home/eezis/sites/closecall/django-errors.log'
+# http://stackoverflow.com/questions/18547855/permission-denied-when-writing-log-file
+# I ran sudo touch django-errors.log   then I ran chmod 775 django-errors.log    that worked and allowed me to start it up
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
