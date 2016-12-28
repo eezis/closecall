@@ -144,7 +144,8 @@ sudo nano pg_hba.conf
 
 # IPv4 local connections:
 host    all             all             127.0.0.1/32            md5
-host    all             all             73.203.118.43/32        md5  <-- I added this line
+# host    all             all             73.203.118.43/32        md5  <-- I added this line [12.27.16 -- old router address]
+host    all             all             24.9.105.13/32        md5  <-- I added this line
 
 -- now restart postgresql
 
@@ -169,6 +170,8 @@ target     prot opt source               destination
 
 sudo iptables -A INPUT -p tcp --destination-port 5432 -s 73.203.118.43 -j ACCEPT
 sudo iptables -A INPUT -p tcp --destination-port 5432 -s 24.9.60.175 -j ACCEPT
+
+sudo iptables -A INPUT -p tcp --destination-port 5432 -s 24.9.105.13 -j ACCEPT
 
 -- now test it from terminal on the remote workstation
 
