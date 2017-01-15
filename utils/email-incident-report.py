@@ -36,7 +36,7 @@ from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
 
-INCIDENT_ID = 100X
+INCIDENT_ID = 1046
 
 
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
