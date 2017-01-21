@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- <script src="http://closecalldatabase.com/data.json"></script> -->
+<!-- <script src="https://closecalldatabase.com/data.json"></script> -->
 </head>
 
 <body>
@@ -23,7 +23,7 @@ function loadDoc() {
       document.getElementById("demo").innerHTML = xhttp.responseText;
     }
   };
-  xhttp.open("GET", "http://closecalldatabase.com/data.json", true);
+  xhttp.open("GET", "https://closecalldatabase.com/data.json", true);
   xhttp.send();
 }
 </script>
