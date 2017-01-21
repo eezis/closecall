@@ -1,0 +1,12 @@
+
+
+https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04
+
+My nginx.conf is not in the default it is:
+
+    /etc/nginx/nginx.conf
+
+My default root is not /var/www/html it is . .
+
+    root /home/eezis/sites/closecall/nginx-root;
+
