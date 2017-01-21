@@ -58,7 +58,7 @@ subject = "Close Call Database - Incident Reported in your Area"
 msg = """
 Greetings from the Close Call Database for Cyclists. You are receiving this message because an incident has been reported by a cyclist in your area.
 
-You can find the details here: http://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/
+You can find the details here: https://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/
 
 Please review this incident and note the vehicle and driver descriptions. If you have had a previous encounter with the vehicle in question, please reply to this email with details.
 
@@ -80,19 +80,19 @@ HTML_msg = """
 
 <p>You may wish to share this email with other cyclists that ride in the area where the incident occurred.</p>
 
-<p>You can find the details <a href="http://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/">here</a>.</p>
+<p>You can find the details <a href="https://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/">here</a>.</p>
 
 <p>Ride Safely,</p>
 
 <p><br />
 Ernest Ezis<br />
-<a href="http://closecalldatabase.com">Close Call Database</a>
+<a href="https://closecalldatabase.com">Close Call Database</a>
 <br /><br />
-<a href="https://twitter.com/closecalldb" class="twitter-follow-button" data-show-count="false"><img src="http://closecalldatabase.com/static/images/followclosecalldb.png"></a>
+<a href="https://twitter.com/closecalldb" class="twitter-follow-button" data-show-count="false"><img src="https://closecalldatabase.com/static/images/followclosecalldb.png"></a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 &nbsp;&nbsp;&nbsp;
 <br /> <br />
-<a href="https://twitter.com/eezis" class="twitter-follow-button" data-show-count="false"><img src="http://closecalldatabase.com/static/images/followeezis.png"></a>
+<a href="https://twitter.com/eezis" class="twitter-follow-button" data-show-count="false"><img src="https://closecalldatabase.com/static/images/followeezis.png"></a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 &nbsp;&nbsp;&nbsp;
 </p>
