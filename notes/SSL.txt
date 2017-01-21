@@ -80,10 +80,7 @@ ssl_certificate_key /etc/letsencrypt/live/closecalldatabase.com/privkey.pem;
 ======
 
 
-
-MUST DO THIS: after up and running
-
-sudo ufw delete allow 'Nginx HTTP'
+UFW section -- I did not do
 
 
 

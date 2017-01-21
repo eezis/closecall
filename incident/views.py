@@ -135,11 +135,11 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
 
         # GET THE ID OF THE INCIDENT REPORT THAT IS BEING UPDATED, AND DROP IT INTO THE EMAIL MESSAGE
         the_incident_id = self.request.META.get('HTTP_REFERER', 'ID IS MISSING!')
-        # Looks like this -> http://localhost:8000/incident/update/226/
+        # Looks like this -> https://localhost:8000/incident/update/226/
 
         # swap in
-        # the_incident_id = the_incident_id.replace('http://localhost:8000/incident/update','http://closecalldatabase.com/incident/show-detail' )
-        the_incident_id = the_incident_id.replace('http://closecalldatabase.com/incident/update','http://closecalldatabase.com/incident/show-detail' )
+        # the_incident_id = the_incident_id.replace('https://localhost:8000/incident/update','https://closecalldatabase.com/incident/show-detail' )
+        the_incident_id = the_incident_id.replace('https://closecalldatabase.com/incident/update','https://closecalldatabase.com/incident/show-detail' )
 
         msg = u'Incident ' + the_incident_id + ' UPDATED by {}' + self.request.user.username + '\nCheck to see if it is still in compliance, \
             or if it material and needs a resend! Their contact is ' + self.request.user.email
@@ -150,7 +150,7 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
 
 def show_sample_report(request):
     print 'Sample Report Requested from incident.views'
-    # enables for unregistered users: http://closecalldatabase.com/incident/show/CO-141108-001/
+    # enables for unregistered users: https://closecalldatabase.com/incident/show/CO-141108-001/
     I = Incident.objects.get(pk=7)
     return render(request, 'incident/incident_sample_report.html', {'incident' : I, 'linker_incident_num': 7})
 
