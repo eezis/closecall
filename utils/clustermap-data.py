@@ -42,8 +42,25 @@ from users.models import UserProfile
 
 from django.conf import settings
 
+
+"""
+home-helper orginally loaded a .json file, but chrome didn't like that in early 2017
+-- its the wrong mime type and it's not an executable
+    <!-- <script src="https://closecalldatabase.com/data.json"></script> -->
+
+This file had these lines, but I changed the to load .js instead of .json
+
 new_data_file = "{}/nginx-root/new-data.json".format(settings.PROJECT_ROOT)
 data_file = "{}/nginx-root/data.json".format(settings.PROJECT_ROOT)
+
+
+    <script src="https://closecalldatabase.com/data.js"></script>
+
+"""
+
+
+new_data_file = "{}/nginx-root/new-data.js".format(settings.PROJECT_ROOT)
+data_file = "{}/nginx-root/data.js".format(settings.PROJECT_ROOT)
 
 
 def create_the_file():

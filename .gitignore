@@ -42,3 +42,7 @@ dev_settings.py
 django-errors.log
 local-only-data/
 nginx-root/*.json
+nginx-root/data.js
+nginx-root/new-data.js
+
+
