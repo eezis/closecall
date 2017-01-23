@@ -164,7 +164,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 # STATIC_URL = '/static/'
-STATIC_URL = 'http://closecalldatabase.com/static/'
+# EE NOTE 1.23.17 -- I should have left this as '/static/' I had it as http://close...
+# so when I added SSL the admin was choking on and prohibiting the deliver of
+# the css files from "http"
+# STATIC_URL = 'http://closecalldatabase.com/static/'
+# STATIC_URL = 'https://closecalldatabase.com/static/'
+STATIC_URL = '/static/'  # this is controlled in nginx.conf
 
 # https://docs.djangoproject.com/en/1.7/howto/static-files/#deployment
 # STATIC_ROOT = '/home/eezis/sites/static/closecall/'
