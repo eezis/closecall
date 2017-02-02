@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import render, redirect
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -23,6 +24,8 @@ from core.models import UserInput
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
+# import logging
+# logger = logging.getLogger('closecall')
 
 # from incident.models import Incident
 
@@ -698,6 +701,22 @@ def handler404(request):
     response.status_code = 404
     return response
 
+# def cyrllic_present(msg):
+#     a = 'тьдетскийквадроц'
+#     print not set(a).isdisjoint(msg)
+#     return not set(a).isdisjoint(msg)
+
+
+def its_spam(msg):
+    if '.ru' in msg:
+        return True
+    if 'SBA lending' in msg:
+        return True
+    # if cyrllic_present(msg):
+    #     return True
+
+    return False
+
 
 class CreateUserInput(CreateView):
     model = UserInput
@@ -716,9 +735,17 @@ class CreateUserInput(CreateView):
     def form_valid(self, form):
         # print self.subject
         msg = self.request.POST['message'] + '\n\n' + self.request.POST['email']
-        form.instance.subject = self.subject
-        input_mailer(self.subject, msg)
-        return super(CreateUserInput, self).form_valid(form)
+        if its_spam(msg):
+            # print 'Spam!'
+            # print self.request.META.get('REMOTE_ADDR')
+            # logger.warning("SPAMMER AT ADDRESS: " + self.request.META.get('REMOTE_ADDR'))
+            raise PermissionDenied
+            # return redirect('http://www.urbandictionary.com/define.php?term=Fuck%20off%20and%20die')
+
+        else:
+            form.instance.subject = self.subject
+            input_mailer(self.subject, msg)
+            return super(CreateUserInput, self).form_valid(form)
 
 
 
