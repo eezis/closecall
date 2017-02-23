@@ -715,6 +715,13 @@ def its_spam(msg):
     # if cyrllic_present(msg):
     #     return True
 
+    userinput = msg.lower()
+    spammy = ["cialis", "porn", "viagra", "sex", "casino", u"ส", u"а", u"п", "tiffany outlet", "kate spade",
+    "pharma"]
+    for i in spammy:
+        if i in userinput:
+            return True
+
     return False
 
 
