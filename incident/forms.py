@@ -64,6 +64,9 @@ missed striking one of the riders. We believe the license plate number was 163-J
             "what": what_verbose_str,
             "license_certain" : "License Plate (use this input field if you are certain of the plate's numbers)",
             "license_uncertain" : "License Plate (use this input field if you are pretty sure, but not 100 percent certain)",
+            'id_it_by' : 'List any special identifying characteristics of vehicle and passengers that you observed',
+            'threat_assessment' : 'Threat Assessment: In your opinion the motorist/person in question was being . . .',
+            'danger_assessment' : 'Danger Assessment: In your opinion, this encounter was . . .',
         }
         # fields = ['position','what', 'date', 'time', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
         # 'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
