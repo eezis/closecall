@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django import forms
+from django.db import models
 
 from incident.models import Incident
 
@@ -37,6 +39,10 @@ class IncidentAdmin(admin.ModelAdmin):
         )
 
     ordering = ('-created',)
+
+    # formfield_overrides = {
+    #     models.TextField: {'widget': forms.TextInput(attrs={'size': '60'})},
+    # }
 
 admin.site.register(Incident, IncidentAdmin)
 
