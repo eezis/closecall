@@ -34,7 +34,8 @@ class Incident(models.Model):
     # location = models.TextField(blank=True)
     address = models.CharField(null=True, max_length=200)
     # what = models.TextField(verbose_name='Describe What Happened (be factual, include direction of travel for cyclists and vehicles. Example: I was traveling southbound on Westminster Road, two other cyclists were riding immediately behind me. A white pickup, also traveling south . . .<br> test)')
-    what = models.TextField(verbose_name=what_verbose_str)
+    # what = models.TextField(verbose_name=what_verbose_str)
+    what = models.TextField(verbose_name="What Happened")
     date = models.DateField(null=True, blank=True, verbose_name="Date of Incident")
     time = models.TimeField(null=True, blank=True, verbose_name="Approximate Time of Incident")
     # create a proxy string to ensure proper migration of TimeField to a String Version
