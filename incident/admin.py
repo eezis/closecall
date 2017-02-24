@@ -4,9 +4,34 @@ from django.db import models
 
 from incident.models import Incident
 
-# Register your models here.
+
+# field customizations
+
+class IncidentAdminCustomization(forms.ModelForm):
+    class Meta:
+        # model = not needed it seems
+        widgets = {
+            'vehicle_description': forms.TextInput(attrs=
+                {
+                    'size': 140,
+                    'placeholder': 'White Ford Ranger Pickup (this field will be published, please provide a good description)',
+                },
+            ),
+            'id_it_by': forms.TextInput(attrs=
+                {
+                    'size': 140,
+                    'placeholder': 'Dent in right quarter panel, playboy mud flaps, etc',
+                    'label': 'Identifying Characteristics'
+                },
+
+            ),
+        }
+
+# admin
 
 class IncidentAdmin(admin.ModelAdmin):
+    form = IncidentAdminCustomization
+
     search_fields = ['user__last_name', 'user__email', 'what',]
     # list_filter = ('user',) <-- this makes an exhaustive list with every user, I so make that a search rather than filter
 

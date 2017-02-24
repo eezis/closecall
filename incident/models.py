@@ -25,7 +25,7 @@ class Incident(models.Model):
     # and would not be reliable unless the first 500 entries were rechecked and
     # this field was updated
     # licnese_confirmd = models.BooleanField(default=False)
-    id_it_by = models.CharField(null=True, blank=True, max_length=250, verbose_name="List any special identifying characteristics of vehicle and passengers that you observed" )
+    id_it_by = models.CharField(null=True, blank=True, max_length=250, verbose_name="Identifying Characteristics" )
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
 
@@ -100,7 +100,7 @@ class Incident(models.Model):
         (STUPID,      'Just Plain Stupid'),
     )
 
-    tav = "Threat Assessment: In your opinion the motorist/person in question was being . . ."
+    tav = "Threat Assessment"
     threat_assessment = models.CharField(null=True, max_length=50, choices=TA_CHOICES, default=AGGRESSIVE, verbose_name=tav)
 
     # add danger level
@@ -117,7 +117,7 @@ class Incident(models.Model):
         (SOMEWHAT_DANGEROUS, 'Somewhat Dangerous - the action could have caused moderate injuries'),
         (CONCERNING, 'The action was not very dangerous, but is still a cause for concern'),
     )
-    dav = "Danger Assessment: In your opinion, this encounter was . . . "
+    dav = "Danger Assessment"
     danger_assessment = models.IntegerField(null=True, choices=THREAT_CHOICES, default=DANGEROUS, verbose_name=dav)
 
 
