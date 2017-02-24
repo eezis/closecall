@@ -7,7 +7,7 @@ from django.forms.extras.widgets import SelectDateWidget
 # from tinymce.widgets import TinyMCE
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
-from models import Incident
+from models import Incident, what_verbose_str
 
 
 
@@ -36,6 +36,9 @@ missed striking one of the riders. We believe the license plate number was 163-J
 
     class Meta:
         model = Incident
+        labels = {
+            "what": what_verbose_str
+        }
         # fields = ['position','what', 'date', 'time', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
         # 'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
         fields = ['position','what', 'date', 'timestr', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
