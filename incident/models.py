@@ -10,7 +10,6 @@ class Incident(models.Model):
     # location = models.TextField(blank=True)
     address = models.CharField(null=True, max_length=200)
     # what = models.TextField(verbose_name='Describe What Happened (be factual, include direction of travel for cyclists and vehicles. Example: I was traveling southbound on Westminster Road, two other cyclists were riding immediately behind me. A white pickup, also traveling south . . .<br> test)')
-    # what = models.TextField(verbose_name=what_verbose_str)
     what = models.TextField(verbose_name="What Happened")
     date = models.DateField(null=True, blank=True, verbose_name="Date of Incident")
     time = models.TimeField(null=True, blank=True, verbose_name="Approximate Time of Incident")
@@ -20,8 +19,8 @@ class Incident(models.Model):
     color = models.CharField(null=True, blank=True, max_length=30)
     make = models.CharField(null=True, blank=True, max_length=50)
     model = models.CharField(null=True, blank=True, max_length=50)
-    license_certain = models.CharField(null=True, blank=True, max_length=20, verbose_name="License Plate (use this input field if you are certain of the plate's numbers)")
-    license_uncertain = models.CharField(null=True, blank=True, max_length=150, verbose_name="License Plate (use this input field if you are pretty sure, but not 100 percent certain)")
+    license_certain = models.CharField(null=True, blank=True, max_length=20, verbose_name="License Plate - CERTAIN")
+    license_uncertain = models.CharField(null=True, blank=True, max_length=150, verbose_name="License Plate - UNCERTAIN")
     # this went into production with incident ID 548 -- it is a convenience field
     # and would not be reliable unless the first 500 entries were rechecked and
     # this field was updated
