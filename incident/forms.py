@@ -61,7 +61,9 @@ missed striking one of the riders. We believe the license plate number was 163-J
     class Meta:
         model = Incident
         labels = {
-            "what": what_verbose_str
+            "what": what_verbose_str,
+            "license_certain" : "License Plate (use this input field if you are certain of the plate's numbers)",
+            "license_uncertain" : "License Plate (use this input field if you are pretty sure, but not 100 percent certain)",
         }
         # fields = ['position','what', 'date', 'time', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
         # 'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
