@@ -50,6 +50,7 @@ class IncidentAdmin(admin.ModelAdmin):
         ('latitude', 'longitude'),
         'position',
         'witnesses',
+        'internal_note',
         ('reported', 'cited'),
         'cited_note',
         'warned',
