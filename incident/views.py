@@ -21,7 +21,7 @@ from django.core.mail import send_mail
 user_msg_incident_created = \
 """Thank you for submitting an Incident Report.
 
-[NOTE: I manage this project in my "free time." It may take me a day or two -- sometimes longer -- to process your report.
+[NOTE: I manage this project in my "free time." It may take me up to a week -- sometimes longer if I am travelling -- to process your report.
 If you have a submission that demands immediate attention, please email me directly at: ernest.ezis@gmail.com.
 Thanks for your patience and understanding.]
 
@@ -36,7 +36,7 @@ released to a wider audience.
 While I understand that every incident is extremely serious when you are on the receiving end, not every submission
 will result in an email alert.
 
-If you have a picture or a URL for a video that should be included with your report, simply reply to this email with that information.
+If you have a picture or a URL for a video that should be included with your report, simply reply to this email with that information. If you do know how to resize your photos, please do so before sending. A width of about 800px or less is optimal. I will do that if you don't know how.
 
 Thank you,
 
