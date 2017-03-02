@@ -41,6 +41,7 @@ from django.db import IntegrityError
 
 P = True
 
+
 # Printing is controlled via the P flag, pass any IOError exceptions
 def safe_print(msg, print_it=True, email_it=False):
     if P and print_it:
@@ -83,11 +84,10 @@ def send_incident_notification(subj, msg, recipient, htmlmsg=None):
         send_mail(subj, msg, 'closecalldatabase@gmail.com', to, fail_silently=False)
 
 
-
 def HomeView(request):
     if request.user.is_authenticated():
         I = Incident.objects.filter(user=request.user)
-        N = InTheNews.objects.all().values('title','url', 'tldr')[:5]
+        N = InTheNews.objects.all().values('title', 'url', 'tldr')[:5]
         try:
             Local_I = request.user.profile.get_user_incidents()
             # Latest_I = Latest Incidents (most recent) -- might want to modify to get the most recent *dangeruous* instances
