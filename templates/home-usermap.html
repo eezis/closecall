@@ -33,12 +33,10 @@
 
 {% if user.is_authenticated %}
 
-<ul class="nav nav-tabs nav-justified">
-  <li role="presentation"><a href="{% url 'home' %}">Home</a></li>
-  <li role="presentation"><a href="{% url 'show-all-incidents' %}">Incident Reports</a></li>
-  <li role="presentation" class="active"><a href="{% url 'home-user-map' %}">User Map</a></li>
-</ul>
+{# TAB HEADERS: Home  |  All Incident Reports  |  User Map  #}
 
+  {% include '_tab_headers.html' %}
+  
 <div style="padding-top:16px;">
 
 {# the user-new-map.html template will load the new map and the old map #}
