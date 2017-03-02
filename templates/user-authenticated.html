@@ -7,15 +7,9 @@
   <hr>
 {% endif %}
 
-{# INCIDENTS THAT HAVE OCCURRED IN THE USERS AREA  #}
+{# TAB HEADERS: Home  |  All Incident Reports  |  User Map  #}
 
-<ul class="nav nav-tabs nav-justified">
-  <li role="presentation" class="active"><a href="{% url 'home' %}">Home</a></li>
-  <li role="presentation"><a href="{% url 'show-all-incidents' %}">All Incident Reports</a></li>
-  <li role="presentation"><a href="{% url 'home-user-map' %}">User Map</a></li>
-  {# <li role="presentation"><a href="/clustered-user-map">User Map</a></li> #}
-
-</ul>
+  {% include '_tab_headers.html' %}
 
 
 {% if local_incidents %}
