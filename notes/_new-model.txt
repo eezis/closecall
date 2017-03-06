@@ -1,0 +1,18 @@
+
+
+New Data Model
+
+Reviewed --
+Rev-Summary -- a one or two sentence synopsis "Car blocked road, driver punched cyclist in the face"
+U  --
+BL -- bike law score (ripeness for pro-bono with likelihood of success)
+has pic (calculated)
+has vid (calculated)
+email send one --
+email radius
+email count -- how many people received the email
+emailed (exists)
+email text (exists)
+
+
+
