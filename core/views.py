@@ -712,6 +712,9 @@ def its_spam(msg):
         return True
     if 'SBA lending' in msg:
         return True
+    # catch instances that start off like this: https://vk.com/web_16 – РјРµР±РµР
+    if msg[0:4].lower() == 'http':
+        return True
     # if cyrllic_present(msg):
     #     return True
 
