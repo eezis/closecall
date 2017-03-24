@@ -38,7 +38,7 @@ class IncidentAdmin(admin.ModelAdmin):
     fields = (
         ('user', 'address', 'visible'),
         'what',
-        ('reviewed', 'accepted', 'closedfirstloop'),
+        ('reviewed', 'accepted', 'visible', 'closedfirstloop'),
         # ('date', 'time', 'timestr'),
         'date',
         # 'time',
