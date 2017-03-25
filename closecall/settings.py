@@ -31,7 +31,7 @@ DEV_MODE = False
 TEMPLATE_DEBUG = True
 
 # ALLOWED_HOSTS = ['*', '104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', 'closecall', ]
-ALLOWED_HOSTS = ['*',]
+ALLOWED_HOSTS = ['*', ]
 
 # this is set by the second so 60 * 5 = 5 minutes
 # fifteen months - I went from 3 months to 15 on 12/3/15
@@ -67,8 +67,6 @@ TEMPLATE_CONTEXT_PROCESSORS += (
     'publish.views.AnnouncementView',
 )
 
-
-
 # Application definition
 
 DJANGO_APPS = (
@@ -93,7 +91,7 @@ THIRD_PARTY_APPS = (
     'crispy_forms',
     'geoposition',
     'registration',
-    'django_summernote', #editor
+    'django_summernote',  #editor
     'rest_framework',
 )
 
@@ -110,8 +108,8 @@ LOCAL_APPS = (
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # This is for Django-Registration-Redux
-ACCOUNT_ACTIVATION_DAYS = 14 # One-week activation window; you may, of course, use a different value.
-REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
+ACCOUNT_ACTIVATION_DAYS = 14  # One-week activation window; you may, of course, use a different value.
+REGISTRATION_AUTO_LOGIN = True  # Automatically log the user in.
 LOGIN_REDIRECT_URL = '/'
 
 
@@ -312,6 +310,16 @@ REST_FRAMEWORK = {
     # turn on pagination
     # 'PAGE_SIZE': 10
 }
+
+# I am using 1.77 so it won't work, need the upgrade > 1.9
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 6,
+        }
+    },
+]
 
 
 try:
