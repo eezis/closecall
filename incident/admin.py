@@ -34,7 +34,7 @@ class IncidentAdmin(admin.ModelAdmin):
 
     search_fields = ['user__last_name', 'user__email', 'what',]
     # list_filter = ('user',) <-- this makes an exhaustive list with every user, I so make that a search rather than filter
-
+    list_display = ('id', 'user', 'date', 'address', 'position', 'reviewed')
     fields = (
         ('user', 'address'),
         'what',
