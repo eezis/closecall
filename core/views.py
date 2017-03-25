@@ -672,7 +672,6 @@ def show_user_map(request):
     return render(request, 'home-usermap.html')
 
 
-
 import logging
 logger = logging.getLogger(__name__)
 
@@ -695,6 +694,7 @@ def handler500(request):
     response = render_to_response('smart-500.html', {}, context_instance=RequestContext(request))
     response.status_code = 500
     return response
+
 
 def handler404(request):
     response = render_to_response('smart-404.html', {}, context_instance=RequestContext(request))
@@ -737,14 +737,16 @@ class CreateUserInput(CreateView):
     subject = None
 
     # fields = ['subject', 'first', 'last', 'email', 'message',]
-    fields = ['first', 'last', 'email', 'message',]
+    fields = ['first', 'last', 'email', 'message', ]
 
     def get_object(self, queryset=None):
         return queryset.get(subject=self.subject)
 
     def form_valid(self, form):
         # print self.subject
-        msg = self.request.POST['message'] + '\n\n' + self.request.POST['email']
+        # get ip address to see if there the IPs can be blacklisted
+        ip = self.request.META.get('REMOTE_ADDR')
+        msg = self.request.POST['message'] + '\n\n' + self.request.POST['email'] + '\n\n' + ip
         if its_spam(msg):
             # print 'Spam!'
             # print self.request.META.get('REMOTE_ADDR')
