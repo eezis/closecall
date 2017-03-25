@@ -746,9 +746,11 @@ class CreateUserInput(CreateView):
         # print self.subject
         # get ip address to see if there the IPs can be blacklisted
         ip = self.request.META.get('REMOTE_ADDR')
-        # if ip = '127.0.0.1':
-        #     self.request.META.get('HTTP_X_REAL_IP')
-        msg = self.request.POST['message'] + '\n\n' + self.request.POST['email'] + '\n\n' + ip
+        try:
+            ip_real =  self.request.META.get('HTTP_X_REAL_IP')
+        except:
+            ip_real = 'HTTP_X_REAL_IP unavailable'
+        msg = self.request.POST['message'] + '\n\n' + self.request.POST['email'] + '\n\n' + ip '\n\n' + ip_real
         if its_spam(msg):
             # print 'Spam!'
             # print self.request.META.get('REMOTE_ADDR')
