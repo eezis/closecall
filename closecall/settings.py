@@ -312,14 +312,14 @@ REST_FRAMEWORK = {
 }
 
 # I am using 1.77 so it won't work, need the upgrade > 1.9
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {
-            'min_length': 6,
-        }
-    },
-]
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#         'OPTIONS': {
+#             'min_length': 6,
+#         }
+#     },
+# ]
 
 
 try:
