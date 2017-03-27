@@ -36,7 +36,7 @@ from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
 
-INCIDENT_ID = 1161
+INCIDENT_ID = 1177
 
 
 
@@ -47,13 +47,40 @@ MAIL_TO_EE = False
 
 # Radius = 10
 # Radius = 15
-Radius = 20
+# Radius = 20
 # Radius = 30
 # Radius = 40
 # Radius = 50
-# Radius = 60
+Radius = 60
+
 
 subject = "Close Call Database - Incident Reported in your Area"
+
+# this was for 1177 incident, emails sent 3/26/17
+# subject = "Close Call Database - Searching for Hit and Run Driver"
+# msg = """
+# <p>Unfortunately, there has been yet <i>another</i> hit-and-run incident in Boulder County.</p>
+
+# <p>
+# This one occurred on Saturday afternoon around 12:45 pm on Monarch Rd north of IBM. It is believed that the vehicle in question is a dark green work truck with ladder racks. It fled westbound on Monarch and then southbound on 63rd.
+# </p>
+
+# <p>
+# If you ride with a video camera and were in the area of the incident early Saturday afternoon, please review your footage to see if you captured the vehicle.
+# </p>
+# <p>
+# You can find the report <a href="https://closecalldatabase.com/incident/show-detail/#INCIDENT_ID#/">here</a>.
+# </p>
+# <p>
+# Ride Safely,
+# </p><br>
+# <p>
+# Ernest Ezis<br>
+# Close Call Database
+# </p>
+# """
+# HTML_msg = msg
+
 
 msg = """
 Greetings from the Close Call Database for Cyclists. You are receiving this message because an incident has been reported by a cyclist in your area.
