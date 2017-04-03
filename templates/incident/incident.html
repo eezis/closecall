@@ -6,7 +6,7 @@
 
 {% block metatags %}
 <meta name="description" content="A database for the cycling community to document and record aggressive driving infractions by motorists">
-<meta name="keywords" content="cycling, cyclise, database, accidents, incidents, aggressive, drivers, driving">
+<meta name="keywords" content="cycling, cycles, database, accidents, incidents, aggressive, drivers, driving">
 <meta name="robots" content="noindex">
 {% endblock %}
 
@@ -86,19 +86,24 @@
 {% else %}
 
   <div class="page-header" style="padding-bottom:0px;">
-    <h2><small>Sorry. Incident Reports are only available to registered cyclists.</small></h2>
+    <h2><small>Incident Reports are only available to registered cyclists.</small></h2>
+    
     <hr style="border-color:darkgrey;">
 
-    <p><a href="/">Learn More</a> about this project or simply:</p>
-
+    <p><b>If you are a Strava user, simply...</b></p> 
+    <p style="margin-top:20px;">
+      <a href="/get-strava-login"><img src="https://closecalldatabase.com/static/images/LogInWithStrava.png"></a>
+    </p><br/>
     <p>
-    <a href="/get-strava-login"><img src="https://closecalldatabase.com/static/images/LogInWithStrava.png"></a>
-    <span style="padding: 0 20px; 0 20px;"> OR </span>
-    <a href="/accounts/register/"><button type="button" class="btn btn-primary">Create An Account</button></a>
+    If you are <b>not</b> a Strava user, simply create an account...
     </p>
-  </div>
+    
+    <p style="margin-top:20px;">
+      <button type="button" class="btn btn-primary">Create An Account</button></a>
+    </p>
 
 {% endif %}
+
 
 {% block extra_script %}
 <script>
