@@ -2,7 +2,7 @@
 # <iframe width="560" height="315" src="//www.youtube.com/embed/tVAvp9a82TM" frameborder="0" allowfullscreen></iframe>
 
 
-youtube_url = 'https://youtu.be/apdBEvsv63A'
+youtube_url = 'https://youtu.be/vt5MqD8XdSE'
 
 
 def create_html_for_youtube(video_url):
