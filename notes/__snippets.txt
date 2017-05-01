@@ -83,31 +83,28 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 </p>
 
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1232.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1249.jpg" style="max-width:100%;">
 </p>
 
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1227-1.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1248-1.jpg" style="max-width:100%;">
 </p>
 
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1213-2.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1248-2.jpg" style="max-width:100%;">
 </p>
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1213-3.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1248-3.jpg" style="max-width:100%;">
 </p>
 <p><br />
 <img src="https://closecalldatabase.com/static/images/reports/incident-1188-4.jpg" style="max-width:100%;">
 </p>
 
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1232.jpg'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1233.jpg'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1242.JPG'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1235-3.png'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1237.JPG'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1231.JPG'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1235-1.png'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1235-2.png'
+ create mode 100644 static/images/reports/incident-1247.jpg
+ create mode 100644 static/images/reports/incident-1248-1.jpg
+ create mode 100644 static/images/reports/incident-1248-2.jpg
+ create mode 100644 static/images/reports/incident-1248-3.jpg
+ create mode 100644 static/images/reports/incident-1249.jpg
 
 Type 'yes' to continue, or 'no' to cancel: yes
 Copying '/home/eezis/sites/closecall/static/images/reports/incident-1132-3.jpeg'
