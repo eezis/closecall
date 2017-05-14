@@ -83,34 +83,28 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 </p>
 
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1263.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1279.jpg" style="max-width:100%;">
 </p>
 
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1264-1.jpg" style="max-width:100%;">
-</p>
-
-<p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1264-2.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1284-1.jpg" style="max-width:100%;">
 </p>
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1264-3.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1284-2.jpg" style="max-width:100%;">
 </p>
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1264-4.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1284-3.jpg" style="max-width:100%;">
+</p>
+<p><br />
+<img src="https://closecalldatabase.com/static/images/reports/incident-1289-4.jpg" style="max-width:100%;">
 </p>
 
- create mode 100644 static/images/reports/incident-1252.jpg
- create mode 100644 static/images/reports/incident-1258-1.jpg
- create mode 100644 static/images/reports/incident-1258-2.jpg
 
 
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-965-1.JPG'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-965-2.JPG'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-964-1.jpg'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-964-2.jpg'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-963.jpg'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-965-3.JPG'
+Copying '/home/eezis/sites/closecall/static/images/reports/incident-1288.jpg'
+Copying '/home/eezis/sites/closecall/static/images/reports/incident-1286.jpg'
+
+
 
 
 Copying '/home/eezis/sites/closecall/static/images/reports/incident-755-2.PNG'
