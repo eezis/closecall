@@ -36,25 +36,27 @@ from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
 
-INCIDENT_ID = 1287
+INCIDENT_ID = 1300
 
 
 
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
-TESTING = False
+TESTING = True
 MAIL_TO_EE = False
 
 # Radius = 10
 # Radius = 15
 # Radius = 20
 # Radius = 30
-# Radius = 40
-Radius = 50
+Radius = 40
+# Radius = 50
 # Radius = 60
 
 
 subject = "Close Call Database - Incident Reported in your Area"
+
+# subject = "CYCLISTS: Boulder Ride of Silence, Wednesday 6:00 pm"
 
 # this was for 1177 incident, emails sent 3/26/17
 # subject = "Close Call Database - Searching for Hit and Run Driver"
@@ -124,6 +126,7 @@ Ernest Ezis<br />
 &nbsp;&nbsp;&nbsp;
 </p>
 """
+
 
 msg = msg.replace('#INCIDENT_ID#', str(INCIDENT_ID))
 HTML_msg = HTML_msg.replace('#INCIDENT_ID#', str(INCIDENT_ID))
