@@ -83,34 +83,41 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 </p>
 
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1279.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1310.jpg" style="max-width:100%;">
 </p>
 
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1284-1.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1304-1.jpg" style="max-width:100%;">
 </p>
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1284-2.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1304-2.jpg" style="max-width:100%;">
 </p>
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1284-3.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1304-3.jpg" style="max-width:100%;">
 </p>
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1289-4.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1304-4.jpg" style="max-width:100%;">
 </p>
 
 
 
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1288.jpg'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1286.jpg'
+    static/images/reports/incident-1301.jpg
+    static/images/reports/incident-1303-1.jpg
+    static/images/reports/incident-1303-2.jpg
+    static/images/reports/incident-1303-3.jpg
+    static/images/reports/incident-1304-1.jpg
+    static/images/reports/incident-1304-2.jpg
+    static/images/reports/incident-1304-3.jpg
+    static/images/reports/incident-1304-4.jpg
+    static/images/reports/incident-1310.jpg
+    static/images/reports/incident-1312-1.jpg
+    static/images/reports/incident-1312-2.jpg
+    static/images/reports/incident-1312-3.jpg
+    static/images/reports/incident-1312-4.jpg
+    static/images/reports/incident-1315.jpg
 
 
 
-
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-755-2.PNG'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-755-1.JPG'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-755-3.JPG'
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-755-4.JPG'
 <p>
 <a href="" target="_blank">External Facebook Video</a>
 </p>
