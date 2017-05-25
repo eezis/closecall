@@ -4,5 +4,7 @@ Use smartconverter app to convert the video for the mac, it made a movies/smartc
 
 Select the "QuckTime" button (e.g. convert for QuickTime)
 
-Use QuickTime from there.
+Use the Trim function to select the segment you want. File/Save it
+
+
 
