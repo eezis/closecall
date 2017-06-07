@@ -75,7 +75,7 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 <img src="https://closecalldatabase.com/static/images/reports/incident-719.png" style="max-width:100%;">
 </p>
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-507-lee-hill.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1329.jpg" style="max-width:100%;">
 </p>
 
 <p><br />
@@ -87,34 +87,22 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 </p>
 
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1304-1.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1331-1.jpg" style="max-width:100%;">
 </p>
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1304-2.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1331-2.jpg" style="max-width:100%;">
 </p>
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1304-3.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1331-3.jpg" style="max-width:100%;">
 </p>
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1304-4.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1331-4.jpg" style="max-width:100%;">
 </p>
 
-
-
-    static/images/reports/incident-1301.jpg
-    static/images/reports/incident-1303-1.jpg
-    static/images/reports/incident-1303-2.jpg
-    static/images/reports/incident-1303-3.jpg
-    static/images/reports/incident-1304-1.jpg
-    static/images/reports/incident-1304-2.jpg
-    static/images/reports/incident-1304-3.jpg
-    static/images/reports/incident-1304-4.jpg
-    static/images/reports/incident-1310.jpg
-    static/images/reports/incident-1312-1.jpg
-    static/images/reports/incident-1312-2.jpg
-    static/images/reports/incident-1312-3.jpg
-    static/images/reports/incident-1312-4.jpg
-    static/images/reports/incident-1315.jpg
+Copying '/home/eezis/sites/closecall/static/images/reports/incident-1331-2.jpg'
+Copying '/home/eezis/sites/closecall/static/images/reports/incident-1329.jpg'
+Copying '/home/eezis/sites/closecall/static/images/reports/incident-1331-1.jpg'
+Copying '/home/eezis/sites/closecall/static/images/reports/incident-1331-3.jpg'
 
 
 
