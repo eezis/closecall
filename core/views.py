@@ -238,11 +238,14 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
 
 def update_strava_email_if_it_has_changed(TheUser, authing_email):
     if TheUser.email != authing_email:
+        # EE 6/20/17 -- I stopped sending the email because this was operating as expected --
+        # people change their email, update Strava, then it updates here at CCDB when they log in.
+        # ---
         # Notify about this unusual condition
-        s1 = "CONFIRM THIS\n"
-        s2 = 'UserName {} registered with original strava email as {} and has changed it to {}\n'.format(TheUser.username, TheUser.email, authing_email)
-        s3 = 'In the admin, look at the oauth_data field to see the original email address, then confirm with user if you want.'
-        safe_print(s1+s2+s3, True, True)
+        # s1 = "CONFIRM THIS\n"
+        # s2 = 'UserName {} registered with original strava email as {} and has changed it to {}\n'.format(TheUser.username, TheUser.email, authing_email)
+        # s3 = 'In the admin, look at the oauth_data field to see the original email address, then confirm with user if you want.'
+        # safe_print(s1+s2+s3, True, True)
         # Now update the email
         TheUser.email = authing_email
         TheUser.save()
