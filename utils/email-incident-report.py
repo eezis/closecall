@@ -36,23 +36,20 @@ from core.views import send_incident_notification
 from django.contrib.auth.models import User
 
 
-INCIDENT_ID = 1426
-
-
+INCIDENT_ID = 1457
 
 # TWEAK THE INCIDENT_ID CONSTANT UP TOP!
 
-TESTING = True
+TESTING = False
 MAIL_TO_EE = False
 
 # Radius = 10
 # Radius = 15
 # Radius = 20
 # Radius = 30
-Radius = 40
+# Radius = 40
 # Radius = 50
-# Radius = 60
-
+Radius = 60
 
 subject = "Close Call Database - Incident Reported in your Area"
 
@@ -221,8 +218,10 @@ if MAIL_TO_EE:
 print '\n'
 if TESTING:
     print 'emails have ***NOT*** been sent'
+    print '\n\n\n'
 else:
     print 'emails have been sent for {}. There were {} emails sent.'.format(str(INCIDENT_ID), len(user_list))
+    print '\n\n'
 
 
 
