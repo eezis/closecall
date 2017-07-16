@@ -33,7 +33,7 @@ Incidents = Incident.objects.filter(what__contains='coal')
 for i in Incidents:
     print "\n\n{}\t{}\n{}\n".format(i.id, i.address, i.what,)
 
-Incidents = Incident.objects.filter(address__contains='Colorado Springs')
+Incidents = Incident.objects.filter(address__contains='Natchez')
 
 
 count = 0
@@ -43,7 +43,7 @@ for i in Incidents:
     print "\n{}\t{}\t{}\t{}\n".format(i.id, count, i.address, i.license_certain, i.license_uncertain,)
 
 
-Incidents = Incident.objects.filter(vehicle_description__contains='truck')
+Incidents = Incident.objects.filter(vehicle_description__contains='volvo')
 
 for i in Incidents:
     print "\n{}\t{}\t{}\t{}\n{}\n".format(i.id, i.address, i.license_certain, i.license_uncertain, i.vehicle_description)
