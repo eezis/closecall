@@ -32,7 +32,7 @@ class IncidentAdminCustomization(forms.ModelForm):
 class IncidentAdmin(admin.ModelAdmin):
     form = IncidentAdminCustomization
 
-    search_fields = ['user__last_name', 'user__email', 'what', 'license_certain', 'license_uncertain',]
+    search_fields = ['user__last_name', 'user__email', 'address', 'what', 'license_certain', 'license_uncertain',]
     # list_filter = ('user',) <-- this makes an exhaustive list with every user, I so make that a search rather than filter
     list_display = ('id', 'user', 'date', 'address', 'position', 'reviewed', 'license_certain', 'license_uncertain')
     fields = (

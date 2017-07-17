@@ -323,6 +323,12 @@ REST_FRAMEWORK = {
 #     },
 # ]
 
+# http://chase-seibert.github.io/blog/2014/01/12/python-unicode-console-output.html
+import sys
+import codecs
+sys.stdout = codecs.getwriter('utf8')(sys.stdout)
+sys.stderr = codecs.getwriter('utf8')(sys.stderr)
+
 
 try:
     from dev_settings import *
