@@ -1,7 +1,7 @@
 
 ### NOTE, YOU MUST BE IN THE VIRTUALENV , START IT WITH THIS LINE ###
 $ cd sites/closecall; workon closecall
-$ gunicorn closecall.wsgi:application --workers=3 --bind 127.0.0.1:8000 --log-file=-
+$ nohup gunicorn closecall.wsgi:application --workers=3 --bind 127.0.0.1:8000 --log-file=-
 
 NOTE: Click the 'X' to close the terminal window -- $ logout will kill it
 
