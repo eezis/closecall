@@ -99,11 +99,39 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 <img src="https://closecalldatabase.com/static/images/reports/incident-1435-4.jpg" style="max-width:100%;">
 </p>
 
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1496.jpg'
 
-Copying '/home/eezis/sites/closecall/static/images/reports/incident-1491.jpg'
+ create mode 100755 static/images/incident-1499-1.jpg
+ create mode 100755 static/images/incident-1499-2.jpg
+ create mode 100755 static/images/incident-1501-1.jpg
+ create mode 100755 static/images/incident-1502.jpg
+ create mode 100755 static/images/incident-1504.jpg
+ create mode 100755 static/images/incident-1505.jpg
+ create mode 100755 static/images/incident-1531.jpg
+ create mode 100755 static/images/incident-1543-1.jpg
+ create mode 100755 static/images/incident-1543-2.jpg
+ create mode 100755 static/images/incident-1545.jpg
+ create mode 100755 static/images/incident-1546.jpg
+ create mode 100755 static/images/incident-1550.jpg
+ create mode 100755 static/images/incident-1565.jpg
+ create mode 100755 static/images/incident-1570.jpg
+ create mode 100644 static/images/reports/incident-1507.jpg
+ create mode 100644 static/images/reports/incident-1509.jpg
+ create mode 100644 static/images/reports/incident-1525.jpg
+ create mode 100644 static/images/reports/incident-1527.jpg
+ create mode 100644 static/images/reports/incident-1538.jpg
+ create mode 100644 static/images/reports/incident-1540.jpg
+ create mode 100644 static/images/reports/incident-1554.jpg
 
+Copy the files from the mac to the SMB drive ccdb/mogrify
+open nautilus, get to that directory, open in terminal
 
+Run these commands:
+
+mogrify -format jpg *.PNG && rm *.PNG
+mogrify -format jpg *.png && rm *.png
+mogrify -resize 1200x1200 -quality 95 *.jpg
+
+Copy the files to the static/images/reports under the project, git add ., etc
 
 
 
