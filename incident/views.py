@@ -25,8 +25,8 @@ user_msg_incident_created = \
 If you have a submission that demands immediate attention, please email me directly at: ernest.ezis@gmail.com.
 Thanks for your patience and understanding.]
 
-Your report will be immediately available to registered users that visit The Close Call Database website
-and ride within 60 miles of the Incident's location.
+Your report will be immediately available to all registered users that visit The Close Call Database website
+and will show up under the "Reports in Your Area" tab fo all cyclists that ride within 60 miles of the Incident's location.
 
 Email notifications, however, will not be sent out immediately. The Incident Report will be reviewed
 for content and clarity before any email notifications are sent. To ensure that the most helpful information
