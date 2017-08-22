@@ -37,11 +37,11 @@ class Incident(models.Model):
     # For more, see https://docs.djangoproject.com/en/dev/topics/migrations/#migration-serializing
 
     # To fix change and migrate this model, you must UNCOMMENT the
-    # position = GeopositionField(null=True)
+    # position = GeopositionField(null=True) line found below
     # AND COMMENT the production line that sets the default
     # position = GeopositionField(default=Geoposition(40.008682, -105.272883))
     # do the makemigration and migrate, then reverse the comments to reset to original
-    # state (the next line commented, the trailing line uncommented)
+    # state (the next line commented, the trailing line -- setting default to 40.00.., -105.. --uncommented)
     # position = GeopositionField(null=True)
     position = GeopositionField(default=Geoposition(40.008682, -105.272883))
     # I am adding these to support the API, should have added them at the outset, 12/4/15
@@ -76,6 +76,29 @@ class Incident(models.Model):
 
     pending = models.BooleanField(default=False)
     pending_note = models.TextField(null=True, blank=True)
+
+    # added by EE on 8/21/17
+    youtubeurl = models.CharField(null=True, blank=True, max_length=150)
+    # allow users to vote offensive -- if someone posts porn or something . . .
+    youtube_offensive_votes = models.IntegerField(default=0)
+    # make the video invisible if too many find it offensive
+    show_youtube_vid = models.BooleanField(default=True)
+    # allows EE to override input from sensitrons
+    ee_show_youtube_vid = models.BooleanField(default=False)
+
+    utility = models.DecimalField(null=True, default=0.00, max_digits=4, decimal_places=2)
+    # brief reason/descriptino
+    utility_comment = models.CharField(null=True, blank=True, max_length=255, verbose_name="Utility Comment")
+    # e.g. "California, can't use the video" "No plate, unsure of model of truck" "Unclear language, cannot visualize what happened"
+    utility_defect = models.CharField(null=True, blank=True, max_length=255, verbose_name="Utility Defect")
+    # Driver fault :: 1 - 10 . . . 10 is driver completely utterly inexcusably wrong
+    driver_fault = models.IntegerField(blank=True, null=True)
+    # Might not use but added
+    has_video = models.BooleanField(default=False)
+    has_pic = models.BooleanField(default=False)
+
+
+
 
     # Commercially Licensed Driver
 
