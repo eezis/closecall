@@ -723,7 +723,7 @@ def its_spam(msg):
 
     userinput = msg.lower()
     spammy = ["cialis", "porn", "viagra", "sex", "casino", u"ส", u"а", u"п", "tiffany outlet", "kate spade",
-    "pharma", "forex", "a href", "$", "erotic", "xxx", "naked", "gay",]
+    "pharma", "forex", "a href", "$", "erotic", "xxx", "naked", "gay", "promote", ]
     for i in spammy:
         if i in userinput:
             return True
