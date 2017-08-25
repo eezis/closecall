@@ -57,13 +57,19 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
 
 
     def get_initial(self):
+        print "Get Initial"
         try:
             print u"\nCreateIncidentView.get_initial :: {} {}\n".format(self.request.user, self.request.user.id)
         except IOError:
             pass
         return { 'user': self.request.user }
 
+    def form_invalid(self, form):
+        print "Form Invalid"
+        return self.render_to_response(self.get_context_data(form=form))
+
     def form_valid(self, form):
+        print "form_valid"
         # set the user so tthat is saved when the form is committed
         form.instance.user = self.request.user
         Incident = form.save(commit=True)
