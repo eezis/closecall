@@ -68,7 +68,7 @@
     {# the report #}
     <div style="padding: 18px 0 18px 0;">{{incident.what|safe}}</div>
     {% if incident.video_embed_string %}
-      <div style="padding: 18px 0 18px 0;">{{incident.video_embed_string}}</div>
+      <div style="padding: 18px 0 18px 0;">{{incident.video_embed_string|safe}}</div>
     {% endif %}
     <hr>
     <br />

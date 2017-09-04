@@ -16,6 +16,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin, admin_mailer, incident_review_mailer
 from django.conf import settings
 from django.core.mail import send_mail
+from utils import get_youtube_embed_str
 
 
 user_msg_incident_created = \
@@ -71,7 +72,10 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
     def form_valid(self, form):
         # print "form_valid"
         # set the user so tthat is saved when the form is committed
-        form.instance.user = self.request.user            
+        form.instance.user = self.request.user
+
+        if form.instance.youtube_url:
+            form.instance.video_embed_string = get_youtube_embed_str(form.instance.youtube_url)      
 
         Incident = form.save(commit=True)
         try:

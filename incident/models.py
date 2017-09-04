@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from geoposition.fields import GeopositionField
 from geoposition import Geoposition
-from utils import get_youtube_embed_str
+# from utils import get_youtube_embed_str
 
 # Create your models here.
 
@@ -153,9 +153,10 @@ class Incident(models.Model):
             # position is of type GEO Position, so might have to cast this?
             self.latitude = self.position.latitude
             self.longitude = self.position.longitude
-            if self.youtube_url:
-                video_embed_string = get_youtube_embed_str(self.youtube_url)
-                print "EMBED: {}".format(video_embed_string)
+            # moved this logic to form_valid
+            # if self.youtube_url:
+            #     video_embed_string = get_youtube_embed_str(self.youtube_url)
+            #     print "EMBED: {}".format(video_embed_string)
         except:
             pass
 
