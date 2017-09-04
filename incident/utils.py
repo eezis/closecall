@@ -58,7 +58,6 @@ def get_youtube_embed_str(url_string):
     if vurl is not None:
         # print embed_str.replace('VIDEO_URL_HERE', vurl)
         return embed_str.replace('VIDEO_URL_HERE', vurl)
-
     else:
         return None
 

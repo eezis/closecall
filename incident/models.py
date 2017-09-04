@@ -155,6 +155,7 @@ class Incident(models.Model):
             self.longitude = self.position.longitude
             if self.youtube_url:
                 video_embed_string = get_youtube_embed_str(self.youtube_url)
+                print "EMBED: {}".format(video_embed_string)
         except:
             pass
 
