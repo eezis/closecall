@@ -69,9 +69,10 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
         return self.render_to_response(self.get_context_data(form=form))
 
     def form_valid(self, form):
-        print "form_valid"
+        # print "form_valid"
         # set the user so tthat is saved when the form is committed
-        form.instance.user = self.request.user
+        form.instance.user = self.request.user            
+
         Incident = form.save(commit=True)
         try:
             print u"\nCreateIncidentView.form_valid :: {}\n".format(self.request.user)

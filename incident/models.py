@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from geoposition.fields import GeopositionField
 from geoposition import Geoposition
+from utils import get_youtube_embed_str
 
 # Create your models here.
 
@@ -15,7 +16,7 @@ class Incident(models.Model):
     time = models.TimeField(null=True, blank=True, verbose_name="Approximate Time of Incident")
     # create a proxy string to ensure proper migration of TimeField to a String Version
     timestr = models.CharField(null=True, blank=True, max_length=50, verbose_name="Approximate Time of Incident")
-    vehicle_description = models.CharField(null=True, blank=True, max_length=150, verbose_name="Vehicle Description")
+    vehicle_description = models.CharField(null=True, blank=True, max_length=150, verbose_name="Vehicle Description -- please fill this out!")
     color = models.CharField(null=True, blank=True, max_length=30)
     make = models.CharField(null=True, blank=True, max_length=50)
     model = models.CharField(null=True, blank=True, max_length=50)
@@ -152,6 +153,8 @@ class Incident(models.Model):
             # position is of type GEO Position, so might have to cast this?
             self.latitude = self.position.latitude
             self.longitude = self.position.longitude
+            if self.youtube_url:
+                video_embed_string = get_youtube_embed_str(self.youtube_url)
         except:
             pass
 

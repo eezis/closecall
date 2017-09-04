@@ -56,7 +56,7 @@ def extract_id(url_string):
 def get_youtube_embed_str(url_string):
     vurl = extract_id(url_string)
     if vurl is not None:
-        print embed_str.replace('VIDEO_URL_HERE', vurl)
+        # print embed_str.replace('VIDEO_URL_HERE', vurl)
         return embed_str.replace('VIDEO_URL_HERE', vurl)
 
     else:
