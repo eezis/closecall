@@ -38,6 +38,10 @@
 {% if user.is_active and user.is_staff %}
     <p><span style="padding-right:20px;">{{incident.user}}</span>{{incident.user.email}}</p>
     <p>{{incident.user.profile.first}} <span style="padding-right:20px;">{{incident.user.profile.last}}</span>{{incident.user.email}}</p>
+    <!-- added for debugging new feature -->
+    <p>youtube_url = {{incident.youtube_url}}</p>
+    <p>embed</p>
+    <p>{{incident.video_embed_string</p>
 {% endif %}
 
   <div class="page-header" style="padding-bottom:0px;">
@@ -63,6 +67,9 @@
 
     {# the report #}
     <div style="padding: 18px 0 18px 0;">{{incident.what|safe}}</div>
+    {% if incident.video_embed_string %}
+      <div style="padding: 18px 0 18px 0;">{{incident.video_embed_string}}</div>
+    {% endif %}
     <hr>
     <br />
     <p>This incident was reported as: <b>{{incident.danger_level}}</b></p>

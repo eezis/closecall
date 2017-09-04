@@ -6,11 +6,12 @@ from django.forms.extras.widgets import SelectDateWidget
 
 # from tinymce.widgets import TinyMCE
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+from django.core.exceptions import ValidationError
 
 from models import Incident
 
 what_verbose_str = """
-Now describe what happened. Be factual, include direction of travel for cyclists and vehicles. Example: <p style="font-size:0.90em;margin-top:10px;margin-left:24px;
+Now describe what happened. Be factual, include direction of travel for cyclists and vehicles. Here is an example: <p style="font-size:0.90em;margin-top:10px;margin-left:24px;
     margin-right:30px;">
 
     I was traveling southbound on Westminster Road, two other cyclists were riding immediately behind me. The driver of a white pickup truck, also traveling south,
@@ -23,16 +24,21 @@ Now describe what happened. Be factual, include direction of travel for cyclists
     in this report. You can email me that information (closecalldatabase@gmail.com) and I will include it in the non-public notes.</span></i>
     </p>
 
-    <p style="font-size:0.90em;margin-top:10px;margin-left:24px;margin-right:30px;"><i>
-    If you have <span style="color:red">VIDEO</span> that you have posted to youtube, vimeo or a similar location, please email the URL to me. If you have a <span style="color:red">PICTURE</span> or two to accompany your report please email those as well closecalldatabase@gmail.
-    I will embed them in the report.
-    </i></p>
+    <p style="font-size:0.90em;margin-top:10px;margin-left:24px;margin-right:30px;">
+    <i>
+    If you have <span style="color:red">VIDEO</span> do not enter it in this narrative section. Enter that information in the video section that follows. 
+    </i>
+    </p>
 
 
 Tell your story with enough context so that it can be understood by cyclists that were not there and may be unfamiliar with the location.
 """
 
-
+video_verbose_str = """
+<p><span style="color:red">VIDEO Section</span></p>
+<p>If you have uploaded a video to <strong>youtube</strong>, then you should paste or type the URL into this field. If you have a video but have not uploaded it to youtube yet, then leave this field blank for now. Finish this form and submit it. Then come back and update your report with the URL after you have uploaded it.</p>
+<p>If your video is at <strong>Vimeo</strong> or <strong>Facebook</strong> you can email the URL to me (wait for the email will arrive after you create your report). If you have a <span style="color:red">PICTURE</span> or two to accompany your report please email those as well.</p>
+"""
 
 
 class CreateIncidentForm(ModelForm):
@@ -67,10 +73,12 @@ missed striking one of the riders. We believe the license plate number was 163-J
             'id_it_by' : 'List any special identifying characteristics of vehicle and passengers that you observed',
             'threat_assessment' : 'Threat Assessment: In your opinion the motorist/person in question was being . . .',
             'danger_assessment' : 'Danger Assessment: In your opinion, this encounter was . . .',
+            'youtube_url' : video_verbose_str,
+            'position': 'Address where the incident occurred',
         }
         # fields = ['position','what', 'date', 'time', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
         # 'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
-        fields = ['position','what', 'date', 'timestr', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
+        fields = ['position','what', 'date', 'timestr', 'youtube_url', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
         'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
         widgets={
             "what": SummernoteInplaceWidget(),
@@ -107,13 +115,22 @@ missed striking one of the riders. We believe the license plate number was 163-J
             "id_it_by":forms.TextInput(attrs={
                 'placeholder':'Dent in front right quarter panel, playboy mud flaps, etc',
             }),
-
+            "youtube_url":forms.TextInput(attrs={
+                'placeholder': 'youtube videos only -- if your video is at Vimeo or Facebook, wait for the email that confirms your report, then send it to me when you reply.',
+            }),
             "address": forms.HiddenInput(attrs={
                 'class': 'textinput',
                 }),
 
         }
 
+
+    def clean(self):
+        super(CreateIncidentForm, self).clean()
+        cleaned_data = self.cleaned_data
+        address = cleaned_data.get("address")
+        if address == '1514-1542 Pleasant St, Boulder, CO 80302, USA':
+            raise ValidationError("Please enter the 'Address where the incident occurred' -- see the field above the map and read the directions, in green, right above this message.")        
 
 # class FormFromSomeModel(forms.ModelForm):
 #     class Meta:
