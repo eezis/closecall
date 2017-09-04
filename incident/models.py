@@ -77,14 +77,17 @@ class Incident(models.Model):
     pending = models.BooleanField(default=False)
     pending_note = models.TextField(null=True, blank=True)
 
-    # added by EE on 8/21/17
-    youtubeurl = models.CharField(null=True, blank=True, max_length=150)
+    # added by EE on 8/21/17, modified 9/4/2017
+    youtube_url = models.CharField(null=True, blank=True, max_length=180)
+    vimeo_url = models.CharField(null=True, blank=True, max_length=180)
+    facebook_url = models.CharField(null=True, blank=True, max_length=180)
+    video_embed_string = models.TextField(blank=True)
     # allow users to vote offensive -- if someone posts porn or something . . .
-    youtube_offensive_votes = models.IntegerField(default=0)
+    video_offensive_votes = models.IntegerField(default=0)
     # make the video invisible if too many find it offensive
-    show_youtube_vid = models.BooleanField(default=True)
+    show_video = models.BooleanField(default=True)
     # allows EE to override input from sensitrons
-    ee_show_youtube_vid = models.BooleanField(default=False)
+    ee_show_video = models.BooleanField(default=False)
 
     utility = models.DecimalField(null=True, default=0.00, max_digits=4, decimal_places=2)
     # brief reason/descriptino
