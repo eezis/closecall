@@ -26,7 +26,7 @@ Now describe what happened. Be factual, include direction of travel for cyclists
 
     <p style="font-size:0.90em;margin-top:10px;margin-left:24px;margin-right:30px;">
     <i>
-    If you have <span style="color:red">VIDEO</span> do not enter it in this narrative section. Enter that information in the video section that follows. 
+    If you have <span style="color:red">VIDEO</span> do not enter it in this narrative section. Enter that information in the video section that follows.
     </i>
     </p>
 
@@ -37,7 +37,7 @@ Tell your story with enough context so that it can be understood by cyclists tha
 video_verbose_str = """
 <p><span style="color:red">VIDEO Section</span></p>
 <p>If you have uploaded a video to <strong>youtube</strong>, then you should paste or type the URL into this field. If you have a video but have not uploaded it to youtube yet, then leave this field blank for now. Finish this form and submit it. Then come back and update your report with the URL after you have uploaded it.</p>
-<p>If your video is at <strong>Vimeo</strong> or <strong>Facebook</strong> you can email the URL to me (wait for the email will arrive after you create your report). If you have a <span style="color:red">PICTURE</span> or two to accompany your report please email those as well.</p>
+<p>If your video is at <strong>Vimeo</strong> or <strong>Facebook</strong> you can email the URL to me (wait for the email will arrive after you create your report). If you have a <span style="color:red">PICTURE</span> or two to accompany your report please email those as well (please resize them first).</p>
 """
 
 
@@ -130,7 +130,7 @@ missed striking one of the riders. We believe the license plate number was 163-J
         cleaned_data = self.cleaned_data
         address = cleaned_data.get("address")
         if address == '1514-1542 Pleasant St, Boulder, CO 80302, USA':
-            raise ValidationError("Please enter the 'Address where the incident occurred' -- see the field above the map and read the directions, in green, right above this message.")        
+            raise ValidationError("Please enter the 'Address where the incident occurred' -- see the field above the map and read the directions, in green, right above this message.")
 
 # class FormFromSomeModel(forms.ModelForm):
 #     class Meta:
