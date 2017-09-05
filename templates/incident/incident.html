@@ -1,6 +1,7 @@
 <!-- This template is for specifically revealed incident reports -->
 
 {% extends "sitebase.html" %}
+{% load crispy_forms_tags %}
 
 {% block page_title %}CCDB Incident Report{% endblock %}
 
@@ -45,7 +46,12 @@
     <p>{{incident.video_embed_string}}</p>
     {% endcomment %}
 
-    
+    <form method="POST" class="post-form" action="{% url 'incident:admin-scoring' incident.id %}">
+        {% csrf_token %}
+       {#  {{ admin_score_form.as_p }} #}
+       {{ admin_score_form|crispy }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
 
 {% endif %}
 
@@ -83,7 +89,7 @@
      <div class="bg-info" style="padding: 20px 20px; 10px; 20px;">
 
     <p style="color:red"><b>Based on this report, this driver is considered a danger to cyclists.</b></p>
-    <p>If you have had an encounter with this vehicle, please <a href="{% url 'create-incident' %}"><b>REPORT IT</b></a></p>
+    <p>If you have had an encounter with this vehicle, please <a href="{% url 'incident:create-incident' %}"><b>REPORT IT</b></a></p>
     <p>If you can identify this driver, please email closecalldatabase at gmail and reference "Incident {{linker_incident_num}}" </p>
       </div>
     {% endif %}

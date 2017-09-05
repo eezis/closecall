@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.shortcuts import get_object_or_404 #, get_list_or_404
+# from django.shortcuts import get_object_or_404 #, get_list_or_404
+from django.http import HttpResponseRedirect
 
 from models import Incident
-from forms import CreateIncidentForm
+from forms import CreateIncidentForm, AdminScoreForm
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -17,7 +18,7 @@ from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin, ad
 from django.conf import settings
 from django.core.mail import send_mail
 from utils import get_youtube_embed_str
-
+from django.contrib.auth.decorators import login_required
 
 user_msg_incident_created = \
 """Thank you for submitting an Incident Report.
@@ -219,15 +220,20 @@ def show_this_incident_for_authed_users(request, incident_id):
         expires_in_x_seconds = request.session.get_expiry_age()
         days = expires_in_x_seconds / (86400)
         expires_on_date = request.session.get_expiry_date()
-        print
-        print u"USER {} :: EMAIL {} :: Looking at {}".format(username, useremail, incident_id)
-        print "THE SESSION WILL EXPIRE ON: {}  That is {} days".format(expires_on_date, days)
-        print
+        # print
+        # print u"USER {} :: EMAIL {} :: Looking at {}".format(username, useremail, incident_id)
+        # print "THE SESSION WILL EXPIRE ON: {}  That is {} days".format(expires_on_date, days)
+        # print
 
     try:
         I = Incident.objects.get(id=incident_id)
         if I.visible:
-            return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': incident_id})
+            admin_score_form = AdminScoreForm(initial={'reviewed': I.reviewed, 'accepted': I.accepted, 
+                'show_video': I.show_video, 'utility': I.utility, 'utility_comment': I.utility_comment,
+                'video_offensive_votes': I.video_offensive_votes, 'ee_show_video': I.ee_show_video, 'visible': I.visible})
+            # Thought this would work but TypeError, Object is not iterable
+            # admin_score_form = AdminScoreForm(initial=I)
+            return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': incident_id, 'admin_score_form': admin_score_form})
         else:
             return render(request, 'incident/notavailable.html')
     except Incident.DoesNotExist:
@@ -250,6 +256,35 @@ def show_all_incidents(request):
         I = paginator.page(paginator.num_pages)
 
     return render(request, 'home-all-incidents.html', {'incidents': I, 'is_paginated': True})
+
+@login_required(login_url='/accounts/login/')
+def admin_score(request, pk):
+    if request.method == "POST":
+        form = AdminScoreForm(request.POST)
+        if form.is_valid():
+            print "THE SHIZZLE IS VALID"
+
+            I = Incident.objects.get(id=pk)
+            I.reviewed = form.cleaned_data['reviewed']
+            I.accepted = form.cleaned_data['accepted']
+            I.visible = form.cleaned_data['visible']
+            I.show_video = form.cleaned_data['show_video']
+            I.ee_show_video = form.cleaned_data['ee_show_video']
+            I.utility = form.cleaned_data['utility']
+            I.utility_comment = form.cleaned_data['utility_comment']
+            I.video_offensive_votes = form.cleaned_data['video_offensive_votes']
+
+            I.save()
+            redirect_url = '/incident/show-detail/' + str(pk) + '/'
+            return redirect(redirect_url)
+            # return HttpResponseRedirect('incident/show-detail', incident_id=pk) # Redirect after POST
+        else:
+            print "THE SHIZZLE IS A GET!!!"
+            I = Incident.objects.get(id=pk)
+            return redirect('incident/show-detail/' + str(pk) + '/')
+            # form = AdminScoreForm()
+            # return render(request, 'blog/post_edit.html', {'form': form})
+
 
 
 

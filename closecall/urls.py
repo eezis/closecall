@@ -51,7 +51,7 @@ urlpatterns = patterns('',
     # which means something was broken in the registration process flow
     url(r'^user-profile-detail/$', CheckForUserProfile, name='check-profile-detail'),
 
-    url(r'^incident/', include('incident.urls')),
+    url(r'^incident/', include('incident.urls', namespace='incident')),
     url(r'^blog/', include('publish.urls')),
     url(r'^news/', NewsView.as_view(), name="news"),
     # url(r'^support/?$', SupportView, name="support"),
