@@ -38,10 +38,15 @@
 {% if user.is_active and user.is_staff %}
     <p><span style="padding-right:20px;">{{incident.user}}</span>{{incident.user.email}}</p>
     <p>{{incident.user.profile.first}} <span style="padding-right:20px;">{{incident.user.profile.last}}</span>{{incident.user.email}}</p>
+    {% comment %}
     <!-- added for debugging new feature -->
     <p>youtube_url = {{incident.youtube_url}}</p>
     <p>embed</p>
     <p>{{incident.video_embed_string}}</p>
+    {% endcomment %}
+
+    
+
 {% endif %}
 
   <div class="page-header" style="padding-bottom:0px;">
