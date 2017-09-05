@@ -84,7 +84,7 @@ class Incident(models.Model):
     facebook_url = models.CharField(null=True, blank=True, max_length=180)
     video_embed_string = models.TextField(blank=True)
     # allow users to vote offensive -- if someone posts porn or something . . .
-    video_offensive_votes = models.IntegerField(default=0)
+    video_offensive_votes = models.IntegerField(default=0, verbose_name="Offensive")
     # make the video invisible if too many find it offensive
     show_video = models.BooleanField(default=True)
     # allows EE to override input from sensitrons
