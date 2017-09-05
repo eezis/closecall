@@ -70,7 +70,7 @@
      <div class="bg-info" style="padding: 20px 20px; 10px; 20px;">
 
     <p style="color:red"><b>Based on this report, this driver is considered a danger to cyclists.</b></p>
-    <p>If you have had an encounter with this vehicle, please <a href="{% url 'create-incident' %}"><b>REPORT IT</b></a></p>
+    <p>If you have had an encounter with this vehicle, please <a href="{% url 'incident:create-incident' %}"><b>REPORT IT</b></a></p>
     <p>If you can identify this driver, please email closecalldatabase at gmail and reference "Incident {{linker_incident_num}}" </p>
       </div>
     {% endif %}
