@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, url
 from django.views.generic import TemplateView
 from views import CreateIncidentView, ListIncidentView, DetailIncidentView, UpdateIncidentView, DeleteIncidentView, show_all_incidents
+app_name = 'incident'
 
 urlpatterns = patterns('',
     url(r'^list/$', ListIncidentView.as_view(), name='users-incident-list'),
@@ -16,6 +17,6 @@ urlpatterns = patterns('',
     url(r'^show-detail/(?P<incident_id>\d+)/$', 'incident.views.show_this_incident_for_authed_users', name="show-specific-incident"),
     url(r'^reporting-step-1/$', TemplateView.as_view(template_name="incident/reporting-step-1.html") , name="reporting-1"),
     url(r'^all-incidents/?$', show_all_incidents, name="show-all-incidents"),
-
+    # url(r'^post/new/$', views.post_new, name='post_new'),
+    url(r'^score/(?P<pk>\d+)/$', 'incident.views.admin_score', name='admin-scoring'),
     )
-

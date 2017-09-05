@@ -132,6 +132,18 @@ missed striking one of the riders. We believe the license plate number was 163-J
         if address == '1514-1542 Pleasant St, Boulder, CO 80302, USA':
             raise ValidationError("Please enter the 'Address where the incident occurred' -- see the field above the map and read the directions, in green, right above this message.")
 
+
+"""
+I want to be able to review and score the forms from the site
+"""
+
+class AdminScoreForm(ModelForm):
+
+    class Meta:
+        model = Incident
+        fields = ('reviewed', 'accepted', 'visible', 'show_video', 'ee_show_video', 'utility', 'utility_comment',
+            'video_offensive_votes')
+
 # class FormFromSomeModel(forms.ModelForm):
 #     class Meta:
 #         model = SomeModel
