@@ -13,7 +13,7 @@
 
     {% if user.is_authenticated %}
        <ul class="nav navbar-nav">
-         <li><a href="{% url 'reporting-1' %}" style="color:cyan; font-size:1.2em; padding-left:30px;">Report An Incident</a></li>
+         <li><a href="{% url 'incident:reporting-1' %}" style="color:cyan; font-size:1.2em; padding-left:30px;">Report An Incident</a></li>
       </ul>
     {% endif %}
 
