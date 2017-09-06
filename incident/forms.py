@@ -80,6 +80,7 @@ missed striking one of the riders. We believe the license plate number was 163-J
         # 'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
         fields = ['position','what', 'date', 'timestr', 'youtube_url', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
         'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
+
         widgets={
             "what": SummernoteInplaceWidget(),
 
@@ -124,6 +125,9 @@ missed striking one of the riders. We believe the license plate number was 163-J
 
         }
 
+    def __init__(self, *args, **kwargs):
+        super(CreateIncidentForm, self).__init__(*args, **kwargs)
+        self.fields['vehicle_description'].required = True
 
     def clean(self):
         super(CreateIncidentForm, self).clean()
