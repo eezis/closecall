@@ -709,6 +709,11 @@ def handler404(request):
 #     print not set(a).isdisjoint(msg)
 #     return not set(a).isdisjoint(msg)
 
+def banned_ip(ip):
+    banned_spammers = ['185.36.102.114',]
+    if ip in banned_spammers:
+        return True
+    return False
 
 def its_spam(msg):
     if '.ru' in msg:
@@ -718,10 +723,14 @@ def its_spam(msg):
     # catch instances that start off like this: https://vk.com/web_16 – РјРµР±РµР
     if msg[0:4].lower() == 'http':
         return True
+    if msg[0:5].lower() == 'https':
+        return True
     # if cyrllic_present(msg):
     #     return True
 
     userinput = msg.lower()
+    spammy = ["cialis", "porn", "viagra", "sex", "casino", u"ส", u"а", u"п", "tiffany outlet", "kate spade",
+    "pharma", "forex", "a href", "$", "erotic", "xxx", "naked", "gay", "promote", "fuck", "tumblr",]
     spammy = ["cialis", "porn", "viagra", "sex", "casino", u"ส", u"а", u"п", "tiffany outlet", "kate spade",
     "pharma", "forex", "a href", "$", "erotic", "xxx", "naked", "gay", "promote", "fuck", ]
     for i in spammy:
@@ -763,6 +772,9 @@ class CreateUserInput(CreateView):
             # logger.warning("SPAMMER AT ADDRESS: " + self.request.META.get('REMOTE_ADDR'))
             raise PermissionDenied
             # return redirect('http://www.urbandictionary.com/define.php?term=Fuck%20off%20and%20die')
+
+        if banned_ip(ip):
+            raise PermissionDenied
 
         else:
             form.instance.subject = self.subject
