@@ -55,7 +55,7 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
     # position ties to the geoposition application, it displays the map
     # fields = ['position', 'what', 'date', 'time', ]
     form_class = CreateIncidentForm
-    success_url = reverse_lazy('users-incident-list')
+    success_url = reverse_lazy('incident:users-incident-list')
 
 
     def get_initial(self):
@@ -76,7 +76,7 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
         form.instance.user = self.request.user
 
         if form.instance.youtube_url:
-            form.instance.video_embed_string = get_youtube_embed_str(form.instance.youtube_url)      
+            form.instance.video_embed_string = get_youtube_embed_str(form.instance.youtube_url)
 
         Incident = form.save(commit=True)
         try:
@@ -121,7 +121,7 @@ class DetailIncidentView(LoginRequiredMixin, DetailView):
 
 class DeleteIncidentView(LoginRequiredMixin, DeleteView):
     model = Incident
-    success_url = reverse_lazy('users-incident-list')
+    success_url = reverse_lazy('incident:users-incident-list')
 
 
 
@@ -135,7 +135,7 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
     '''
     # fields = ['position','what', 'date', 'time', 'vehicle_description', 'color', 'make', 'model',
     #     'license_certain', 'license_uncertain', 'id_it_by',]
-    success_url = reverse_lazy('users-incident-list')
+    success_url = reverse_lazy('incident:users-incident-list')
 
     def form_valid(self, form):
         try:
@@ -228,7 +228,7 @@ def show_this_incident_for_authed_users(request, incident_id):
     try:
         I = Incident.objects.get(id=incident_id)
         if I.visible:
-            admin_score_form = AdminScoreForm(initial={'reviewed': I.reviewed, 'accepted': I.accepted, 
+            admin_score_form = AdminScoreForm(initial={'reviewed': I.reviewed, 'accepted': I.accepted,
                 'show_video': I.show_video, 'utility': I.utility, 'utility_comment': I.utility_comment,
                 'video_offensive_votes': I.video_offensive_votes, 'ee_show_video': I.ee_show_video, 'visible': I.visible})
             # Thought this would work but TypeError, Object is not iterable
