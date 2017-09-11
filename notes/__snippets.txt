@@ -115,13 +115,19 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 Copy the files from the mac to the SMB drive ccdb/mogrify
 open nautilus, get to that directory, open in terminal
 
+https://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/
+https://www.smashingmagazine.com/2015/06/efficient-image-resizing-with-imagemagick/
+
 Run these commands:
 
 mogrify -format jpg *.PNG && rm *.PNG
 mogrify -format jpg *.png && rm *.png
 mogrify -format jpg *.jpeg && rm *.jpeg
 mogrify -format jpg *.JPG && rm *.JPG
-mogrify -resize 1200x1200 -quality 95 *.jpg
+
+mogrify -resize 1200 -quality 95 *.jpg
+WHAT ABOUT THIS LINE? quality to 82 is from the 2nd url above
+for file in *.jpg; do convert $file -resize 1200 -quality 82 $file; done
 
 Copy the files to the static/images/reports under the project, git add ., etc
 
