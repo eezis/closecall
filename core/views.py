@@ -710,7 +710,7 @@ def handler404(request):
 #     return not set(a).isdisjoint(msg)
 
 def banned_ip(ip):
-    banned_spammers = ['185.36.102.114',]
+    banned_spammers = ['185.36.102.114', '195.225.231.221', '151.249.164.95', ]
     if ip in banned_spammers:
         return True
     return False
