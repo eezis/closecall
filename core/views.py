@@ -710,7 +710,7 @@ def handler404(request):
 #     return not set(a).isdisjoint(msg)
 
 def banned_ip(ip):
-    banned_spammers = ['185.36.102.114', '195.225.231.221', '151.249.164.95', ]
+    banned_spammers = ['185.36.102.114', '195.225.231.221', '151.249.164.95', '155.133.64.104', '5.9.158.75', '151.249.164.95', ]
     if ip in banned_spammers:
         return True
     return False
@@ -730,7 +730,7 @@ def its_spam(msg):
 
     userinput = msg.lower()
     spammy = ["cialis", "porn", "viagra", "sex", "casino", u"ส", u"а", u"п", "tiffany outlet", "kate spade",
-    "pharma", "forex", "a href", "$", "erotic", "xxx", "naked", "gay", "promote", "fuck", "tumblr",]
+    "pharma", "forex", "a href", "$", "erotic", "xxx", "naked", "gay", "promote", "fuck", "tumblr", "muslim", ]
     for i in spammy:
         if i in userinput:
             return True
