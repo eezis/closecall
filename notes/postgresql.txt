@@ -173,6 +173,12 @@ sudo iptables -A INPUT -p tcp --destination-port 5432 -s 24.9.60.175 -j ACCEPT
 
 sudo iptables -A INPUT -p tcp --destination-port 5432 -s 24.9.105.13 -j ACCEPT
 
+# ee, 9.19.17, this if for allowing Amazon QuickSight to look at it.
+sudo iptables -A INPUT -p tcp --destination-port 5432 -s 54.70.204.128 -j ACCEPT
+
+
+ID DID NOT MAKE IT PERSISTENT
+
 -- now test it from terminal on the remote workstation
 
 psql -h closecalldatabase.com -U eaecc -d closecall

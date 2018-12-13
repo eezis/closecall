@@ -1,0 +1,8 @@
+
+$ sudo service nginx status  <-- starts on reboot, otherwise $ sudo service nginx start
+$ sudo service postgresql status <-- ibid
+### NOTE, YOU MUST BE IN THE VIRTUALENV , START IT WITH THIS LINE ###
+$ cd sites/closecall; workon closecall
+$ nohup gunicorn closecall.wsgi:application --workers=3 --bind 127.0.0.1:8000 --log-file=-
+
+
