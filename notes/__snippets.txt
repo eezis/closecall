@@ -69,10 +69,10 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 </p>
 
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-1022.jpg" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1713.jpg" style="max-width:100%;">
 </p>
 <p><br />
-<img src="https://closecalldatabase.com/static/images/reports/incident-719.png" style="max-width:100%;">
+<img src="https://closecalldatabase.com/static/images/reports/incident-1718.png" style="max-width:100%;">
 </p>
 <p><br />
 <img src="https://closecalldatabase.com/static/images/reports/incident-1624.jpg" style="max-width:100%;">
@@ -99,9 +99,8 @@ http://www.bikeforums.net/road-cycling/977151-bike-cameras-anybody-used-rideye-y
 <img src="https://closecalldatabase.com/static/images/reports/incident-1435-4.jpg" style="max-width:100%;">
 </p>
 
- 17 files changed, 1 insertion(+), 1 deletion(-)
 
-
+Copying '/home/eezis/sites/closecall/static/images/reports/incident-1733.jpg'
 
 
 
