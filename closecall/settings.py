@@ -33,7 +33,7 @@ TEMPLATE_DEBUG = True
 # ALLOWED_HOSTS = ['*', '104.131.56.181', '.closecalldatabase.com', '127.0.0.1', 'localhost', 'closecall', ]
 # ALLOWED_HOSTS = ['*', ]
 # ALLOWED_HOSTS = ['.closecalldatabase.com', '127.0.0.1', ]
-ALLOWED_HOSTS = ['.closecalldatabase.com', ]
+ALLOWED_HOSTS = ['.closecalldatabase.com', '127.0.0.1', 'strava.com', ]
 
 # this is set by the second so 60 * 5 = 5 minutes
 # fifteen months - I went from 3 months to 15 on 12/3/15
