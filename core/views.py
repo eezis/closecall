@@ -471,17 +471,9 @@ def strava_registration(request):
             }"""
 
             oauth_resp = r.json()
-            if P: print(oauth_resp)
-
-            # PRINT STATEMENTS CAUSE ERRORS IF THE TERMINAL IS NOT UP -- NEED TO FIX SEE **** AT BOTTOM OF FILE
-            # try:
-            #     print "\n"
-            #     # print oauth_resp
-            #     print "\n"
-            # except IOError:
-            #     # maybe just write to a file here instead?
-            #     admin_mailer('SSH DOWN', 'Fix it dumbass!')
-            #     pass
+            if P:
+                print('HERE COMES THE OAUTH_RESP')
+                print(oauth_resp)
 
 
             access_token = oauth_resp['access_token'] # <-- the identifies athlete and application (e.g, Ernest Ezis, CCDB)
@@ -491,7 +483,33 @@ def strava_registration(request):
             city = oauth_resp['athlete']['city']
             state = oauth_resp['athlete']['state']
             country = oauth_resp['athlete']['country']
-            email = oauth_resp['athlete']['email']
+
+            ### BIG ISSUE HERE
+            ### on 1/15/19 Strava stopped returning an athlete's email in their oauth response
+            ### https://developers.strava.com/docs/oauth-updates/
+            ### this app is built around the idea of emailing per incident, so it's a problem.
+            ### so we can't ask for this
+            # email = oauth_resp['athlete']['email']
+            email = "STRAVA-NO-EMAIL"
+
+
+            # Had to trim the usernames to 30 (I may need to expand the underlying Djano model! See ERROR #1 above)
+            created_username = fname + ' ' + lname
+            created_username = created_username[:30]
+
+            try:
+                user = User.objects.get(username=created_username)
+                if P:
+                    print(user.email)
+                    email = user.email
+
+            except User.DoesNotExist:
+                ### THIS WILL ERROR IT OUT -- FIX THIS LATER
+                email = oauth_resp['athlete']['email']
+
+
+
+
 
             safe_print(u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email))
             # try:
@@ -510,9 +528,7 @@ def strava_registration(request):
             # athlete id will be used to create their passwords (is it long enough?) I could bold "strava-" + athlete-id
             # onto it, making it more secure. I should do that.
 
-            # Had to trim the usernames to 30 (I may need to expand the underlying Djano model! See ERROR #1 above)
-            created_username = fname + ' ' + lname
-            created_username = created_username[:30]
+
 
             # this_user = get_or_create_user(email, created_username, fname, lname, password, athlete_id)
             try:
