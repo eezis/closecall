@@ -434,7 +434,7 @@ def strava_registration(request):
             # thing are cool, lets get the shit we need from what was passed back, and then redirect to the home view!
 
             # use the Requests library's built-in JSON decoder ftw
-            r.json()
+            # r.json()
 
             # Okay, we have the data, wth does it look like? This:
             """
@@ -471,7 +471,7 @@ def strava_registration(request):
             }"""
 
             oauth_resp = r.json()
-            print(oauth_resp)
+            if P: print(oauth_resp)
 
             # PRINT STATEMENTS CAUSE ERRORS IF THE TERMINAL IS NOT UP -- NEED TO FIX SEE **** AT BOTTOM OF FILE
             # try:
