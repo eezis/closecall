@@ -96,6 +96,9 @@ urlpatterns = patterns('',
 ) # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
+urlpatterns += [
+    url(r'^robots\.txt$', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
+]
 
 handler500 = "core.views.handler500"
 handler404 = "core.views.handler404"

@@ -617,7 +617,7 @@ def strava_registration(request):
 def redirect_to_strava_login(request):
     # the Strava oauth process kicks off with a redirect to their site, it includes the "client id" for my application
     # and the redirect url -- 'http://closecalldatabase.com/strava-registration' -- which urls.py redirects
-    # to the strava_registration view above.
+    # to the strava_registration view above."
 
     safe_print("Redirecting to Strava oauth\n")
 
