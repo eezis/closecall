@@ -471,6 +471,7 @@ def strava_registration(request):
             }"""
 
             oauth_resp = r.json()
+            print(oauth_resp)
 
             # PRINT STATEMENTS CAUSE ERRORS IF THE TERMINAL IS NOT UP -- NEED TO FIX SEE **** AT BOTTOM OF FILE
             # try:
