@@ -1,6 +1,6 @@
 
 
-I took django-geoposition out of the .virtualenv and copied it into my project as an app and mofidied it directly
+I took django-geoposition out of the .virtualenv and copied it into my project as an app and modified it directly
 
 
 

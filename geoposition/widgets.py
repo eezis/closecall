@@ -46,7 +46,7 @@ class GeopositionWidget(forms.MultiWidget):
 
     class Media:
         js = (
-            # '//maps.google.com/maps/api/js?sensor=false',
+            #'//maps.google.com/maps/api/js?sensor=false',
             '//maps.googleapis.com/maps/api/js?key=***REMOVED***',
             'geoposition/geoposition.js',
         )
