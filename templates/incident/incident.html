@@ -18,6 +18,8 @@
 
  <script type="text/javascript">
 
+    var map;
+
     var incLat = parseFloat('{{incident.get_lat}}');
     var incLng = parseFloat('{{incident.get_lon}}');
 
@@ -35,7 +37,9 @@
         map: map
     });
 
-    marker.setVisible(true);
+    marker.setVisible(true);  // visible_changed triggered
+    marker.setMap(map);
+
 </script>
 
 {% endblock %}
