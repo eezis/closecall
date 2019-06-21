@@ -1,4 +1,5 @@
-<!-- This template is for specifically revealed incident reports -->
+{# This is the show details page that registered/gated (police should be able to see without registering?) users are allowed to see
+https://closecalldatabase.com/incident/show-detail/2240/ #}
 
 {% extends "sitebase.html" %}
 {% load crispy_forms_tags %}
@@ -12,8 +13,7 @@
 {% endblock %}
 
 {% block extra_css_or_js %}
-{# <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> #}
-{# <script src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&callback=initMap"</script> #}
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&callback=initMap" type="text/javascript"></script>
 
  <script type="text/javascript">

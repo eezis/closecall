@@ -1,0 +1,10 @@
+
+
+Here are the important files
+
+static/geopostion/geoposition.js should have most of the action but I think the JS call to GoogleMaps is in the widgets file
+
+    geopostions/tests/<widgets.py
+
+
+
