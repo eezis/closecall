@@ -498,17 +498,20 @@ def strava_registration(request):
             created_username = created_username[:30]
 
             try:
+                # look up the user, get the email in the DB from prior registration. the flaw here
+                # is that it assumes the email at strava never changes.
+                # what I should probably do is authenticate them, then pass them to a page that asks to confirm email
+                # on record? no, that's intrusive
                 user = User.objects.get(username=created_username)
                 if P:
                     print(user.email)
                     email = user.email
 
             except User.DoesNotExist:
-                ### THIS WILL ERROR IT OUT -- FIX THIS LATER
+                ### THIS WILL ERROR IT OUT ON PURPOSE -- FIX THIS LATER
                 email = oauth_resp['athlete']['email']
-
-
-
+                ### So need to redirect for login and register via strava, and collect the
+                ### email address, then come back and proceed
 
 
             safe_print(u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email))
