@@ -22,11 +22,11 @@
     var incLng = parseFloat('{{incident.get_lon}}');
 
     function initMap() {
-        console.log('at maps');
+        console.log('at maps', incLat, incLng);
                 var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 14,
-                    center: { lat: incLat, lng: incLng },
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                    center: { lat: incLat, lng: incLng }
+                    // ,mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
     }
     </script>
