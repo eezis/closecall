@@ -25,11 +25,18 @@
         console.log('at maps', incLat, incLng);
                 var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 14,
-                    center: { lat: incLat, lng: incLng }
-                    // ,mapTypeId: google.maps.MapTypeId.ROADMAP
+                    center: { lat: incLat, lng: incLng },
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
     }
-    </script>
+
+    var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(incLat, incLng),
+        map: map
+    });
+
+    marker.setVisible(true);
+</script>
 
 {% endblock %}
 
