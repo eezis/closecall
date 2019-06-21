@@ -24,21 +24,22 @@
     var incLng = parseFloat('{{incident.get_lon}}');
 
     function initMap() {
-        console.log('at maps', incLat, incLng);
-                var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 14,
-                    center: { lat: incLat, lng: incLng },
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                });
-    }
-
-    var marker = new google.maps.Marker({
+      console.log('at maps', incLat, incLng);
+      // use the lat & lon to initialize a map
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: { lat: incLat, lng: incLng },
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+      // now set the marker on the map
+      var marker = new google.maps.Marker({
         position: new google.maps.LatLng(incLat, incLng),
         map: map
-    });
+      });
+    }
 
-    marker.setVisible(true);  // visible_changed triggered
-    marker.setMap(map);
+    // marker.setVisible(true);  // visible_changed triggered
+    // marker.setMap(map);
 
 </script>
 
