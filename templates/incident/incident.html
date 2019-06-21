@@ -13,9 +13,23 @@
 
 {% block extra_css_or_js %}
 {# <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script> #}
-{# <script src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&callback=initMap&amp;sensor=false"</script> #}
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***"
-  type="text/javascript"></script>
+{# <script src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&callback=initMap"</script> #}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&callback=initMap" type="text/javascript"></script>
+
+ <script type="text/javascript">
+
+    var incLat = parseFloat('{{incident.get_lat}}');
+    var incLng = parseFloat('{{incident.get_lon}}');
+
+    function initMap() {
+        console.log('at maps');
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 14,
+                    center: { lat: incLat, lng: incLng },
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                });
+    }
+    </script>
 
 {% endblock %}
 
@@ -100,6 +114,7 @@
     <br />
     Hint: Use the Street View feature to put the report into context: 1) Zoom in (six clicks is good), then 2) drag the "man" above the "+" sign over to the road where the red marker sits on the map.
     <br /><br />
+
     {# Show the map here #}
     <div id="map" style="height: 600px; width: 100%"></div>
 
