@@ -41,7 +41,7 @@ class IncidentAdmin(admin.ModelAdmin):
         ('reviewed', 'accepted', 'visible', 'closedfirstloop'),
         ('utility', 'show_video', 'video_offensive_votes', 'ee_show_video'),
         'utility_comment',
-        'youtube_url',
+        ('youtube_url', 'video_embed_string'),
         # ('date', 'time', 'timestr'),
         'date',
         # 'time',
