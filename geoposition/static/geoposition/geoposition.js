@@ -8,10 +8,10 @@ if (jQuery != undefined) {
 (function($) {
 
     $(document).ready(function() {
-        console.log('geoposition.js loading')
+        // console.log('geoposition.js loading')
         try {
             var _ = google;
-            console.log(google)
+            // console.log(google)
         } catch (ReferenceError) {
             console.log('geoposition: "google" not defined.  You might not be connected to the internet.');
             return;
@@ -99,7 +99,7 @@ if (jQuery != undefined) {
                     if (results && results[0]) {
                         $addressRow.text(results[0].formatted_address);
                         // alert(results[0].formatted_address);
-                        // MY MODIFICATION TO POPULATE HIDDEN FORM FIELD ADDRESS
+                        // MY MODIFICATION TO POPULATE ***HIDDEN*** FORM FIELD ADDRESS
                         $("#id_address").val(results[0].formatted_address);
                         // $('#id_position_0').attr('** need to change the "for" label', 'Location of Incident');
                     }
@@ -123,7 +123,7 @@ if (jQuery != undefined) {
                     // otherwise, search after a while after typing ends
                     autoSuggestTimer = setTimeout(function(){
                         doSearch();
-                    }, 1000);
+                    }, 500);
                 }
             }).on('abort', function() {
                 $(this).parent().find('ul.geoposition-results').remove();
