@@ -43,8 +43,8 @@ class Incident(models.Model):
     # position = GeopositionField(default=Geoposition(40.008682, -105.272883))
     # do the makemigration and migrate, then reverse the comments to reset to original
     # state (the next line commented, the trailing line -- setting default to 40.00.., -105.. --uncommented)
-    # position = GeopositionField(null=True)
-    position = GeopositionField(default=Geoposition(40.008682, -105.272883))
+    position = GeopositionField(null=True)
+    # position = GeopositionField(default=Geoposition(40.008682, -105.272883))
     # I am adding these to support the API, should have added them at the outset, 12/4/15
     # override save method, set them there
     latitude = models.FloatField(null=True)
@@ -82,7 +82,7 @@ class Incident(models.Model):
     youtube_url = models.CharField(null=True, blank=True, max_length=180)
     vimeo_url = models.CharField(null=True, blank=True, max_length=180)
     facebook_url = models.CharField(null=True, blank=True, max_length=180)
-    video_embed_string = models.TextField(blank=True)
+    video_embed_string = models.TextField(blank=True, max_length=180)
     # allow users to vote offensive -- if someone posts porn or something . . .
     video_offensive_votes = models.IntegerField(default=0, verbose_name="Offensive")
     # make the video invisible if too many find it offensive
