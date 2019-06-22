@@ -76,6 +76,8 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
         form.instance.user = self.request.user
 
         if form.instance.youtube_url:
+            # call a utility function that extracts the video_id and creates an embed string
+            # with 'proper' html (per google) that will display on the incident report
             form.instance.video_embed_string = get_youtube_embed_str(form.instance.youtube_url)
 
         Incident = form.save(commit=True)
