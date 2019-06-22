@@ -8,9 +8,10 @@ if (jQuery != undefined) {
 (function($) {
 
     $(document).ready(function() {
-
+        console.log('geoposition.js loading')
         try {
             var _ = google;
+            console.log(google)
         } catch (ReferenceError) {
             console.log('geoposition: "google" not defined.  You might not be connected to the internet.');
             return;
