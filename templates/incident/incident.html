@@ -110,9 +110,13 @@ https://closecalldatabase.com/incident/show-detail/2240/
 
     {# the report #}
     <div style="padding: 18px 0 18px 0;">{{incident.what|safe}}</div>
+    {# display the video if there is an embed string, the embed string is built when the form submitted -- see incident 2246 for an example #}
+    {# NOTE, if you input the url for a user, then you have to build the embed str (copy/pasted an existing one, then update) and enter it in admin #}
     {% if incident.video_embed_string %}
       <div style="padding: 18px 0 18px 0;">{{incident.video_embed_string|safe}}</div>
     {% endif %}
+
+
     <hr>
     <br />
     <p>This incident was reported as: <b>{{incident.danger_level}}</b></p>
