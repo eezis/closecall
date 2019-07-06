@@ -1,0 +1,13 @@
+Strava Token: 6f42c2aa5475c281f2d46d21569dd1a7718a8ea4
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+{u'token_type': u'Bearer', u'access_token': u'252a2498b5e196730fee473ec327e223ec300c86', u'athlete': {u'username': u'ernest-ezis', u'city': u'Boulder', u'premium': True, u'firstname': u'Ernest', u'lastname': u'Ezis', u'created_at': u'2012-07-16T22:46:43Z', u'updated_at': u'2019-03-02T23:39:41Z', u'sex': u'M', u'follower': None, u'badge_type_id': 1, u'state': u'CO', u'summit': True, u'profile': u'https://dgalywyr863hv.cloudfront.net/pictures/athletes/777405/169850/1/large.jpg', u'country': u'United States', u'resource_state': 2, u'profile_medium': u'https://dgalywyr863hv.cloudfront.net/pictures/athletes/777405/169850/1/medium.jpg', u'id': 777405, u'friend': None}}
+Strava Token: c2ac058855959e08d53ed44bfbc884a57aa90c3c
+Trying to complete Token Exchange
+Token Exchange Completed. Strava sent athlete data.
+{u'token_type': u'Bearer', u'access_token': u'252a2498b5e196730fee473ec327e223ec300c86', u'athlete': {u'username': u'ernest-ezis', u'city': u'Boulder', u'premium': True, u'firstname': u'Ernest', u'lastname': u'Ezis', u'created_at': u'2012-07-16T22:46:43Z', u'updated_at': u'2019-03-02T23:39:41Z', u'sex': u'M', u'follower': None, u'badge_type_id': 1, u'state': u'CO', u'summit': True, u'profile': u'https://dgalywyr863hv.cloudfront.net/pictures/athletes/777405/169850/1/large.jpg', u'country': u'United States', u'resource_state': 2, u'profile_medium': u'https://dgalywyr863hv.cloudfront.net/pictures/athletes/777405/169850/1/medium.jpg', u'id': 777405, u'friend': None}}
+[2019-05-24 13:50:32 +0000] [1409] [INFO] Worker exiting (pid: 1409)
+APP CONFIG READY HAS BEEN RUN!
+[2019-05-24 13:50:32 +0000] [1410] [INFO] Worker exiting (pid: 1410)
+APP CONFIG READY HAS BEEN RUN!
+Redirecting to Strava oauth
