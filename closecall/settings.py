@@ -92,7 +92,7 @@ THIRD_PARTY_APPS = (
     'django_extensions',
     'crispy_forms',
     'geoposition',
-    'registration',
+    'registration', #django-registration-redux 1.1
     'django_summernote',  #editor
     'rest_framework',
 )
