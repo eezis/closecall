@@ -41,8 +41,10 @@ urlpatterns = patterns('',
     # I subclassed the registration.forms class RegistrationForm, so now I need to the the URL to use my form class
     # *** didn't work, see note in myregistration.forms ***
     # url(r'^accounts/register/$',RegistrationView.as_view(form_class=MyRegistrationForm), name='registration_register'),
-    # The line aboved needed to PRECEDE this next line, so that it's found first
+    # The line above needed to PRECEDE this next line, so that it's found first
     url(r'^accounts/', include('registration.backends.default.urls')),
+    # simple skips the email verification
+    # url(r'^accounts/', include('registration.backends.simple.urls')),
 
     url(r'^create-user-profile/$', CreateUserProfileView.as_view(), name='create-user-profile'),
     url(r'^user-profile-detail/(?P<pk>\d+)/$', DetailUserProfileView.as_view(), name='user-profile-detail'),
