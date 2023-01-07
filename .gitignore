@@ -5,6 +5,9 @@ __pycache__/
 # C extensions
 *.so
 
+#mac files
+.DS_Store
+
 #sublime
 closecall.sublime-workspace
 closecall.sublime-project
@@ -45,5 +48,3 @@ local-only-data/
 nginx-root/*.json
 nginx-root/data.js
 nginx-root/new-data.js
-
-
