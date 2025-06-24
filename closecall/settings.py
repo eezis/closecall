@@ -20,8 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_ROOT = BASE_DIR
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# TODO: Move to environment variables
-SECRET_KEY = '***REMOVED***'
+SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-dev-key-change-in-production')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # Set to True for development
@@ -95,11 +94,11 @@ WSGI_APPLICATION = 'closecall.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'closecall',
-        'USER': 'eaecc',
-        'PASSWORD': '***REMOVED***',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': os.getenv('DATABASE_NAME', 'closecall'),
+        'USER': os.getenv('DATABASE_USER', 'eaecc'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', ''),
+        'HOST': os.getenv('DATABASE_HOST', '127.0.0.1'),
+        'PORT': os.getenv('DATABASE_PORT', '5432'),
         'CONN_MAX_AGE': 300,
     }
 }
@@ -159,13 +158,13 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20
 }
 
-# Email settings (TODO: Move to environment variables)
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'eezis'
-EMAIL_HOST_PASSWORD = '***REMOVED***'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'closecalldatabase@gmail.com'
+# Email settings
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.sendgrid.net')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'eezis')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True').lower() == 'true'
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'closecalldatabase@gmail.com')
 
 # Logging
 LOGGING = {
