@@ -46,7 +46,16 @@ dev_settings.py
 # Environment variables (contains secrets)
 .env
 
+# Django logs and development files
 django-errors.log
+django.log
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# Development backups and temp files
+*.bundle
+*-backup-*.bundle
 local-only-data/
 nginx-root/*.json
 nginx-root/data.js
