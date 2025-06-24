@@ -139,7 +139,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'closecall',
         'USER': 'eaecc',
-        'PASSWORD': 'CC-5101-!!!',
+        'PASSWORD': '[REDACTED - USE ENVIRONMENT VARIABLES]',
         'HOST': '127.0.0.1', # Leave blank for socket connection
         'PORT': '', # default postgres port is 5432 for the curious
         'CONN_MAX_AGE': 300,
