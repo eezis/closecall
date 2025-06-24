@@ -44,7 +44,7 @@ Template Usage
 # @register.filter
 # def grabprofileid(req_user):
 #     try:
-#         print "grabprofileid has been called"
+#         print("grabprofileid has been called")
 #         # return the userprofile of the requesting user
 #         up = UserProfile.objects.get(user=req_user.id)
 #         return up.id

@@ -5,19 +5,19 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy
 # from django.shortcuts import get_object_or_404 #, get_list_or_404
 from django.http import HttpResponseRedirect
 
-from models import Incident
-from forms import CreateIncidentForm, AdminScoreForm
+from .models import Incident
+from .forms import CreateIncidentForm, AdminScoreForm
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin, admin_mailer, incident_review_mailer
 from django.conf import settings
 from django.core.mail import send_mail
-from utils import get_youtube_embed_str
+from .utils import get_youtube_embed_str
 from django.contrib.auth.decorators import login_required
 
 user_msg_incident_created = \
@@ -59,19 +59,19 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
 
 
     def get_initial(self):
-        print "Get Initial"
+        print("Get Initial")
         try:
-            print u"\nCreateIncidentView.get_initial :: {} {}\n".format(self.request.user, self.request.user.id)
+            print(u"\nCreateIncidentView.get_initial :: {} {}\n".format(self.request.user, self.request.user.id))
         except IOError:
             pass
         return { 'user': self.request.user }
 
     def form_invalid(self, form):
-        print "Form Invalid"
+        print("Form Invalid")
         return self.render_to_response(self.get_context_data(form=form))
 
     def form_valid(self, form):
-        # print "form_valid"
+        # print("form_valid")
         # set the user so tthat is saved when the form is committed
         form.instance.user = self.request.user
 
@@ -82,7 +82,7 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
 
         Incident = form.save(commit=True)
         try:
-            print u"\nCreateIncidentView.form_valid :: {}\n".format(self.request.user)
+            print(u"\nCreateIncidentView.form_valid :: {}\n".format(self.request.user))
         except IOError:
             pass
 
@@ -141,9 +141,9 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
 
     def form_valid(self, form):
         try:
-            print '\n == == == == == == == == == == == == == == == '
-            print 'Incident has been updated'
-            print ' == == == == == == == == == == == == == == == \n'
+            print('\n == == == == == == == == == == == == == == == ')
+            print('Incident has been updated')
+            print(' == == == == == == == == == == == == == == == \n')
         except IOError:
             pass
 
@@ -163,7 +163,7 @@ class UpdateIncidentView(LoginRequiredMixin, ValidFormMixin, UpdateView):
 
 
 def show_sample_report(request):
-    print 'Sample Report Requested from incident.views'
+    print('Sample Report Requested from incident.views')
     # enables for unregistered users: https://closecalldatabase.com/incident/show/CO-141108-001/
     I = Incident.objects.get(pk=7)
     return render(request, 'incident/incident_sample_report.html', {'incident' : I, 'linker_incident_num': 7})
@@ -179,7 +179,7 @@ def show_this_incident(request, ee_fake_key):
     # CO-141108-001  -- the incident on Nelson Road with Justin Hoesse
 
     # if settings.DEV_MODE:
-    #     # print 'DEV MODE TRUE'
+    #     # print('DEV MODE TRUE')
     #     linker = {
     #         'CO-141108-001': 3,
     #         'BIKE-LAW-HELP-1': 3,
@@ -203,8 +203,8 @@ def show_this_incident(request, ee_fake_key):
     }
 
 
-    print "fake key: {}".format(ee_fake_key)
-    print "fake key: {}".format(linker[ee_fake_key])
+    print("fake key: {}".format(ee_fake_key))
+    print("fake key: {}".format(linker[ee_fake_key]))
     I = Incident.objects.get(pk=linker[ee_fake_key])
 
     return render(request, 'incident/incident.html', {'incident' : I, 'linker_incident_num': ee_fake_key})
@@ -216,15 +216,15 @@ def show_this_incident_for_authed_users(request, incident_id):
 
     # 12.3.15 -- I want to make sure that the expiry, set in settings.py, is being set properly
     # so that users do not have to keep logging in
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         username = request.user.username
         useremail = request.user.email
         expires_in_x_seconds = request.session.get_expiry_age()
         days = expires_in_x_seconds / (86400)
         expires_on_date = request.session.get_expiry_date()
         # print
-        # print u"USER {} :: EMAIL {} :: Looking at {}".format(username, useremail, incident_id)
-        # print "THE SESSION WILL EXPIRE ON: {}  That is {} days".format(expires_on_date, days)
+        # print(u"USER {} :: EMAIL {} :: Looking at {}".format(username, useremail, incident_id))
+        # print("THE SESSION WILL EXPIRE ON: {}  That is {} days".format(expires_on_date, days))
         # print
 
     try:
@@ -264,7 +264,7 @@ def admin_score(request, pk):
     if request.method == "POST":
         form = AdminScoreForm(request.POST)
         if form.is_valid():
-            print "THE SHIZZLE IS VALID"
+            print("THE SHIZZLE IS VALID")
 
             I = Incident.objects.get(id=pk)
             I.reviewed = form.cleaned_data['reviewed']
@@ -281,7 +281,7 @@ def admin_score(request, pk):
             return redirect(redirect_url)
             # return HttpResponseRedirect('incident/show-detail', incident_id=pk) # Redirect after POST
         else:
-            print "THE SHIZZLE IS A GET!!!"
+            print("THE SHIZZLE IS A GET!!!")
             I = Incident.objects.get(id=pk)
             return redirect('incident/show-detail/' + str(pk) + '/')
             # form = AdminScoreForm()

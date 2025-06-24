@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django import forms
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .widgets import GeopositionWidget
 from . import Geoposition
@@ -19,7 +19,12 @@ class GeopositionField(forms.MultiValueField):
             forms.DecimalField(label=_('longitude')),
         )
         if 'initial' in kwargs:
-            kwargs['initial'] = Geoposition(*kwargs['initial'].split(','))
+            initial = kwargs['initial']
+            if isinstance(initial, str):
+                kwargs['initial'] = Geoposition(*initial.split(','))
+            elif hasattr(initial, 'latitude') and hasattr(initial, 'longitude'):
+                # Already a Geoposition-like object
+                kwargs['initial'] = [initial.latitude, initial.longitude]
         super(GeopositionField, self).__init__(fields, **kwargs)
 
     def widget_attrs(self, widget):

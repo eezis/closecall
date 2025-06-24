@@ -5,5 +5,5 @@ class UserProfileConfig(AppConfig):
     verbose_name = 'UserProfile App'
 
     def ready(self):
-        print 'APP CONFIG READY HAS BEEN RUN!'
+        print('APP CONFIG READY HAS BEEN RUN!')
         import users.signals

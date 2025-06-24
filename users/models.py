@@ -11,7 +11,7 @@ from core.utils import distance_between_geocoded_points, get_geocode
 # null controls the DB, blank=True controls the form (e.g., not a required field)
 
 class UserProfile(BaseFields):
-    user = models.OneToOneField(User, related_name='profile')
+    user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE)
     first = models.CharField(null=True, max_length=50)
     last = models.CharField(null=True, max_length=50)
     city = models.CharField(null=True, max_length=120, verbose_name="City  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ NA if Not Applicable ]")
@@ -42,7 +42,7 @@ class UserProfile(BaseFields):
             ' -- ' + self.created.strftime('%Y-%m-%d %H:%M') + ' --  ' + unicode(self.city) + ', ' + unicode(self.state)
 
     def try_to_geocode(self):
-        print 'TRY_TO_GEOCODE_CALLED: trying to geocode!'
+        print('TRY_TO_GEOCODE_CALLED: trying to geocode!')
         send_mail('POSITION FIX', 'Fixing Position for: ' + self.user.username, 'closecalldatabase@gmail.com',
             ['ernest.ezis@gmail.com',], fail_silently=False)
         if self.zipcode != None:
@@ -51,7 +51,7 @@ class UserProfile(BaseFields):
             address = u"{} {} {}".format(self.city, self.state, self.country)
         pos = get_geocode(address)
         if pos != 'ERROR':
-            print pos
+            print(pos)
             return pos
         else:
             return None
@@ -71,17 +71,17 @@ class UserProfile(BaseFields):
         # self.position = '(40.0149856, -105.27054559999999)'
 
         if self.position is None:
-            print 'FORMAT_POSITION: fixing missing geocode'
+            print('FORMAT_POSITION: fixing missing geocode')
             self.position = self.try_to_geocode()
             if self.position:
-                print 'FORMAT_POSITION: saving missing geocode {}'.format(self.position)
+                print('FORMAT_POSITION: saving missing geocode {}'.format(self.position))
                 self.save()
 
 
         if self.position is None:
             s = "UserProfile " + str(self.pk) + " for " + self.user.username + " has no position information!"
             raise Exception(s)
-            print s
+            print(s)
             send_mail('CCDB-ERROR :: Profile Lacks Position!', s, 'closecalldatabase@gmail.com',
                 ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
 
@@ -125,7 +125,7 @@ class UserProfile(BaseFields):
         up = UserProfile.objects.get(user__username='Oliver-Ezis')
         matches = up.get_user_incidents(35)
         for m in matches:
-            print m.what[:50], m.address
+            print(m.what[:50], m.address)
 
         """
         matched_incidents = []
@@ -142,7 +142,7 @@ class UserProfile(BaseFields):
 
 
 class UserBlogProfile(models.Model):
-    up = models.OneToOneField(UserProfile, related_name="blogprofile")
+    up = models.OneToOneField(UserProfile, related_name="blogprofile", on_delete=models.CASCADE)
     byline = models.CharField(null=True, max_length=150, verbose_name="Byline (how your name should appear)")
     about_the_author = models.TextField(null=True, blank=True, verbose_name="If you want an 'About The Author' section")
 

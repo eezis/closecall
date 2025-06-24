@@ -4,17 +4,17 @@ from django.views.generic.edit import CreateView, UpdateView #, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 # from django.utils.decorators import method_decorator
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy
 
-from forms import UserProfileForm
-from models import UserProfile
+from .forms import UserProfileForm
+from .models import UserProfile
 # from forms import formname
 from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin
 
 from django.shortcuts import redirect
 from django.contrib import messages
 
-from forms import UserProfileForm
+from .forms import UserProfileForm
 
 def CheckForUserProfile(request):
     s = """'Your User Profile is missing. Please complete the form below so that we can provide you with important information
@@ -41,7 +41,7 @@ class CreateUserProfileView(LoginRequiredMixin, ValidFormMixin, CreateView):
         form.instance.user = self.request.user
         # could set the self.request.user.first and last here if the values are present
         UserProfile = form.save(commit=True)
-        print u"CreateUserProfileView.form_valid :: {} -- {}".format(self.request.user, self.request.user.email)
+        print(u"CreateUserProfileView.form_valid :: {} -- {}".format(self.request.user, self.request.user.email))
         return super(CreateUserProfileView, self).form_valid(form)
 
 

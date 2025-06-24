@@ -1,5 +1,4 @@
-from urlparse import parse_qs
-from urlparse import urlparse
+from urllib.parse import parse_qs, urlparse
 import unittest
 # import re
 
@@ -56,7 +55,7 @@ def extract_id(url_string):
 def get_youtube_embed_str(url_string):
     vurl = extract_id(url_string)
     if vurl is not None:
-        # print embed_str.replace('VIDEO_URL_HERE', vurl)
+        # print(embed_str.replace('VIDEO_URL_HERE', vurl))
         return embed_str.replace('VIDEO_URL_HERE', vurl)
     else:
         return None
@@ -65,9 +64,9 @@ def get_youtube_embed_str(url_string):
 # get_youtube_embed_str(url_test_1)
 
 # if 1 == 1:
-#     print extract_id('https://youtfu.be/w3rqdfadfad')
-#     print extract_id(url_test_1)
-#     print extract_id(url_test_2)
+#     print(extract_id('https://youtfu.be/w3rqdfadfad'))
+#     print(extract_id(url_test_1))
+#     print(extract_id(url_test_2))
 
 
 class TestExtractID(unittest.TestCase):

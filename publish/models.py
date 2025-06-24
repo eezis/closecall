@@ -49,7 +49,7 @@ class BlogPost(PublishBase):
     """
     Good old fashioned blog post model, my thoughts or guest thoughts
     """
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=120, unique=True)
     slug = models.SlugField(null=True)
     the_post = models.TextField(null=True)

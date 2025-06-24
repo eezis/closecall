@@ -9,7 +9,7 @@ import time
 
 
 from django.views.generic.edit import CreateView
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy
 
 # to support oauth functionality
 import requests
@@ -21,8 +21,7 @@ from users.models import UserProfile
 from core.models import UserInput
 
 # to support the custom 400 and 500 handlers (handler500 , handler404)
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+# render_to_response and RequestContext removed - deprecated in Django 3.0
 
 # import logging
 # logger = logging.getLogger('closecall')
@@ -46,7 +45,7 @@ P = True
 def safe_print(msg, print_it=True, email_it=False):
     if P and print_it:
         try:
-            print msg
+            print(msg)
         except IOError:
             pass
     if email_it:
@@ -85,7 +84,7 @@ def send_incident_notification(subj, msg, recipient, htmlmsg=None):
 
 
 def HomeView(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         I = Incident.objects.filter(user=request.user)
         N = InTheNews.objects.all().values('title', 'url', 'tldr')[:5]
         try:
@@ -101,7 +100,7 @@ def HomeView(request):
             Last time there was a problem here, registered users were getting redirected to create a user profile. But the real problem
             In [49]: incidents = Incident.objects.all()
             In [54]: for i in incidents:
-                print i.position, i.address, i.user
+                print(i.position, i.address, i.user)
 
             49.2459762,-123.10122899999999 168 East 28th Avenue, Vancouver, BC V5V 3R1, Canada jwerner
             None  Stephen Banister
@@ -407,7 +406,7 @@ def strava_registration(request):
 
         # s = 'state=mystate&code=75e251e3ff8fff'
         # c = s.split('&')[1].split('=')[1]
-        # print c
+        # print(c)
 
         # get the exchange code
         StravasExchangeCode = strava_token
@@ -423,12 +422,12 @@ def strava_registration(request):
         # make the request
         r = requests.post(STRAVA_GET_AUTH_URL, params=payload)
         try:
-            if P: print "Trying to complete Token Exchange"
+            if P: print("Trying to complete Token Exchange")
         except IOError:
             pass
         if r.status_code == 200:
             try:
-                if P: print 'Token Exchange Completed. Strava sent athlete data.'
+                if P: print('Token Exchange Completed. Strava sent athlete data.')
             except IOError:
                 pass
             # thing are cool, lets get the shit we need from what was passed back, and then redirect to the home view!
@@ -516,7 +515,7 @@ def strava_registration(request):
 
             safe_print(u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email))
             # try:
-            #     if P: print u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email)
+            #     if P: print(u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email))
             # except IOError:
             #     pass
 
@@ -536,10 +535,10 @@ def strava_registration(request):
             # this_user = get_or_create_user(email, created_username, fname, lname, password, athlete_id)
             try:
                 if P:
-                    print u"{} {}".format(fname, lname)
-                    print u"{}".format(email)
-                    print u"{}".format(created_username)
-                    print athlete_id
+                    print(u"{} {}".format(fname, lname))
+                    print(u"{}".format(email))
+                    print(u"{}".format(created_username))
+                    print(athlete_id)
             except IOError:
                 pass
 
@@ -549,7 +548,7 @@ def strava_registration(request):
 
             # might want to replace the code below with an assert statement and fire off an email if it fails
             # try:
-            #     print u"this_user test: {} <-- should equal --> {}".format(this_user.username, created_username)
+            #     print(u"this_user test: {} <-- should equal --> {}".format(this_user.username, created_username))
             #     # assert I could use an assert for that print test in production,
             # except IOError:
             #     pass
@@ -714,19 +713,19 @@ def myotherfunction():
 
 
 def handler500(request):
-    response = render_to_response('smart-500.html', {}, context_instance=RequestContext(request))
+    response = render(request, 'smart-500.html', {})
     response.status_code = 500
     return response
 
 
-def handler404(request):
-    response = render_to_response('smart-404.html', {}, context_instance=RequestContext(request))
+def handler404(request, exception):
+    response = render(request, 'smart-404.html', {})
     response.status_code = 404
     return response
 
 # def cyrllic_present(msg):
 #     a = 'тьдетскийквадроц'
-#     print not set(a).isdisjoint(msg)
+#     print(not set(a).isdisjoint(msg))
 #     return not set(a).isdisjoint(msg)
 
 def banned_ip(ip):
@@ -773,7 +772,7 @@ class CreateUserInput(CreateView):
         return queryset.get(subject=self.subject)
 
     def form_valid(self, form):
-        # print self.subject
+        # print(self.subject)
         # get ip address to see if there the IPs can be blacklisted
         ip = self.request.META.get('REMOTE_ADDR')
         try:
@@ -785,8 +784,8 @@ class CreateUserInput(CreateView):
 
         msg = self.request.POST['message'] + '\n\n' + self.request.POST['email'] + '\n\n' + ip + '\n\n' + ip_real
         if its_spam(msg):
-            # print 'Spam!'
-            # print self.request.META.get('REMOTE_ADDR')
+            # print('Spam!')
+            # print(self.request.META.get('REMOTE_ADDR'))
             # logger.warning("SPAMMER AT ADDRESS: " + self.request.META.get('REMOTE_ADDR'))
             raise PermissionDenied
             # return redirect('http://www.urbandictionary.com/define.php?term=Fuck%20off%20and%20die')
@@ -802,11 +801,11 @@ class CreateUserInput(CreateView):
 
 
     # def form_valid(self, form):
-    #     # print self.kwargs.get('slug', None)
-    #     print self.slug
+    #     # print(self.kwargs.get('slug', None))
+    #     print(self.slug)
     #     # form.instance.subject = subject
     #     # try:
-    #     #     print "called"
+    #     #     print("called")
     #     # except IOError:
     #     #     pass
     #     return super(CreateUserInput, self).form_valid(form)
@@ -821,7 +820,7 @@ Internal Server Error: /strava-registration Traceback (most recent call last):
 File "/home/eezis/.virtualenvs/closecall/local/lib/python2.7/site-packages/django/core/handlers/base.py", line 111, in get_response
   response = wrapped_callback(request, *callback_args, **callback_kwargs)
 File "/home/eezis/sites/closecall/core/views.py", line 321, in strava_registration
-  print "\n"
+  print("\n")
 IOError: [Errno 5] Input/output error
 
 """

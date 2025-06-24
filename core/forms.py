@@ -42,7 +42,7 @@
 #         fields = ("first_name", "last_name", "username", "email", "password1", "password2")
 
 #     def save(self, commit=True):
-#         # print "Now saving"
+#         # print("Now saving")
 #         user = super(UserCreationForm, self).save(commit=False)
 #         # the next line has been added so that the email is captured and saved
 #         user.email = self.cleaned_data["email"]
