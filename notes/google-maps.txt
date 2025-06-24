@@ -1,21 +1,17 @@
+Google Maps API Integration Notes
+=================================
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***"></script>
+API Key is now loaded from environment variables via Django settings.
 
+Template usage:
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}"></script>
 
-might want the init map?
+With callback:
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&callback=initMap&amp;sensor=true" type="text/javascript"></script>
 
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&callback=initMap&amp;sensor=true"
-  type="text/javascript"></script>
+Legacy reference (removed hardcoded keys for security):
+ccdb-home.html - uses callback version
+incident_form.html - basic version
+other templates - various implementations
 
-
-
-  ----
-
-
-ccdb-home.html
-
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true"></script>
-
-      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true"></script>
-
-
+All templates now use {{ GOOGLE_MAPS_API_KEY }} template variable.
