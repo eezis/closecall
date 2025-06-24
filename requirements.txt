@@ -12,15 +12,13 @@ django-registration-redux==1.1
 django-summernote==0.6.0
 djangorestframework==3.3.1
 geopy==1.4.0
-#gnureadline==6.3.3
 ipython==2.3.0
 prettyprint==0.1.5
-psycopg2==2.6.1
+psycopg2-binary
 pyzmq==14.4.1
 requests==2.5.0
 simplejson==3.6.5
 six==1.8.0
-stevedore==0.12
 tornado==4.0.2
 virtualenv==1.9.1
 virtualenv-clone==0.2.4

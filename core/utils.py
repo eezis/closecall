@@ -24,7 +24,7 @@ def distance_between_geocoded_points(lat1, lon1, lat2, lon2, units='miles'):
     dlon = lon2 - lon1
     dlat = lat2 - lat1
 
-#     print dlon, dlat
+#     print(dlon, dlat)
 
     a = (sin(dlat/2))**2 + cos(lat1) * cos(lat2) * (sin(dlon/2))**2
     c = 2 * atan2(sqrt(a), sqrt(1-a))
@@ -38,7 +38,7 @@ Find the original code in the "Distance Between Two Points" ipython notebook
 the_moat_km = distance_between_geocoded_points(40.066677,-105.288754,41.7004784,-72.5797328, 'kilometers')
 the_moat_miles = distance_between_geocoded_points(40.066677,-105.288754,41.7004784,-72.5797328,)
 
-print the_moat_miles, the_moat_km
+print(the_moat_miles, the_moat_km)
 
 """
 
@@ -82,7 +82,7 @@ def get_geocode(address):
     r = requests.get(url+address)
     goog_resp = r.json()
     if goog_resp['status'] == 'OK':
-        # print gresp['results']
+        # print(gresp['results'])
         lat = goog_resp['results'][0]['geometry']['location']['lat']
         lon = goog_resp['results'][0]['geometry']['location']['lng']
         position = "({}, {})".format(lat,lon)

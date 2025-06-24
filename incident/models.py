@@ -7,7 +7,7 @@ from geoposition import Geoposition
 # Create your models here.
 
 class Incident(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # location = models.TextField(blank=True)
     address = models.CharField(null=True, max_length=200)
     # what = models.TextField(verbose_name='Describe What Happened (be factual, include direction of travel for cyclists and vehicles. Example: I was traveling southbound on Westminster Road, two other cyclists were riding immediately behind me. A white pickup, also traveling south . . .<br> test)')
@@ -156,7 +156,7 @@ class Incident(models.Model):
             # moved this logic to form_valid
             # if self.youtube_url:
             #     video_embed_string = get_youtube_embed_str(self.youtube_url)
-            #     print "EMBED: {}".format(video_embed_string)
+            #     print("EMBED: {}".format(video_embed_string))
         except:
             pass
 
@@ -182,7 +182,7 @@ class Incident(models.Model):
             3: 'Somewhat Dangerous',
             1: 'Not Very Dangerous, But Still A Cause For Concern',
         }
-        # print levels[8]
+        # print(levels[8])
         return levels[self.danger_assessment]
 
 

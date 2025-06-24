@@ -16,7 +16,7 @@ class FirstTimeUser(SimpleTestCase):
 
     # all tests need to be prefixes "test_"
     def test_basics(self):
-        print "testing"
+        print("testing")
         response = self.client.get('/about/')
         # Check that the response is 200 OK.
         self.assertEqual(response.status_code, 200)

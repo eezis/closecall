@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from models import Announcement, BlogPost, InTheNews
+from .models import Announcement, BlogPost, InTheNews
 
 # Register your models here.
 

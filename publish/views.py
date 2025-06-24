@@ -5,15 +5,15 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 
-from django.template import RequestContext
+# RequestContext import removed - no longer needed in modern Django
 
-from models import InTheNews, Announcement, BlogPost
+from .models import InTheNews, Announcement, BlogPost
 
 from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin, admin_mailer
-from django.core.urlresolvers import reverse, reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.core.mail import send_mail
 
-from forms import CreateBlogPostForm
+from .forms import CreateBlogPostForm
 
 from django.http import Http404
 
@@ -47,7 +47,7 @@ usage is in home but could be used to sitebase
 """
 
 def AnnouncementView(request):
-    # print 'it ran'
+    # print('it ran')
     return {'announcement': Announcement.objects.filter(show_it=True) }
 
 
@@ -97,7 +97,7 @@ def show_article(request, slug):
             admin_mailer('Raising 404 for show_article', 'Some requested ' + unicode(slug) + ' and it is not publishable and public. Investigate.')
             raise Http404
     except BlogPost.DoesNotExist:
-        # print unicode(request.get_full_path())
+        # print(unicode(request.get_full_path()))
         admin_mailer('Raising 404 for show_article', 'Someone or something requested /articles/' + unicode(request.get_full_path()) + '/ add a redirect for that URL')
         raise Http404
 

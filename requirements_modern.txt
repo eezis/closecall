@@ -1,0 +1,13 @@
+Django==5.1.3
+psycopg2-binary
+django-crispy-forms
+django-extensions
+djangorestframework
+Pillow
+python-decouple
+django-environ
+geopy
+Markdown
+requests
+ipython
+django-summernote

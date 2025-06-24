@@ -1,14 +1,13 @@
 from django import forms
 from django.forms import ModelForm
-# 1.9 release notes
-# django.forms.extras is deprecated. You can find SelectDateWidget in django.forms.widgets (or simply django.forms) instead.
-from django.forms.extras.widgets import SelectDateWidget
+# SelectDateWidget was moved from django.forms.extras to django.forms.widgets in Django 1.9+
+# from django.forms.widgets import SelectDateWidget  # Not currently used
 
 # from tinymce.widgets import TinyMCE
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 from django.core.exceptions import ValidationError
 
-from models import Incident
+from .models import Incident
 
 what_verbose_str = """
 Now describe what happened. Be factual, include direction of travel for cyclists and vehicles. Here is an example: <p style="font-size:0.90em;margin-top:10px;margin-left:24px;
@@ -59,7 +58,7 @@ missed striking one of the riders. We believe the license plate number was 163-J
     # what = forms.CharField(widget=SummernoteWidget(attrs={'placeholder': what_pholder,}), label='Describe What Happened (a detailed description about the incident)')
 
     # "A good incident report should include \n Number of people in the party \n direction you were travelling in",}))
-    date = forms.DateField(("%m/%d/%Y",), widget=forms.DateInput(format="%m/%d/%Y", attrs={'class': 'datePicker',}), label='Date of Incident:',)
+    date = forms.DateField(input_formats=["%m/%d/%Y"], widget=forms.DateInput(format="%m/%d/%Y", attrs={'class': 'datePicker',}), label='Date of Incident:')
     # time = forms.TimeField(("%H:%M %p",), widget=forms.TimeInput(format="%H:%M %p", attrs={'class': 'timePicker', 'id': 'timePicker',
     #     'placeholder': '10:45 am'}), label='Approximate Time') #, required=False)
     timestr = forms.CharField(widget=forms.TextInput(attrs={'placeholder': '10:45 am'}), label='Approximate Time') #, required=False)

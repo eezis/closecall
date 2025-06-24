@@ -30,7 +30,7 @@ sys.stdout = Logger()
 
 Now you can use:
 
-print "Hello"
+print("Hello")
 This will write "Hello" to both stdout and the logfile
 
 """

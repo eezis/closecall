@@ -2,7 +2,7 @@ from django.contrib import admin
 from django import forms
 
 # Register your models here.
-from models import UserProfile, UserBlogProfile
+from .models import UserProfile, UserBlogProfile
 
 # Register your models here.
 

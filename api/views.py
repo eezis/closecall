@@ -1,6 +1,6 @@
 from incident.models import Incident
 from rest_framework import viewsets
-from serializers import IncidentSerializer
+from .serializers import IncidentSerializer
 
 class IncidentViewSet(viewsets.ModelViewSet):
     """

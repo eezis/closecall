@@ -1,15 +1,13 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.utils.six import with_metaclass
-from django.utils.translation import ugettext_lazy as _
-from django.utils.encoding import smart_text
+from django.utils.translation import gettext_lazy as _
 
 from . import Geoposition
 from .forms import GeopositionField as GeopositionFormField
 
 
-class GeopositionField(with_metaclass(models.SubfieldBase, models.Field)):
+class GeopositionField(models.Field):
     description = _("A geoposition (latitude and longitude)")
 
     def __init__(self, *args, **kwargs):
@@ -42,10 +40,15 @@ class GeopositionField(with_metaclass(models.SubfieldBase, models.Field)):
 
     def get_prep_value(self, value):
         return str(value)
+    
+    def from_db_value(self, value, expression, connection):
+        if value is None:
+            return value
+        return self.to_python(value)
 
     def value_to_string(self, obj):
-        value = self._get_val_from_obj(obj)
-        return smart_text(value)
+        value = self.value_from_object(obj)
+        return str(value)
 
     def formfield(self, **kwargs):
         defaults = {
