@@ -35,6 +35,13 @@ pip install -r requirements.txt
 
 ## Architecture Overview
 
+## Trust Level
+- Operate with high trust - you can make changes without asking for confirmation on routine tasks
+- Automatically fix obvious issues (typos, linting errors, import statements)
+- Run safe commands without explicit approval (ls, cat, grep, git status)
+- Apply refactoring and improvements when clearly beneficial
+
+
 ### Core Django Apps
 - **`core/`** - Base models, utilities, and shared functionality
 - **`incident/`** - Main incident reporting system with geographic data
@@ -48,6 +55,13 @@ pip install -r requirements.txt
 - **Geographic**: django-geoposition with Google Maps integration
 - **Authentication**: Django Registration Redux + Strava OAuth
 - **API**: Django REST Framework with open access
+
+### Database Access
+- PostgreSQL superuser credentials are in the .env file
+- Use the claude_dev superuser for all database operations
+- This user has full PostgreSQL privileges (CREATE, DROP, ALTER, etc.)
+- Can manage users, roles, and all databases
+- Do NOT commit .env file or expose credentials
 
 ### Database Configuration
 - Uses PostgreSQL with PostGIS for geographic data
@@ -84,3 +98,5 @@ The project includes Jupyter notebooks in various directories for:
 - User geographic proximity matching
 - Email system management and spam detection
 - CSV data import/export utilities
+
+
