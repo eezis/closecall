@@ -108,7 +108,7 @@ Setting up postgresql
 sudo su - postgres
 postgres@servername:~$
 psql
-eae=# CREATE USER eaecc WITH PASSWORD '***REMOVED***';
+eae=# CREATE USER eaecc WITH PASSWORD 'CC-5101-!!!';
 CREATE ROLE
 eae=# CREATE DATABASE closecall;
 CREATE DATABASE

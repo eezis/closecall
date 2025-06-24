@@ -23,7 +23,7 @@ LOCAL_APPS = ('incident',)
 # Create a new user
 Access psql (click elephant, open psql on my osx where I have postgres app installed)
 
-eae=# CREATE USER eaecc WITH PASSWORD '***REMOVED***';
+eae=# CREATE USER eaecc WITH PASSWORD '[REDACTED]';
 CREATE ROLE
 eae=# CREATE DATABASE closecall;
 CREATE DATABASE
@@ -37,7 +37,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'closecall',
         'USER': 'eaecc',
-        'PASSWORD': '***REMOVED***',
+        'PASSWORD': '[REDACTED - USE ENVIRONMENT VARIABLES]',
         'HOST': '', # Leave blank for socket connection
         'PORT': '', # default postgres port is 5432 for the curious
     }

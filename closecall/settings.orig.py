@@ -139,7 +139,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'closecall',
         'USER': 'eaecc',
-        'PASSWORD': '***REMOVED***',
+        'PASSWORD': 'CC-5101-!!!',
         'HOST': '127.0.0.1', # Leave blank for socket connection
         'PORT': '', # default postgres port is 5432 for the curious
         'CONN_MAX_AGE': 300,
@@ -204,7 +204,7 @@ TEMPLATE_DIRS = (
 
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = 'closecalldatabase@gmail.com'
-# EMAIL_HOST_PASSWORD = '***REMOVED***'
+# EMAIL_HOST_PASSWORD = '[REDACTED - MOVED TO ENVIRONMENT VARIABLES]'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
 # EMAIL_SUBJECT_PREFIX = '[CCDB] '
@@ -212,7 +212,7 @@ TEMPLATE_DIRS = (
 
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'eezis'
-EMAIL_HOST_PASSWORD = '***REMOVED***'
+EMAIL_HOST_PASSWORD = '[REDACTED - MOVED TO ENVIRONMENT VARIABLES]'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
