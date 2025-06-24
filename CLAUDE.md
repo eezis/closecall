@@ -35,6 +35,8 @@ pip install -r requirements.txt
 
 ## Architecture Overview
 
+- use the uv package manager for this project, it is already installed
+
 ## Trust Level
 - Operate with high trust - you can make changes without asking for confirmation on routine tasks
 - Automatically fix obvious issues (typos, linting errors, import statements)
