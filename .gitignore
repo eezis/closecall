@@ -43,6 +43,9 @@ coverage.xml
 
 dev_settings.py
 
+# Environment variables (contains secrets)
+.env
+
 django-errors.log
 local-only-data/
 nginx-root/*.json

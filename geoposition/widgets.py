@@ -45,8 +45,7 @@ class GeopositionWidget(forms.MultiWidget):
 
     class Media:
         js = (
-            # I load this in the <head> section of incident_form.html
-            # '//maps.googleapis.com/maps/api/js?key=***REMOVED***',
+            # Google Maps API is loaded in templates via environment variable
             'geoposition/geoposition.js',
         )
         css = {
