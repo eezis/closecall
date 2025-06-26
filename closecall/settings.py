@@ -91,6 +91,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'closecall.wsgi.application'
 
 # Database
+# PostgreSQL configuration (activated after running setup_db.sql)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
