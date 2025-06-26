@@ -60,3 +60,7 @@ local-only-data/
 nginx-root/*.json
 nginx-root/data.js
 nginx-root/new-data.js
+
+# from restoration process 
+restore.sql
+setup_db.sql

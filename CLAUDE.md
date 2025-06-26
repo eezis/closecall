@@ -58,8 +58,10 @@ uv pip install -r requirements.txt
 ## Trust Level
 - Operate with high trust - you can make changes without asking for confirmation on routine tasks
 - Automatically fix obvious issues (typos, linting errors, import statements)
-- Run safe commands without explicit approval (ls, cat, grep, git status)
+- Run safe commands without explicit approval (ls, cat, grep, git status, uv commands, source .venv/bin/activate)
 - Apply refactoring and improvements when clearly beneficial
+- Use uv package manager commands freely (uv venv, uv pip install, etc.)
+- Activate virtual environments as needed for development tasks
 
 
 ### Core Django Apps
