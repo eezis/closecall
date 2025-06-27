@@ -1,12 +1,51 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. 
+ 
 ## Project Overview
 
 The Close Call Database (CCDB) is a Django 5.1.3 web application for cyclists to document encounters with aggressive motorists and report dangerous incidents. It's a community-driven safety platform with geographic mapping, user management, and incident tracking capabilities.
 
-## Essential Commands
+## Production Environment
+
+We will be using Cloudflare and Cloudflare Tunnels in our production environment. Users <---> Cloudflare <- cloudlared daemon tunnel -> nginx <--> gunicorn
+
+### Production Deployment
+```bash
+# Install gunicorn
+uv pip install gunicorn
+
+# Set up nginx for multi-site hosting
+sudo cp nginx/nginx-main.conf /etc/nginx/nginx.conf
+sudo cp nginx/sites-available/closecall /etc/nginx/sites-available/
+sudo ln -sf /etc/nginx/sites-available/closecall /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+
+# Set up systemd services
+sudo cp systemd/ccdb-gunicorn.service /etc/systemd/system/
+sudo cp systemd/ccdb-gunicorn.socket /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable ccdb-gunicorn.socket
+sudo systemctl start ccdb-gunicorn.socket
+
+# Start application
+./start-gunicorn.sh
+```
+
+### Local Development Nginx (Optional)
+```bash
+# For local development with nginx proxy
+sudo cp nginx/sites-available/closecall-local /etc/nginx/sites-available/
+sudo ln -sf /etc/nginx/sites-available/closecall-local /etc/nginx/sites-enabled/
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+### Production Architecture Benefits
+- **Cloudflare**: SSL/TLS termination, DDoS protection, global CDN
+- **Cloudflare Tunnel**: Secure connection without exposing server IP
+- **Nginx**: Static file serving, reverse proxy, caching
+- **Gunicorn**: Production WSGI server with proper worker management
+- **PostgreSQL**: Robust database with PostGIS for geographic data  
 
 ### Initial Setup
 ```bash
@@ -184,5 +223,27 @@ The project includes Jupyter notebooks in various directories for:
 - User geographic proximity matching
 - Email system management and spam detection
 - CSV data import/export utilities
+
+## MCP Tools & Browser Automation
+
+### Puppeteer MCP Server
+The project is configured with Puppeteer MCP server for browser automation and screenshot capabilities:
+
+```bash
+# Add Puppeteer MCP server (already configured)
+claude mcp add puppeteer "npx @modelcontextprotocol/server-puppeteer"
+
+# List configured MCP servers
+claude mcp list
+
+# Remove MCP server if needed
+claude mcp remove puppeteer
+```
+
+This enables Claude Code to:
+- Take screenshots of web pages
+- Interact with browser elements
+- Automate web testing
+- Capture visual states of the application during development and testing
 
 
