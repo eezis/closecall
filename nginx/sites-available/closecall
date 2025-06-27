@@ -1,0 +1,143 @@
+# Close Call Database - Nginx site configuration
+# For Cloudflare Tunnel production environment
+# File: /etc/nginx/sites-available/closecall
+
+# Upstream gunicorn
+upstream closecall_gunicorn {
+    server 127.0.0.1:8890 fail_timeout=0;
+    keepalive 32;
+}
+
+# Main server block for closecalldatabase.com
+server {
+    listen 8888;
+    listen [::]:8888;
+    
+    server_name closecalldatabase.com www.closecalldatabase.com;
+    
+    # Logging
+    access_log /home/eae/code/closecall/nginx/closecall.access.log;
+    error_log /home/eae/code/closecall/nginx/closecall.error.log;
+    
+    client_max_body_size 2G;
+    
+    # Static files path
+    root /home/eae/code/closecall/nginx-root;
+    
+    # Trust Cloudflare IPs for real IP forwarding
+    set_real_ip_from 173.245.48.0/20;
+    set_real_ip_from 103.21.244.0/22;
+    set_real_ip_from 103.22.200.0/22;
+    set_real_ip_from 103.31.4.0/22;
+    set_real_ip_from 141.101.64.0/18;
+    set_real_ip_from 108.162.192.0/18;
+    set_real_ip_from 190.93.240.0/20;
+    set_real_ip_from 188.114.96.0/20;
+    set_real_ip_from 197.234.240.0/22;
+    set_real_ip_from 198.41.128.0/17;
+    set_real_ip_from 162.158.0.0/15;
+    set_real_ip_from 104.16.0.0/13;
+    set_real_ip_from 104.24.0.0/14;
+    set_real_ip_from 172.64.0.0/13;
+    set_real_ip_from 131.0.72.0/22;
+    real_ip_header CF-Connecting-IP;
+    
+    # Security headers
+    add_header X-Frame-Options SAMEORIGIN;
+    add_header X-Content-Type-Options nosniff;
+    add_header X-XSS-Protection "1; mode=block";
+    
+    # Health check endpoint for monitoring
+    location /health {
+        access_log off;
+        return 200 "healthy\n";
+        add_header Content-Type text/plain;
+    }
+    
+    # Static files with aggressive caching
+    location /static/ {
+        alias /home/eae/code/closecall/staticfiles/;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        add_header Vary Accept-Encoding;
+        
+        # Optional: serve compressed files directly if they exist
+        location ~* \.(css|js)$ {
+            gzip_static on;
+        }
+    }
+    
+    # Media files
+    location /media/ {
+        alias /home/eae/code/closecall/media/;
+        expires 30d;
+        add_header Cache-Control "public";
+    }
+    
+    # Favicon and robots.txt
+    location = /favicon.ico {
+        alias /home/eae/code/closecall/nginx-root/static/favicon.ico;
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+    
+    location = /robots.txt {
+        alias /home/eae/code/closecall/templates/robots.txt;
+        expires 1d;
+    }
+    
+    # Django application
+    location / {
+        try_files $uri @closecall_gunicorn;
+    }
+    
+    location @closecall_gunicorn {
+        proxy_pass http://closecall_gunicorn;
+        
+        # Headers for Django
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto https;  # Always HTTPS through Cloudflare
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header REMOTE_ADDR $remote_addr;
+        
+        # Cloudflare specific headers
+        proxy_set_header CF-Ray $http_cf_ray;
+        proxy_set_header CF-Visitor $http_cf_visitor;
+        proxy_set_header CF-Connecting-IP $http_cf_connecting_ip;
+        
+        # Connection settings
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        proxy_redirect off;
+        
+        # Timeouts
+        proxy_connect_timeout 60s;
+        proxy_send_timeout 60s;
+        proxy_read_timeout 60s;
+        
+        # Buffering
+        proxy_buffering on;
+        proxy_buffer_size 4k;
+        proxy_buffers 8 4k;
+    }
+    
+    # Security: deny access to sensitive files
+    location ~ /\.(ht|env|git) {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+    
+    location ~ ~$ {
+        deny all;
+        access_log off;
+        log_not_found off;
+    }
+    
+    # Block common attack patterns
+    location ~ /(\.|~) {
+        deny all;
+    }
+}

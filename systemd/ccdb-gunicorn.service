@@ -1,0 +1,27 @@
+[Unit]
+Description=Close Call Database Gunicorn daemon
+Requires=ccdb-gunicorn.socket
+After=network.target postgresql.service
+
+[Service]
+Type=notify
+# the specific user that our service will run as
+User=www-data
+Group=www-data
+# another option for an even more restricted service is
+# DynamicUser=yes
+# see http://0pointer.net/blog/dynamic-users-with-systemd.html
+
+RuntimeDirectory=gunicorn
+WorkingDirectory=/home/eae/code/closecall
+ExecStart=/home/eae/code/closecall/.venv/bin/gunicorn \
+    --config /home/eae/code/closecall/gunicorn.conf.py \
+    closecall.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+Environment="DJANGO_SETTINGS_MODULE=closecall.settings"
+
+[Install]
+WantedBy=multi-user.target
