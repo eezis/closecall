@@ -64,6 +64,15 @@ nginx-root/new-data.js
 # from restoration process 
 restore.sql
 setup_db.sql
+closecall_20250627.dump
+closecall_backup_before_migration_20250627_162112.sql
+closecall_backup_faulty_20250628_0838.sql
+closecall_local_backup_20250627_143733.sql
+
 
 # Screenshots directory
 screenshots/
+
+# this is the final backup before I nuked Digital Ocean
+data/CloseCallDatabase-DigitalOcean-FinalBackup.tar
+
