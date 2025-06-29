@@ -23,8 +23,8 @@ PROJECT_ROOT = BASE_DIR
 SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-dev-key-change-in-production')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # Set to True for development
-DEV_MODE = True
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'  # Read from environment
+DEV_MODE = DEBUG  # Match DEBUG setting
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.closecalldatabase.com']
 
@@ -67,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.AntiCSRFBypassMiddleware',  # Custom anti-CSRF bypass
 ]
 
 ROOT_URLCONF = 'closecall.urls'

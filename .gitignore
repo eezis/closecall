@@ -64,3 +64,6 @@ nginx-root/new-data.js
 # from restoration process 
 restore.sql
 setup_db.sql
+
+# Screenshots directory
+screenshots/

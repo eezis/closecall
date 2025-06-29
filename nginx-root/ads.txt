@@ -1,0 +1,7 @@
+# ads.txt for closecalldatabase.com
+# This file indicates that this site does not participate in programmatic advertising
+
+# If you want to add advertising in the future, you would add entries like:
+# google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0
+
+# For now, this empty file prevents 404 errors from ad networks checking for it
