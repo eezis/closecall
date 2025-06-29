@@ -65,7 +65,7 @@ urlpatterns = [
     # Static pages
     path('login-help-page/', TemplateView.as_view(template_name='loginhelper.html'), name="login-helper"),
     re_path(r'^faq/?$', TemplateView.as_view(template_name='faq.html'), name="faq"),
-    re_path(r'^support/?$', TemplateView.as_view(template_name='support-ccdb.html'), name="support-ccdb"),
+    re_path(r'^support/?$', SupportView, name="support-ccdb"),
     path('smart-500/', TemplateView.as_view(template_name='smart-500.html'), name="smart-500"),
     path('privacy/', TemplateView.as_view(template_name='privacy.html'), name='privacy-policy'),
 
@@ -87,8 +87,9 @@ urlpatterns = [
     # Testing
     re_path(r'^ajax-test/?$', TemplateView.as_view(template_name='test/ajax-test.html'), name="ajax-test"),
 
-    # Robots.txt
+    # Robots.txt and ads.txt
     re_path(r'^robots\.txt$', TemplateView.as_view(template_name="robots.txt", content_type='text/plain')),
+    re_path(r'^ads\.txt$', TemplateView.as_view(template_name="ads.txt", content_type='text/plain')),
 ]
 
 # Add static file serving

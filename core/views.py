@@ -18,7 +18,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from users.models import UserProfile
-from core.models import UserInput
+from core.models import UserInput, Product
 
 # to support the custom 400 and 500 handlers (handler500 , handler404)
 # render_to_response and RequestContext removed - deprecated in Django 3.0
@@ -50,37 +50,37 @@ def safe_print(msg, print_it=True, email_it=False):
             pass
     if email_it:
         subject = "Cores View: Registration Message"
-        send_mail(subject, msg, 'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+        send_mail(subject, msg, 'noreply@alert.closecalldatabase.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
 
 
 def admin_mailer(subj, msg):
     ts = time.ctime()
     msg + "\n\n" + ts
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-    send_mail(subj, msg, 'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com',], fail_silently=False)
+    send_mail(subj, msg, 'noreply@alert.closecalldatabase.com', ['ernest.ezis@gmail.com',], fail_silently=False)
 
 
 def input_mailer(subj, msg):
     ts = time.ctime()
     msg + "\n\n" + ts
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-    send_mail(subj, msg, 'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com',], fail_silently=False)
+    send_mail(subj, msg, 'noreply@alert.closecalldatabase.com', ['closecalldatabase@gmail.com',], fail_silently=False)
 
 
 def incident_review_mailer(subj, msg):
     ts = time.ctime()
     msg + "\n\n" + ts
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-    send_mail(subj, msg, 'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com', 'closecalldatabase@gmail' ], fail_silently=False)
+    send_mail(subj, msg, 'noreply@alert.closecalldatabase.com', ['ernest.ezis@gmail.com', 'closecalldatabase@gmail.com' ], fail_silently=False)
 
 
 def send_incident_notification(subj, msg, recipient, htmlmsg=None):
     to = []
     to.append(recipient)
     if htmlmsg != None:
-        send_mail(subj, msg, 'closecalldatabase@gmail.com', to, fail_silently=False, html_message=htmlmsg)
+        send_mail(subj, msg, 'noreply@alert.closecalldatabase.com', to, fail_silently=False, html_message=htmlmsg)
     else:
-        send_mail(subj, msg, 'closecalldatabase@gmail.com', to, fail_silently=False)
+        send_mail(subj, msg, 'noreply@alert.closecalldatabase.com', to, fail_silently=False)
 
 
 def HomeView(request):
@@ -119,7 +119,7 @@ def HomeView(request):
 
             msg = the_user + new_msg + msg
 
-            send_mail('YIKES HomeView ERROR', msg,'closecalldatabase@gmail.com', ['ernest.ezis@gmail.com',], fail_silently=False)
+            send_mail('YIKES HomeView ERROR', msg,'noreply@alert.closecalldatabase.com', ['ernest.ezis@gmail.com',], fail_silently=False)
             # RelatedObjectDoesNotExist: User has no profile.
             # 1. log this
             # 2. send email
@@ -134,7 +134,18 @@ def HomeView(request):
 
 
 def SupportView(request):
-    return render(request, 'support-ccdb.html')
+    products = Product.objects.filter(is_active=True).order_by('order', 'name')
+    featured_products = products.filter(is_featured=True)
+    
+    # Debug logging
+    print(f"DEBUG: Total products found: {products.count()}")
+    print(f"DEBUG: Featured products: {featured_products.count()}")
+    
+    context = {
+        'products': products,
+        'featured_products': featured_products,
+    }
+    return render(request, 'support-ccdb.html', context)
 
 CCDB_CLIENT_ID= '3869'
 CCDB_REDIRECT_URL = 'http://closecalldatabase.com/strava-registration'
