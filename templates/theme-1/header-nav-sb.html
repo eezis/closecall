@@ -1,7 +1,7 @@
-    <header class="navbar yamm navbar-default navbar-static-top">
+    <header class="navbar yamm navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header" style="padding-top:14px;">
-                <a href="/home" class="navbar-brand color-green" style="font-size: 1.9em;">CloseCallDatabase</a>
+                <a href="/home" class="navbar-brand" style="font-size: 1.9em;">Close Call Database</a>
             </div>
 
 
@@ -9,7 +9,7 @@
     {% if user.is_authenticated %}
        <ul class="nav navbar-nav">
          {# <li><a href="{% url 'reporting-1' %}" style="color:cyan; font-size:1.2em; padding-left:30px;">Report An Incident</a></li> #}
-         <li><a href="{% url 'reporting-1' %}" ><b class="color-green navbar-brand" style="font-size:1.2em; margin-left:60px;">Report An Incident</b></a></li>
+         <li><a href="{% url 'reporting-1' %}" class="report-incident">Report An Incident</a></li>
       </ul>
     {% endif %}
 {% endcomment %}
@@ -17,16 +17,16 @@
         <div class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav navbar-main-menu">
             {% if user.is_authenticated %}
-            <li><a href="{% url 'reporting-1' %}" ><b class="color-green navbar-brand" style="font-size:1.2em; margin-left:60px;">Report An Incident</b></a></li>
+            <li><a href="{% url 'reporting-1' %}" class="report-incident">Report An Incident</a></li>
             {% endif %}
-            <li><a href="{% url 'news' %}"><b class="color-green navbar-brand" style="font-size:1.0em;">News</b></a></li>
-            <li><a href="{% url 'list-articles' %}"><b class="color-green navbar-brand" style="font-size:1.0em;">Articles</b></a></li>
-            <li><a href="{% url 'about' %}"><b class="color-green navbar-brand" style="font-size:1.0em;">About</b></a></li>
+            <li><a href="{% url 'news' %}">News</a></li>
+            <li><a href="{% url 'list-articles' %}">Articles</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
 
 
         {% if user.is_authenticated %}
         {# only show the FAQ to the registered users #}
-        <li><a href="{% url 'faq' %}"><b class="color-green navbar-brand" style="font-size:1.0em;">FAQ</b></a></li>
+        <li><a href="{% url 'faq' %}">FAQ</a></li>
 
         {% comment %}
           <li><span class="glyphicon glyphicon-cog white" style="padding: 16px 0 2px 0;"></span></li>

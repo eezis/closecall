@@ -1,8 +1,9 @@
 /* Close Call Database - Accessibility Improvements */
 
-/* Fix navbar contrast - make inactive menu items lighter for better contrast */
+/* Fix navbar contrast - make inactive menu items off-white/ivory for better contrast */
 .navbar-inverse .navbar-nav > li > a {
-    color: #e8e8e8 !important;  /* Much lighter gray, closer to white */
+    color: #FFFFF0 !important;  /* Ivory color for unselected items */
+    font-weight: normal;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
@@ -10,14 +11,36 @@
     color: #ffffff !important;  /* Pure white on hover */
 }
 
-/* Fix navbar brand contrast - make it white like other nav items */
+/* Active menu items - white and bold */
+.navbar-inverse .navbar-nav > li.active > a,
+.navbar-inverse .navbar-nav > li.active > a:hover,
+.navbar-inverse .navbar-nav > li.active > a:focus {
+    color: #ffffff !important;  /* Pure white for active items */
+    font-weight: bold;
+    background-color: transparent !important;
+}
+
+/* Fix navbar brand contrast */
 .navbar-inverse .navbar-brand {
-    color: #e8e8e8 !important;  /* Same near-white color as nav items */
+    color: #FFFFF0 !important;  /* Ivory color to match menu items */
 }
 
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
     color: #ffffff !important;  /* Pure white on hover */
+}
+
+/* Special styling for Report An Incident button */
+.navbar-inverse .navbar-nav > li > a.report-incident {
+    font-size: 1.1em;
+    margin-left: 30px;
+    font-weight: 500;
+}
+
+/* Remove any color-green overrides (deprecated) */
+.navbar-inverse .color-green,
+.navbar-inverse .navbar-brand.color-green {
+    color: inherit !important;
 }
 
 /* Fix link contrast throughout the site */
