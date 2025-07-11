@@ -345,8 +345,8 @@ def strava_registration(request):
 
     safe_print("Strava Token: {}".format(strava_token))
 
-    if 'errors' in request.body:
-        admin_mailer('TROUBLE - Errors from Strava Response', 'There should be an error value \n\n:'  + request.body)
+    if b'errors' in request.body:
+        admin_mailer('TROUBLE - Errors from Strava Response', 'There should be an error value \n\n:'  + request.body.decode('utf-8'))
 
 
     if strava_token is None:
