@@ -1,7 +1,7 @@
-    <header class="navbar yamm navbar-default navbar-static-top">
+    <header class="navbar yamm navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="/home" class="navbar-brand color-green" style="padding-top:22px;font-size: 1.9em;">CloseCallDatabase</a>
+                <a href="/home" class="navbar-brand" style="padding-top:22px;font-size: 1.9em;">Close Call Database</a>
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></button>
             </div>
 
@@ -9,7 +9,7 @@
     {% if user.is_authenticated %}
        <ul class="nav navbar-nav">
          {# <li><a href="{% url 'reporting-1' %}" style="color:cyan; font-size:1.2em; padding-left:30px;">Report An Incident</a></li> #}
-         <li><a href="{% url 'reporting-1' %}" ><b class="color-green navbar-brand" style="font-size:1.2em; padding-left:30px;">Report An Incident</b></a></li>
+         <li><a href="{% url 'reporting-1' %}" class="report-incident">Report An Incident</a></li>
       </ul>
     {% endif %}
 
@@ -20,14 +20,14 @@
 
 
 
-        <li><a href="{% url 'news' %}"><b class="color-green navbar-brand" style="font-size:1.0em;">News</b></a></li>
-        <li><a href="{% url 'list-articles' %}"><b class="color-green navbar-brand" style="font-size:1.0em;">Articles</b></a></li>
-        <li><a href="{% url 'about' %}"><b class="color-green navbar-brand" style="font-size:1.0em;">About</b></a></li>
+        <li><a href="{% url 'news' %}">News</a></li>
+        <li><a href="{% url 'list-articles' %}">Articles</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
 
 
         {% if user.is_authenticated %}
         {# only show the FAQ to the registered users #}
-        <li><a href="{% url 'faq' %}"><b class="color-green navbar-brand" style="font-size:1.0em;">FAQ</b></a></li>
+        <li><a href="{% url 'faq' %}">FAQ</a></li>
 
         {% comment %}
           <li><span class="glyphicon glyphicon-cog white" style="padding: 16px 0 2px 0;"></span></li>
