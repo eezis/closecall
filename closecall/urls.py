@@ -7,8 +7,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # View imports
 from core.views import (
-    HomeView, strava_registration, redirect_to_strava_login, 
-    redirect_to_strava_via_login_page, CreateUserInput, show_user_map, SupportView
+    HomeView, strava_registration, redirect_to_strava_login,
+    redirect_to_strava_via_login_page, strava_complete_registration,
+    CreateUserInput, show_user_map, SupportView
 )
 from publish.views import NewsView, news_preview, list_articles, show_article
 from users.views import (
@@ -59,6 +60,7 @@ urlpatterns = [
 
     # Strava integration
     path('strava-registration', strava_registration, name="strava-registration"),
+    path('strava-complete-registration', strava_complete_registration, name="strava-complete-registration"),
     path('get-strava-login', redirect_to_strava_login, name="strava-login"),
     path('get-strava-login-from-login', redirect_to_strava_via_login_page, name="strava-login"),
 
