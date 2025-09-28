@@ -36,7 +36,8 @@ from incident.models import Incident
 from publish.models import InTheNews
 
 from random import randint
-from django.db import IntegrityError
+from django.db import IntegrityError, DataError
+from django.utils import timezone
 
 P = True
 
@@ -218,8 +219,15 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
     """ ****************************************************************************************************** """
     # new_user = User(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
     try:
-        new_user = User.objects.create_user(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
-        new_user.save()
+        # Create user with last_login set to avoid null constraint in Django 5
+        new_user = User.objects.create_user(
+            username=created_username,
+            first_name=fname,
+            last_name=lname,
+            email=email,
+            password=created_password,
+            last_login=timezone.now()
+        )
     except IntegrityError:
         # this means we have an instance where there is already on Sam Thomas, and seccond one is trying to join-probably from Strava
         # let's try to add the athlete_id or a random number
@@ -235,8 +243,15 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
             created_username = created_username + '-' + str((randint(1,1000)))
 
         safe_print('created_username is: {}'.format(created_username))
-        new_user = User.objects.create_user(username=created_username, first_name=fname, last_name=lname, email=email, password=created_password)
-        new_user.save()
+        # Create user with last_login set to avoid null constraint in Django 5
+        new_user = User.objects.create_user(
+            username=created_username,
+            first_name=fname,
+            last_name=lname,
+            email=email,
+            password=created_password,
+            last_login=timezone.now()
+        )
     except DataError:
         admin_mailer('UNEXPECTED LOGIN ISSUE', 'Are long emails causing problems? See core.views line ~221. \n'
             + email + '\n' + created_username + '\n' + fname + '\n' + lname + '\n' + athlete_id)
@@ -518,12 +533,15 @@ def strava_registration(request):
                     email = user.email
 
             except User.DoesNotExist:
-                ### THIS WILL ERROR IT OUT ON PURPOSE -- FIX THIS LATER
-                email = oauth_resp['athlete']['email']
-                ### So need to redirect for login and register via strava, and collect the
-                ### email address, then come back and proceed
+                ### User doesn't exist - they're a new registrant
+                ### Strava no longer provides email, so we'll redirect to collect it
+                ### Store the Strava data in session and redirect to email collection
+                safe_print("New Strava user - redirecting to email collection")
+                request.session['strava_athlete'] = oauth_resp['athlete']
+                request.session.save()
+                return HttpResponseRedirect('/strava-complete-registration')
 
-
+            # Only gets here for existing users
             safe_print(u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email))
             # try:
             #     if P: print(u"CURRENT STRAVA REGISTRANT:: {} {} {} {} {} {}".format(fname, lname, city, state, country, email))
@@ -658,6 +676,67 @@ def redirect_to_strava_via_login_page(request):
     # this is the login via strava from the login page (should be a returning user - above is *likely* a first time registrant)
     return HttpResponseRedirect('https://www.strava.com/oauth/authorize?client_id=' + CCDB_CLIENT_ID +
         '&response_type=code&redirect_uri=' + CCDB_REDIRECT_URL)
+
+def strava_complete_registration(request):
+    """Complete Strava registration by collecting email address"""
+    from core.forms import StravaEmailForm
+
+    # Check if we have Strava data in session
+    if 'strava_athlete' not in request.session:
+        messages.error(request, "Session expired. Please try registering again.")
+        return HttpResponseRedirect('/get-strava-login')
+
+    strava_data = request.session['strava_athlete']
+
+    if request.method == 'POST':
+        form = StravaEmailForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+
+            # Extract user data from session
+            fname = strava_data.get('firstname', '')
+            lname = strava_data.get('lastname', '')
+            athlete_id = str(strava_data.get('id', ''))
+            city = strava_data.get('city', 'NA')
+            state = strava_data.get('state', 'NA')
+            country = strava_data.get('country', 'NA')
+
+            # Create username (max 30 chars)
+            created_username = f"{fname} {lname}"[:30]
+
+            # Create the user with the collected email
+            this_user = get_or_create_user(email, created_username, fname, lname, athlete_id)
+
+            # Create the user profile
+            new_profile = UserProfile(
+                user=this_user,
+                first=fname,
+                last=lname,
+                city=city,
+                state=state,
+                country=country,
+                created_with=f'strava-{athlete_id}',
+                oauth_data=str(strava_data)
+            )
+            new_profile.save()
+
+            # Log the user in
+            if login_a_user(request, this_user, athlete_id):
+                # Clean up session
+                del request.session['strava_athlete']
+                messages.success(request, f"Welcome to the Close Call Database, {fname}!")
+                return HttpResponseRedirect('/')
+            else:
+                messages.error(request, "There was an issue logging you in. Please try again.")
+                return HttpResponseRedirect('/accounts/login/')
+    else:
+        form = StravaEmailForm()
+
+    context = {
+        'form': form,
+        'strava_user': strava_data
+    }
+    return render(request, 'strava-email-collection.html', context)
 
 
 

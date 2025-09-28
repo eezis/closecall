@@ -1,9 +1,31 @@
-# from django import forms
-# from django.contrib.auth.models import User
+from django import forms
+from django.contrib.auth.models import User
 # from registration.forms import RegistrationForm
 # from django.contrib.auth.forms import UserCreationForm
 
-# from django.forms import EmailField
+from django.forms import EmailField
+
+class StravaEmailForm(forms.Form):
+    """Form to collect email after Strava OAuth authentication"""
+    email = forms.EmailField(
+        label="Email Address",
+        required=True,
+        help_text="We'll use this to notify you about incidents in your area",
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'your.email@example.com',
+            'autofocus': True,
+        })
+    )
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        # Check if email already exists
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError(
+                "This email is already registered. Please use a different email or log in with your existing account."
+            )
+        return email
 
 # class MyRegistrationForm(RegistrationForm):
 #     first_name = forms.RegexField(regex=r'^[\w ]+$',

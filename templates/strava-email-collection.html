@@ -1,0 +1,193 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}Complete Your Registration - Close Call Database{% endblock %}
+
+{% block extra_styles %}
+.strava-auth-success {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.strava-auth-success h2 {
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.strava-user-info {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.strava-user-info img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    border: 3px solid white;
+}
+
+.strava-user-details h3 {
+    margin: 0;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.strava-user-details p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.95rem;
+}
+
+.email-form-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.email-form-card h3 {
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.why-email {
+    background: #f8f9fa;
+    border-left: 4px solid #fc4c02;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+}
+
+.why-email h4 {
+    color: #fc4c02;
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.why-email ul {
+    margin-bottom: 0;
+    padding-left: 1.5rem;
+}
+
+.why-email li {
+    margin: 0.5rem 0;
+    color: #555;
+}
+
+.btn-strava {
+    background: #fc4c02;
+    color: white;
+    padding: 0.75rem 2rem;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.btn-strava:hover {
+    background: #e03e00;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(252, 76, 2, 0.3);
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+}
+
+.help-text {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+{% endblock %}
+
+{% block main_content %}
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <!-- Strava Success Banner -->
+                <div class="strava-auth-success">
+                    <h2><i class="fa fa-check-circle"></i> Strava Connected Successfully!</h2>
+                    {% if strava_user %}
+                    <div class="strava-user-info">
+                        {% if strava_user.profile %}
+                        <img src="{{ strava_user.profile }}" alt="{{ strava_user.firstname }}" onerror="this.src='https://via.placeholder.com/60';">
+                        {% else %}
+                        <img src="https://via.placeholder.com/60" alt="Profile">
+                        {% endif %}
+                        <div class="strava-user-details">
+                            <h3>{{ strava_user.firstname }} {{ strava_user.lastname }}</h3>
+                            <p>
+                                {% if strava_user.city %}{{ strava_user.city }}{% endif %}
+                                {% if strava_user.city and strava_user.state %}, {% endif %}
+                                {% if strava_user.state %}{{ strava_user.state }}{% endif %}
+                                {% if strava_user.country %} • {{ strava_user.country }}{% endif %}
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Email Collection Form -->
+                <div class="email-form-card">
+                    <h3>One Last Step: Add Your Email</h3>
+
+                    <div class="why-email">
+                        <h4><i class="fa fa-info-circle"></i> Why we need your email:</h4>
+                        <ul>
+                            <li><strong>Safety Alerts:</strong> Get notified when incidents are reported near you</li>
+                            <li><strong>Account Security:</strong> Recover your account if needed</li>
+                            <li><strong>Community Updates:</strong> Important safety information for cyclists</li>
+                        </ul>
+                    </div>
+
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                            {% if form.email.help_text %}
+                            <p class="help-text">{{ form.email.help_text }}</p>
+                            {% endif %}
+                            {% if form.email.errors %}
+                            <div class="error-message">
+                                {{ form.email.errors.0 }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <button type="submit" class="btn btn-strava btn-block">
+                            <i class="fa fa-envelope"></i> Complete Registration
+                        </button>
+                    </form>
+
+                    <div class="text-center" style="margin-top: 1.5rem; color: #666;">
+                        <small>
+                            <i class="fa fa-lock"></i> Your email is safe with us.
+                            We'll never share it with third parties.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
