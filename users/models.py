@@ -37,6 +37,9 @@ class UserProfile(BaseFields):
     class meta:
         ordering = ['-created',]
 
+    def __str__(self):
+        return f"{self.first} {self.last} :: {self.user.username}"
+
     def __unicode__(self):
         return unicode(self.first) + ' ' + unicode(self.last) + ' :: ' + unicode(self.user.username) + ' ==> ' + unicode(self.user.email) + \
             ' -- ' + self.created.strftime('%Y-%m-%d %H:%M') + ' --  ' + unicode(self.city) + ', ' + unicode(self.state)

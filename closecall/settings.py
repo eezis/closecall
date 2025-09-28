@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'fallback-dev-key-change-in-production')
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'  # Read from environment
 DEV_MODE = DEBUG  # Match DEBUG setting
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.closecalldatabase.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.closecalldatabase.com', 'closecalldatabase.com']
 
 # Application definition
 DJANGO_APPS = [
@@ -132,7 +132,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'nginx-root' / 'static'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
@@ -240,6 +240,20 @@ SUMMERNOTE_CONFIG = {
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
+
+# CSRF settings for Cloudflare tunnel
+CSRF_TRUSTED_ORIGINS = [
+    'https://closecalldatabase.com',
+    'https://www.closecalldatabase.com',
+    'https://test.closecalldatabase.com',
+    'http://localhost:8888',
+    'http://127.0.0.1:8888',
+]
+
+# Ensure HTTPS is recognized through proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
 
 # Google Maps API Key
 GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY', '')
