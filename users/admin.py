@@ -22,7 +22,8 @@ class UserProfileAdminCustomization(forms.ModelForm):
 class UserProfileAdmin(admin.ModelAdmin):
     form = UserProfileAdminCustomization
 
-    search_fields = ['first', 'last', 'country', 'city', 'user__email' ]
+    list_display = ('user', 'first', 'last', 'city', 'state')
+    search_fields = ['first', 'last', 'country', 'city', 'user__email', 'user__username']
     list_filter = ('country', 'state',)
 
 admin.site.register(UserProfile, UserProfileAdmin)
