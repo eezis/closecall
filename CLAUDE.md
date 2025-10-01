@@ -6,6 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 The Close Call Database (CCDB) is a Django 5.1.3 web application for cyclists to document encounters with aggressive motorists and report dangerous incidents. It's a community-driven safety platform with geographic mapping, user management, and incident tracking capabilities.
 
+## Important Notes
+
+- **Package Manager**: This project uses `uv` package manager (not pip directly)
+- **Server Management**: This is a production server. Use `./stop_all_servers.sh` to stop and `./start_all_servers_with_prefixes.sh` to restart servers
+- **DO NOT** use `python manage.py runserver` commands directly on this system
+
 ## Production Environment
 
 We will be using Cloudflare and Cloudflare Tunnels in our production environment. Users <---> Cloudflare <- cloudlared daemon tunnel -> nginx <--> gunicorn
@@ -88,11 +94,12 @@ uv pip install -r requirements.txt
 
 ## Architecture Overview
 
-- Use the uv package manager for this project, it is already installed
+- **IMPORTANT**: Use the `uv` package manager for this project (not pip directly)
 - Environment variables managed through `.env` file with python-dotenv
 - Upgraded from Django 1.7.7 to Django 5.1.3 with modern patterns
 - Secure credential management with gitignore protection
 - Context processors for template variable access
+- Production server with multiple sites - use provided scripts for server management
 
 ## Trust Level
 - Operate with high trust - you can make changes without asking for confirmation on routine tasks
