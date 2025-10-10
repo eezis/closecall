@@ -64,7 +64,24 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
             print(u"\nCreateIncidentView.get_initial :: {} {}\n".format(self.request.user, self.request.user.id))
         except IOError:
             pass
-        return { 'user': self.request.user }
+
+        # Set default coordinates (Boulder, CO)
+        initial = {
+            'user': self.request.user,
+            'latitude': 40.0149856,
+            'longitude': -105.2705456
+        }
+
+        # Try to get user's location if they have a profile with position
+        try:
+            if hasattr(self.request.user, 'profile') and self.request.user.profile.position:
+                user_lat, user_lon = self.request.user.profile.get_lat_lon()
+                initial['latitude'] = user_lat
+                initial['longitude'] = user_lon
+        except:
+            pass
+
+        return initial
 
     def form_invalid(self, form):
         print("Form Invalid")
@@ -95,11 +112,29 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
             subj2 = 'Close Call Database'
 
         msg = "Incident created by " + self.request.user.username + ' :: ' + self.request.user.email
-        incident_review_mailer(subj, msg)
 
+        # Send notification to admin - don't break incident creation if this fails
+        try:
+            incident_review_mailer(subj, msg)
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Failed to send incident review notification: {str(e)}")
 
         # now send an email message to the user
-        send_mail(subj2 , user_msg_incident_created, 'closecalldatabase@gmail.com', [self.request.user.email])
+        try:
+            send_mail(
+                subj2,
+                user_msg_incident_created,
+                settings.DEFAULT_FROM_EMAIL,
+                [self.request.user.email],
+                fail_silently=False
+            )
+        except Exception as e:
+            # Log the error but don't break incident creation
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Failed to send incident confirmation email to {self.request.user.email}: {str(e)}")
 
         # for key, value in self.request.POST.iteritems():
 

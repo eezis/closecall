@@ -55,79 +55,92 @@ def safe_print(msg, print_it=True, email_it=False):
 
 
 def admin_mailer(subj, msg):
+    from django.conf import settings
     ts = time.ctime()
     msg + "\n\n" + ts
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-    send_mail(subj, msg, 'noreply@alert.closecalldatabase.com', ['ernest.ezis@gmail.com',], fail_silently=False)
+    send_mail(subj, msg, settings.DEFAULT_FROM_EMAIL, ['ernest.ezis@gmail.com',], fail_silently=False)
 
 
 def input_mailer(subj, msg):
+    from django.conf import settings
     ts = time.ctime()
     msg + "\n\n" + ts
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-    send_mail(subj, msg, 'noreply@alert.closecalldatabase.com', ['closecalldatabase@gmail.com',], fail_silently=False)
+    send_mail(subj, msg, settings.DEFAULT_FROM_EMAIL, ['closecalldatabase@gmail.com',], fail_silently=False)
 
 
 def incident_review_mailer(subj, msg):
+    from django.conf import settings
     ts = time.ctime()
     msg + "\n\n" + ts
     # send_mail(subj, msg,'closecalldatabase@gmail.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
-    send_mail(subj, msg, 'noreply@alert.closecalldatabase.com', ['ernest.ezis@gmail.com', 'closecalldatabase@gmail.com' ], fail_silently=False)
+    send_mail(subj, msg, settings.DEFAULT_FROM_EMAIL, ['ernest.ezis@gmail.com', 'closecalldatabase@gmail.com' ], fail_silently=False)
 
 
 def send_incident_notification(subj, msg, recipient, htmlmsg=None):
+    """
+    Send incident notification email to a user.
+    Uses settings.DEFAULT_FROM_EMAIL (Resend verified domain).
+    """
+    from django.conf import settings
     to = []
     to.append(recipient)
     if htmlmsg != None:
-        send_mail(subj, msg, 'noreply@alert.closecalldatabase.com', to, fail_silently=False, html_message=htmlmsg)
+        send_mail(subj, msg, settings.DEFAULT_FROM_EMAIL, to, fail_silently=False, html_message=htmlmsg)
     else:
-        send_mail(subj, msg, 'noreply@alert.closecalldatabase.com', to, fail_silently=False)
+        send_mail(subj, msg, settings.DEFAULT_FROM_EMAIL, to, fail_silently=False)
 
 
 def HomeView(request):
     if request.user.is_authenticated:
         I = Incident.objects.filter(user=request.user)
         N = InTheNews.objects.all().values('title', 'url', 'tldr')[:5]
+
+        # Check if user has a profile - try to get or create it
+        from users.models import UserProfile
         try:
-            Local_I = request.user.profile.get_user_incidents()
+            profile = request.user.profile
+            Local_I = profile.get_user_incidents()
             # Latest_I = Latest Incidents (most recent) -- might want to modify to get the most recent *dangeruous* instances
             Recent_I = Incident.objects.filter(visible=True).order_by('-id')[:10]
             # return render(request, 'home.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
             # see line 113 as well if you make changes to the response object
             # return render(request, 'home-new-map.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
             return render(request, 'home.html', {'incidents': I, 'news_stories': N, 'local_incidents': Local_I, 'recent_incidents': Recent_I})
-        except AttributeError:
-            msg = """
-            Last time there was a problem here, registered users were getting redirected to create a user profile. But the real problem
-            In [49]: incidents = Incident.objects.all()
-            In [54]: for i in incidents:
-                print(i.position, i.address, i.user)
+        except (AttributeError, UserProfile.DoesNotExist):
+            # Check if profile really doesn't exist
+            profile_exists = UserProfile.objects.filter(user=request.user).exists()
 
-            49.2459762,-123.10122899999999 168 East 28th Avenue, Vancouver, BC V5V 3R1, Canada jwerner
-            None  Stephen Banister
-            33.8552123,-83.8922349 4098 Bay Creek Road, Loganville, GA 30052, USA John Coyle
+            if profile_exists:
+                # Profile exists but there's another issue - possibly with get_user_incidents
+                # Try to get the profile directly and handle the error
+                profile = UserProfile.objects.get(user=request.user)
+                Local_I = []  # Empty list as fallback
+                Recent_I = Incident.objects.filter(visible=True).order_by('-id')[:10]
 
-            I had to delete the incident. Save the data first.
-            """
+                # Log the issue for debugging
+                print(f"Profile exists but get_user_incidents failed for user {request.user.username}")
 
-            the_user = u'The Error effected: {} {} \n'.format(request.user.username, request.user.email)
+                # Continue to render the home page with empty local incidents
+                return render(request, 'home.html', {
+                    'incidents': I,
+                    'news_stories': N,
+                    'local_incidents': Local_I,
+                    'recent_incidents': Recent_I
+                })
+            else:
+                # Profile truly doesn't exist - redirect to create one
+                # This should only happen for email-registered users
+                the_user = u'User needs profile: {} {} \n'.format(request.user.username, request.user.email)
+                msg = """User registered but has no profile. Redirecting to create-user-profile."""
 
-            new_msg = """
-            Was this a recent registration? Does a profile exist for this user? The last time I saw this message,
-            it was from TandemRider who had a User and an Active registration, but his profile did not exist.
-            Is there some sort of Pilot Error here? Should they be directed to their profile page? \n\n
-            """
+                # Only send email for debugging, not for expected behavior
+                # send_mail('User needs profile', the_user + msg,'noreply@alert.closecalldatabase.com', ['ernest.ezis@gmail.com',], fail_silently=True)
 
-            msg = the_user + new_msg + msg
-
-            send_mail('YIKES HomeView ERROR', msg,'noreply@alert.closecalldatabase.com', ['ernest.ezis@gmail.com',], fail_silently=False)
-            # RelatedObjectDoesNotExist: User has no profile.
-            # 1. log this
-            # 2. send email
-            # 3. redirect to create-user-profile (should send it with a message)
-            no_user_profile_msg = "You must create a User Profile in order to proceed."
-            messages.add_message(request, messages.INFO, no_user_profile_msg)
-            return HttpResponseRedirect('/create-user-profile/')
+                no_user_profile_msg = "You must create a User Profile in order to proceed."
+                messages.add_message(request, messages.INFO, no_user_profile_msg)
+                return HttpResponseRedirect('/create-user-profile/')
 
     else:
         # return render(request, 'home.html')
@@ -234,10 +247,10 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
         safe_print(u"INTEGRITY ERROR: Probably two Strava user with same name, {} {}, attempting to fix by generating unique username".format(fname,lname))
         if athlete_id not in [None, '']:
             try:
-                created_username = created_username + '-' + athlete_id
+                created_username = created_username + '-' + str(athlete_id)
             except TypeError:
                 admin_mailer('TypeError, cores/views.py', 'The values are: \n'
-                    + 'created_username: ' + created_username + '\n athlete_id ' + athlete_id )
+                    + 'created_username: ' + created_username + '\n athlete_id ' + str(athlete_id))
         else:
             # I can live with the 1 in 1000 chance we gen a duplicate if the user is not coming from Strava
             created_username = created_username + '-' + str((randint(1,1000)))
@@ -720,10 +733,43 @@ def strava_complete_registration(request):
             )
             new_profile.save()
 
+            # Send welcome email to new user
+            try:
+                welcome_subject = "Welcome to the Close Call Database!"
+                welcome_message = f"""
+Hi {fname},
+
+Welcome to the Close Call Database! Your account has been successfully created through Strava.
+
+You can now:
+- Report close calls and dangerous incidents
+- View incidents in your area
+- Get safety alerts for your location
+- Connect with the cycling safety community
+
+Your username is: {created_username}
+Your registered email is: {email}
+
+Stay safe out there!
+
+The Close Call Database Team
+                """
+                send_mail(
+                    welcome_subject,
+                    welcome_message,
+                    'noreply@alert.closecalldatabase.com',
+                    [email],
+                    fail_silently=False
+                )
+                print(f"Welcome email sent to {email}")
+            except Exception as e:
+                print(f"Failed to send welcome email to {email}: {e}")
+
             # Log the user in
             if login_a_user(request, this_user, athlete_id):
-                # Clean up session
-                del request.session['strava_athlete']
+                # Clean up session (safely check if key exists)
+                if 'strava_athlete' in request.session:
+                    del request.session['strava_athlete']
                 messages.success(request, f"Welcome to the Close Call Database, {fname}!")
                 return HttpResponseRedirect('/')
             else:
@@ -736,7 +782,7 @@ def strava_complete_registration(request):
         'form': form,
         'strava_user': strava_data
     }
-    return render(request, 'strava-email-collection.html', context)
+    return render(request, 'strava-email-collection-fixed.html', context)
 
 
 
@@ -757,10 +803,33 @@ from core.views import ValidFormMixin, FilterToUserMixin, LoginRequiredMixin
 class ValidFormMixin(object):
 
     def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.owned_by = self.request.user
-        self.object.save()
-        return super(ValidFormMixin, self).form_valid(form)
+        try:
+            self.object = form.save(commit=False)
+            # Only set owned_by if the model has this field
+            if hasattr(self.object, 'owned_by'):
+                self.object.owned_by = self.request.user
+            self.object.save()
+            return super(ValidFormMixin, self).form_valid(form)
+        except IntegrityError as e:
+            # Handle database integrity errors (duplicate keys, constraints, etc)
+            user = self.request.user
+            email = user.email or "no email"
+            print(f"ERROR: Database integrity error for user {user.username} ({email}): {str(e)}")
+            form.add_error(None, "Database error: Unable to save. Please contact support if this persists.")
+            return self.form_invalid(form)
+        except DataError as e:
+            # Handle data errors (value too long, wrong type, etc)
+            user = self.request.user
+            email = user.email or "no email"
+            print(f"ERROR: Data validation error for user {user.username} ({email}): {str(e)}")
+            form.add_error(None, "Data validation error: Please check your input and try again.")
+            return self.form_invalid(form)
+        except Exception as e:
+            # Handle any other unexpected errors
+            user = self.request.user
+            email = user.email or "no email"
+            print(f"ERROR: Unexpected error saving form for user {user.username} ({email}): {str(e)}")
+            raise
 
 class FilterToUserMixin(object):
     """

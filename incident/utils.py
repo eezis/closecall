@@ -8,7 +8,7 @@ url_test_2 = 'https://youtu.be/O2Jrdiyc1ws'
 embed_str = """
       <div class="responsive-embed-16by9-iframe-youtube">
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="//www.youtube.com/embed/VIDEO_URL_HERE?rel=0" allowfullscreen></iframe>
+          <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/VIDEO_URL_HERE?rel=0" allowfullscreen></iframe>
         </div>
       </div>"""
 

@@ -40,9 +40,16 @@
 
     <script>
       function initialize() {
+        // Check if map element exists before initializing
+        var mapElement = document.getElementById('map');
+        if (!mapElement) {
+          // No map element on this page - exit silently
+          return;
+        }
+
         var center = new google.maps.LatLng(37.4419, -122.1419);
 
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(mapElement, {
           // zoom: 3,
           zoom: 2,
           center: center,
@@ -52,6 +59,9 @@
         var markers = [];
         var totalMemembers = data.count;
         // console.log(totalMemembers);
+
+        // Note: Using legacy Marker API for compatibility with MarkerClusterer
+        // TODO: Update to AdvancedMarkerElement when MarkerClusterer supports it
         for (var i = 0; i < totalMemembers; i++) {
           var dataMember = data.members[i];
           var latLng = new google.maps.LatLng(dataMember.latitude,

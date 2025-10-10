@@ -3,6 +3,7 @@ from django import forms
 from django.db import models
 
 from incident.models import Incident
+from .utils import get_youtube_embed_str
 
 
 # field customizations
@@ -34,7 +35,7 @@ class IncidentAdmin(admin.ModelAdmin):
 
     search_fields = ['user__last_name', 'user__email', 'address', 'what', 'license_certain', 'license_uncertain',]
     # list_filter = ('user',) <-- this makes an exhaustive list with every user, I so make that a search rather than filter
-    list_display = ('id', 'user', 'date', 'address', 'position', 'reviewed', 'license_certain', 'license_uncertain')
+    list_display = ('id', 'user', 'date', 'address', 'latitude', 'longitude', 'reviewed', 'license_certain', 'license_uncertain')
     fields = (
         ('user', 'address'),
         'what',
@@ -51,7 +52,6 @@ class IncidentAdmin(admin.ModelAdmin):
         ('license_certain', 'license_uncertain'),
         'id_it_by',
         ('latitude', 'longitude'),
-        'position',
         'witnesses',
         'internal_note',
         ('reported', 'cited'),
@@ -72,6 +72,15 @@ class IncidentAdmin(admin.ModelAdmin):
     # formfield_overrides = {
     #     models.TextField: {'widget': forms.TextInput(attrs={'size': '60'})},
     # }
+
+    def save_model(self, request, obj, form, change):
+        """
+        Auto-generate video_embed_string from youtube_url when saving from admin.
+        This ensures privacy-enhanced YouTube embeds are always used.
+        """
+        if obj.youtube_url:
+            obj.video_embed_string = get_youtube_embed_str(obj.youtube_url)
+        super().save_model(request, obj, form, change)
 
 admin.site.register(Incident, IncidentAdmin)
 

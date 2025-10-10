@@ -1,5 +1,6 @@
 # youtube_url = 'http://youtu.be/tVAvp9a82TM'
-# <iframe width="560" height="315" src="//www.youtube.com/embed/tVAvp9a82TM" frameborder="0" allowfullscreen></iframe>
+# OLD: <iframe width="560" height="315" src="//www.youtube.com/embed/tVAvp9a82TM" frameborder="0" allowfullscreen></iframe>
+# NEW: Using privacy-enhanced mode with youtube-nocookie.com and HTTPS
 
 
 youtube_url = 'https://youtu.be/JCJxsb35mD0'
@@ -14,12 +15,12 @@ def create_html_for_youtube(video_url):
     </p>
     """
 
-    # embed_str = '<iframe width="560" height="315" src="//www.youtube.com/embed/VIDEO_URL_HERE" frameborder="0" allowfullscreen></iframe>'
-    # using responsive embed, tested on desktop, ipad and iphone
+    # Using responsive embed with privacy-enhanced YouTube (youtube-nocookie.com)
+    # This reduces tracking and improves privacy - tested on desktop, ipad and iphone
     embed_str = """
       <div class="responsive-embed-16by9-iframe-youtube">
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe class="embed-responsive-item" src="//www.youtube.com/embed/VIDEO_URL_HERE?rel=0" allowfullscreen></iframe>
+          <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/VIDEO_URL_HERE?rel=0" allowfullscreen></iframe>
         </div>
       </div>"""
 
@@ -27,7 +28,7 @@ def create_html_for_youtube(video_url):
     embed_str = embed_str.replace('VIDEO_URL_HERE',vurl)
     the_html = the_html.replace('EMBED', embed_str).replace('YOUTUBE_URL',video_url)
 
-    print the_html
+    print(the_html)
 
 
 create_html_for_youtube(youtube_url)
@@ -42,12 +43,12 @@ http://getbootstrap.com/components/#panels
 
   <div class="responsive-embed-16by9-iframe-youtube">
     <div class="embed-responsive embed-responsive-16by9">
-      <iframe class="embed-responsive-item" src="//www.youtube.com/embed/VIDEO_URL_HERE?rel=0" allowfullscreen></iframe>
+      <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/VIDEO_URL_HERE?rel=0" allowfullscreen></iframe>
     </div>
   </div>
 
-
-    <iframe width="560" height="315" src="//www.youtube.com/embed/x0t7tjbg7ks" frameborder="0" allowfullscreen></iframe>
-
+UPDATED TO USE:
+- HTTPS (not protocol-relative //)
+- youtube-nocookie.com (privacy-enhanced mode)
 
   """
