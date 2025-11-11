@@ -48,7 +48,9 @@ class UserProfile(BaseFields):
         from django.conf import settings
         print('TRY_TO_GEOCODE_CALLED: trying to geocode!')
         # Position fix emails disabled - just log to console
+        print('\n\n')
         print(f'Geocoding position for user: {self.user.username}')
+        print('\n\n')
         if self.zipcode != None:
             address = u"{} {} {} {}".format(self.city, self.state, self.zipcode, self.country)
         else:
