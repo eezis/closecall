@@ -64,10 +64,11 @@ def get_user_incidents(the_username, miles=60):
     user = User.objects.get(username=the_username)
     u_lat = user.position.get_lat()
     u_lon = user.position.get_lon()
-    incidences = Incident.objects.all()
-    for i in inicidences:
-        if distance_between_geocoded_points(u_lat, u_lon, i.position.latitude, i.position.longitude) <= miles:
-            matched_incidents.append(i)
+    incidents = Incident.objects.all()
+    for i in incidents:
+        if i.latitude and i.longitude:
+            if distance_between_geocoded_points(u_lat, u_lon, i.latitude, i.longitude) <= miles:
+                matched_incidents.append(i)
 
     return matched_incidents
 
@@ -78,14 +79,34 @@ Gets the geocoded postion of the address, puts it (lat, lon) format
 returns ERROR if it was unable to complete the geocode
 """
 def get_geocode(address):
-    url = 'https://maps.googleapis.com/maps/api/geocode/json?address='
-    r = requests.get(url+address)
-    goog_resp = r.json()
-    if goog_resp['status'] == 'OK':
-        # print(gresp['results'])
-        lat = goog_resp['results'][0]['geometry']['location']['lat']
-        lon = goog_resp['results'][0]['geometry']['location']['lng']
-        position = "({}, {})".format(lat,lon)
-        return position
-    else:
+    from django.conf import settings
+    import urllib.parse
+    import os
+
+    # URL encode the address and add API key
+    encoded_address = urllib.parse.quote(address)
+    # Use the geocoding-specific key (unrestricted) for server-side calls
+    api_key = os.getenv('GOOGLE_MAPS_GEOCODING_KEY', settings.GOOGLE_MAPS_API_KEY)
+    url = f'https://maps.googleapis.com/maps/api/geocode/json?address={encoded_address}&key={api_key}'
+
+    try:
+        r = requests.get(url)
+        goog_resp = r.json()
+
+        print(f"Geocoding address: {address}")
+        print(f"Google response status: {goog_resp.get('status')}")
+
+        if goog_resp['status'] == 'OK':
+            # print(gresp['results'])
+            lat = goog_resp['results'][0]['geometry']['location']['lat']
+            lon = goog_resp['results'][0]['geometry']['location']['lng']
+            position = "({}, {})".format(lat,lon)
+            print(f"Geocoded successfully: {position}")
+            return position
+        else:
+            error_msg = goog_resp.get('error_message', 'Unknown error')
+            print(f"Geocoding failed: {goog_resp['status']} - {error_msg}")
+            return 'ERROR'
+    except Exception as e:
+        print(f"Exception in geocoding: {e}")
         return 'ERROR'

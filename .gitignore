@@ -73,6 +73,10 @@ closecall_local_backup_20250627_143733.sql
 # Screenshots directory
 screenshots/
 
+# Debug directory and files
+debug/
+debug_*.ipynb
+
 # this is the final backup before I nuked Digital Ocean
 data/CloseCallDatabase-DigitalOcean-FinalBackup.tar
 

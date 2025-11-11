@@ -156,11 +156,12 @@ def get_users_close_to_incident(incident_id, radius=60):
         # get user's lat and lon
         u_lat, u_lon = u.get_lat_lon()
         # if the user is within the given radius of the incident, add them to the list of  matched users
-        if distance_between_geocoded_points(u_lat, u_lon, i.position.latitude, i.position.longitude) <= radius:
-            u_str = u"{} {} {} {}".format(u.first, u.last, u.user.username, u.user.email)
-            print u'{} {} {} {}'.format(u.first, u.last, u.user.username, u.user.email).encode('utf-8')
-            # note send the fill userprofile object back
-            matched_users.append(u)
+        if i.latitude and i.longitude:
+            if distance_between_geocoded_points(u_lat, u_lon, i.latitude, i.longitude) <= radius:
+                u_str = u"{} {} {} {}".format(u.first, u.last, u.user.username, u.user.email)
+                print u'{} {} {} {}'.format(u.first, u.last, u.user.username, u.user.email).encode('utf-8')
+                # note send the fill userprofile object back
+                matched_users.append(u)
 
     return matched_users
 

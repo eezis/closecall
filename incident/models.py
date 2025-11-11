@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from geoposition.fields import GeopositionField
-from geoposition import Geoposition
+# from geoposition.fields import GeopositionField
+# from geoposition import Geoposition
 # from utils import get_youtube_embed_str
 
 # Create your models here.
@@ -44,7 +44,8 @@ class Incident(models.Model):
     # do the makemigration and migrate, then reverse the comments to reset to original
     # state (the next line commented, the trailing line -- setting default to 40.00.., -105.. --uncommented)
     # position = GeopositionField(null=True)
-    position = GeopositionField(default=Geoposition(40.008682, -105.272883))
+    # position = GeopositionField(default=Geoposition(40.008682, -105.272883))
+    # Commented out - using latitude/longitude fields directly now
     # I am adding these to support the API, should have added them at the outset, 12/4/15
     # override save method, set them there
     latitude = models.FloatField(null=True)
@@ -150,14 +151,15 @@ class Incident(models.Model):
 
     def save(self, *args, **kwargs):
         try:
-            # position is of type GEO Position, so might have to cast this?
-            self.latitude = self.position.latitude
-            self.longitude = self.position.longitude
-            # moved this logic to form_valid
-            # if self.youtube_url:
-            #     video_embed_string = get_youtube_embed_str(self.youtube_url)
-            #     print("EMBED: {}".format(video_embed_string))
-        except:
+            # If we have lat/lng but no position, set position from lat/lng
+            if self.latitude and self.longitude and not hasattr(self.position, 'latitude'):
+                self.position = Geoposition(self.latitude, self.longitude)
+            # If we have position but no lat/lng, set lat/lng from position
+            elif hasattr(self.position, 'latitude'):
+                self.latitude = self.position.latitude
+                self.longitude = self.position.longitude
+        except Exception as e:
+            print(f"Error syncing position fields: {e}")
             pass
 
         super(Incident, self).save(*args, **kwargs)
@@ -190,11 +192,11 @@ class Incident(models.Model):
     # Out[97]: Decimal('-105.1886354914489')
 
     def get_lat(self):
-        return str(self.position.latitude)
+        return str(self.latitude) if self.latitude is not None else ''
 
 
     def get_lon(self):
-        return str(self.position.longitude)
+        return str(self.longitude) if self.longitude is not None else ''
 
 
     """
