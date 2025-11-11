@@ -1,7 +1,24 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. 
- 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## ⚠️ CRITICAL PRODUCTION SERVER RULES ⚠️
+
+**NEVER DO THE FOLLOWING WITHOUT EXPLICIT USER PERMISSION:**
+- **DO NOT** stop, start, restart, or reload Gunicorn
+- **DO NOT** stop, start, restart, or reload Nginx
+- **DO NOT** modify Gunicorn configuration files
+- **DO NOT** modify Nginx configuration files
+- **DO NOT** send signals (HUP, TERM, etc.) to Gunicorn or Nginx processes
+- **DO NOT** change server ports or bindings
+- **DO NOT** run any server management scripts
+
+**This is a LIVE PRODUCTION SITE serving real users. Any server disruption causes downtime.**
+
+**CRITICAL: This system runs MULTIPLE production services. Disrupting one server requires restarting ALL servers on the system, causing widespread downtime across multiple sites and services.**
+
+If you need to make server configuration changes, present the changes to the user and wait for explicit approval before applying them. NEVER apply changes that affect running servers.
+
 ## Project Overview
 
 The Close Call Database (CCDB) is a Django 5.1.3 web application for cyclists to document encounters with aggressive motorists and report dangerous incidents. It's a community-driven safety platform with geographic mapping, user management, and incident tracking capabilities.

@@ -73,11 +73,10 @@ missed striking one of the riders. We believe the license plate number was 163-J
             'threat_assessment' : 'Threat Assessment: In your opinion the motorist/person in question was being . . .',
             'danger_assessment' : 'Danger Assessment: In your opinion, this encounter was . . .',
             'youtube_url' : video_verbose_str,
-            'position': 'Address where the incident occurred',
         }
         # fields = ['position','what', 'date', 'time', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
         # 'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
-        fields = ['position','what', 'date', 'timestr', 'youtube_url', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
+        fields = ['what', 'date', 'timestr', 'youtube_url', 'witnesses', 'threat_assessment', 'danger_assessment', 'color', 'make', 'model', 'vehicle_description',
         'license_certain', 'license_uncertain', 'id_it_by', 'address', ]
 
         widgets={
