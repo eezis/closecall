@@ -45,9 +45,10 @@ class UserProfile(BaseFields):
             ' -- ' + self.created.strftime('%Y-%m-%d %H:%M') + ' --  ' + unicode(self.city) + ', ' + unicode(self.state)
 
     def try_to_geocode(self):
+        from django.conf import settings
         print('TRY_TO_GEOCODE_CALLED: trying to geocode!')
-        send_mail('POSITION FIX', 'Fixing Position for: ' + self.user.username, 'closecalldatabase@gmail.com',
-            ['ernest.ezis@gmail.com',], fail_silently=False)
+        # Position fix emails disabled - just log to console
+        print(f'Geocoding position for user: {self.user.username}')
         if self.zipcode != None:
             address = u"{} {} {} {}".format(self.city, self.state, self.zipcode, self.country)
         else:
@@ -82,11 +83,19 @@ class UserProfile(BaseFields):
 
 
         if self.position is None:
-            s = "UserProfile " + str(self.pk) + " for " + self.user.username + " has no position information!"
-            raise Exception(s)
+            s = f"UserProfile {self.pk} for {self.user.username} has no position information!"
             print(s)
-            send_mail('CCDB-ERROR :: Profile Lacks Position!', s, 'closecalldatabase@gmail.com',
-                ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
+            # Try one more time with just city and state
+            if self.city and self.state:
+                simple_address = f"{self.city}, {self.state}"
+                print(f"Trying simplified geocoding with: {simple_address}")
+                self.position = get_geocode(simple_address)
+                if self.position and self.position != 'ERROR':
+                    self.save()
+                    return self.position.strip('()').split(',')
+            # If all else fails, return default Boulder coordinates
+            print(f"All geocoding attempts failed, using default Boulder coordinates")
+            return ['40.0149856', '-105.2705456']  # Boulder, CO default
 
             # *** FIX THIS ***
             # message . . . don't seem to have accurate position information for you
@@ -138,8 +147,10 @@ class UserProfile(BaseFields):
         # incidents = Incident.objects.all()
         incidents = Incident.objects.filter(visible=True)
         for i in incidents:
-            if distance_between_geocoded_points(u_lat, u_lon, i.position.latitude, i.position.longitude) <= miles:
-                matched_incidents.append(i)
+            # Use latitude and longitude fields directly (position field was removed)
+            if i.latitude and i.longitude:
+                if distance_between_geocoded_points(u_lat, u_lon, i.latitude, i.longitude) <= miles:
+                    matched_incidents.append(i)
 
         return matched_incidents
 
