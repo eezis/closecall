@@ -1,0 +1,5 @@
+{% load static %}
+<form method="post" action="/accounts/logout/" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" style="background: none; border: none; padding: 0; color: #777; cursor: pointer; font: inherit; text-decoration: none;">Logout</button>
+</form>

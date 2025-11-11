@@ -1,0 +1,51 @@
+{% load crispy_forms_field %}
+
+{% comment %}
+Custom template for incident location fields (latitude/longitude) that includes the Google Maps widget.
+This template is specifically designed to work with crispy forms and Django's rendering system.
+{% endcomment %}
+
+<div id="div_{{ field.auto_id }}" class="form-group{% if wrapper_class %} {{ wrapper_class }}{% endif %}{% if form_show_errors%}{% if field.errors %} has-error{% endif %}{% endif %}{% if field.css_classes %} {{ field.css_classes }}{% endif %}">
+
+    {% if field.name == 'latitude' %}
+        {# Only show the map widget before the latitude field #}
+        <div class="incident-map-container">
+            <label class="control-label">
+                <i class="fa fa-map-marker"></i> Incident Location
+                <span class="asteriskField">*</span>
+            </label>
+            <p class="help-block">Start typing an address below, then drag the marker to the precise location.</p>
+
+            <input type="text" id="address-search"
+                   placeholder="Start typing an address (e.g., Olde Stage Rd, Boulder, CO)"
+                   class="form-control"
+                   style="margin-bottom: 15px;">
+
+            <div id="incident-map" style="width: 100%; height: 450px; border: 2px solid #ddd; border-radius: 4px; margin-bottom: 10px;"></div>
+
+            <div class="map-help-text">
+                <i class="fa fa-info-circle"></i>
+                You can search for an address, click on the map, or drag the marker to set the incident location.
+            </div>
+        </div>
+    {% endif %}
+
+    {% comment %} Show the actual form fields (hidden for user experience) {% endcomment %}
+    {% if field.label and form_show_labels %}
+        <label {% if field.id_for_label %}for="{{ field.id_for_label }}" {% endif %} class="control-label {{ label_class }}{% if field.field.required %} requiredField{% endif %}" style="{% if field.name == 'latitude' or field.name == 'longitude' %}display: none;{% endif %}">
+            {{ field.label }}{% if field.field.required %}<span class="asteriskField">*</span>{% endif %}
+        </label>
+    {% endif %}
+
+    <div class="controls {{ field_class }}" style="{% if field.name == 'latitude' or field.name == 'longitude' %}display: none;{% endif %}">
+        {% crispy_field field 'class' 'form-control' %}
+        {% if field.help_text %}
+            <p class="help-block">{{ field.help_text|safe }}</p>
+        {% endif %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        {% endif %}
+    </div>
+</div>
