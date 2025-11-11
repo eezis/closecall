@@ -3,6 +3,12 @@ from django.http import HttpResponseForbidden
 from django.utils.deprecation import MiddlewareMixin
 import hashlib
 import time
+import logging
+
+# Set up loggers
+logger = logging.getLogger('django')
+security_logger = logging.getLogger('django.security')
+users_logger = logging.getLogger('users')
 
 class AntiCSRFBypassMiddleware(MiddlewareMixin):
     """
@@ -24,12 +30,23 @@ class AntiCSRFBypassMiddleware(MiddlewareMixin):
             user_agent = request.META.get('HTTP_USER_AGENT', '')
             client_id = hashlib.md5(f"{client_ip}{user_agent}".encode()).hexdigest()
             
+            # Log all POST attempts to sensitive endpoints
+            if '/register/' in request.path:
+                email = request.POST.get('email', 'not provided')
+                username = request.POST.get('username', 'not provided')
+                users_logger.info(f"Registration attempt - IP: {client_ip}, Email: {email}, Username: {username}")
+                logger.info(f"Registration POST from {client_ip} to {request.path}")
+            elif '/login/' in request.path:
+                username = request.POST.get('username', 'not provided')
+                users_logger.info(f"Login attempt - IP: {client_ip}, Username: {username}")
+
             # Check if this client recently did a GET to the same path
             cache_key = f"csrf_check:{client_id}:{request.path}"
             last_get = cache.get(cache_key)
-            
+
             # If they did GET within 60 seconds and POST has no referer, block
             if last_get and not request.META.get('HTTP_REFERER'):
+                security_logger.warning(f"Potential CSRF bypass attempt from {client_ip} on {request.path}")
                 # Increment abuse counter
                 abuse_key = f"csrf_abuse:{client_id}"
                 abuse_count = cache.get(abuse_key, 0) + 1
@@ -68,3 +85,24 @@ class AntiCSRFBypassMiddleware(MiddlewareMixin):
         else:
             ip = request.META.get('REMOTE_ADDR')
         return ip
+
+    def process_exception(self, request, exception):
+        """Log exceptions on sensitive endpoints"""
+        sensitive_paths = [
+            '/accounts/password/reset/',
+            '/accounts/register/',
+            '/contact-u/'
+        ]
+
+        if request.path in sensitive_paths:
+            client_ip = self.get_client_ip(request)
+            users_logger.error(f"Error on {request.path} from {client_ip}: {str(exception)}")
+
+            # For registration errors, try to capture the attempted email
+            if '/register/' in request.path and request.method == 'POST':
+                email = request.POST.get('email', 'not captured')
+                username = request.POST.get('username', 'not captured')
+                users_logger.error(f"Registration failed - Email: {email}, Username: {username}, Error: {type(exception).__name__}: {str(exception)[:200]}")
+                security_logger.error(f"Registration error from {client_ip}: {type(exception).__name__}")
+
+        return None

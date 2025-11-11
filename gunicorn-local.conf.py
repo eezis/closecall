@@ -19,11 +19,15 @@ max_requests_jitter = 50
 # Restart workers after this many requests to prevent memory leaks
 preload_app = True
 
-# Logging (to console for local testing)
-accesslog = "-"
-errorlog = "-"
+# Logging (to both console and files for local testing)
+# Use both stdout and file logging
+accesslog = "-"  # Keep console output
+errorlog = "-"   # Keep console output
 loglevel = "info"
-access_log_format = '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s" %(D)s'
+access_log_format = '[CC] %(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s" %(D)s'
+
+# Note: Django's internal logging (configured in settings.py) will write to logs/ directory
+# This includes application errors, security events, and custom logging
 
 # Process naming
 proc_name = "closecall-local"
