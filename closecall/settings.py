@@ -262,12 +262,17 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['django_file', 'console'],
-            'level': 'INFO',
+            'level': 'DEBUG' if DEBUG else 'INFO',  # More verbose in development
             'propagate': False,
         },
         'django.security': {
             'handlers': ['security_file', 'console'],
             'level': 'INFO',
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['django_file', 'console', 'error_file'],
+            'level': 'DEBUG' if DEBUG else 'WARNING',
             'propagate': False,
         },
         'core.strava': {
