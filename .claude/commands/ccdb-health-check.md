@@ -1,3 +1,7 @@
+---
+description: Run comprehensive health check of CCDB production system
+---
+
 # CCDB Health Check
 
 Run a comprehensive health check of the Close Call Database production system.
@@ -7,7 +11,7 @@ Run a comprehensive health check of the Close Call Database production system.
 Execute the CCDB health check script and analyze the results:
 
 ```bash
-python .claude/slash_commands/ccdb-health-check.py
+python .claude/commands/ccdb-health-check.py
 ```
 
 ## Analysis Required
