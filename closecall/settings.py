@@ -46,6 +46,7 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'django_summernote',
     'registration',  # django-registration-redux
+    # 'geoposition',  # Disabled - using custom map widget instead
 ]
 
 LOCAL_APPS = [
@@ -151,6 +152,11 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30 * 15  # 15 months
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+# Django Registration Redux settings
+ACCOUNT_ACTIVATION_DAYS = 7  # One week activation window
+REGISTRATION_EMAIL_SUBJECT_PREFIX = '[Close Call Database] '
+REGISTRATION_AUTO_LOGIN = True  # Automatically log in after activation
+
 # Crispy Forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap3"
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
@@ -233,7 +239,7 @@ SUMMERNOTE_CONFIG = {
             ['insert', ['link']],
         ],
     },
-    'disable_attachment': True,
+    'disable_attachment': False,
 }
 
 # Security settings for production
