@@ -854,10 +854,11 @@ def show_user_map(request):
 
 
 import logging
-logger = logging.getLogger(__name__)
 
-def myfunction():
-    logger.debug("this is a debug message!")
+# Set up loggers for different components
+logger = logging.getLogger(__name__)
+strava_logger = logging.getLogger('core.strava')
+security_logger = logging.getLogger('django.security')
 
 def myotherfunction():
     logger.error("this is an error message!!")

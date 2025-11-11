@@ -179,6 +179,10 @@ EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True').lower() == 'true'
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'closecalldatabase@gmail.com')
 
 # Logging
+# Ensure logs directory exists
+LOG_DIR = BASE_DIR / 'logs'
+LOG_DIR.mkdir(exist_ok=True)
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -191,12 +195,58 @@ LOGGING = {
             'format': '{levelname} {message}',
             'style': '{',
         },
+        'detailed': {
+            'format': '{levelname} {asctime} {name} {module} {funcName} {lineno} {message}',
+            'style': '{',
+        },
     },
     'handlers': {
-        'file': {
+        'django_file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'django.log',
+            'maxBytes': 10 * 1024 * 1024,  # 10MB
+            'backupCount': 5,
+            'formatter': 'verbose'
+        },
+        'strava_file': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR / 'django.log',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'strava.log',
+            'maxBytes': 5 * 1024 * 1024,  # 5MB
+            'backupCount': 3,
+            'formatter': 'detailed'
+        },
+        'incidents_file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'incidents.log',
+            'maxBytes': 10 * 1024 * 1024,  # 10MB
+            'backupCount': 5,
+            'formatter': 'detailed'
+        },
+        'users_file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'users.log',
+            'maxBytes': 5 * 1024 * 1024,  # 5MB
+            'backupCount': 3,
+            'formatter': 'detailed'
+        },
+        'security_file': {
+            'level': 'WARNING',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'security.log',
+            'maxBytes': 10 * 1024 * 1024,  # 10MB
+            'backupCount': 10,
+            'formatter': 'detailed'
+        },
+        'error_file': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'errors.log',
+            'maxBytes': 10 * 1024 * 1024,  # 10MB
+            'backupCount': 10,
             'formatter': 'verbose'
         },
         'console': {
@@ -206,16 +256,37 @@ LOGGING = {
         },
     },
     'root': {
-        'handlers': ['console'],
+        'handlers': ['console', 'error_file'],
+        'level': 'INFO',
     },
     'loggers': {
         'django': {
-            'handlers': ['file', 'console'],
+            'handlers': ['django_file', 'console'],
             'level': 'INFO',
             'propagate': False,
         },
+        'django.security': {
+            'handlers': ['security_file', 'console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'core.strava': {
+            'handlers': ['strava_file', 'console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'incident': {
+            'handlers': ['incidents_file', 'console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'users': {
+            'handlers': ['users_file', 'console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
         'closecall': {
-            'handlers': ['file', 'console'],
+            'handlers': ['django_file', 'console'],
             'level': 'DEBUG',
             'propagate': False,
         },
