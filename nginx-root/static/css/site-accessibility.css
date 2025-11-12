@@ -43,55 +43,75 @@
     color: inherit !important;
 }
 
-/* Fix link contrast throughout the site */
-a {
-    color: #1a4480 !important;  /* Dark blue instead of light blue */
+/* Fix link contrast throughout the site - Desktop only (mobile navbar needs white) */
+@media (min-width: 768px) {
+    a {
+        color: #1a4480 !important;  /* Dark blue instead of light blue */
+    }
+
+    a:hover,
+    a:focus {
+        color: #0d2240 !important;  /* Even darker blue on hover */
+    }
+
+    /* Ensure visited links maintain good contrast */
+    a:visited {
+        color: #1a4480 !important;  /* Same dark blue for visited links */
+    }
 }
 
-a:hover, 
-a:focus {
-    color: #0d2240 !important;  /* Even darker blue on hover */
-}
+/* Fix dropdown menu links in navbar - Desktop mode ONLY */
+@media (min-width: 768px) {
+    .navbar-inverse .navbar-nav .dropdown-menu > li > a {
+        color: #1a4480 !important;  /* Dark blue for dropdown items */
+    }
 
-/* Ensure visited links maintain good contrast */
-a:visited {
-    color: #1a4480 !important;  /* Same dark blue for visited links */
-}
-
-/* Fix dropdown menu links in navbar - Desktop mode */
-.navbar-inverse .navbar-nav .dropdown-menu > li > a {
-    color: #1a4480 !important;  /* Dark blue for dropdown items */
-}
-
-.navbar-inverse .navbar-nav .dropdown-menu > li > a:hover,
-.navbar-inverse .navbar-nav .dropdown-menu > li > a:focus {
-    color: #0d2240 !important;
-    background-color: #f5f5f5 !important;
+    .navbar-inverse .navbar-nav .dropdown-menu > li > a:hover,
+    .navbar-inverse .navbar-nav .dropdown-menu > li > a:focus {
+        color: #0d2240 !important;
+        background-color: #f5f5f5 !important;
+    }
 }
 
 /* Fix all navbar links in mobile collapsed mode */
 @media (max-width: 767px) {
-    /* When navbar is collapsed, ALL links need white text on dark background */
+    /* Target both navbar-collapse and navbar-right structures on mobile */
     .navbar-inverse .navbar-collapse .navbar-nav > li > a,
-    .navbar-inverse .navbar-collapse .navbar-nav .dropdown-menu > li > a {
+    .navbar-inverse .navbar-right > li > a,
+    .navbar-inverse .navbar-collapse .navbar-nav .dropdown-menu > li > a,
+    .navbar-inverse .navbar-right .dropdown-menu > li > a,
+    .navbar-inverse .navbar-collapse .navbar-nav .open .dropdown-menu > li > a,
+    .navbar-inverse .navbar-right.navbar-nav .open .dropdown-menu > li > a {
         color: #FFFFF0 !important;  /* Ivory/off-white for good contrast on dark background */
     }
 
     .navbar-inverse .navbar-collapse .navbar-nav > li > a:hover,
     .navbar-inverse .navbar-collapse .navbar-nav > li > a:focus,
+    .navbar-inverse .navbar-right > li > a:hover,
+    .navbar-inverse .navbar-right > li > a:focus,
     .navbar-inverse .navbar-collapse .navbar-nav .dropdown-menu > li > a:hover,
-    .navbar-inverse .navbar-collapse .navbar-nav .dropdown-menu > li > a:focus {
+    .navbar-inverse .navbar-collapse .navbar-nav .dropdown-menu > li > a:focus,
+    .navbar-inverse .navbar-right .dropdown-menu > li > a:hover,
+    .navbar-inverse .navbar-right .dropdown-menu > li > a:focus,
+    .navbar-inverse .navbar-collapse .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-inverse .navbar-collapse .navbar-nav .open .dropdown-menu > li > a:focus,
+    .navbar-inverse .navbar-right.navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-inverse .navbar-right.navbar-nav .open .dropdown-menu > li > a:focus {
         color: #ffffff !important;  /* Pure white on hover */
         background-color: rgba(255, 255, 255, 0.1) !important;  /* Subtle highlight */
     }
 
     /* Ensure dropdown toggle links (Login/Register) are also white */
-    .navbar-inverse .navbar-collapse .navbar-nav .dropdown > a.dropdown-toggle {
+    .navbar-inverse .navbar-collapse .navbar-nav .dropdown > a.dropdown-toggle,
+    .navbar-inverse .navbar-right .dropdown > a.dropdown-toggle {
         color: #FFFFF0 !important;
     }
 
     /* Fix Bootstrap's default white background on dropdown menus in mobile collapsed mode */
-    .navbar-inverse .navbar-collapse .dropdown-menu {
+    .navbar-inverse .navbar-collapse .dropdown-menu,
+    .navbar-inverse .navbar-collapse .open .dropdown-menu,
+    .navbar-inverse .navbar-right .dropdown-menu,
+    .navbar-inverse .navbar-right .open .dropdown-menu {
         background-color: transparent !important;
         box-shadow: none !important;
         border: none !important;
