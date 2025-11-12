@@ -58,7 +58,7 @@ a:visited {
     color: #1a4480 !important;  /* Same dark blue for visited links */
 }
 
-/* Fix dropdown menu links in navbar */
+/* Fix dropdown menu links in navbar - Desktop mode */
 .navbar-inverse .navbar-nav .dropdown-menu > li > a {
     color: #1a4480 !important;  /* Dark blue for dropdown items */
 }
@@ -67,6 +67,20 @@ a:visited {
 .navbar-inverse .navbar-nav .dropdown-menu > li > a:focus {
     color: #0d2240 !important;
     background-color: #f5f5f5 !important;
+}
+
+/* Fix dropdown menu links in navbar - Mobile collapsed mode */
+@media (max-width: 767px) {
+    /* When navbar is collapsed, dropdown items need white text on dark background */
+    .navbar-inverse .navbar-collapse .dropdown-menu > li > a {
+        color: #FFFFF0 !important;  /* Ivory/off-white for good contrast on dark background */
+    }
+
+    .navbar-inverse .navbar-collapse .dropdown-menu > li > a:hover,
+    .navbar-inverse .navbar-collapse .dropdown-menu > li > a:focus {
+        color: #ffffff !important;  /* Pure white on hover */
+        background-color: rgba(255, 255, 255, 0.1) !important;  /* Subtle highlight */
+    }
 }
 
 /* Ensure button links maintain good contrast */
