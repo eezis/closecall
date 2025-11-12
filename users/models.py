@@ -170,3 +170,65 @@ class UserBlogProfile(models.Model):
 
 # could add a text field that allowed multiple zipcode entries so that they could get
 # notified in multiple jurisdictions
+
+
+class SpammerBlacklist(models.Model):
+    """
+    Tracks known spammers by normalized email addresses.
+    When spammers try to register again with email variations (e.g., adding periods),
+    we redirect them to the FBI Cyber Investigation page.
+    """
+    # Email with periods removed and lowercased for matching
+    normalized_email = models.CharField(max_length=254, unique=True, db_index=True)
+
+    # JSON list of email variations we've seen
+    email_variations = models.TextField(default='[]', help_text="JSON array of email variations")
+
+    # JSON list of IP addresses associated with this spammer
+    ip_addresses = models.TextField(default='[]', help_text="JSON array of IP addresses")
+
+    # JSON list of usernames they've tried
+    usernames = models.TextField(default='[]', help_text="JSON array of usernames")
+
+    # Reason for blacklisting
+    reason = models.CharField(max_length=255, default='spam_registration')
+
+    # Tracking
+    first_seen = models.DateTimeField(auto_now_add=True)
+    last_seen = models.DateTimeField(auto_now=True)
+    hit_count = models.IntegerField(default=1, help_text="Number of times they've tried to register")
+
+    class Meta:
+        ordering = ['-last_seen']
+        verbose_name = 'Spammer Blacklist Entry'
+        verbose_name_plural = 'Spammer Blacklist'
+
+    def __str__(self):
+        return f"{self.normalized_email} ({self.hit_count} attempts)"
+
+    @staticmethod
+    def normalize_email(email):
+        """
+        Normalize email for comparison:
+        - Remove all periods before @ sign (Gmail ignores them)
+        - Convert to lowercase
+        - Strip whitespace
+
+        Examples:
+        - r.y.a.n@gmail.com -> ryan@gmail.com
+        - R.Y.A.N@gmail.com -> ryan@gmail.com
+        - RyAn@Gmail.Com -> ryan@gmail.com
+        """
+        if not email:
+            return ''
+
+        email = email.strip().lower()
+
+        # Split on @ to handle local and domain parts separately
+        if '@' in email:
+            local, domain = email.rsplit('@', 1)
+            # Remove periods from local part only
+            local = local.replace('.', '')
+            return f"{local}@{domain}"
+
+        return email

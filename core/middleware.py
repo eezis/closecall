@@ -1,14 +1,16 @@
 from django.core.cache import cache
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.utils.deprecation import MiddlewareMixin
 import hashlib
 import time
 import logging
+import json
 
 # Set up loggers
 logger = logging.getLogger('django')
 security_logger = logging.getLogger('django.security')
 users_logger = logging.getLogger('users')
+spammer_fbi_logger = logging.getLogger('spammer.fbi')
 
 class AntiCSRFBypassMiddleware(MiddlewareMixin):
     """
@@ -36,6 +38,58 @@ class AntiCSRFBypassMiddleware(MiddlewareMixin):
                 username = request.POST.get('username', 'not provided')
                 users_logger.info(f"Registration attempt - IP: {client_ip}, Email: {email}, Username: {username}")
                 logger.info(f"Registration POST from {client_ip} to {request.path}")
+
+                # Check spammer blacklist
+                if email and email != 'not provided':
+                    from users.models import SpammerBlacklist
+                    normalized = SpammerBlacklist.normalize_email(email)
+
+                    try:
+                        spammer = SpammerBlacklist.objects.get(normalized_email=normalized)
+
+                        # Update spammer record
+                        spammer.hit_count += 1
+
+                        # Add new email variation if not already tracked
+                        email_variations = json.loads(spammer.email_variations)
+                        if email not in email_variations:
+                            email_variations.append(email)
+                            spammer.email_variations = json.dumps(email_variations)
+
+                        # Add new IP if not already tracked
+                        ip_addresses = json.loads(spammer.ip_addresses)
+                        if client_ip not in ip_addresses:
+                            ip_addresses.append(client_ip)
+                            spammer.ip_addresses = json.dumps(ip_addresses)
+
+                        # Add new username if not already tracked
+                        usernames = json.loads(spammer.usernames)
+                        if username not in usernames and username != 'not provided':
+                            usernames.append(username)
+                            spammer.usernames = json.dumps(usernames)
+
+                        spammer.save()
+
+                        # Log to dedicated spammer-to-fbi.log
+                        spammer_fbi_logger.info(
+                            f"REDIRECTED TO FBI: {email} | Normalized: {normalized} | "
+                            f"IP: {client_ip} | Username: {username} | "
+                            f"Total attempts: {spammer.hit_count}"
+                        )
+
+                        # Also log to security log
+                        security_logger.warning(
+                            f"BLACKLISTED SPAMMER BLOCKED: {email} (normalized: {normalized}) "
+                            f"- IP: {client_ip}, Username: {username}, "
+                            f"Total attempts: {spammer.hit_count}"
+                        )
+
+                        # Redirect spammer to FBI Cyber Investigation page
+                        return HttpResponseRedirect('https://www.fbi.gov/investigate/cyber')
+
+                    except SpammerBlacklist.DoesNotExist:
+                        # Not a known spammer, continue normally
+                        pass
             elif '/login/' in request.path:
                 username = request.POST.get('username', 'not provided')
                 users_logger.info(f"Login attempt - IP: {client_ip}, Username: {username}")

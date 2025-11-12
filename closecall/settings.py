@@ -127,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Denver'
 USE_I18N = True
 USE_TZ = True
 
@@ -233,6 +233,14 @@ LOGGING = {
             'backupCount': 3,
             'formatter': 'detailed'
         },
+        'geolocation_file': {
+            'level': 'WARNING',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'geolocation-missing.log',
+            'maxBytes': 5 * 1024 * 1024,  # 5MB
+            'backupCount': 3,
+            'formatter': 'detailed'
+        },
         'security_file': {
             'level': 'WARNING',
             'class': 'logging.handlers.RotatingFileHandler',
@@ -248,6 +256,14 @@ LOGGING = {
             'maxBytes': 10 * 1024 * 1024,  # 10MB
             'backupCount': 10,
             'formatter': 'verbose'
+        },
+        'spammer_fbi_file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'spammer-to-fbi.log',
+            'maxBytes': 5 * 1024 * 1024,  # 5MB
+            'backupCount': 10,
+            'formatter': 'detailed'
         },
         'console': {
             'level': 'DEBUG',
@@ -290,9 +306,19 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': False,
         },
+        'geolocation': {
+            'handlers': ['geolocation_file', 'console'],
+            'level': 'WARNING',
+            'propagate': False,
+        },
         'closecall': {
             'handlers': ['django_file', 'console'],
             'level': 'DEBUG',
+            'propagate': False,
+        },
+        'spammer.fbi': {
+            'handlers': ['spammer_fbi_file'],
+            'level': 'INFO',
             'propagate': False,
         },
     }
