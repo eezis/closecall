@@ -69,17 +69,32 @@ a:visited {
     background-color: #f5f5f5 !important;
 }
 
-/* Fix dropdown menu links in navbar - Mobile collapsed mode */
+/* Fix all navbar links in mobile collapsed mode */
 @media (max-width: 767px) {
-    /* When navbar is collapsed, dropdown items need white text on dark background */
-    .navbar-inverse .navbar-collapse .dropdown-menu > li > a {
+    /* When navbar is collapsed, ALL links need white text on dark background */
+    .navbar-inverse .navbar-collapse .navbar-nav > li > a,
+    .navbar-inverse .navbar-collapse .navbar-nav .dropdown-menu > li > a {
         color: #FFFFF0 !important;  /* Ivory/off-white for good contrast on dark background */
     }
 
-    .navbar-inverse .navbar-collapse .dropdown-menu > li > a:hover,
-    .navbar-inverse .navbar-collapse .dropdown-menu > li > a:focus {
+    .navbar-inverse .navbar-collapse .navbar-nav > li > a:hover,
+    .navbar-inverse .navbar-collapse .navbar-nav > li > a:focus,
+    .navbar-inverse .navbar-collapse .navbar-nav .dropdown-menu > li > a:hover,
+    .navbar-inverse .navbar-collapse .navbar-nav .dropdown-menu > li > a:focus {
         color: #ffffff !important;  /* Pure white on hover */
         background-color: rgba(255, 255, 255, 0.1) !important;  /* Subtle highlight */
+    }
+
+    /* Ensure dropdown toggle links (Login/Register) are also white */
+    .navbar-inverse .navbar-collapse .navbar-nav .dropdown > a.dropdown-toggle {
+        color: #FFFFF0 !important;
+    }
+
+    /* Fix Bootstrap's default white background on dropdown menus in mobile collapsed mode */
+    .navbar-inverse .navbar-collapse .dropdown-menu {
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
     }
 }
 
