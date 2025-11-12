@@ -33,16 +33,48 @@ class CreateUserProfileView(LoginRequiredMixin, ValidFormMixin, CreateView):
     # success_url = reverse_lazy('home')
     # success_url = reverse_lazy('DetailUserProfileView', kwargs={'userprofile_id': self.id})
 
+    def get_object(self, queryset=None):
+        """
+        Get existing profile or return None.
+        If profile exists (from signal handler), we update it instead of creating new.
+        """
+        try:
+            return UserProfile.objects.get(user=self.request.user)
+        except UserProfile.DoesNotExist:
+            return None
+
+    def get(self, request, *args, **kwargs):
+        """Override get to handle existing profiles."""
+        self.object = self.get_object()
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        """Override post to handle existing profiles."""
+        self.object = self.get_object()
+        return super().post(request, *args, **kwargs)
+
     def get_success_url(self):
         return reverse('user-profile-detail', kwargs={'pk' : self.object.pk})
 
     def form_valid(self, form):
-        # set the user so tthat is saved when the form is committed
+        # set the user so that is saved when the form is committed
         form.instance.user = self.request.user
-        # could set the self.request.user.first and last here if the values are present
-        UserProfile = form.save(commit=True)
-        print(u"CreateUserProfileView.form_valid :: {} -- {}".format(self.request.user, self.request.user.email))
-        return super(CreateUserProfileView, self).form_valid(form)
+
+        # Get or create the profile (signal handler may have already created it)
+        try:
+            profile = UserProfile.objects.get(user=self.request.user)
+            # Update existing profile with form data
+            for field in form.cleaned_data:
+                setattr(profile, field, form.cleaned_data[field])
+            profile.save()
+            self.object = profile
+            print(f"UpdatedUserProfile via CreateView :: {self.request.user} -- {self.request.user.email}")
+        except UserProfile.DoesNotExist:
+            # Profile doesn't exist, create it
+            self.object = form.save(commit=True)
+            print(f"CreatedUserProfile :: {self.request.user} -- {self.request.user.email}")
+
+        return redirect(self.get_success_url())
 
 
 class DetailUserProfileView(LoginRequiredMixin, DetailView):
