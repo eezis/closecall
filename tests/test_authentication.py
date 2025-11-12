@@ -606,3 +606,183 @@ class SecurityTests(BaseAuthTestCase):
         # Session should exist
         self.assertIn('_auth_user_id', client.session)
         self.assertEqual(int(client.session['_auth_user_id']), user.id)
+
+
+class StravaRegistrationTests(BaseAuthTransactionTestCase):
+    """
+    Test Strava OAuth registration edge cases.
+
+    These tests verify the duplicate account prevention logic added in response to
+    the Derek Griffiths incident (Nov 12, 2025) where a user had two accounts with
+    the same email.
+    """
+
+    def test_duplicate_email_returns_existing_user(self):
+        """
+        When Strava registration attempts with existing email, should return existing user.
+
+        This is the primary fix for the Derek Griffiths duplicate account bug.
+        The get_or_create_user() function now checks by EMAIL first, not just username.
+        """
+        from core.views import get_or_create_user
+
+        # Create existing user with email derek@coloradorunnermag.com
+        existing_user = User.objects.create_user(
+            username='Derek Griffiths',
+            email='derek@coloradorunnermag.com',
+            password='password123',
+            first_name='Derek',
+            last_name='Griffiths'
+        )
+
+        # Update profile with Strava data (signal handler auto-creates blank profile)
+        from users.models import UserProfile
+        profile = existing_user.profile
+        profile.first = 'Derek'
+        profile.last = 'Griffiths'
+        profile.created_with = 'Strava=10121955'
+        profile.save()
+
+        original_user_count = User.objects.count()
+
+        # Attempt to register again via Strava with SAME EMAIL but different athlete ID
+        returned_user = get_or_create_user(
+            email='derek@coloradorunnermag.com',
+            created_username='Derek Griffiths',
+            fname='Derek',
+            lname='Griffiths',
+            athlete_id=59446524  # Different Strava athlete ID
+        )
+
+        # Should return existing user, NOT create duplicate
+        self.assertEqual(returned_user.id, existing_user.id)
+        self.assertEqual(returned_user.email, 'derek@coloradorunnermag.com')
+        self.assertEqual(User.objects.count(), original_user_count,
+                        "No new user should be created when email already exists")
+
+    def test_username_collision_with_different_email(self):
+        """
+        When username exists but email is different, should create user with modified username.
+
+        This handles the case of two different people with the same name (e.g., "Sam Thomas").
+        """
+        from core.views import get_or_create_user
+
+        # Create first Sam Thomas
+        first_sam = User.objects.create_user(
+            username='Sam Thomas',
+            email='sam1@example.com',
+            password='password123',
+            first_name='Sam',
+            last_name='Thomas'
+        )
+
+        # Second Sam Thomas tries to register with different email
+        second_sam = get_or_create_user(
+            email='sam2@example.com',
+            created_username='Sam Thomas',
+            fname='Sam',
+            lname='Thomas',
+            athlete_id=12345678
+        )
+
+        # Should create new user with modified username
+        self.assertNotEqual(second_sam.id, first_sam.id)
+        self.assertEqual(second_sam.email, 'sam2@example.com')
+        self.assertNotEqual(second_sam.username, 'Sam Thomas')
+        # Username should include athlete_id or random number
+        self.assertTrue(
+            'Sam Thomas' in second_sam.username and second_sam.username != 'Sam Thomas',
+            f"Expected modified username, got: {second_sam.username}"
+        )
+
+    def test_double_username_collision(self):
+        """
+        When both 'Name' and 'Name-athleteID' usernames exist, should use fallback.
+
+        This is the Derek Griffiths scenario from Nov 12, 2025 that caused a crash.
+        Both "Derek Griffiths" and "Derek Griffiths-59446524" already existed.
+        """
+        from core.views import get_or_create_user
+
+        athlete_id = 59446524
+
+        # Create first Derek (original 2017 account)
+        User.objects.create_user(
+            username='Derek Griffiths',
+            email='derek@coloradorunnermag.com',
+            password='password123',
+            first_name='Derek',
+            last_name='Griffiths'
+        )
+
+        # Create second Derek with athlete_id suffix (Oct 2025 duplicate)
+        User.objects.create_user(
+            username=f'Derek Griffiths-{athlete_id}',
+            email='different@example.com',  # Different email (shouldn't happen in practice)
+            password='password123',
+            first_name='Derek',
+            last_name='Griffiths'
+        )
+
+        # Third registration attempt with yet another email
+        # This should NOT crash, but should create user with fallback username
+        third_derek = get_or_create_user(
+            email='third@example.com',
+            created_username='Derek Griffiths',
+            fname='Derek',
+            lname='Griffiths',
+            athlete_id=athlete_id
+        )
+
+        # Should successfully create user with fallback username (random number added)
+        self.assertIsNotNone(third_derek)
+        self.assertEqual(third_derek.email, 'third@example.com')
+        self.assertNotEqual(third_derek.username, 'Derek Griffiths')
+        self.assertNotEqual(third_derek.username, f'Derek Griffiths-{athlete_id}')
+        # Username should contain random number fallback
+        self.assertTrue(
+            'Derek Griffiths' in third_derek.username,
+            f"Expected username to contain 'Derek Griffiths', got: {third_derek.username}"
+        )
+
+    def test_existing_strava_user_returns_same_user(self):
+        """
+        When existing Strava user logs in again, should return same user.
+
+        This is the normal flow - user has Strava account and logs in again.
+        """
+        from core.views import get_or_create_user
+        from users.models import UserProfile
+
+        athlete_id = 10121955
+
+        # Create existing Strava user
+        existing_user = User.objects.create_user(
+            username='Derek Griffiths',
+            email='derek@coloradorunnermag.com',
+            password='password123',
+            first_name='Derek',
+            last_name='Griffiths'
+        )
+
+        # Update profile with Strava data (signal handler auto-created blank profile)
+        profile = existing_user.profile
+        profile.first = 'Derek'
+        profile.last = 'Griffiths'
+        profile.created_with = f'Strava={athlete_id}'
+        profile.oauth_data = str({'id': athlete_id})
+        profile.save()
+
+        # User logs in via Strava again
+        returned_user = get_or_create_user(
+            email='derek@coloradorunnermag.com',
+            created_username='Derek Griffiths',
+            fname='Derek',
+            lname='Griffiths',
+            athlete_id=athlete_id
+        )
+
+        # Should return same user
+        self.assertEqual(returned_user.id, existing_user.id)
+        self.assertEqual(User.objects.count(), 1)
