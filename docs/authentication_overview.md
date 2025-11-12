@@ -1,6 +1,6 @@
 # Authentication Overview - Close Call Database
 
-**Last Updated: November 11, 2025**
+**Last Updated: November 12, 2025**
 
 ## Overview
 
@@ -37,6 +37,7 @@ The Close Call Database supports two authentication methods:
    - Status: INACTIVE (is_active=False)
    - Generate activation key
    - Set expiration (7 days)
+   - **Auto-create UserProfile** (via post_save signal using transaction.on_commit())
    ↓
 6. System: Send activation email
    - To: User's email
@@ -58,7 +59,7 @@ The Close Call Database supports two authentication methods:
    ↓
 10. System: Auto-login user (REGISTRATION_AUTO_LOGIN=True)
     ↓
-11. System: Redirect to create user profile
+11. System: Redirect to update user profile (profile already exists from step 5)
     - URL: /create-user-profile/
     ↓
 12. User Action: Fill profile form
@@ -67,10 +68,11 @@ The Close Call Database supports two authentication methods:
     - City, State, Country
     - Email notification preferences
     ↓
-13. System: Create UserProfile
-    - Linked to User via OneToOneField
+13. System: Update UserProfile
+    - Profile already created automatically in step 5
+    - Update with user-provided details
     - Geocode location → position field
-    - Save profile
+    - Save updated profile
     ↓
 14. System: User fully registered and logged in
     - Redirect to homepage
@@ -149,8 +151,14 @@ The Close Call Database supports two authentication methods:
 - Email sending
 - Auto-login after activation
 
+**Signal Handlers (Django 5.1 Best Practices):**
+- **Automatic UserProfile creation** via `post_save` signal on User model
+- Uses `transaction.on_commit()` to avoid race conditions
+- Only creates profile if one doesn't exist (Strava flow handles its own)
+- Logs all profile creation attempts
+
 **Application Handles:**
-- UserProfile creation (separate step after activation)
+- UserProfile updates (profile auto-created by signal)
 - Location geocoding
 - Incident notification preferences
 
@@ -159,12 +167,13 @@ The Close Call Database supports two authentication methods:
 [No Account]
     → Registration Form Submitted
         → User Created (is_active=False)
-            → Email Sent
-                → User Clicks Activation Link
-                    → User Activated (is_active=True)
-                        → Auto-Login
-                            → Profile Created
-                                → [Fully Registered]
+            → UserProfile Auto-Created (signal handler)
+                → Email Sent
+                    → User Clicks Activation Link
+                        → User Activated (is_active=True)
+                            → Auto-Login
+                                → Profile Updated (user fills form)
+                                    → [Fully Registered]
 ```
 
 ## Strava OAuth Flow
@@ -219,11 +228,19 @@ Since Strava removed email from their API response in 2019, we now collect it se
 
 6. **On submission**:
    - Creates Django User with username: `{firstname} {lastname}-{strava_id}`
-   - Creates UserProfile with Strava data
-   - Sets `created_with = "Strava={strava_id}"`
-   - Stores OAuth data for future use
+   - Signal handler auto-creates blank UserProfile (via transaction.on_commit())
+   - View updates UserProfile with Strava data (race condition handled)
+   - Sets `created_with = "strava-{strava_id}"`
+   - Stores OAuth data in `oauth_data` field for future use
    - Automatically logs user in
    - Clears session data
+
+**Race Condition Prevention (Django 5.1 Best Practice):**
+- Signal handler uses `transaction.on_commit()` to defer profile creation
+- Strava view checks if profile exists before creating
+- If profile exists (from signal), updates it with Strava data
+- If profile doesn't exist, creates new one
+- Prevents duplicate key errors that occurred in earlier versions
 
 ### Existing Strava User Login
 
@@ -244,19 +261,42 @@ Since Strava removed email from their API response in 2019, we now collect it se
   - Rate limits suspicious attempts
   - Blocks clients after 3 violations
 
-### Registration Logging
+### Spam Protection
 
-All registration attempts are logged with:
+**Contact Form Honeypot:**
+- Hidden "website" field catches bots (hidden via CSS)
+- Legitimate users never see or fill this field
+- Bots automatically fill all form fields
+- Submissions with filled website field are rejected (403 Forbidden)
+- Logged but no email alerts sent
+
+**Content-Based Spam Detection:**
+- URL detection (http://, https://, www.)
+- E-commerce keywords (% off, free shipping, limited time, etc.)
+- Banned IP tracking
+- All spam attempts logged to `django.log`
+
+### Registration and Error Logging
+
+All registration attempts and errors are logged with:
 - IP address (considering X-Forwarded-For headers)
 - Email address
 - Username
 - User agent
 - Success/failure status
-- Error details
+- Error details and stack traces
+
+**Improved Logging (November 2025):**
+- `safe_print()` function now writes to log files (not just console/email)
+- Critical errors logged as ERROR level
+- Normal activity logged as INFO level
+- All logs persisted to disk for observability
 
 Logs are written to:
-- `logs/users.log` - User events
-- `logs/security.log` - Security events
+- `logs/django.log` - All application activity (main log file)
+- `logs/users.log` - User-specific events
+- `logs/security.log` - Security events (CSRF, suspicious activity)
+- `logs/errors.log` - Error-level events only
 
 ### Password Requirements
 
@@ -294,6 +334,10 @@ class UserProfile(BaseFields):
 ### Settings (`closecall/settings.py`)
 
 ```python
+# Timezone (Mountain Time - Denver)
+TIME_ZONE = 'America/Denver'
+USE_TZ = True
+
 # Session duration
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 30 * 15  # 15 months
 
@@ -322,6 +366,27 @@ DEFAULT_FROM_EMAIL = 'closecalldatabase@gmail.com'
 
 ## Recent Changes
 
+### November 12, 2025 - Signal Handler Improvements & Race Condition Fix
+
+**Problem**:
+1. Race condition between signal handler and Strava view causing duplicate profile errors
+2. Users without profiles not being tracked (8,477 orphaned accounts)
+3. Critical errors only sent via email, not logged to files
+
+**Solution**:
+1. **Implemented Django 5.1 best practices** - Signal handlers use `transaction.on_commit()` to avoid race conditions
+2. **Automatic profile creation** - Traditional registration now auto-creates profiles via signals
+3. **Strava view race condition fix** - Checks if profile exists, updates instead of creating duplicate
+4. **Improved logging** - `safe_print()` now writes to log files for observability
+5. **Spam protection** - Honeypot field on contact form, email notifications disabled for spam
+6. **Timezone fix** - Changed from UTC to America/Denver for accurate timestamps
+
+**Impact**:
+- Eliminated duplicate profile creation errors
+- All new registrations automatically get profiles
+- Critical errors now visible in logs (not just email)
+- Spam blocked silently (9 attempts caught first night)
+
 ### November 2025 - Fixed Strava Registration
 
 **Problem**: Strava registration broken since 2019 when Strava removed email from API response
@@ -333,6 +398,7 @@ DEFAULT_FROM_EMAIL = 'closecalldatabase@gmail.com'
 **Impact**:
 - 4 successful Strava registrations in first week after fix
 - 72% of 16,039 users registered via Strava
+- One failed registration (Sung Ho Yang) due to race condition (fixed Nov 12)
 
 ### Django 5 Compatibility
 
@@ -401,12 +467,13 @@ The authentication test suite covers:
 - ✓ No information disclosure for invalid email
 
 **UserProfile Tests:**
-- ✓ Profile creation
+- ✓ Profile auto-creation via signals
+- ✓ Profile update (not duplicate creation)
 - ✓ Login required for profile
 - ✓ One profile per user constraint
 
 **Integration Tests:**
-- ✓ Complete registration flow (registration → activation → profile)
+- ✓ Complete registration flow (registration → activation → auto-profile → profile update)
 
 **Security Tests:**
 - ✓ Passwords hashed (never plaintext)
@@ -415,7 +482,17 @@ The authentication test suite covers:
 
 ### Test Database
 
-Tests use a temporary SQLite database by default. No need to configure anything - Django handles test database creation and teardown automatically.
+**Important**: Tests that involve signal handlers with `transaction.on_commit()` must use `TransactionTestCase` instead of `TestCase`. This is because:
+- `TestCase` wraps each test in a database transaction that's rolled back
+- `transaction.on_commit()` callbacks never fire with rolled-back transactions
+- `TransactionTestCase` actually commits to the test database
+
+Tests use a temporary PostgreSQL database. Django handles test database creation and teardown automatically.
+
+**Test Execution Notes:**
+- Most tests use `TestCase` (fast, transactional rollback)
+- UserProfile and Integration tests use `TransactionTestCase` (slower, requires actual commits)
+- Current pass rate: 26/30 tests (87%) - 4 test isolation issues being addressed
 
 ## Monitoring
 
@@ -425,7 +502,81 @@ python registration_report.py
 ```
 
 This shows:
-- Overall registration statistics
+- Overall registration statistics (by registration type)
 - Recent registration activity (7, 30, 365 days)
-- Breakdown by registration type
-- Details of most recent Strava registration
+- Breakdown by Strava vs Traditional registration
+- **Orphaned accounts** - Users without profiles (inactive/never activated)
+- Details of most recent Strava and Traditional registrations
+- Yearly breakdown of orphaned accounts
+
+**Orphaned Account Tracking** (added November 12, 2025):
+- Shows users who registered but never completed profile creation
+- Distinguishes active vs inactive (email never verified)
+- Helps identify registration issues
+- Most orphaned accounts are spam/bots (inactive)
+- Auto-profile creation eliminates new orphaned accounts
+
+## Technical Implementation Details
+
+### Signal Handler Implementation
+
+**File**: `users/signals.py`
+
+The signal handler follows Django 5.1 best practices:
+
+```python
+@receiver(post_save, sender=User)
+def create_user_profile_on_registration(sender, instance, created, **kwargs):
+    """Auto-create UserProfile using transaction.on_commit()"""
+    if created:
+        def create_profile_if_needed():
+            try:
+                user = User.objects.get(pk=instance.pk)
+                if not hasattr(user, 'profile'):
+                    UserProfile.objects.create(
+                        user=user,
+                        first=user.first_name or '',
+                        last=user.last_name or '',
+                        created_with='Traditional Registration'
+                    )
+                    logger.info(f"AUTO-CREATED UserProfile for: {user.username}")
+            except User.DoesNotExist:
+                logger.warning(f"User {instance.pk} rolled back")
+            except Exception as e:
+                logger.error(f"ERROR creating profile: {str(e)}")
+
+        transaction.on_commit(create_profile_if_needed)
+```
+
+**Key Features:**
+- Uses `transaction.on_commit()` to defer execution until after User is committed
+- Refreshes user from database to ensure latest state
+- Checks if profile already exists (Strava may have created it)
+- Gracefully handles transaction rollbacks
+- Comprehensive error logging
+
+### Files Modified (November 12, 2025)
+
+**Signal Handler:**
+- `users/signals.py` - Added transaction.on_commit() wrapper
+
+**Strava Registration:**
+- `core/views.py` (strava_complete_registration) - Check/update existing profile instead of always creating
+
+**Logging:**
+- `core/views.py` (safe_print function) - Write to log files, not just console/email
+
+**Spam Protection:**
+- `core/models.py` (UserInput) - Added honeypot 'website' field
+- `core/views.py` (CreateUserInput) - Honeypot validation, disabled email alerts
+- `templates/input/user_input.html` - Hide honeypot field with CSS
+- `core/migrations/0003_userinput_website.py` - Database migration
+
+**Configuration:**
+- `closecall/settings.py` - Changed TIME_ZONE from 'UTC' to 'America/Denver'
+
+**Tests:**
+- `tests/test_authentication.py` - Updated to use TransactionTestCase for signal-related tests
+
+**Reporting:**
+- `registration_report.py` - Added orphaned accounts section, fixed timezone display

@@ -58,10 +58,54 @@ process_dat: *.dat: python process.py $0
 
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.contrib.auth.models import User
+from django.db import transaction
 from .models import UserProfile
 
 # from django.conf import settings
 import os.path
+import logging
+
+logger = logging.getLogger(__name__)
+
+
+@receiver(post_save, sender=User)
+def create_user_profile_on_registration(sender, instance, created, **kwargs):
+    """
+    Automatically create a UserProfile for users who register through
+    traditional django-registration-redux flow (not Strava).
+    Strava registration handles profile creation in its own view.
+
+    Uses transaction.on_commit() to avoid race conditions - profile is only
+    created after the User transaction is committed to the database.
+    This is the Django 5.1+ best practice for signal handlers.
+    """
+    if created:
+        # Use transaction.on_commit() to avoid race conditions
+        # This ensures the User is committed to DB before we check for profile
+        def create_profile_if_needed():
+            try:
+                # Refresh from database to get latest state
+                user = User.objects.get(pk=instance.pk)
+
+                # Check if profile already exists (Strava flow may have created it)
+                if not hasattr(user, 'profile'):
+                    UserProfile.objects.create(
+                        user=user,
+                        first=user.first_name or '',
+                        last=user.last_name or '',
+                        created_with='Traditional Registration'
+                    )
+                    logger.info(f"AUTO-CREATED UserProfile for traditional registration: {user.username} ({user.email})")
+                else:
+                    logger.info(f"Profile already exists for {user.username}, skipping auto-creation")
+            except User.DoesNotExist:
+                # Transaction was rolled back, user doesn't exist
+                logger.warning(f"User {instance.pk} does not exist, transaction may have been rolled back")
+            except Exception as e:
+                logger.error(f"ERROR auto-creating UserProfile for {instance.username}: {str(e)}")
+
+        transaction.on_commit(create_profile_if_needed)
 
 
 @receiver(post_save, sender=UserProfile)

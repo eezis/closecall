@@ -31,11 +31,15 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'closecall.settings'
 django.setup()
 
 import datetime
+import logging
 from django.conf import settings
 from users.models import UserProfile
 from incident.models import Incident
 from core.utils import distance_between_geocoded_points
 from core.views import send_incident_notification
+
+# Get the geolocation logger for tracking users with missing/invalid location data
+geolocation_logger = logging.getLogger('geolocation')
 
 
 def get_users_close_to_incident(incident_id, radius=60):
@@ -72,6 +76,13 @@ def get_users_close_to_incident(incident_id, radius=60):
                 matched_users.append(profile)
                 print(f"  ✓ {profile.first} {profile.last} ({profile.user.email}) - {distance:.1f} miles")
         except Exception as e:
+            # Log to geolocation-missing.log for tracking users with invalid/missing location data
+            geolocation_logger.warning(
+                f"SKIPPED user {profile.user.username} (ID: {profile.user.id}, email: {profile.user.email}) "
+                f"for incident #{incident_id}: {str(e)} | "
+                f"Profile data: city='{profile.city}', state='{profile.state}', "
+                f"country='{profile.country}', position='{profile.position}'"
+            )
             print(f"  ⚠️  Skipped {profile.user.username}: {e}")
 
     return matched_users, incident

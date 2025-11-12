@@ -23,8 +23,8 @@ from core.models import UserInput, Product
 # to support the custom 400 and 500 handlers (handler500 , handler404)
 # render_to_response and RequestContext removed - deprecated in Django 3.0
 
-# import logging
-# logger = logging.getLogger('closecall')
+import logging
+logger = logging.getLogger('django')
 
 # from incident.models import Incident
 
@@ -44,11 +44,26 @@ P = True
 
 # Printing is controlled via the P flag, pass any IOError exceptions
 def safe_print(msg, print_it=True, email_it=False):
+    """
+    Log messages to file, optionally print to console and/or email.
+    All messages are ALWAYS logged to django.log for observability.
+    """
+    # ALWAYS log to file (critical for observability)
+    if email_it:
+        # If it's important enough to email, log as ERROR
+        logger.error(msg)
+    else:
+        # Otherwise log as INFO
+        logger.info(msg)
+
+    # Optionally print to console
     if P and print_it:
         try:
             print(msg)
         except IOError:
             pass
+
+    # Optionally send email
     if email_it:
         subject = "Cores View: Registration Message"
         send_mail(subject, msg, 'noreply@alert.closecalldatabase.com', ['closecalldatabase@gmail.com', 'ernest.ezis@gmail.com',], fail_silently=False)
@@ -241,7 +256,7 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
             password=created_password,
             last_login=timezone.now()
         )
-    except IntegrityError:
+    except IntegrityError as first_error:
         # this means we have an instance where there is already on Sam Thomas, and seccond one is trying to join-probably from Strava
         # let's try to add the athlete_id or a random number
         safe_print(u"INTEGRITY ERROR: Probably two Strava user with same name, {} {}, attempting to fix by generating unique username".format(fname,lname))
@@ -256,15 +271,55 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
             created_username = created_username + '-' + str((randint(1,1000)))
 
         safe_print('created_username is: {}'.format(created_username))
-        # Create user with last_login set to avoid null constraint in Django 5
-        new_user = User.objects.create_user(
-            username=created_username,
-            first_name=fname,
-            last_name=lname,
-            email=email,
-            password=created_password,
-            last_login=timezone.now()
-        )
+
+        # Try to create with modified username
+        try:
+            # Create user with last_login set to avoid null constraint in Django 5
+            new_user = User.objects.create_user(
+                username=created_username,
+                first_name=fname,
+                last_name=lname,
+                email=email,
+                password=created_password,
+                last_login=timezone.now()
+            )
+        except IntegrityError as second_error:
+            # BOTH usernames taken! This is the Derek Griffiths scenario
+            safe_print(f"DOUBLE USERNAME COLLISION: Both '{fname} {lname}' and '{created_username}' exist!")
+            safe_print(f"Email: {email}, Athlete ID: {athlete_id}")
+
+            # Last resort: add random number
+            max_attempts = 5
+            for attempt in range(max_attempts):
+                try:
+                    fallback_username = f"{fname} {lname}-{athlete_id}-{randint(1000, 9999)}"
+                    safe_print(f"Attempt {attempt + 1}/{max_attempts}: Trying username: {fallback_username}")
+
+                    new_user = User.objects.create_user(
+                        username=fallback_username,
+                        first_name=fname,
+                        last_name=lname,
+                        email=email,
+                        password=created_password,
+                        last_login=timezone.now()
+                    )
+                    safe_print(f"Success! Created user with username: {fallback_username}")
+                    break
+                except IntegrityError:
+                    if attempt == max_attempts - 1:
+                        # All attempts failed - this should never happen
+                        error_msg = (
+                            f"CRITICAL: Failed to create user after {max_attempts} attempts\n"
+                            f"Name: {fname} {lname}\n"
+                            f"Email: {email}\n"
+                            f"Athlete ID: {athlete_id}\n"
+                            f"Original error: {str(first_error)}\n"
+                            f"Second error: {str(second_error)}"
+                        )
+                        admin_mailer('CRITICAL: User creation failed', error_msg)
+                        safe_print(error_msg, True, True)
+                        raise  # Re-raise to show error to user
+                    continue
     except DataError as e:
         error_msg = f'DataError in create_new_user: Are long emails causing problems? See core.views line ~221. \n' + email + '\n' + created_username + '\n' + fname + '\n' + lname + '\n' + str(athlete_id)
         admin_mailer('UNEXPECTED LOGIN ISSUE', error_msg)
@@ -333,14 +388,17 @@ def existing_strava_user(UserFromDB, authing_email, authing_id):
 
 
 # EE 11.26.15 - this new code replaces the old code I commented out below
+# EE 11.12.25 - Updated to prevent duplicate accounts with same email
 """
-if user exists
-    and has the same Strava Profile ID
-        return the user object
-    if different ID
-    create a user object and return it
-else
-    create a user object and return it
+UPDATED LOGIC (Nov 12, 2025):
+1. First check if user exists by EMAIL (prevents duplicates)
+2. If email exists, verify it's the same Strava user (by athlete_id)
+3. If username exists but different email, handle collision
+4. Only create new user if email doesn't exist
+
+Old logic only checked username, which caused duplicate accounts when:
+- User had traditional account, then registered via Strava
+- Same person registered twice from Strava
 
 caveats: Strava usernames are not unique, user of email and user name is better, but
 strava users can change their email. Strava uniqueness is on the athlete_id, but that
@@ -349,6 +407,40 @@ simply logging in, we need to check the athlete_id. If it's a match we should ch
 well and update if appropriate
 """
 def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
+    # FIRST: Check if user exists by EMAIL (prevents duplicate accounts)
+    try:
+        user_by_email = User.objects.get(email=email)
+        safe_print(f"Found existing user by email: {email} (username: {user_by_email.username})")
+
+        # User exists with this email - verify it's the same person
+        if existing_strava_user(user_by_email, email, athlete_id):
+            safe_print("Email match + Strava ID match - returning existing user")
+            return user_by_email
+        else:
+            # Email exists but different Strava ID or not a Strava user
+            # This could be:
+            # 1. Traditional registration user now registering via Strava
+            # 2. Different person with same email (rare but possible)
+            safe_print(f"User with email {email} exists but Strava ID doesn't match")
+            safe_print(f"Existing user: {user_by_email.username}, New Strava user: {created_username}")
+
+            # If the existing user doesn't have a Strava profile, link this Strava account to them
+            try:
+                if not user_by_email.profile.created_with or 'Strava=' not in user_by_email.profile.created_with:
+                    safe_print("Existing user has no Strava link - this is their first Strava login")
+                    safe_print(f"Updating their Strava info (athlete_id: {athlete_id})")
+                    return user_by_email
+            except:
+                pass
+
+            # Otherwise return existing user (let caller decide what to do)
+            return user_by_email
+
+    except User.DoesNotExist:
+        safe_print(f"No user found with email: {email}")
+        # Email doesn't exist - check username collision below
+
+    # SECOND: Check if username is taken (handle collision)
     try:
         user = User.objects.get(username=created_username)
         #  if user is None it should already have excepted and will not run this code
@@ -356,11 +448,11 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
             safe_print("Existing_strava_user returned TRUE")
             return user
         else:
-            safe_print("Existing_strava_user returned False, go create new user")
+            safe_print("Username collision - creating user with modified username")
             return create_new_user(email, created_username, fname, lname, athlete_id)
 
     except User.DoesNotExist:
-        safe_print("The user does not exist, going to create User Object".format(created_username))
+        safe_print(f"Username {created_username} available - creating new user")
         return create_new_user(email, created_username, fname, lname, athlete_id)
 
 
@@ -738,20 +830,35 @@ def strava_complete_registration(request):
                 messages.error(request, "An error occurred creating your account. Please try again or contact support.")
                 return render(request, 'strava-email-collection-fixed.html', {'form': form, 'strava_user': strava_data})
 
-            # Create the user profile
+            # Create or update the user profile
+            # Check if profile already exists (signal handler may have created it)
             try:
-                new_profile = UserProfile(
-                    user=this_user,
-                    first=fname,
-                    last=lname,
-                    city=city,
-                    state=state,
-                    country=country,
-                    created_with=f'strava-{athlete_id}',
-                    oauth_data=str(strava_data)
-                )
-                new_profile.save()
-                safe_print(f"Profile created successfully for {fname} {lname} ({athlete_id})")
+                try:
+                    new_profile = this_user.profile
+                    # Profile exists, update it with Strava data
+                    new_profile.first = fname
+                    new_profile.last = lname
+                    new_profile.city = city
+                    new_profile.state = state
+                    new_profile.country = country
+                    new_profile.created_with = f'strava-{athlete_id}'
+                    new_profile.oauth_data = str(strava_data)
+                    new_profile.save()
+                    safe_print(f"Profile updated with Strava data for {fname} {lname} ({athlete_id})")
+                except UserProfile.DoesNotExist:
+                    # Profile doesn't exist, create it
+                    new_profile = UserProfile(
+                        user=this_user,
+                        first=fname,
+                        last=lname,
+                        city=city,
+                        state=state,
+                        country=country,
+                        created_with=f'strava-{athlete_id}',
+                        oauth_data=str(strava_data)
+                    )
+                    new_profile.save()
+                    safe_print(f"Profile created successfully for {fname} {lname} ({athlete_id})")
             except Exception as e:
                 error_msg = f"EXCEPTION creating UserProfile for {fname} {lname} ({athlete_id}): {str(e)}"
                 safe_print(error_msg, True, True)
@@ -1002,7 +1109,7 @@ class CreateUserInput(CreateView):
 
         # Honeypot check - if 'website' field is filled, it's a bot
         if self.request.POST.get('website', '').strip():
-            safe_print(f"HONEYPOT SPAM CAUGHT from IP {ip}: website field filled with '{self.request.POST.get('website')}'", True, True)
+            safe_print(f"HONEYPOT SPAM CAUGHT from IP {ip}: website field filled with '{self.request.POST.get('website')}'", True, False)
             raise PermissionDenied
 
         msg = self.request.POST['message'] + '\n\n' + self.request.POST['email'] + '\n\n' + ip + '\n\n' + ip_real
@@ -1010,12 +1117,12 @@ class CreateUserInput(CreateView):
             # print('Spam!')
             # print(self.request.META.get('REMOTE_ADDR'))
             # logger.warning("SPAMMER AT ADDRESS: " + self.request.META.get('REMOTE_ADDR'))
-            safe_print(f"SPAM DETECTED from IP {ip}: {msg[:100]}", True, True)
+            safe_print(f"SPAM DETECTED from IP {ip}: {msg[:100]}", True, False)
             raise PermissionDenied
             # return redirect('http://www.urbandictionary.com/define.php?term=Fuck%20off%20and%20die')
 
         if banned_ip(ip):
-            safe_print(f"BANNED IP ATTEMPT: {ip}", True, True)
+            safe_print(f"BANNED IP ATTEMPT: {ip}", True, False)
             raise PermissionDenied
 
         else:
