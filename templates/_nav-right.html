@@ -24,7 +24,12 @@
                 {% if user.profile.can_blog %}
                     <li><a href="{% url 'users-blogpost-list' %}">Your Blog Posts</a></li>
                 {% endif %}
-                <li><a href="/accounts/logout/" >Logout</a></li>
+                <li>
+                    <form method="post" action="{% url 'auth_logout' %}" style="margin: 0; padding: 0;">
+                        {% csrf_token %}
+                        <button type="submit" style="background:none; border:none; padding: 3px 20px; text-align:left; color:#333; width:100%; cursor:pointer;">Logout</button>
+                    </form>
+                </li>
                 <li><a href="{% url 'contact-general-registered' %}">Contact</a></li>
               </ul>
           </li>

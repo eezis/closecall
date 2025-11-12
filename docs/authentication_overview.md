@@ -10,47 +10,162 @@ The Close Call Database supports two authentication methods:
 
 ## Traditional Registration Flow
 
-### Registration Process
+### Registration Process Flow
 
-1. **User visits** `/accounts/register/`
-2. **Fills form** with:
-   - Username
-   - Email address
-   - Password (minimum 6 characters)
-   - First name
-   - Last name
-   - City, State, Country
-   - Zipcode (optional)
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    TRADITIONAL REGISTRATION                      │
+└─────────────────────────────────────────────────────────────────┘
 
-3. **Django Registration Redux** handles:
-   - User creation (Django User model)
-   - UserProfile creation (extended profile)
-   - Sends activation email via SendGrid
-   - User must click activation link within 7 days
+1. User Action: Navigate to /accounts/register/
+   ↓
+2. System: Display registration form (templates/registration/registration_form.html)
+   - Username (required, unique)
+   - Email (required, unique)
+   - Password (required, min 6 chars)
+   - Password confirmation (must match)
+   ↓
+3. User Action: Submit form
+   ↓
+4. System: Validate form data
+   - Check username not taken
+   - Check email not registered
+   - Validate password strength
+   - Verify passwords match
+   ↓
+5. System: Create User account
+   - Status: INACTIVE (is_active=False)
+   - Generate activation key
+   - Set expiration (7 days)
+   ↓
+6. System: Send activation email
+   - To: User's email
+   - Template: templates/registration/activation_email.txt
+   - Contains: Activation link with unique key
+   - Via: SendGrid SMTP
+   ↓
+7. System: Show confirmation page
+   - Template: templates/registration/registration_complete.html
+   - Message: "Check your email for activation link"
+   ↓
+8. User Action: Click activation link in email
+   - URL: /accounts/activate/<activation_key>/
+   ↓
+9. System: Validate activation
+   - Check key exists
+   - Check not expired (< 7 days)
+   - Activate user (is_active=True)
+   ↓
+10. System: Auto-login user (REGISTRATION_AUTO_LOGIN=True)
+    ↓
+11. System: Redirect to create user profile
+    - URL: /create-user-profile/
+    ↓
+12. User Action: Fill profile form
+    - First name
+    - Last name
+    - City, State, Country
+    - Email notification preferences
+    ↓
+13. System: Create UserProfile
+    - Linked to User via OneToOneField
+    - Geocode location → position field
+    - Save profile
+    ↓
+14. System: User fully registered and logged in
+    - Redirect to homepage
+    - User can now report incidents
+    - User can receive location-based alerts
+```
 
-4. **Email Activation**:
-   - Template: `templates/registration/activation_email.html`
-   - Contains activation link with unique key
-   - Valid for `ACCOUNT_ACTIVATION_DAYS = 7` days
+### Login Process Flow
 
-5. **After Activation**:
-   - User is automatically logged in
-   - UserProfile is geocoded based on location
-   - User can receive incident notifications for their area
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                        LOGIN PROCESS                             │
+└─────────────────────────────────────────────────────────────────┘
 
-### Login Process
+1. User Action: Navigate to /accounts/login/
+   ↓
+2. System: Display login form (templates/registration/login.html)
+   - Username field
+   - Password field
+   ↓
+3. User Action: Submit credentials
+   ↓
+4. System: Authenticate
+   - Query User.objects.get(username=username)
+   - Verify password hash matches
+   - Check is_active=True
+   ↓
+5. Success Path:
+   - Create session
+   - Set session cookie (15 month expiry)
+   - Redirect to '/' or 'next' URL
+   ↓
+6. Failure Path:
+   - Display error: "Invalid username or password"
+   - Re-show login form
+```
 
-1. **User visits** `/accounts/login/`
-2. **Enters** username and password
-3. **Django auth** validates credentials
-4. **Redirects to** homepage or next URL
+### Password Reset Flow
 
-### Password Reset
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     PASSWORD RESET                               │
+└─────────────────────────────────────────────────────────────────┘
 
-1. **User visits** `/accounts/password/reset/`
-2. **Enters** email address
-3. **System sends** reset link via SendGrid
-4. **User clicks** link and sets new password
+1. User Action: Click "Forgot Password?" on login page
+   ↓
+2. System: Show password reset form (/accounts/password/reset/)
+   ↓
+3. User Action: Enter email address
+   ↓
+4. System: Send reset email
+   - Generate password reset token
+   - Send email via SendGrid
+   - Contains unique reset link
+   ↓
+5. User Action: Click link in email
+   ↓
+6. System: Show password reset form
+   ↓
+7. User Action: Enter new password (twice)
+   ↓
+8. System: Update password
+   - Hash new password
+   - Save to database
+   - Invalidate reset token
+   ↓
+9. System: Redirect to login page
+   - Show success message
+```
+
+### Key Implementation Details
+
+**Django Registration Redux Handles:**
+- User account creation
+- Activation key generation and validation
+- Email sending
+- Auto-login after activation
+
+**Application Handles:**
+- UserProfile creation (separate step after activation)
+- Location geocoding
+- Incident notification preferences
+
+**Database State Transitions:**
+```
+[No Account]
+    → Registration Form Submitted
+        → User Created (is_active=False)
+            → Email Sent
+                → User Clicks Activation Link
+                    → User Activated (is_active=True)
+                        → Auto-Login
+                            → Profile Created
+                                → [Fully Registered]
+```
 
 ## Strava OAuth Flow
 
@@ -231,6 +346,76 @@ DEFAULT_FROM_EMAIL = 'closecalldatabase@gmail.com'
 - **Strava registrations**: 11,655 (72%)
 - **Traditional registrations**: 4,384 (27%)
 - **Recent activity**: All new registrations are via Strava
+
+## Testing
+
+### Running Authentication Tests
+
+Comprehensive test suite for traditional authentication flow:
+
+```bash
+# Run all authentication tests
+python manage.py test tests.test_authentication
+
+# Run specific test class
+python manage.py test tests.test_authentication.RegistrationTests
+python manage.py test tests.test_authentication.LoginTests
+python manage.py test tests.test_authentication.ActivationTests
+
+# Run specific test
+python manage.py test tests.test_authentication.RegistrationTests.test_successful_registration
+
+# Run with verbose output
+python manage.py test tests.test_authentication --verbosity=2
+```
+
+### Test Coverage
+
+The authentication test suite covers:
+
+**Registration Tests:**
+- ✓ Successful registration
+- ✓ Duplicate username rejection
+- ✓ Duplicate email rejection
+- ✓ Password mismatch detection
+- ✓ Weak password rejection
+- ✓ Invalid email format
+- ✓ Missing required fields
+
+**Activation Tests:**
+- ✓ Valid activation key
+- ✓ Invalid activation key
+- ✓ Expired activation key (> 7 days)
+- ✓ Auto-login after activation
+
+**Login Tests:**
+- ✓ Successful login
+- ✓ Invalid username
+- ✓ Invalid password
+- ✓ Inactive user (not activated)
+- ✓ Case-sensitive username
+- ✓ Login redirect to 'next' parameter
+
+**Password Reset Tests:**
+- ✓ Reset email sent for valid email
+- ✓ No information disclosure for invalid email
+
+**UserProfile Tests:**
+- ✓ Profile creation
+- ✓ Login required for profile
+- ✓ One profile per user constraint
+
+**Integration Tests:**
+- ✓ Complete registration flow (registration → activation → profile)
+
+**Security Tests:**
+- ✓ Passwords hashed (never plaintext)
+- ✓ CSRF protection on forms
+- ✓ Session creation on login
+
+### Test Database
+
+Tests use a temporary SQLite database by default. No need to configure anything - Django handles test database creation and teardown automatically.
 
 ## Monitoring
 

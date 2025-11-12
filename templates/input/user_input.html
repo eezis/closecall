@@ -8,7 +8,16 @@
 {# {%block navigation %}{% include '_nav-activate.html' %} {% endblock %} #}
 
 {% block extra_css_or_js %}
-
+<style>
+  /* Hide honeypot field from humans (bots will still fill it) */
+  #div_id_website {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+</style>
 {% endblock %}
 
 

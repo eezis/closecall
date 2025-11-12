@@ -265,9 +265,11 @@ def create_new_user(email, created_username, fname, lname, athlete_id=None):
             password=created_password,
             last_login=timezone.now()
         )
-    except DataError:
-        admin_mailer('UNEXPECTED LOGIN ISSUE', 'Are long emails causing problems? See core.views line ~221. \n'
-            + email + '\n' + created_username + '\n' + fname + '\n' + lname + '\n' + athlete_id)
+    except DataError as e:
+        error_msg = f'DataError in create_new_user: Are long emails causing problems? See core.views line ~221. \n' + email + '\n' + created_username + '\n' + fname + '\n' + lname + '\n' + str(athlete_id)
+        admin_mailer('UNEXPECTED LOGIN ISSUE', error_msg)
+        safe_print(f"DataError creating user: {str(e)}", True, True)
+        raise  # Re-raise the exception so caller can handle it
 
     return new_user
 
@@ -717,21 +719,48 @@ def strava_complete_registration(request):
             # Create username (max 30 chars)
             created_username = f"{fname} {lname}"[:30]
 
-            # Create the user with the collected email
-            this_user = get_or_create_user(email, created_username, fname, lname, athlete_id)
+            # Log registration attempt
+            safe_print(f"STRAVA REGISTRATION ATTEMPT: {fname} {lname} (ID: {athlete_id}) - Email: {email}")
+
+            try:
+                # Create the user with the collected email
+                this_user = get_or_create_user(email, created_username, fname, lname, athlete_id)
+                if this_user is None:
+                    error_msg = f"CRITICAL ERROR: get_or_create_user returned None for {fname} {lname} ({athlete_id}), email: {email}"
+                    safe_print(error_msg, True, True)
+                    messages.error(request, "An error occurred creating your account. Please try again or contact support.")
+                    return render(request, 'strava-email-collection-fixed.html', {'form': form, 'strava_user': strava_data})
+            except Exception as e:
+                error_msg = f"EXCEPTION in get_or_create_user for {fname} {lname} ({athlete_id}): {str(e)}"
+                safe_print(error_msg, True, True)
+                import traceback
+                safe_print(traceback.format_exc(), True, True)
+                messages.error(request, "An error occurred creating your account. Please try again or contact support.")
+                return render(request, 'strava-email-collection-fixed.html', {'form': form, 'strava_user': strava_data})
 
             # Create the user profile
-            new_profile = UserProfile(
-                user=this_user,
-                first=fname,
-                last=lname,
-                city=city,
-                state=state,
-                country=country,
-                created_with=f'strava-{athlete_id}',
-                oauth_data=str(strava_data)
-            )
-            new_profile.save()
+            try:
+                new_profile = UserProfile(
+                    user=this_user,
+                    first=fname,
+                    last=lname,
+                    city=city,
+                    state=state,
+                    country=country,
+                    created_with=f'strava-{athlete_id}',
+                    oauth_data=str(strava_data)
+                )
+                new_profile.save()
+                safe_print(f"Profile created successfully for {fname} {lname} ({athlete_id})")
+            except Exception as e:
+                error_msg = f"EXCEPTION creating UserProfile for {fname} {lname} ({athlete_id}): {str(e)}"
+                safe_print(error_msg, True, True)
+                import traceback
+                safe_print(traceback.format_exc(), True, True)
+                # Delete the user if profile creation failed to avoid orphaned accounts
+                this_user.delete()
+                messages.error(request, "An error occurred creating your profile. Please try again or contact support.")
+                return render(request, 'strava-email-collection-fixed.html', {'form': form, 'strava_user': strava_data})
 
             # Send welcome email to new user
             try:
@@ -773,8 +802,17 @@ The Close Call Database Team
                 messages.success(request, f"Welcome to the Close Call Database, {fname}!")
                 return HttpResponseRedirect('/')
             else:
+                safe_print(f"STRAVA REGISTRATION: Login failed for {fname} {lname} ({athlete_id})", True, True)
                 messages.error(request, "There was an issue logging you in. Please try again.")
                 return HttpResponseRedirect('/accounts/login/')
+        else:
+            # Form validation failed - log the errors
+            athlete_id = strava_data.get('id', 'unknown')
+            fname = strava_data.get('firstname', '')
+            lname = strava_data.get('lastname', '')
+            error_msg = f"FORM VALIDATION FAILED for Strava user {fname} {lname} (ID: {athlete_id}). Errors: {form.errors.as_json()}"
+            safe_print(error_msg, True, True)
+            messages.error(request, "Please correct the errors below and try again.")
     else:
         form = StravaEmailForm()
 
@@ -899,15 +937,35 @@ def its_spam(msg):
         return True
     if 'SBA lending' in msg:
         return True
-    # catch instances that start off like this: https://vk.com/web_16 – РјРµР±РµР
-    if msg[0:4].lower() == 'http':
-        return True
-    if msg[0:5].lower() == 'https':
-        return True
-    # if cyrllic_present(msg):
-    #     return True
 
+    # Check for URLs anywhere in message (not just at start)
     userinput = msg.lower()
+    if 'http://' in userinput or 'https://' in userinput:
+        return True
+    if 'www.' in userinput:
+        return True
+
+    # Common e-commerce spam patterns
+    spam_patterns = [
+        '% off',
+        'free shipping',
+        'lifetime warranty',
+        'click here',
+        'limited time',
+        'act now',
+        'order now',
+        'buy now',
+        'get yours',
+        'special offer',
+        'discount',
+        'today only',
+    ]
+
+    for pattern in spam_patterns:
+        if pattern in userinput:
+            return True
+
+    # Original spam keywords
     spammy = ["cialis", "porn", "viagra", "sex", "casino", u"ส", u"а", u"п", "tiffany outlet", "kate spade",
     "pharma", "forex", "a href", "$", "erotic", "xxx", "naked", "gay", "promote", "fuck", "tumblr", "muslim", ]
     for i in spammy:
@@ -926,7 +984,7 @@ class CreateUserInput(CreateView):
     subject = None
 
     # fields = ['subject', 'first', 'last', 'email', 'message',]
-    fields = ['first', 'last', 'email', 'message', ]
+    fields = ['first', 'last', 'email', 'message', 'website']
 
     def get_object(self, queryset=None):
         return queryset.get(subject=self.subject)
@@ -942,19 +1000,28 @@ class CreateUserInput(CreateView):
         if ip_real == None:
             ip_real = 'HTTP_X_REAL_IP unavailable'
 
+        # Honeypot check - if 'website' field is filled, it's a bot
+        if self.request.POST.get('website', '').strip():
+            safe_print(f"HONEYPOT SPAM CAUGHT from IP {ip}: website field filled with '{self.request.POST.get('website')}'", True, True)
+            raise PermissionDenied
+
         msg = self.request.POST['message'] + '\n\n' + self.request.POST['email'] + '\n\n' + ip + '\n\n' + ip_real
         if its_spam(msg):
             # print('Spam!')
             # print(self.request.META.get('REMOTE_ADDR'))
             # logger.warning("SPAMMER AT ADDRESS: " + self.request.META.get('REMOTE_ADDR'))
+            safe_print(f"SPAM DETECTED from IP {ip}: {msg[:100]}", True, True)
             raise PermissionDenied
             # return redirect('http://www.urbandictionary.com/define.php?term=Fuck%20off%20and%20die')
 
         if banned_ip(ip):
+            safe_print(f"BANNED IP ATTEMPT: {ip}", True, True)
             raise PermissionDenied
 
         else:
             form.instance.subject = self.subject
+            # Don't save the honeypot field value
+            form.instance.website = None
             input_mailer(self.subject, msg)
             return super(CreateUserInput, self).form_valid(form)
 

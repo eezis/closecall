@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.text import Truncator
@@ -75,7 +76,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ['name', 'description', 'amazon_asin']
     list_editable = ['is_featured', 'is_active', 'order']
     ordering = ['order', 'name']
-    
+
     fieldsets = (
         ('Product Information', {
             'fields': ('name', 'description', 'category')
@@ -87,3 +88,17 @@ class ProductAdmin(admin.ModelAdmin):
             'fields': ('price', 'image_url', 'is_featured', 'is_active', 'order')
         }),
     )
+
+
+# Customize the User admin to show date_joined in list view
+class CustomUserAdmin(BaseUserAdmin):
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'date_joined')
+    list_filter = BaseUserAdmin.list_filter + ('date_joined',)
+    ordering = ('-date_joined',)  # Default to newest first
+
+# Unregister the default User admin and register our custom one
+try:
+    admin.site.unregister(User)
+except admin.sites.NotRegistered:
+    pass
+admin.site.register(User, CustomUserAdmin)

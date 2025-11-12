@@ -14,8 +14,8 @@ class UserProfile(BaseFields):
     user = models.OneToOneField(User, related_name='profile', on_delete=models.CASCADE)
     first = models.CharField(null=True, max_length=50)
     last = models.CharField(null=True, max_length=50)
-    city = models.CharField(null=True, max_length=120, verbose_name="City  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ NA if Not Applicable ]")
-    state = models.CharField(null=True, max_length=50, verbose_name="State/Province/Region  &nbsp;&nbsp;&nbsp;&nbsp;[ NA if Not Applicable ]")
+    city = models.CharField(null=True, max_length=120, verbose_name="City     [ NA if Not Applicable ]")
+    state = models.CharField(null=True, max_length=50, verbose_name="State/Province/Region    [ NA if Not Applicable ]")
     country = models.CharField(null=True, max_length=80)
     zipcode = models.CharField(null=True, blank=True, max_length=30, verbose_name="Zip/Postal Code")
     # does the user want email notifications when new incidents are reported in their area?
