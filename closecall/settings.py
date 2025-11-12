@@ -69,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'core.middleware.AntiCSRFBypassMiddleware',  # Custom anti-CSRF bypass
+    'users.middleware.ProfileCompletionMiddleware',  # Require profile completion
 ]
 
 ROOT_URLCONF = 'closecall.urls'

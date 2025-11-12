@@ -33,28 +33,51 @@ class UserProfileForm(ModelForm):
 
     def clean(self):
         """
-        Validate that city is provided for countries that have cities.
-        City-states like Singapore, Monaco, etc. don't need a city value.
+        Validate that city, state, and country are provided for accurate geocoding.
+        City-states like Singapore, Monaco, etc. don't need separate city/state values.
         """
         cleaned_data = super().clean()
         city = cleaned_data.get('city')
+        state = cleaned_data.get('state')
         country = cleaned_data.get('country')
 
-        # Check if city is missing or just whitespace or "NA"
-        city_is_missing = not city or city.strip() == '' or city.strip().upper() == 'NA'
+        errors = []
 
-        if city_is_missing and country:
-            # Check if country is a city-state where city is not applicable
+        # Country is always required
+        if not country or country.strip() == '':
+            errors.append(ValidationError(
+                "Please enter your country. This is required for geocoding your location.",
+                code='country_required'
+            ))
+
+        # Check if city/state are missing
+        city_is_missing = not city or city.strip() == '' or city.strip().upper() == 'NA'
+        state_is_missing = not state or state.strip() == '' or state.strip().upper() == 'NA'
+
+        # For non-city-states, require both city and state
+        if country:
             is_city_state = any(
                 cs.lower() in country.lower()
                 for cs in CITY_STATE_COUNTRIES
             )
 
             if not is_city_state:
-                raise ValidationError(
-                    "Please enter your city. This is needed for accurate incident notifications. "
-                    "If you live in a country without cities, please enter 'NA' in the city field."
-                )
+                if city_is_missing:
+                    errors.append(ValidationError(
+                        "Please enter your city. This is needed for accurate incident notifications. "
+                        "If you live in a country without cities, please enter 'NA' in the city field.",
+                        code='city_required'
+                    ))
+
+                if state_is_missing:
+                    errors.append(ValidationError(
+                        "Please enter your state/province/region. This is needed for accurate incident notifications. "
+                        "If you live in a country without states, please enter 'NA' in the state field.",
+                        code='state_required'
+                    ))
+
+        if errors:
+            raise ValidationError(errors)
 
         return cleaned_data
 
