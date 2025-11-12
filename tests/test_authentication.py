@@ -17,7 +17,7 @@ Run tests:
     python manage.py test tests.test_authentication.RegistrationTests.test_successful_registration
 """
 
-from django.test import TestCase, Client, override_settings
+from django.test import TestCase, TransactionTestCase, Client, override_settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core import mail
@@ -32,6 +32,21 @@ from users.models import UserProfile
 @override_settings(EMAIL_BACKEND='django.core.mail.backends.locmem.EmailBackend')
 class BaseAuthTestCase(TestCase):
     """Base test case with email backend configured"""
+
+    def setUp(self):
+        super().setUp()
+        # Create Site object for registration emails to work
+        Site.objects.get_or_create(
+            id=1,
+            defaults={'domain': 'testserver', 'name': 'Test Server'}
+        )
+
+
+# Use TransactionTestCase for tests that need transaction.on_commit() to work
+# (Signal handlers use transaction.on_commit() per Django 5.1 best practices)
+@override_settings(EMAIL_BACKEND='django.core.mail.backends.locmem.EmailBackend')
+class BaseAuthTransactionTestCase(TransactionTestCase):
+    """Base test case for tests requiring actual database transactions"""
 
     def setUp(self):
         super().setUp()
@@ -382,14 +397,19 @@ class PasswordResetTests(BaseAuthTestCase):
         # We're testing the security aspect - same response regardless
 
 
-class UserProfileTests(BaseAuthTestCase):
-    """Test UserProfile creation and management"""
+class UserProfileTests(BaseAuthTransactionTestCase):
+    """Test UserProfile creation and management
+
+    Uses TransactionTestCase because signal handlers use transaction.on_commit()
+    which requires actual database commits to fire properly.
+    """
 
     def setUp(self):
         super().setUp()
         self.client = Client()
 
         # Create and login active user
+        # (Signal handler will auto-create profile after transaction commits)
         self.user = User.objects.create_user(
             'testuser',
             'test@example.com',
@@ -416,7 +436,13 @@ class UserProfileTests(BaseAuthTestCase):
         self.assertIn('/accounts/login/', response.url)
 
     def test_successful_profile_creation(self):
-        """User should be able to create profile"""
+        """User profile should be auto-created, then updateable via form"""
+        # Profile should already exist from signal handler
+        profile = UserProfile.objects.get(user=self.user)
+        self.assertIsNotNone(profile)
+        self.assertEqual(profile.created_with, 'Traditional Registration')
+
+        # User can update their profile via the form
         response = self.client.post(self.create_profile_url, {
             'first': 'Test',
             'last': 'User',
@@ -424,6 +450,7 @@ class UserProfileTests(BaseAuthTestCase):
             'state': 'Colorado',
             'country': 'USA',
             'email_incidents': True,
+            'position': '(40.0149856, -105.2705456)',  # Boulder, CO coordinates
         })
 
         # Should redirect to profile detail
@@ -436,36 +463,58 @@ class UserProfileTests(BaseAuthTestCase):
         self.assertEqual(profile.city, 'Boulder')
 
     def test_one_profile_per_user(self):
-        """User should only have one profile"""
-        # Create first profile
-        UserProfile.objects.create(
-            user=self.user,
-            first='Test',
-            last='User',
-            city='Boulder',
-            state='CO',
-            country='USA'
-        )
+        """User should only have one profile (auto-created by signal handler)
 
-        # Try to create second profile
+        Tests the edge case where CreateUserProfileView receives a form submission
+        for a user that already has a profile (auto-created by signal handler).
+        The view should UPDATE the existing profile instead of trying to create
+        a duplicate, which would cause an IntegrityError.
+        """
+        # Profile should already exist from signal handler
+        profile = UserProfile.objects.get(user=self.user)
+        self.assertIsNotNone(profile)
+        initial_profile_count = UserProfile.objects.filter(user=self.user).count()
+        self.assertEqual(initial_profile_count, 1)
+        initial_profile_id = profile.id
+
+        # Update profile via form (should UPDATE existing, not create duplicate)
         response = self.client.post(self.create_profile_url, {
             'first': 'Test2',
             'last': 'User2',
             'city': 'Denver',
             'state': 'Colorado',
             'country': 'USA',
+            'email_incidents': True,
+            'position': '(39.7392358, -104.990251)',  # Denver, CO coordinates
         })
 
-        # Should fail (IntegrityError - OneToOneField)
+        # Should succeed (redirect to profile detail)
+        self.assertEqual(response.status_code, 302)
+
         # Only one profile should exist
         self.assertEqual(UserProfile.objects.filter(user=self.user).count(), 1)
 
+        # Profile should be UPDATED (same ID, new data)
+        profile.refresh_from_db()
+        self.assertEqual(profile.id, initial_profile_id, "Profile ID should be unchanged (updated, not recreated)")
+        self.assertEqual(profile.first, 'Test2', "Profile should have updated first name")
+        self.assertEqual(profile.last, 'User2', "Profile should have updated last name")
+        self.assertEqual(profile.city, 'Denver', "Profile should have updated city")
 
-class IntegrationTests(BaseAuthTestCase):
-    """End-to-end integration tests for complete registration flow"""
+
+class IntegrationTests(BaseAuthTransactionTestCase):
+    """End-to-end integration tests for complete registration flow
+
+    Uses TransactionTestCase because signal handlers use transaction.on_commit()
+    which requires actual database commits to fire properly.
+    """
 
     def test_complete_registration_flow(self):
-        """Test complete flow from registration to profile creation"""
+        """Test complete flow from registration to profile creation
+
+        Note: With auto-profile creation via signals, profiles are created
+        automatically when User is saved (after transaction commit).
+        """
         client = Client()
 
         # Step 1: Register
@@ -495,7 +544,12 @@ class IntegrationTests(BaseAuthTestCase):
         self.assertTrue(user.is_active)
         self.assertIn('_auth_user_id', client.session)
 
-        # Step 4: Create profile
+        # Step 4: Profile should be auto-created by signal handler
+        user_profile = UserProfile.objects.get(user=user)
+        self.assertIsNotNone(user_profile)
+        self.assertEqual(user_profile.created_with, 'Traditional Registration')
+
+        # Step 5: User can update their profile via the form
         create_profile_url = reverse('create-user-profile')
         response = client.post(create_profile_url, {
             'first': 'New',
@@ -504,12 +558,16 @@ class IntegrationTests(BaseAuthTestCase):
             'state': 'Colorado',
             'country': 'USA',
             'email_incidents': True,
+            'position': '(40.0149856, -105.2705456)',  # Boulder, CO coordinates
         })
 
-        # Profile should be created
-        user_profile = UserProfile.objects.get(user=user)
+        # Profile should be updated (not duplicated)
+        user_profile.refresh_from_db()
         self.assertEqual(user_profile.first, 'New')
         self.assertEqual(user_profile.city, 'Boulder')
+
+        # Should still be only one profile
+        self.assertEqual(UserProfile.objects.filter(user=user).count(), 1)
 
         # User is now fully registered!
 
