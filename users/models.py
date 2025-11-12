@@ -33,6 +33,11 @@ class UserProfile(BaseFields):
     oauth_data = models.TextField(null=True, blank=True)
     can_blog = models.BooleanField(default=False)
 
+    # Track whether user has completed their profile (filled out address data)
+    # False = auto-created profile, never confirmed by user interaction
+    # True = user has filled out city/state/country
+    profile_completed = models.BooleanField(default=False)
+
 
     class meta:
         ordering = ['-created',]

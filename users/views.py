@@ -66,12 +66,17 @@ class CreateUserProfileView(LoginRequiredMixin, ValidFormMixin, CreateView):
             # Update existing profile with form data
             for field in form.cleaned_data:
                 setattr(profile, field, form.cleaned_data[field])
+            # Mark profile as completed by user
+            profile.profile_completed = True
             profile.save()
             self.object = profile
             print(f"UpdatedUserProfile via CreateView :: {self.request.user} -- {self.request.user.email}")
         except UserProfile.DoesNotExist:
             # Profile doesn't exist, create it
-            self.object = form.save(commit=True)
+            self.object = form.save(commit=False)
+            # Mark profile as completed by user
+            self.object.profile_completed = True
+            self.object.save()
             print(f"CreatedUserProfile :: {self.request.user} -- {self.request.user.email}")
 
         return redirect(self.get_success_url())
@@ -99,4 +104,9 @@ class UpdateUserProfileView(LoginRequiredMixin, ValidFormMixin, UpdateView):
     # go back to detail page to confirm
     def get_success_url(self):
         return reverse('user-profile-detail', kwargs={'pk' : self.object.pk})
+
+    def form_valid(self, form):
+        # Mark profile as completed when user updates it
+        form.instance.profile_completed = True
+        return super().form_valid(form)
 

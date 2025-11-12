@@ -460,12 +460,16 @@ def get_or_create_user(email, created_username, fname, lname, athlete_id=None):
 # def strava_registration(request, strava_token):
 def strava_registration(request):
 
+    # Get client IP for logging
+    ip_address = get_client_ip(request)
+
     # the request has some URL Paramaters
     # http://closecalldatabase.com/strava-registration?state=mystate&code=75e251e3ff8fff
     # pluck the code!
     strava_token = request.GET.get('code')
 
-    safe_print("Strava Token: {}".format(strava_token))
+    safe_print(f"[STRAVA CALLBACK] Received callback from Strava - IP: {ip_address}, Token: {strava_token[:20] if strava_token else 'None'}...")
+    logger.info(f"STRAVA CALLBACK - IP: {ip_address}, Has token: {strava_token is not None}")
 
     if b'errors' in request.body:
         admin_mailer('TROUBLE - Errors from Strava Response', 'There should be an error value \n\n:'  + request.body.decode('utf-8'))
@@ -553,7 +557,14 @@ def strava_registration(request):
             'code': StravasExchangeCode,
         }
         # make the request
+        safe_print(f"[STRAVA TOKEN EXCHANGE] Sending token exchange request to Strava - IP: {ip_address}")
+        logger.info(f"STRAVA TOKEN EXCHANGE - IP: {ip_address}, Code: {StravasExchangeCode[:20]}...")
+
         r = requests.post(STRAVA_GET_AUTH_URL, params=payload)
+
+        safe_print(f"[STRAVA TOKEN EXCHANGE RESPONSE] Status: {r.status_code} - IP: {ip_address}")
+        logger.info(f"STRAVA TOKEN EXCHANGE RESPONSE - IP: {ip_address}, Status: {r.status_code}")
+
         try:
             if P: print("Trying to complete Token Exchange")
         except IOError:
@@ -643,7 +654,8 @@ def strava_registration(request):
                 ### User doesn't exist - they're a new registrant
                 ### Strava no longer provides email, so we'll redirect to collect it
                 ### Store the Strava data in session and redirect to email collection
-                safe_print("New Strava user - redirecting to email collection")
+                safe_print(f"[STRAVA NEW USER] User '{created_username}' (ID: {athlete_id}) doesn't exist - redirecting to email collection - IP: {ip_address}")
+                logger.info(f"STRAVA NEW USER - Username: {created_username}, Athlete ID: {athlete_id}, IP: {ip_address} - Redirecting to email collection")
                 request.session['strava_athlete'] = oauth_resp['athlete']
                 request.session.save()
                 return HttpResponseRedirect('/strava-complete-registration')
@@ -756,10 +768,14 @@ def strava_registration(request):
 
 
         else: # status_code was not 200, so the request back to strava failed
-            s = "Strava Token Exchange Failed." # + strava_token <-- can't do this it's NoneType
-            # raise Exception(s)
-            # send_mail('Strave Registration Error', s + "from core.views.strava_registration", 'closecalldatabase@gmail.com',['ernest.ezis@gmail.com',], fail_silently=False)
-            admin_mailer('Strava Registration Error', s + "from core.views.strava_registration")
+            s = f"Strava Token Exchange Failed - Status Code: {r.status_code}"
+            error_details = f"Response: {r.text[:500] if hasattr(r, 'text') else 'No response text'}"
+
+            safe_print(f"[STRAVA TOKEN EXCHANGE FAILED] Status: {r.status_code}, IP: {ip_address}")
+            safe_print(f"[STRAVA TOKEN EXCHANGE FAILED] Response: {error_details}")
+            logger.error(f"STRAVA TOKEN EXCHANGE FAILED - Status: {r.status_code}, IP: {ip_address}, Response: {error_details}")
+
+            admin_mailer('Strava Registration Error', s + f"\n\nFrom: core.views.strava_registration\nIP: {ip_address}\n{error_details}")
 
             user_msg = """There was an error with your attempt to authorize your account at Strava. Is it possible that you mistyped your Strava Password? Try again or use our
             <a href="/accounts/register/">custom registration</a> to create your account. """
@@ -774,7 +790,12 @@ def redirect_to_strava_login(request):
     # and the redirect url -- 'http://closecalldatabase.com/strava-registration' -- which urls.py redirects
     # to the strava_registration view above."
 
-    safe_print("Redirecting to Strava oauth\n")
+    # Get client IP for logging
+    ip_address = get_client_ip(request)
+
+    # Log the Strava OAuth initiation
+    safe_print(f"[STRAVA OAUTH START] User clicked 'Register with Strava' button - IP: {ip_address}")
+    logger.info(f"STRAVA OAUTH INITIATED - IP: {ip_address}, User-Agent: {request.META.get('HTTP_USER_AGENT', 'Unknown')}")
 
     return HttpResponseRedirect('https://www.strava.com/oauth/authorize?client_id=' + CCDB_CLIENT_ID +
         '&response_type=code&redirect_uri=' + CCDB_REDIRECT_URL)
@@ -788,14 +809,27 @@ def strava_complete_registration(request):
     """Complete Strava registration by collecting email address"""
     from core.forms import StravaEmailForm
 
+    # Get client IP for logging
+    ip_address = get_client_ip(request)
+
     # Check if we have Strava data in session
     if 'strava_athlete' not in request.session:
+        safe_print(f"[STRAVA EMAIL COLLECTION] Session expired - no strava_athlete in session - IP: {ip_address}")
+        logger.warning(f"STRAVA EMAIL COLLECTION - Session expired, IP: {ip_address}")
         messages.error(request, "Session expired. Please try registering again.")
         return HttpResponseRedirect('/get-strava-login')
 
     strava_data = request.session['strava_athlete']
+    athlete_name = f"{strava_data.get('firstname', '')} {strava_data.get('lastname', '')}"
+    athlete_id = strava_data.get('id', 'Unknown')
+
+    safe_print(f"[STRAVA EMAIL COLLECTION PAGE] User '{athlete_name}' (ID: {athlete_id}) reached email collection page - IP: {ip_address}")
+    logger.info(f"STRAVA EMAIL COLLECTION PAGE - Athlete: {athlete_name}, ID: {athlete_id}, IP: {ip_address}")
 
     if request.method == 'POST':
+        safe_print(f"[STRAVA EMAIL SUBMITTED] User submitted email form - IP: {ip_address}")
+        logger.info(f"STRAVA EMAIL SUBMITTED - Athlete: {athlete_name}, ID: {athlete_id}, IP: {ip_address}")
+
         form = StravaEmailForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
@@ -812,7 +846,8 @@ def strava_complete_registration(request):
             created_username = f"{fname} {lname}"[:30]
 
             # Log registration attempt
-            safe_print(f"STRAVA REGISTRATION ATTEMPT: {fname} {lname} (ID: {athlete_id}) - Email: {email}")
+            safe_print(f"[STRAVA REGISTRATION ATTEMPT] {fname} {lname} (ID: {athlete_id}) - Email: {email} - IP: {ip_address}")
+            logger.info(f"STRAVA REGISTRATION ATTEMPT - Name: {fname} {lname}, ID: {athlete_id}, Email: {email}, IP: {ip_address}")
 
             try:
                 # Create the user with the collected email
@@ -843,6 +878,7 @@ def strava_complete_registration(request):
                     new_profile.country = country
                     new_profile.created_with = f'strava-{athlete_id}'
                     new_profile.oauth_data = str(strava_data)
+                    new_profile.profile_completed = True  # Strava provides address data
                     new_profile.save()
                     safe_print(f"Profile updated with Strava data for {fname} {lname} ({athlete_id})")
                 except UserProfile.DoesNotExist:
@@ -855,7 +891,8 @@ def strava_complete_registration(request):
                         state=state,
                         country=country,
                         created_with=f'strava-{athlete_id}',
-                        oauth_data=str(strava_data)
+                        oauth_data=str(strava_data),
+                        profile_completed=True  # Strava provides address data
                     )
                     new_profile.save()
                     safe_print(f"Profile created successfully for {fname} {lname} ({athlete_id})")

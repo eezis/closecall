@@ -120,14 +120,26 @@ def handle_a_model_save(sender, **kwargs):
         if kwargs.get('created', True):
             print("signals.py:hams: inside 'created true'")
             userprofile = kwargs.get('instance')
-            # if there is not lat & lon then we need to create it, then update the cache
-            # other wise the update will get created in the middle of file creation.
-            # should inspect and verify the file somehow
-            try:
-                print(userprofile.get_lat_lon())
-            except:
-                print("signals.py:hams: UserProfile.get_lat_lon failed - it excepted\n")
-                pass
+
+            # Only attempt geocoding if profile has address data
+            # Don't geocode auto-created empty profiles (before user confirmation)
+            has_address_data = (
+                userprofile.city and userprofile.city.strip() and
+                userprofile.state and userprofile.state.strip() and
+                userprofile.country and userprofile.country.strip()
+            )
+
+            if has_address_data:
+                # if there is not lat & lon then we need to create it, then update the cache
+                # other wise the update will get created in the middle of file creation.
+                # should inspect and verify the file somehow
+                try:
+                    print(userprofile.get_lat_lon())
+                except:
+                    print("signals.py:hams: UserProfile.get_lat_lon failed - it excepted\n")
+                    pass
+            else:
+                print("signals.py:hams: Skipping geocoding - profile has no address data yet")
             # build the string, then write the file, or just write the .dat and let workflow do it
             # workflow might be best
         else:

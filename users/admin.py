@@ -22,9 +22,9 @@ class UserProfileAdminCustomization(forms.ModelForm):
 class UserProfileAdmin(admin.ModelAdmin):
     form = UserProfileAdminCustomization
 
-    list_display = ('user', 'first', 'last', 'city', 'state', 'date_joined')
+    list_display = ('user', 'first', 'last', 'city', 'state', 'profile_completed', 'date_joined')
     search_fields = ['first', 'last', 'country', 'city', 'user__email', 'user__username', 'created_with']
-    list_filter = ('country', 'state',)
+    list_filter = ('country', 'state', 'profile_completed',)
 
     def date_joined(self, obj):
         """Display the user's registration date"""
