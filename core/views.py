@@ -1150,7 +1150,7 @@ class CreateUserInput(CreateView):
     def form_valid(self, form):
         # print(self.subject)
         # get ip address to see if there the IPs can be blacklisted
-        ip = self.request.META.get('REMOTE_ADDR')
+        ip = get_client_ip(self.request)
         try:
             ip_real =  self.request.META.get('HTTP_X_REAL_IP')
         except:
