@@ -44,6 +44,47 @@
         .white, .white a {color: #fff; }
         span.glyphicon-cog {font-size: 1.2em; }
         .tab-title { font-size: 1.4em; color:black; font-weight: 600;}
+        .strava-login-banner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, calc(-50% + 10px));
+            background: rgba(17, 24, 39, 0.92);
+            color: #fff;
+            border-radius: 16px;
+            padding: 16px 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+            font-size: 15px;
+            line-height: 1.4;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 9999;
+            max-width: 90%;
+            text-align: left;
+        }
+        .strava-login-banner.is-visible {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+        .strava-login-spinner {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: #fff;
+            animation: strava-spin 0.9s linear infinite;
+        }
+        .strava-login-link--loading img,
+        .strava-login-link--loading {
+            opacity: 0.7;
+        }
+        @keyframes strava-spin {
+            to { transform: rotate(360deg); }
+        }
         {% block extra_styles %}
 
         {% endblock %}
@@ -84,6 +125,37 @@
     
     <!-- Navbar active page detection -->
     <script src="{% static 'js/navbar-active.js' %}"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var links = document.querySelectorAll('.js-strava-login');
+        if (!links.length) { return; }
+
+        var banner;
+        function showBanner() {
+          if (!banner) {
+            banner = document.createElement('div');
+            banner.className = 'strava-login-banner';
+            banner.setAttribute('role', 'status');
+            banner.setAttribute('aria-live', 'polite');
+            banner.innerHTML = '<span class="strava-login-spinner" aria-hidden="true"></span><span>Redirecting to Strava… please wait</span>';
+            document.body.appendChild(banner);
+          }
+          banner.classList.add('is-visible');
+        }
+
+        links.forEach(function (link) {
+          link.addEventListener('click', function () {
+            if (link.dataset.loading === 'true') {
+              return;
+            }
+            link.dataset.loading = 'true';
+            link.classList.add('strava-login-link--loading');
+            link.style.pointerEvents = 'none';
+            showBanner();
+          });
+        });
+      });
+    </script>
 
 {% include '_google_analytics.js' %}
 

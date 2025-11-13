@@ -26,6 +26,7 @@ from django.utils import timezone
 from datetime import timedelta
 from registration.models import RegistrationProfile
 from users.models import UserProfile
+from core.forms import StravaEmailForm
 
 
 # Use in-memory email backend for all tests
@@ -786,3 +787,102 @@ class StravaRegistrationTests(BaseAuthTransactionTestCase):
         # Should return same user
         self.assertEqual(returned_user.id, existing_user.id)
         self.assertEqual(User.objects.count(), 1)
+
+    def test_existing_strava_user_detection_handles_legacy_format(self):
+        """
+        Ensure legacy 'strava-<id>' created_with values are parsed correctly.
+        """
+        from core.views import existing_strava_user
+
+        athlete_id = 123456
+        user = User.objects.create_user(
+            username='Legacy Format',
+            email='legacy@example.com',
+            password='password123',
+            first_name='Legacy',
+            last_name='Format'
+        )
+
+        profile = user.profile
+        profile.created_with = f'strava-{athlete_id}'
+        profile.save()
+
+        self.assertTrue(
+            existing_strava_user(user, 'legacy@example.com', athlete_id),
+            "Legacy created_with format should still match returning Strava users"
+        )
+
+    def test_get_user_by_strava_id_finds_user_via_created_with(self):
+        """
+        get_user_by_strava_id should return the correct user for legacy formats.
+        """
+        from core.views import get_user_by_strava_id
+
+        athlete_id = 987654
+        user = User.objects.create_user(
+            username='Lookup User',
+            email='lookup@example.com',
+            password='password123',
+            first_name='Lookup',
+            last_name='User'
+        )
+
+        profile = user.profile
+        profile.created_with = f'strava-{athlete_id}'
+        profile.save()
+
+        found_user = get_user_by_strava_id(athlete_id)
+        self.assertIsNotNone(found_user, "Helper should locate user by athlete ID")
+        self.assertEqual(found_user.id, user.id)
+
+    def test_strava_email_form_allows_existing_email(self):
+        """
+        Strava email collection should allow existing emails (link accounts).
+        """
+        User.objects.create_user(
+            username='Existing Email',
+            email='existing@example.com',
+            password='password123'
+        )
+
+        form = StravaEmailForm(data={'email': 'existing@example.com'})
+        self.assertTrue(form.is_valid(), form.errors)
+
+    def test_duplicate_email_prefers_strava_matched_user(self):
+        """
+        When multiple users share an email, prefer the one linked to the Strava athlete.
+        """
+        from core.views import get_or_create_user
+        from users.models import UserProfile
+
+        email = 'duplicate@example.com'
+        athlete_id = 777405
+
+        # User 1 - traditional account sharing email
+        User.objects.create_user(
+            username='Traditional Duplicate',
+            email=email,
+            password='password123'
+        )
+
+        # User 2 - actual Strava-linked account
+        strava_user = User.objects.create_user(
+            username='Strava Duplicate',
+            email=email,
+            password='password123',
+            first_name='Strava',
+            last_name='User'
+        )
+        strava_profile = strava_user.profile
+        strava_profile.created_with = f'Strava={athlete_id}'
+        strava_profile.save()
+
+        returned_user = get_or_create_user(
+            email=email,
+            created_username='Strava User',
+            fname='Strava',
+            lname='User',
+            athlete_id=athlete_id
+        )
+
+        self.assertEqual(returned_user.id, strava_user.id)

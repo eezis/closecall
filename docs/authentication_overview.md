@@ -227,10 +227,10 @@ Since Strava removed email from their API response in 2019, we now collect it se
    - Professional UI with Strava branding
 
 6. **On submission**:
-   - Creates Django User with username: `{firstname} {lastname}-{strava_id}`
+   - Creates or re-uses a Django `User` via `get_or_create_user()` which first looks up by email before falling back to username collisions
    - Signal handler auto-creates blank UserProfile (via transaction.on_commit())
    - View updates UserProfile with Strava data (race condition handled)
-   - Sets `created_with = "strava-{strava_id}"`
+   - Sets `created_with = "Strava={athlete_id}"` (canonical casing; legacy `strava-<id>` is still parsed)
    - Stores OAuth data in `oauth_data` field for future use
    - Automatically logs user in
    - Clears session data
@@ -245,10 +245,19 @@ Since Strava removed email from their API response in 2019, we now collect it se
 ### Existing Strava User Login
 
 1. **User clicks** "Log in with Strava"
+   - Frontend dims the Strava button and shows a “Redirecting to Strava…” toast centered on the page so the cyclist knows the redirect is in progress.
 2. **Same OAuth flow** as registration
-3. **System checks** if Strava ID exists in database
-4. **If exists**: Logs user in automatically
-5. **If not exists**: Proceeds with registration flow
+3. **Server-side lookup order**:
+   - `get_user_by_strava_id()` finds the canonical account by athlete ID (handles legacy `created_with` formats)
+   - Duplicate emails are handled gracefully by preferring the user whose profile already records the matching Strava ID, falling back to the most recently active account only if needed
+4. **If match exists**: Logs user in automatically
+5. **If not exists**: Proceeds with registration flow (email collection)
+
+### Observability & Logging
+
+- All key Strava events (`/get-strava-login`, callback, token exchange, email collection) log through the dedicated `core.strava` logger which writes to `logs/strava.log`.
+- The Strava view always emits INFO logs detailing the athlete ID, IP, and branch taken (new vs returning).
+- Duplicate-email resolution logs at INFO level without emailing so repeated Strava logins do not generate alert noise.
 
 ## Security Features
 
