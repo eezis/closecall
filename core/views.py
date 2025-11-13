@@ -42,6 +42,20 @@ from django.utils import timezone
 P = True
 
 
+def get_client_ip(request):
+    """
+    Get the client's real IP address from the request.
+    Handles proxies like Nginx/Cloudflare by checking X-Forwarded-For header.
+    """
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        # X-Forwarded-For can contain multiple IPs, get the first one (client IP)
+        ip = x_forwarded_for.split(',')[0].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
 # Printing is controlled via the P flag, pass any IOError exceptions
 def safe_print(msg, print_it=True, email_it=False):
     """
