@@ -2,12 +2,16 @@
 
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block page_title %}Account Details and Preferences{% endblock %}
 
 {%block navigation %}{% include '_nav-activate.html' %} {% endblock %}
 
 {% block extra_css_or_js %}
+
+<!-- Custom CSS for User Profile Form -->
+<link rel="stylesheet" href="{% static 'css/userprofile-form.css' %}">
 
 <script async src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&loading=async&callback=initialize"></script>
 
@@ -26,77 +30,298 @@ function codeAddress() {
     var zipcode = document.getElementById('id_zipcode').value;
     var country = document.getElementById('id_country').value;
 
+    // Don't include "NA" values in geocoding
     if (city.toUpperCase() == 'NA') city = "";
     if (state.toUpperCase() == 'NA') state = "";
 
     var address = city.concat(', ').concat(state).concat(' ').concat(zipcode).concat(' ').concat(country);
-    // var address = city.concat(', ').concat(state); //.concat(' ').concat(zipcode);
-
 
     console.log(address);
-
 
     geocoder.geocode({
         'address': address
     }, function (results, status) {
         if (status == "OK") {
-            // alert(results[0].geometry.location);
-            // console.log("OK");
-            // console.log(results[0].geometry.location);
             $("#id_position").val(results[0].geometry.location);
-             document.getElementById("UPForm").submit();
-             // alert('wait');
+            document.getElementById("UPForm").submit();
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
         }
     });
-
 }
 
-// google.maps.event.addDomListener(window, 'load', initialize); // Now using callback parameter
+// City-state countries that don't need a separate city field
+const CITY_STATE_COUNTRIES = [
+    'singapore',
+    'monaco',
+    'san marino',
+    'vatican city',
+    'vatican'
+];
 
+// Check if country is a city-state
+function isCityState(country) {
+    if (!country) return false;
+    const countryLower = country.toLowerCase().trim();
+    return CITY_STATE_COUNTRIES.some(cs => countryLower.includes(cs));
+}
+
+// Update city field requirement based on country
+function updateCityFieldRequirement() {
+    const countryInput = document.getElementById('id_country');
+    const cityControl = document.getElementById('div_id_city');
+    const cityInput = document.getElementById('id_city');
+    const cityLabel = cityControl ? cityControl.querySelector('label') : null;
+
+    if (!countryInput || !cityControl) return;
+
+    const country = countryInput.value;
+    const isCityStateCountry = isCityState(country);
+
+    if (isCityStateCountry) {
+        // Make city optional for city-states
+        cityControl.classList.remove('required-field');
+        cityControl.classList.add('optional-field');
+        cityInput.removeAttribute('aria-required');
+
+        // Update label
+        if (cityLabel) {
+            const badge = cityLabel.querySelector('.field-badge');
+            if (badge) {
+                badge.textContent = 'Optional';
+                badge.classList.remove('badge-required');
+                badge.classList.add('badge-optional');
+            }
+        }
+    } else {
+        // Make city required for other countries
+        cityControl.classList.remove('optional-field');
+        cityControl.classList.add('required-field');
+        cityInput.setAttribute('aria-required', 'true');
+
+        // Update label
+        if (cityLabel) {
+            const badge = cityLabel.querySelector('.field-badge');
+            if (badge) {
+                badge.textContent = 'Required';
+                badge.classList.remove('badge-optional');
+                badge.classList.add('badge-required');
+            }
+        }
+    }
+}
+
+// Real-time validation feedback
+function addValidationFeedback(inputId, isValid) {
+    const control = document.getElementById('div_id_' + inputId);
+    if (!control) return;
+
+    if (isValid) {
+        control.classList.remove('field-error');
+        control.classList.add('field-valid');
+    } else {
+        control.classList.remove('field-valid');
+        control.classList.add('field-error');
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Add event listener for country changes
+    const countryInput = document.getElementById('id_country');
+    if (countryInput) {
+        countryInput.addEventListener('input', updateCityFieldRequirement);
+        countryInput.addEventListener('blur', updateCityFieldRequirement);
+
+        // Check initial state
+        updateCityFieldRequirement();
+    }
+
+    // Add real-time validation
+    const requiredFields = ['first', 'last', 'country', 'zipcode', 'state'];
+    requiredFields.forEach(fieldId => {
+        const input = document.getElementById('id_' + fieldId);
+        if (input) {
+            input.addEventListener('blur', function() {
+                const isValid = this.value.trim() !== '';
+                addValidationFeedback(fieldId, isValid);
+            });
+        }
+    });
+
+    // City field validation depends on country
+    const cityInput = document.getElementById('id_city');
+    if (cityInput) {
+        cityInput.addEventListener('blur', function() {
+            const country = document.getElementById('id_country').value;
+            const isCityStateCountry = isCityState(country);
+            const cityValue = this.value.trim();
+
+            // Valid if: city-state country OR has value
+            const isValid = isCityStateCountry || cityValue !== '';
+            addValidationFeedback('city', isValid);
+        });
+    }
+});
 
 </script>
 
 {% endblock %}
 
-
-
 {% block content %}
 
-<p class="alert alert-success" role="alert" style="padding: 10px 20px; 10px; 20px; ">International Users: if City or State/Province/Region are not applicable to your country,
-please enter <b>NA</b> in those fields.  Thank you!</p>
-
-<p class="alert alert-warning" role="alert" style="padding: 10px 20px; 10px; 20px; ">The data collected at this site must have high integrity. I will not accept reports from an alias, a nickname, or a set of initials. Please use your real name, the same name you would apply to an official report; John Smith, Mary Jones, etc. Thank you for your consideration.</p>
-
 <div class="row-fluid">
-<h3 style="padding-top:12px;">Please Complete Your Profile</h3>
-<br />
+    <div class="col-md-8 col-lg-6">
 
-{% if messages %}
-<div class="bg-info" style="padding: 14px 14px; 10px; 0; color:darkred;">
-<ul>
-    {% for message in messages %}
-      <p{% if message.tags %} class="{{ message.tags }}"{% endif %}><em><b>{{ message|safe }}</b></em></p>
-    {% endfor %}
-</ul>
-</div>
-<br />
-{% endif %}
+        <!-- Page Header -->
+        <h2 class="form-page-title">Complete Your Profile</h2>
 
-</div>
-<div class="col-sm-4">
-<form action="" id="UPForm" method="POST">
-  {% csrf_token %}
+        <!-- Explanatory Message -->
+        <div class="profile-explanation">
+            <div class="explanation-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+            </div>
+            <div class="explanation-content">
+                <h4>Why we need your location</h4>
+                <p>The Close Call Database is a <strong>location-based mapping service</strong> for cyclist safety. Your location information helps us:</p>
+                <ul>
+                    <li><strong>Show relevant incidents</strong> near you on the map</li>
+                    <li><strong>Send timely alerts</strong> about dangerous areas in your community</li>
+                    <li><strong>Build a safety network</strong> connecting cyclists in your area</li>
+                </ul>
+                <p class="explanation-privacy">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    Your exact address is never shared publicly. We only use your location to notify you of nearby incidents.
+                </p>
+            </div>
+        </div>
 
-      {{ form|crispy }}
-      <!-- <input type="submit" class="btn btn-default" value=" Submit " /> -->
-      <!-- <input type="submit" class="btn btn-default" onclick="codeAddress()" value=" Submit " /> -->
-      <input type="button" class="btn btn-default" onclick="codeAddress()" value=" Submit " />
+        <!-- Important Notes -->
+        <div class="profile-notices">
+            <div class="notice notice-info">
+                <strong>International Users:</strong> If your country doesn't have states/provinces/regions, you can leave that field blank or enter your primary region.
+            </div>
 
+            <div class="notice notice-warning">
+                <strong>Real Name Required:</strong> The data collected at this site must have high integrity. Please use your real name (the same name you would use on an official report), not an alias, nickname, or initials.
+            </div>
+        </div>
 
-</form>
+        <!-- Validation Messages -->
+        {% if messages %}
+        <div class="validation-messages">
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                <strong>{{ message|safe }}</strong>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Form -->
+        <form action="" id="UPForm" method="POST" class="userprofile-form" novalidate>
+            {% csrf_token %}
+
+            <div class="form-section">
+                <h3 class="section-title">Personal Information</h3>
+
+                <div id="div_id_first" class="form-group required-field">
+                    <label for="id_first" class="control-label">
+                        First Name
+                        <span class="field-badge badge-required">Required</span>
+                    </label>
+                    {{ form.first }}
+                    <span class="help-block">Use your real first name</span>
+                </div>
+
+                <div id="div_id_last" class="form-group required-field">
+                    <label for="id_last" class="control-label">
+                        Last Name
+                        <span class="field-badge badge-required">Required</span>
+                    </label>
+                    {{ form.last }}
+                    <span class="help-block">Use your real last name</span>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="section-title">Location Information</h3>
+                <p class="section-description">Used for incident alerts and mapping</p>
+
+                <div id="div_id_country" class="form-group required-field">
+                    <label for="id_country" class="control-label">
+                        Country
+                        <span class="field-badge badge-required">Required</span>
+                    </label>
+                    {{ form.country }}
+                    <span class="help-block">e.g., United States, United Kingdom, France</span>
+                </div>
+
+                <div id="div_id_city" class="form-group required-field">
+                    <label for="id_city" class="control-label">
+                        City
+                        <span class="field-badge badge-required">Required</span>
+                    </label>
+                    {{ form.city }}
+                    <span class="help-block">Your city or nearest major city</span>
+                </div>
+
+                <div id="div_id_state" class="form-group required-field">
+                    <label for="id_state" class="control-label">
+                        State / Province / Region
+                        <span class="field-badge badge-required">Required</span>
+                    </label>
+                    {{ form.state }}
+                    <span class="help-block">e.g., NY, CA, CO, Ontario, Victoria</span>
+                </div>
+
+                <div id="div_id_zipcode" class="form-group required-field">
+                    <label for="id_zipcode" class="control-label">
+                        Zip / Postal Code
+                        <span class="field-badge badge-required">Required</span>
+                    </label>
+                    {{ form.zipcode }}
+                    <span class="help-block">Needed for accurate location-based notifications</span>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3 class="section-title">Notification Preferences</h3>
+
+                <div id="div_id_email_incidents" class="form-group optional-field">
+                    <div class="checkbox">
+                        <label for="id_email_incidents">
+                            {{ form.email_incidents }}
+                            <span class="checkbox-label">
+                                Email me about new incidents near my location
+                                <span class="field-badge badge-optional">Optional</span>
+                            </span>
+                        </label>
+                    </div>
+                    <span class="help-block">Receive alerts when incidents are reported in your area</span>
+                </div>
+            </div>
+
+            <!-- Hidden position field for geocoding -->
+            {{ form.position }}
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary btn-lg" onclick="codeAddress()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    Save Profile
+                </button>
+                <p class="form-actions-help">We'll verify your location before saving</p>
+            </div>
+        </form>
+
+    </div>
 </div>
 
 {% endblock %}
-

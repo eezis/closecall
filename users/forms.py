@@ -23,12 +23,37 @@ class UserProfileForm(ModelForm):
         # need position to be a hidden field so that it can be updated by Google Geocoder
         widgets={
             'position': forms.HiddenInput(),
-            'first': forms.TextInput({'placeholder': 'use your real first name'}),
-            'last': forms.TextInput({'placeholder': 'use your real last name'}),
-            'city': forms.TextInput({'placeholder': 'NA if you live in a country lacking cities'}),
-            'state': forms.TextInput({'placeholder': 'NY CA CO / Ontario / Victoria / etc'}),
-            'zipcode': forms.TextInput({'placeholder': 'Needed for accurate notifications'}),
-            'country': forms.TextInput({'placeholder': 'United States, United Kingdom, France, etc'}),
+            'first': forms.TextInput(attrs={
+                'placeholder': 'John',
+                'class': 'form-control',
+                'aria-required': 'true'
+            }),
+            'last': forms.TextInput(attrs={
+                'placeholder': 'Smith',
+                'class': 'form-control',
+                'aria-required': 'true'
+            }),
+            'city': forms.TextInput(attrs={
+                'placeholder': 'Denver',
+                'class': 'form-control',
+                'aria-required': 'true'
+            }),
+            'state': forms.TextInput(attrs={
+                'placeholder': 'Colorado',
+                'class': 'form-control',
+                'aria-required': 'true'
+            }),
+            'zipcode': forms.TextInput(attrs={
+                'placeholder': '80202',
+                'class': 'form-control',
+                'aria-required': 'true'
+            }),
+            'country': forms.TextInput(attrs={
+                'placeholder': 'United States',
+                'class': 'form-control',
+                'aria-required': 'true',
+                'autocomplete': 'country-name'
+            }),
         }
 
     def clean(self):
