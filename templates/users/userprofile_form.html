@@ -71,7 +71,6 @@ function updateCityFieldRequirement() {
     const countryInput = document.getElementById('id_country');
     const cityControl = document.getElementById('div_id_city');
     const cityInput = document.getElementById('id_city');
-    const cityLabel = cityControl ? cityControl.querySelector('label') : null;
 
     if (!countryInput || !cityControl) return;
 
@@ -83,31 +82,11 @@ function updateCityFieldRequirement() {
         cityControl.classList.remove('required-field');
         cityControl.classList.add('optional-field');
         cityInput.removeAttribute('aria-required');
-
-        // Update label
-        if (cityLabel) {
-            const badge = cityLabel.querySelector('.field-badge');
-            if (badge) {
-                badge.textContent = 'Optional';
-                badge.classList.remove('badge-required');
-                badge.classList.add('badge-optional');
-            }
-        }
     } else {
         // Make city required for other countries
         cityControl.classList.remove('optional-field');
         cityControl.classList.add('required-field');
         cityInput.setAttribute('aria-required', 'true');
-
-        // Update label
-        if (cityLabel) {
-            const badge = cityLabel.querySelector('.field-badge');
-            if (badge) {
-                badge.textContent = 'Required';
-                badge.classList.remove('badge-optional');
-                badge.classList.add('badge-required');
-            }
-        }
     }
 }
 
@@ -178,38 +157,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <!-- Explanatory Message -->
         <div class="profile-explanation">
-            <div class="explanation-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <h4 class="explanation-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                     <circle cx="12" cy="10" r="3"></circle>
                 </svg>
-            </div>
-            <div class="explanation-content">
-                <h4>Why we need your location</h4>
-                <p>The Close Call Database is a <strong>location-based mapping service</strong> for cyclist safety. Your location information helps us:</p>
-                <ul>
-                    <li><strong>Show relevant incidents</strong> near you on the map</li>
-                    <li><strong>Send timely alerts</strong> about dangerous areas in your community</li>
-                    <li><strong>Build a safety network</strong> connecting cyclists in your area</li>
-                </ul>
-                <p class="explanation-privacy">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>
-                    Your exact address is never shared publicly. We only use your location to notify you of nearby incidents.
-                </p>
-            </div>
-        </div>
-
-        <!-- Important Notes -->
-        <div class="profile-notices">
-            <div class="notice notice-info">
-                <strong>International Users:</strong> If your country doesn't have states/provinces/regions, you can leave that field blank or enter your primary region.
-            </div>
-
-            <div class="notice notice-warning">
-                <strong>Real Name Required:</strong> The data collected at this site must have high integrity. Please use your real name (the same name you would use on an official report), not an alias, nickname, or initials.
-            </div>
+                Why we need your location
+            </h4>
+            <p>The Close Call Database is a <strong>location-based mapping service</strong> for cyclist safety. Your location information helps us:</p>
+            <ul>
+                <li><strong>Show relevant incidents</strong> near you on the map</li>
+                <li><strong>Send timely alerts</strong> about dangerous areas in your community</li>
+                <li><strong>Build a safety network</strong> connecting cyclists in your area</li>
+            </ul>
         </div>
 
         <!-- Validation Messages -->
@@ -227,26 +187,23 @@ document.addEventListener('DOMContentLoaded', function() {
         <form action="" id="UPForm" method="POST" class="userprofile-form" novalidate>
             {% csrf_token %}
 
+            <p class="form-required-notice">All fields required</p>
+
             <div class="form-section">
                 <h3 class="section-title">Personal Information</h3>
 
-                <div id="div_id_first" class="form-group required-field">
-                    <label for="id_first" class="control-label">
-                        First Name
-                        <span class="field-badge badge-required">Required</span>
-                    </label>
-                    {{ form.first }}
-                    <span class="help-block">Use your real first name</span>
-                </div>
+                <div class="form-row">
+                    <div id="div_id_first" class="form-group required-field">
+                        <label for="id_first" class="control-label">First Name</label>
+                        {{ form.first }}
+                    </div>
 
-                <div id="div_id_last" class="form-group required-field">
-                    <label for="id_last" class="control-label">
-                        Last Name
-                        <span class="field-badge badge-required">Required</span>
-                    </label>
-                    {{ form.last }}
-                    <span class="help-block">Use your real last name</span>
+                    <div id="div_id_last" class="form-group required-field">
+                        <label for="id_last" class="control-label">Last Name</label>
+                        {{ form.last }}
+                    </div>
                 </div>
+                <span class="help-block">Use your real name (as you would on an official report)</span>
             </div>
 
             <div class="form-section">
@@ -254,37 +211,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p class="section-description">Used for incident alerts and mapping</p>
 
                 <div id="div_id_country" class="form-group required-field">
-                    <label for="id_country" class="control-label">
-                        Country
-                        <span class="field-badge badge-required">Required</span>
-                    </label>
+                    <label for="id_country" class="control-label">Country</label>
                     {{ form.country }}
                     <span class="help-block">e.g., United States, United Kingdom, France</span>
                 </div>
 
                 <div id="div_id_city" class="form-group required-field">
-                    <label for="id_city" class="control-label">
-                        City
-                        <span class="field-badge badge-required">Required</span>
-                    </label>
+                    <label for="id_city" class="control-label">City</label>
                     {{ form.city }}
                     <span class="help-block">Your city or nearest major city</span>
                 </div>
 
                 <div id="div_id_state" class="form-group required-field">
-                    <label for="id_state" class="control-label">
-                        State / Province / Region
-                        <span class="field-badge badge-required">Required</span>
-                    </label>
+                    <label for="id_state" class="control-label">State / Province / Region</label>
                     {{ form.state }}
                     <span class="help-block">e.g., NY, CA, CO, Ontario, Victoria</span>
                 </div>
 
                 <div id="div_id_zipcode" class="form-group required-field">
-                    <label for="id_zipcode" class="control-label">
-                        Zip / Postal Code
-                        <span class="field-badge badge-required">Required</span>
-                    </label>
+                    <label for="id_zipcode" class="control-label">Zip / Postal Code</label>
                     {{ form.zipcode }}
                     <span class="help-block">Needed for accurate location-based notifications</span>
                 </div>
@@ -297,10 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="checkbox">
                         <label for="id_email_incidents">
                             {{ form.email_incidents }}
-                            <span class="checkbox-label">
-                                Email me about new incidents near my location
-                                <span class="field-badge badge-optional">Optional</span>
-                            </span>
+                            <span class="checkbox-label">Email me about new incidents near my location</span>
                         </label>
                     </div>
                     <span class="help-block">Receive alerts when incidents are reported in your area</span>
