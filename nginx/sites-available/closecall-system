@@ -16,13 +16,13 @@ server {
     server_name closecalldatabase.com www.closecalldatabase.com test.closecalldatabase.com;
     
     # Logging
-    access_log /home/eae/code/closecall/nginx/closecall.access.log;
-    error_log /home/eae/code/closecall/nginx/closecall.error.log;
+    access_log /home/eezis/code/closecall/nginx/closecall.access.log;
+    error_log /home/eezis/code/closecall/nginx/closecall.error.log;
     
     client_max_body_size 2G;
     
     # Static files path
-    root /home/eae/code/closecall/nginx-root;
+    root /home/eezis/code/closecall/nginx-root;
     
     # Trust Cloudflare IPs for real IP forwarding
     set_real_ip_from 173.245.48.0/20;
@@ -56,7 +56,7 @@ server {
     
     # Static files with aggressive caching
     location /static/ {
-        alias /home/eae/code/closecall/nginx-root/static/;
+        alias /home/eezis/code/closecall/nginx-root/static/;
         expires 1y;
         add_header Cache-Control "public, immutable";
         add_header Vary Accept-Encoding;
@@ -69,43 +69,36 @@ server {
     
     # Media files
     location /media/ {
-        alias /home/eae/code/closecall/media/;
+        alias /home/eezis/code/closecall/media/;
         expires 30d;
         add_header Cache-Control "public";
     }
     
     # Favicon and robots.txt
     location = /favicon.ico {
-        alias /home/eae/code/closecall/nginx-root/static/favicon.ico;
+        alias /home/eezis/code/closecall/nginx-root/static/favicon.ico;
         expires 1y;
         add_header Cache-Control "public, immutable";
     }
     
     location = /robots.txt {
-        alias /home/eae/code/closecall/templates/robots.txt;
+        alias /home/eezis/code/closecall/templates/robots.txt;
         expires 1d;
     }
     
     # Data.js for homepage map
     location = /data.js {
-        alias /home/eae/code/closecall/nginx-root/data.js;
+        alias /home/eezis/code/closecall/nginx-root/data.js;
         expires 1h;
         add_header Content-Type application/javascript;
     }
     
-    # Rate limiting for sensitive endpoints
     location ~ ^/(accounts/password/reset/|accounts/register/|contact-u/)$ {
-        # Apply strict rate limiting for form endpoints
-        limit_req zone=forms burst=2 nodelay;
-        limit_req zone=csrf_pattern burst=1 nodelay;
-        
         try_files $uri @closecall_gunicorn;
     }
     
     # Django application
     location / {
-        # Apply general rate limiting
-        limit_req zone=general burst=20 nodelay;
         try_files $uri @closecall_gunicorn;
     }
     

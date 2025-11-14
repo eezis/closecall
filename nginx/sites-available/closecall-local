@@ -20,7 +20,7 @@ server {
     client_max_body_size 2G;
     
     # Static files path
-    root /home/eae/code/closecall/nginx-root;
+    root /home/eezis/code/closecall/nginx-root;
     
     # Health check endpoint
     location /health {
@@ -31,20 +31,20 @@ server {
     
     # Static files
     location /static/ {
-        alias /home/eae/code/closecall/nginx-root/static/;
+        alias /home/eezis/code/closecall/nginx-root/static/;
         expires 1h;
         add_header Cache-Control "public";
     }
     
     # Media files
     location /media/ {
-        alias /home/eae/code/closecall/nginx-root/media/;
+        alias /home/eezis/code/closecall/nginx-root/media/;
         expires 1h;
     }
     
     # Favicon
     location = /favicon.ico {
-        alias /home/eae/code/closecall/nginx-root/static/favicon.ico;
+        alias /home/eezis/code/closecall/nginx-root/static/favicon.ico;
         expires 1h;
     }
     
