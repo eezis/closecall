@@ -9,7 +9,7 @@
 
 {% block extra_css_or_js %}
 <style>
-  #div_id_trap_email {
+  #div_id_email_address {
       position: absolute;
       left: -9999px;
       width: 1px;
@@ -49,9 +49,9 @@
   <form action="" method="POST">
   {% csrf_token %}
     {{ form|crispy }}
-    <div id="div_id_trap_email">
-      <label for="id_trap_email">Email</label>
-      <input type="email" name="trap_email" id="id_trap_email" autocomplete="off" tabindex="-1" aria-hidden="true" class="hp-email-field" />
+    <div id="div_id_email_address">
+      <label for="id_email_address">Email</label>
+      <input type="email" name="email_address" id="id_email_address" autocomplete="off" tabindex="-1" aria-hidden="true" class="hp-email-field" />
     </div>
     <br />
     <input type="submit" class="btn btn-default" value='{% trans "Log in" %}' />

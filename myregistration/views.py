@@ -69,7 +69,7 @@ class CloseCallLoginView(LoginView):
         return response
 
     def post(self, request, *args, **kwargs):
-        trap_value = (request.POST.get('trap_email') or '').strip()
+        trap_value = (request.POST.get('email_address') or '').strip()
         username = (request.POST.get('username') or '').strip()
         ip_address = extract_client_ip(request)
         user_agent = request.META.get('HTTP_USER_AGENT', '')
