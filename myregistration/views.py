@@ -1,4 +1,6 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.contrib.auth.views import LoginView
 
 from registration.backends.default.views import RegistrationView as DefaultRegistrationView
 
@@ -53,3 +55,45 @@ class CloseCallRegistrationView(DefaultRegistrationView):
             return self._registration_success_response(email)
 
         return super().form_valid(form)
+
+
+class CloseCallLoginView(LoginView):
+    template_name = 'registration/login.html'
+
+    def _blocked_response(self):
+        response = HttpResponse(
+            "<h1>418 I'm a teapot</h1><p>We see what you did there.</p>",
+            status=418,
+        )
+        response["Refresh"] = "0;url=https://www.fbi.gov/"
+        return response
+
+    def post(self, request, *args, **kwargs):
+        trap_value = (request.POST.get('trap_email') or '').strip()
+        username = (request.POST.get('username') or '').strip()
+        ip_address = extract_client_ip(request)
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
+        normalized = normalize_email(trap_value or username)
+
+        if trap_value:
+            record_spam_hit(
+                email=trap_value,
+                ip_address=ip_address,
+                user_agent=user_agent,
+                source='login',
+                reason='login_honeypot',
+                payload=username,
+            )
+            return self._blocked_response()
+
+        if is_blocked(email=normalized, ip_address=ip_address):
+            record_spam_hit(
+                email=username,
+                ip_address=ip_address,
+                user_agent=user_agent,
+                source='login',
+                reason='login_preblocked',
+            )
+            return self._blocked_response()
+
+        return super().post(request, *args, **kwargs)

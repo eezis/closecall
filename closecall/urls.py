@@ -17,7 +17,7 @@ from users.views import (
     DetailUserProfileView, CheckForUserProfile
 )
 from myregistration.forms import MyRegistrationForm
-from myregistration.views import CloseCallRegistrationView
+from myregistration.views import CloseCallRegistrationView, CloseCallLoginView
 from incident.views import show_sample_report
 
 # API imports
@@ -41,6 +41,7 @@ urlpatterns = [
 
     # User authentication and profiles
     path('accounts/register/', CloseCallRegistrationView.as_view(form_class=MyRegistrationForm), name='registration_register'),
+    path('accounts/login/', CloseCallLoginView.as_view(), name='auth_login'),
     path('accounts/', include('registration.backends.default.urls')),
     path('create-user-profile/', CreateUserProfileView.as_view(), name='create-user-profile'),
     re_path(r'^user-profile-detail/(?P<pk>\d+)/$', DetailUserProfileView.as_view(), name='user-profile-detail'),
