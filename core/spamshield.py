@@ -4,7 +4,7 @@ from typing import Optional
 
 from django.db.models import Q
 
-from .models import SpamTrapEntry
+from django.apps import apps
 
 
 GMAIL_DOMAINS = {"gmail.com", "googlemail.com"}
@@ -58,7 +58,8 @@ def record_spam_hit(
 ) -> SpamTrapEntry:
     """Persist spam intelligence for future blocking."""
     normalized = normalize_email(email)
-    entry = SpamTrapEntry.objects.create(
+    SpamTrap = apps.get_model('core', 'SpamTrapEntry')
+    entry = SpamTrap.objects.create(
         email_normalized=normalized,
         email_raw=email or "",
         ip_address=ip_address,
@@ -82,4 +83,5 @@ def is_blocked(*, email: Optional[str] = None, ip_address: Optional[str] = None)
     if not query:
         return False
 
-    return SpamTrapEntry.objects.filter(query).exists()
+    SpamTrap = apps.get_model('core', 'SpamTrapEntry')
+    return SpamTrap.objects.filter(query).exists()
