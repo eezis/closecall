@@ -7,6 +7,19 @@
 
 {%block navigation %}{% include '_nav-loggedin.html' %} {% endblock %}
 
+{% block extra_css_or_js %}
+<style>
+  /* Hide honeypot email field */
+  #div_id_email_confirm {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 
 <div class="row-fluid">

@@ -1,7 +1,8 @@
 from __future__ import unicode_literals
+
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from registration.forms import RegistrationForm
-from django.utils.translation import ugettext_lazy as _
 from registration.users import UserModel
 
 
@@ -53,6 +54,19 @@ class MyRegistrationForm(RegistrationForm):
                                 label=_("Username TEST"),
                                 error_messages={'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
     email = forms.EmailField(label=_("E-mail"))
+    email_confirm = forms.EmailField(
+        required=False,
+        label=_("Email"),
+        widget=forms.EmailInput(
+            attrs={
+                'autocomplete': 'off',
+                'tabindex': '-1',
+                'aria-hidden': 'true',
+                'class': 'hp-email-field',
+            }
+        ),
+        help_text=_("Please leave this field blank."),
+    )
     password1 = forms.CharField(widget=forms.PasswordInput,
                                 label=_("Password"))
     password2 = forms.CharField(widget=forms.PasswordInput,
@@ -69,6 +83,15 @@ class MyRegistrationForm(RegistrationForm):
         else:
             return self.cleaned_data['username']
 
+    def clean_email_confirm(self):
+        """
+        Honeypot field: any value indicates automated spam.
+        """
+        value = self.cleaned_data.get('email_confirm')
+        if value:
+            raise forms.ValidationError(_("Please leave this field empty."))
+        return value
+
     def clean(self):
         """
         Verifiy that the values entered into the two password fields
@@ -80,4 +103,3 @@ class MyRegistrationForm(RegistrationForm):
             if self.cleaned_data['password1'] != self.cleaned_data['password2']:
                 raise forms.ValidationError(_("The two password fields didn't match."))
         return self.cleaned_data
-

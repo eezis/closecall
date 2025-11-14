@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from registration.views import RegistrationView
 
 # View imports
 from core.views import (
@@ -16,6 +17,7 @@ from users.views import (
     CreateUserProfileView, UpdateUserProfileView, 
     DetailUserProfileView, CheckForUserProfile
 )
+from myregistration.forms import MyRegistrationForm
 from incident.views import show_sample_report
 
 # API imports
@@ -38,6 +40,7 @@ urlpatterns = [
     path('incident/show/CO-141108-001/', show_sample_report, name="show-sample-report"),
 
     # User authentication and profiles
+    path('accounts/register/', RegistrationView.as_view(form_class=MyRegistrationForm), name='registration_register'),
     path('accounts/', include('registration.backends.default.urls')),
     path('create-user-profile/', CreateUserProfileView.as_view(), name='create-user-profile'),
     re_path(r'^user-profile-detail/(?P<pk>\d+)/$', DetailUserProfileView.as_view(), name='user-profile-detail'),
