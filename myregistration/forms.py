@@ -49,10 +49,12 @@ class MyRegistrationForm(RegistrationForm):
     required_css_class = 'required'
 
 # I wanted to accept spaces
-    username = forms.RegexField(regex=r'^[\w.@+ -]+$',
-                                max_length=30,
-                                label=_("Username TEST"),
-                                error_messages={'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")})
+    username = forms.RegexField(
+        regex=r'^[\w.@+ -]+$',
+        max_length=30,
+        label=_("Username"),
+        error_messages={'invalid': _("This value may contain only letters, numbers and @/./+/-/_ characters.")},
+    )
     email = forms.EmailField(label=_("E-mail"))
     email_confirm = forms.EmailField(
         required=False,
