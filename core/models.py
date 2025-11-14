@@ -71,3 +71,27 @@ class Product(BaseFields):
         tracking_id = "ccdb-16-20"
         return f"https://www.amazon.com/dp/{asin}/?tag={tracking_id}"
 
+
+class SpamTrapEntry(models.Model):
+    SOURCE_CHOICES = (
+        ('contact', 'Contact Form'),
+        ('registration', 'Registration'),
+        ('manual', 'Manual Entry'),
+        ('other', 'Other'),
+    )
+
+    email_normalized = models.CharField(max_length=255, blank=True, db_index=True)
+    email_raw = models.CharField(max_length=255, blank=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True, db_index=True)
+    user_agent = models.CharField(max_length=512, blank=True)
+    source = models.CharField(max_length=32, choices=SOURCE_CHOICES, default='other')
+    reason = models.CharField(max_length=255, blank=True)
+    payload_excerpt = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        identity = self.email_normalized or self.ip_address or "unknown"
+        return f"{self.source}: {identity} ({self.reason or 'hit'})"

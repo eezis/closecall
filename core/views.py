@@ -20,6 +20,11 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from users.models import UserProfile
 from core.models import UserInput, Product
+from core.spamshield import (
+    normalize_email,
+    record_spam_hit,
+    is_blocked,
+)
 
 # to support the custom 400 and 500 handlers (handler500 , handler404)
 # render_to_response and RequestContext removed - deprecated in Django 3.0
@@ -1219,6 +1224,10 @@ class CreateUserInput(CreateView):
         # print(self.subject)
         # get ip address to see if there the IPs can be blacklisted
         ip = get_client_ip(self.request)
+        user_agent = self.request.META.get('HTTP_USER_AGENT', '')
+        email_value = (self.request.POST.get('email') or '').strip()
+        normalized_email = normalize_email(email_value)
+        message_body = self.request.POST.get('message', '')
         try:
             ip_real =  self.request.META.get('HTTP_X_REAL_IP')
         except:
@@ -1226,22 +1235,59 @@ class CreateUserInput(CreateView):
         if ip_real == None:
             ip_real = 'HTTP_X_REAL_IP unavailable'
 
-        # Honeypot check - if 'website' field is filled, it's a bot
-        if self.request.POST.get('website', '').strip():
-            safe_print(f"HONEYPOT SPAM CAUGHT from IP {ip}: website field filled with '{self.request.POST.get('website')}'", True, False)
+        if is_blocked(email=normalized_email, ip_address=ip):
+            record_spam_hit(
+                email=email_value,
+                ip_address=ip,
+                user_agent=user_agent,
+                source='contact',
+                reason='preblocked',
+                payload=message_body,
+            )
+            safe_print(f"BLOCKED CONTACT from IP {ip}: {email_value}", True, False)
             raise PermissionDenied
 
-        msg = self.request.POST['message'] + '\n\n' + self.request.POST['email'] + '\n\n' + ip + '\n\n' + ip_real
+        # Honeypot check - if 'website' field is filled, it's a bot
+        honeypot_value = self.request.POST.get('website', '').strip()
+        if honeypot_value:
+            safe_print(f"HONEYPOT SPAM CAUGHT from IP {ip}: website field filled with '{self.request.POST.get('website')}'", True, False)
+            record_spam_hit(
+                email=email_value,
+                ip_address=ip,
+                user_agent=user_agent,
+                source='contact',
+                reason='honeypot',
+                payload=message_body,
+            )
+            raise PermissionDenied
+
+        msg = message_body + '\n\n' + email_value + '\n\n' + ip + '\n\n' + ip_real
         if its_spam(msg):
             # print('Spam!')
             # print(self.request.META.get('REMOTE_ADDR'))
             # logger.warning("SPAMMER AT ADDRESS: " + self.request.META.get('REMOTE_ADDR'))
             safe_print(f"SPAM DETECTED from IP {ip}: {msg[:100]}", True, False)
+            record_spam_hit(
+                email=email_value,
+                ip_address=ip,
+                user_agent=user_agent,
+                source='contact',
+                reason='content_filter',
+                payload=message_body,
+            )
             raise PermissionDenied
             # return redirect('http://www.urbandictionary.com/define.php?term=Fuck%20off%20and%20die')
 
         if banned_ip(ip):
             safe_print(f"BANNED IP ATTEMPT: {ip}", True, False)
+            record_spam_hit(
+                email=email_value,
+                ip_address=ip,
+                user_agent=user_agent,
+                source='contact',
+                reason='banned_ip',
+                payload=message_body,
+            )
             raise PermissionDenied
 
         else:

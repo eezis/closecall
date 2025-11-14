@@ -74,6 +74,10 @@ class MyRegistrationForm(RegistrationForm):
     password2 = forms.CharField(widget=forms.PasswordInput,
                                 label=_("Password (again)"))
 
+    def __init__(self, *args, **kwargs):
+        self.honeypot_hit = False
+        super().__init__(*args, **kwargs)
+
     def clean_username(self):
         """
         Validate that the username is alphanumeric and is not already
@@ -89,10 +93,10 @@ class MyRegistrationForm(RegistrationForm):
         """
         Honeypot field: any value indicates automated spam.
         """
-        value = self.cleaned_data.get('email_confirm')
+        value = (self.cleaned_data.get('email_confirm') or '').strip()
         if value:
-            raise forms.ValidationError(_("Please leave this field empty."))
-        return value
+            self.honeypot_hit = True
+        return ''
 
     def clean(self):
         """

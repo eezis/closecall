@@ -4,7 +4,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.urls import reverse
 from django.utils.html import format_html
 from django.utils.text import Truncator
-from .models import UserInput, Product
+from .models import UserInput, Product, SpamTrapEntry
 
 
 @admin.register(UserInput)
@@ -102,3 +102,11 @@ try:
 except admin.sites.NotRegistered:
     pass
 admin.site.register(User, CustomUserAdmin)
+
+
+@admin.register(SpamTrapEntry)
+class SpamTrapEntryAdmin(admin.ModelAdmin):
+    list_display = ('source', 'email_normalized', 'ip_address', 'reason', 'created_at')
+    list_filter = ('source', 'reason', 'created_at')
+    search_fields = ('email_normalized', 'email_raw', 'ip_address', 'user_agent', 'reason')
+    readonly_fields = ('created_at',)
