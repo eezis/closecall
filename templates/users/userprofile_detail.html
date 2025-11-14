@@ -9,6 +9,13 @@
 {% block extra_styles %}
 .datafield { color:blue; font-style: bold; padding-left:5px;}
 .datafield-simple { color:blue; font-style: bold;}
+.jumbotron a {
+    color: #1a4480 !important;
+    font-weight: 600;
+}
+.jumbotron a:hover {
+    color: #0d2240 !important;
+}
 {% endblock %}
 
 {% block content %}
@@ -30,8 +37,8 @@
 
 
     <br />
-    <a href="/" class="btn btn-success" style="margin-right: 30px;"> Accept Profile </a>
-    <a href="/update-user-profile/{{object.pk}}" class="btn btn-primary">Update Profile</a></p>
+    <a href="/" class="btn btn-success" style="margin-right: 30px; color: gainsboro !important;"> Accept Profile </a>
+    <a href="/update-user-profile/{{object.pk}}" class="btn btn-primary" style="color: gainsboro !important;">Update Profile</a></p>
 
   <hr>
 
