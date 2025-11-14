@@ -1,46 +1,46 @@
 
-go to a new terminal and run:
+## Restarting CCDB Only
 
-```
-cd ~
+Open a new terminal and run the tracked helper from the repo root (it handles the
+virtualenv, skips nginx if production already owns :8888, and performs a curl
+health check against the public site):
+
+```bash
+cd /home/eezis/code/closecall
 ./restart-ccdb.sh
 ```
 
-test http://closecalldatabase.com to confirm everything is working.
+Watch the output for:
 
+* green checks on Gunicorn and Nginx
+* `The site is in PRODUCTION (HTTP 200)` after the curl
+* the banner + “[CC] logs will appear below” block
 
-if it is not try:
+Finally, hit https://closecalldatabase.com in a browser to confirm.
 
-  2. Reload tunnel config (no downtime for other services)
+## If CCDB Still Misbehaves
 
-  # Send HUP signal to reload without full restart
-  pkill -HUP cloudflared
+1. **Reload Cloudflare tunnel config** (no downtime for other services):
+   ```bash
+   pkill -HUP cloudflared
+   ```
+2. **Restart only the tunnel** (brief downtime for everything):
+   ```bash
+   pkill cloudflared
+   ```
+   Then relaunch via whatever supervisor/systemd unit you normally use.
+3. **Full stack restart (last resort)**:
+   ```bash
+   ./stop_all_services.sh
+   ./start_all_services_with_prefixes.sh   # run this where you want to see logs
+   ```
 
-  3. Restart just the tunnel (brief downtime for ALL services)
+Re-test CCDB and the companion services after each step.
 
-  # Kill the tunnel
-  pkill cloudflared
+## Investigating Tunnel Issues
 
+Tail the Cloudflare logs:
 
-
-Remember to retest ccdb and the other services.
-
-
-If still a problem,
-
-./stop_all_services.sh
-
-then in the terminal where you wish to observe logs,
-
-./start_all_services_with_prefixes.sh
-
-
-Then test all services again.
-
-
-To investigate CloudFlare tunnel issues,
-
-then check logs:
-
-  # Check cloudflared logs
-  tail -f /home/eezis/.cloudflared/cloudflared.log
+```bash
+tail -f /home/eezis/.cloudflared/cloudflared.log
+```
