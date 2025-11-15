@@ -6,10 +6,11 @@ from django.forms import ModelForm
 # from tinymce.widgets import TinyMCE
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 from django.core.exceptions import ValidationError
+from django.utils.safestring import mark_safe
 
 from .models import Incident
 
-what_verbose_str = """
+what_verbose_str = mark_safe("""
 Now describe what happened. Be factual, include direction of travel for cyclists and vehicles. Here is an example: <p style="font-size:0.90em;margin-top:10px;margin-left:24px;
     margin-right:30px;">
 
@@ -31,13 +32,13 @@ Now describe what happened. Be factual, include direction of travel for cyclists
 
 
 Tell your story with enough context so that it can be understood by cyclists that were not there and may be unfamiliar with the location.
-"""
+""")
 
-video_verbose_str = """
+video_verbose_str = mark_safe("""
 <p><span style="color:red">VIDEO Section</span></p>
 <p>If you have uploaded a video to <strong>youtube</strong>, then you should paste or type the URL into this field. If you have a video but have not uploaded it to youtube yet, then leave this field blank for now. Finish this form and submit it. Then come back and update your report with the URL after you have uploaded it.</p>
 <p>If your video is at <strong>Vimeo</strong> or <strong>Facebook</strong> you can email the URL to me (wait for the email will arrive after you create your report). If you have a <span style="color:red">PICTURE</span> or two to accompany your report please email those as well (please resize them first).</p>
-"""
+""")
 
 
 class CreateIncidentForm(ModelForm):
@@ -165,7 +166,6 @@ class AdminScoreForm(ModelForm):
         #     # 'date': forms.DateInput(attrs={'class':'datepicker'}),
         #     'date': forms.DateInput(attrs={'class':'datepicker', 'size': 10, 'id': 'datepicker', }),
         # }
-
 
 
 
