@@ -85,6 +85,8 @@ class CreateIncidentView(LoginRequiredMixin, ValidFormMixin, CreateView):
 
     def form_invalid(self, form):
         print("Form Invalid")
+        print(f"Form errors: {form.errors}")
+        print(f"Form errors as JSON: {form.errors.as_json()}")
         return self.render_to_response(self.get_context_data(form=form))
 
     def form_valid(self, form):

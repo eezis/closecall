@@ -53,8 +53,8 @@ input[type=hidden] {
     <link href="/static/css/bootstrap-timepicker.min.css" rel="stylesheet">
     <script src="/static/js/bootstrap-timepicker.js"></script>
 
-    <script async src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&loading=async&callback=initMap" type="text/javascript"></script>
-
+    <script src="/static/js/incident-form-map.js?v=20251209c"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAPS_API_KEY }}&libraries=places&callback=initMap" type="text/javascript"></script>
 
   {% endblock %}
 
