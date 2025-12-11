@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView, PasswordChangeView
+from django.utils import timezone
 
 from registration.backends.default.views import RegistrationView as DefaultRegistrationView
 
@@ -97,3 +98,150 @@ class CloseCallLoginView(LoginView):
             return self._blocked_response()
 
         return super().post(request, *args, **kwargs)
+
+
+def _print_password_header(action):
+    """Print formatted header for password operations."""
+    print("\n")
+    print("*" * 50)
+    print(f"********** PASSWORD {action} **********")
+    print("*" * 50)
+    print()
+
+
+def _print_password_footer():
+    """Print formatted footer for password operations."""
+    print("\n\n")
+
+
+class CloseCallPasswordResetView(PasswordResetView):
+    """Custom password reset view with enhanced terminal logging."""
+
+    def get(self, request, *args, **kwargs):
+        ip_address = extract_client_ip(request)
+        user_agent = request.META.get('HTTP_USER_AGENT', '')[:100]
+
+        _print_password_header("RESET REQUEST")
+        print(f"Timestamp:    {timezone.now()}")
+        print(f"Action:       Password reset form viewed")
+        print(f"IP Address:   {ip_address}")
+        print(f"User Agent:   {user_agent}")
+        _print_password_footer()
+
+        return super().get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        email = form.cleaned_data.get('email', '')
+        ip_address = extract_client_ip(self.request)
+        user_agent = self.request.META.get('HTTP_USER_AGENT', '')[:100]
+
+        _print_password_header("RESET SUBMITTED")
+        print(f"Timestamp:    {timezone.now()}")
+        print(f"Action:       Password reset email requested")
+        print(f"Email:        {email}")
+        print(f"IP Address:   {ip_address}")
+        print(f"User Agent:   {user_agent}")
+        _print_password_footer()
+
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        ip_address = extract_client_ip(self.request)
+
+        _print_password_header("RESET FORM INVALID")
+        print(f"Timestamp:    {timezone.now()}")
+        print(f"Action:       Password reset form validation failed")
+        print(f"IP Address:   {ip_address}")
+        print(f"Errors:       {form.errors}")
+        _print_password_footer()
+
+        return super().form_invalid(form)
+
+
+class CloseCallPasswordResetConfirmView(PasswordResetConfirmView):
+    """Custom password reset confirm view with enhanced terminal logging."""
+
+    def get(self, request, *args, **kwargs):
+        ip_address = extract_client_ip(request)
+        user_agent = request.META.get('HTTP_USER_AGENT', '')[:100]
+
+        _print_password_header("RESET CONFIRM PAGE")
+        print(f"Timestamp:    {timezone.now()}")
+        print(f"Action:       Password reset confirm page viewed")
+        print(f"IP Address:   {ip_address}")
+        print(f"User Agent:   {user_agent}")
+        print(f"UID:          {kwargs.get('uidb64', 'N/A')}")
+        _print_password_footer()
+
+        return super().get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        ip_address = extract_client_ip(self.request)
+        user = form.user if hasattr(form, 'user') else None
+
+        _print_password_header("RESET COMPLETE")
+        print(f"Timestamp:    {timezone.now()}")
+        print(f"Action:       Password successfully reset")
+        print(f"User:         {user.username if user else 'Unknown'}")
+        print(f"Email:        {user.email if user else 'Unknown'}")
+        print(f"IP Address:   {ip_address}")
+        _print_password_footer()
+
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        ip_address = extract_client_ip(self.request)
+
+        _print_password_header("RESET CONFIRM FAILED")
+        print(f"Timestamp:    {timezone.now()}")
+        print(f"Action:       Password reset confirmation failed")
+        print(f"IP Address:   {ip_address}")
+        print(f"Errors:       {form.errors}")
+        _print_password_footer()
+
+        return super().form_invalid(form)
+
+
+class CloseCallPasswordChangeView(PasswordChangeView):
+    """Custom password change view with enhanced terminal logging."""
+
+    def get(self, request, *args, **kwargs):
+        ip_address = extract_client_ip(request)
+        user = request.user
+
+        _print_password_header("CHANGE REQUEST")
+        print(f"Timestamp:    {timezone.now()}")
+        print(f"Action:       Password change form viewed")
+        print(f"User:         {user.username if user.is_authenticated else 'Anonymous'}")
+        print(f"IP Address:   {ip_address}")
+        _print_password_footer()
+
+        return super().get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        ip_address = extract_client_ip(self.request)
+        user = self.request.user
+
+        _print_password_header("CHANGE COMPLETE")
+        print(f"Timestamp:    {timezone.now()}")
+        print(f"Action:       Password successfully changed")
+        print(f"User:         {user.username}")
+        print(f"Email:        {user.email}")
+        print(f"IP Address:   {ip_address}")
+        _print_password_footer()
+
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        ip_address = extract_client_ip(self.request)
+        user = self.request.user
+
+        _print_password_header("CHANGE FAILED")
+        print(f"Timestamp:    {timezone.now()}")
+        print(f"Action:       Password change validation failed")
+        print(f"User:         {user.username if user.is_authenticated else 'Anonymous'}")
+        print(f"IP Address:   {ip_address}")
+        print(f"Errors:       {form.errors}")
+        _print_password_footer()
+
+        return super().form_invalid(form)

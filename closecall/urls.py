@@ -17,7 +17,10 @@ from users.views import (
     DetailUserProfileView, CheckForUserProfile
 )
 from myregistration.forms import MyRegistrationForm
-from myregistration.views import CloseCallRegistrationView, CloseCallLoginView
+from myregistration.views import (
+    CloseCallRegistrationView, CloseCallLoginView,
+    CloseCallPasswordResetView, CloseCallPasswordResetConfirmView, CloseCallPasswordChangeView
+)
 from incident.views import show_sample_report
 
 # API imports
@@ -42,6 +45,11 @@ urlpatterns = [
     # User authentication and profiles
     path('accounts/register/', CloseCallRegistrationView.as_view(form_class=MyRegistrationForm), name='registration_register'),
     path('accounts/login/', CloseCallLoginView.as_view(), name='auth_login'),
+    # Password reset/change with enhanced logging (must be before the catch-all include)
+    path('accounts/password/reset/', CloseCallPasswordResetView.as_view(), name='password_reset'),
+    path('accounts/password/reset/confirm/<uidb64>/<token>/', CloseCallPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('accounts/password/change/', CloseCallPasswordChangeView.as_view(success_url='/accounts/password/change/done/'), name='password_change'),
+    path('accounts/password/change/done/', TemplateView.as_view(template_name='registration/password_change_done.html'), name='password_change_done'),
     path('accounts/', include('registration.backends.default.urls')),
     path('create-user-profile/', CreateUserProfileView.as_view(), name='create-user-profile'),
     re_path(r'^user-profile-detail/(?P<pk>\d+)/$', DetailUserProfileView.as_view(), name='user-profile-detail'),

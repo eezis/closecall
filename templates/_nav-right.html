@@ -24,6 +24,7 @@
                 {% if user.profile.can_blog %}
                     <li><a href="{% url 'users-blogpost-list' %}">Your Blog Posts</a></li>
                 {% endif %}
+                <li><a href="{% url 'password_change' %}">Change Password</a></li>
                 <li>
                     <form method="post" action="{% url 'auth_logout' %}" style="margin: 0; padding: 0;">
                         {% csrf_token %}
