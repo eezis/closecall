@@ -45,9 +45,12 @@ urlpatterns = [
     # User authentication and profiles
     path('accounts/register/', CloseCallRegistrationView.as_view(form_class=MyRegistrationForm), name='registration_register'),
     path('accounts/login/', CloseCallLoginView.as_view(), name='auth_login'),
-    # Password reset/change with enhanced logging (must be before the catch-all include)
-    path('accounts/password/reset/', CloseCallPasswordResetView.as_view(), name='password_reset'),
-    path('accounts/password/reset/confirm/<uidb64>/<token>/', CloseCallPasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    # Password reset with enhanced logging (must be before the catch-all include)
+    path('accounts/password/reset/', CloseCallPasswordResetView.as_view(success_url='/accounts/password/reset/done/'), name='password_reset'),
+    path('accounts/password/reset/done/', TemplateView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),
+    path('accounts/password/reset/confirm/<uidb64>/<token>/', CloseCallPasswordResetConfirmView.as_view(success_url='/accounts/password/reset/complete/'), name='password_reset_confirm'),
+    path('accounts/password/reset/complete/', TemplateView.as_view(template_name='registration/password_reset_complete.html'), name='password_reset_complete'),
+    # Password change with enhanced logging
     path('accounts/password/change/', CloseCallPasswordChangeView.as_view(success_url='/accounts/password/change/done/'), name='password_change'),
     path('accounts/password/change/done/', TemplateView.as_view(template_name='registration/password_change_done.html'), name='password_change_done'),
     path('accounts/', include('registration.backends.default.urls')),
