@@ -1,5 +1,5 @@
 # robots.txt for closecalldatabase.com
-# Updated: 2025-06-29
+# Updated: 2026-02-19
 
 # Allow legitimate search engines
 User-agent: Googlebot
@@ -7,6 +7,7 @@ Allow: /
 Disallow: /accounts/
 Disallow: /admin/
 Disallow: /api/
+Disallow: /incident/show-detail/
 Crawl-delay: 1
 
 User-agent: Bingbot
@@ -14,6 +15,7 @@ Allow: /
 Disallow: /accounts/
 Disallow: /admin/
 Disallow: /api/
+Disallow: /incident/show-detail/
 Crawl-delay: 2
 
 # Block aggressive/problematic bots
@@ -39,6 +41,7 @@ Allow: /
 Disallow: /accounts/
 Disallow: /admin/
 Disallow: /api/
+Disallow: /incident/show-detail/
 Disallow: /media/
 Disallow: /static/admin/
 Disallow: /contact-u/
