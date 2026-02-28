@@ -294,9 +294,9 @@ def login_a_user(request, this_user, athlete_id):
 
     # Re-set the password to the Strava-generated one before authenticating.
     # This ensures returning Strava users can always log in, even if they
-    # changed their password via Django’s password reset flow.
+    # changed their password via Django's password reset flow.
     this_user.set_password(password)
-    this_user.save(update_fields=[‘password’])
+    this_user.save(update_fields=['password'])
 
     # note we are going to cross over, from this_user to user
     # wanted to make the syntactical distinction, even though it was obligatory
@@ -611,9 +611,9 @@ def strava_registration(request):
 
         Parameters
         client_id:  integer required
-        application’s ID, obtained during registration
+        application's ID, obtained during registration
         client_secret:  string required
-        application’s secret, obtained during registration
+        application's secret, obtained during registration
         code:   string required
         authorization code
         Returns an access_token and a detailed representation of the current athlete.
