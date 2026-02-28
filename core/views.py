@@ -291,13 +291,12 @@ def login_a_user(request, this_user, athlete_id):
         safe_print("HOUSTON WE HAVE A PROBLEM -- login_a_user should not have gotten a null user! Fix earlier in code.")
 
     safe_print(u"attempting to authenticate {}".format(this_user.username))
-    # the next line throws an exception
-    # AttributeError: ‘UserProfile’ object has no attribute ‘username’
-    # safe_print(u"Testing to see if this works {}".format(this_user.profile.username))
-    # if this_user.username != the_user.profile.username:
-    #     msg = "Userpofile.username is {} and User.Username is {}".format(this_user.profile.username, this_user.username)
-    #     admin_mailer('Mismatched Usernames', msg)
 
+    # Re-set the password to the Strava-generated one before authenticating.
+    # This ensures returning Strava users can always log in, even if they
+    # changed their password via Django’s password reset flow.
+    this_user.set_password(password)
+    this_user.save(update_fields=[‘password’])
 
     # note we are going to cross over, from this_user to user
     # wanted to make the syntactical distinction, even though it was obligatory
