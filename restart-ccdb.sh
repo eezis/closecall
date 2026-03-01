@@ -159,6 +159,19 @@ echo "========================================"
 echo "Restarting Close Call Database (CCDB)"
 echo "========================================"
 
+# ── Step 0: Preflight checks (BEFORE touching the running server) ──
+log_step "Step 0: Running preflight checks..."
+PREFLIGHT_SCRIPT="$CCDB_ROOT/preflight-check.sh"
+if [[ -x "$PREFLIGHT_SCRIPT" ]]; then
+    if ! "$PREFLIGHT_SCRIPT"; then
+        echo -e "${RED}✗ Preflight failed — aborting restart. Running server was NOT touched.${NC}"
+        exit 1
+    fi
+    echo -e "  ${GREEN}✓${NC} Preflight passed"
+else
+    echo -e "  ${YELLOW}⚠${NC} preflight-check.sh not found or not executable — skipping"
+fi
+
 stop_gunicorn
 stop_nginx
 start_services

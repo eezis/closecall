@@ -886,3 +886,99 @@ class StravaRegistrationTests(BaseAuthTransactionTestCase):
         )
 
         self.assertEqual(returned_user.id, strava_user.id)
+
+
+class StravaLoginFlowTests(BaseAuthTransactionTestCase):
+    """
+    Smoke tests for Strava login functions.
+
+    Added after the Feb 28, 2026 production outage caused by a curly-quote
+    SyntaxError in core/views.py. These tests verify that the module imports
+    cleanly and that core Strava login flows work end-to-end.
+    """
+
+    def test_core_views_imports_cleanly(self):
+        """
+        Importing core.views must not raise SyntaxError.
+
+        This is the exact failure mode from the Feb 28, 2026 outage — a Unicode
+        curly quote made the entire module un-importable, 500-erroring the site.
+        """
+        import importlib
+        mod = importlib.import_module('core.views')
+        self.assertIsNotNone(mod)
+
+    def test_login_a_user_strava_flow(self):
+        """Basic Strava login flow: login_a_user should authenticate and log in."""
+        from core.views import login_a_user, get_or_create_a_strava_based_password
+
+        athlete_id = 55555
+        password = get_or_create_a_strava_based_password(athlete_id)
+
+        user = User.objects.create_user(
+            username='strava_flow_user',
+            email='flow@example.com',
+            password=password,
+        )
+        user.is_active = True
+        user.save()
+
+        # login_a_user takes (request, user, athlete_id)
+        request = self.client.get('/').wsgi_request
+        result = login_a_user(request, user, athlete_id)
+        self.assertTrue(result, "login_a_user should return True for an active user")
+
+    def test_strava_login_after_password_reset(self):
+        """
+        Strava login must work even after the user reset their Django password.
+
+        This is the John Tonetti scenario: user resets password via Django,
+        then tries to log in via Strava again. login_a_user re-sets the
+        password to the Strava-generated one before authenticating.
+        """
+        from core.views import login_a_user, get_or_create_a_strava_based_password
+
+        athlete_id = 77777
+
+        user = User.objects.create_user(
+            username='tonetti',
+            email='tonetti@example.com',
+            password=get_or_create_a_strava_based_password(athlete_id),
+        )
+        user.is_active = True
+        user.save()
+
+        # Simulate a Django password reset — password is now different
+        user.set_password('new-django-password-from-reset')
+        user.save(update_fields=['password'])
+
+        # Strava login should still work (login_a_user re-sets the password)
+        request = self.client.get('/').wsgi_request
+        result = login_a_user(request, user, athlete_id)
+        self.assertTrue(result, "Strava login should succeed even after a Django password reset")
+
+    def test_get_or_create_strava_password_deterministic(self):
+        """Password generation for a given athlete_id must be deterministic."""
+        from core.views import get_or_create_a_strava_based_password
+
+        athlete_id = 12345678
+        pw1 = get_or_create_a_strava_based_password(athlete_id)
+        pw2 = get_or_create_a_strava_based_password(athlete_id)
+        self.assertEqual(pw1, pw2, "Same athlete_id should always produce the same password")
+        self.assertIn(str(athlete_id), pw1, "Password should contain the athlete_id")
+
+    def test_strava_helper_functions_importable(self):
+        """All Strava helper functions must be importable from core.views."""
+        from core.views import (
+            get_or_create_user,
+            get_or_create_a_strava_based_password,
+            login_a_user,
+            existing_strava_user,
+            get_user_by_strava_id,
+        )
+        # Verify they are callable
+        self.assertTrue(callable(get_or_create_user))
+        self.assertTrue(callable(get_or_create_a_strava_based_password))
+        self.assertTrue(callable(login_a_user))
+        self.assertTrue(callable(existing_strava_user))
+        self.assertTrue(callable(get_user_by_strava_id))
