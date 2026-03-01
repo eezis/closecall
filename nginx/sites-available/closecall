@@ -56,7 +56,7 @@ server {
     
     # Static files with aggressive caching
     location /static/ {
-        alias /home/eae/code/closecall/nginx-root/static/;
+        alias /home/eezis/code/closecall/nginx-root/static/;
         expires 1y;
         add_header Cache-Control "public, immutable";
         add_header Vary Accept-Encoding;
@@ -69,7 +69,7 @@ server {
     
     # Media files
     location /media/ {
-        alias /home/eae/code/closecall/media/;
+        alias /home/eezis/code/closecall/media/;
         expires 30d;
         add_header Cache-Control "public";
     }
